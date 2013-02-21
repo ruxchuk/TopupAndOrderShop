@@ -11,17 +11,13 @@ using DevExpress.UserSkins;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Mask;
 using System.Diagnostics;
+using System.IO;
 
 
 namespace TAOS
 {
-    public partial class main : XtraForm
+    public partial class MainForm : XtraForm
     {
-        public main()
-        {
-            InitializeComponent();
-
-        }
 
         private string str_formName = "ร้านแดงตาก้อง"; 
         private Helper helper;
@@ -31,9 +27,19 @@ namespace TAOS
         private string idSelect = "";
         private double SumPriceAll = 0;
 
-        private void main_Load(object sender, EventArgs e)
+        public MainForm()
+        {
+            InitializeComponent();
+            readSetting();
+            helper = new Helper();
+            loadSetting();
+            getListPhoneNumber(true, "");
+        }
+
+        private void loadSetting()
         {
             this.Text = str_formName;
+
             txtTopupPhoneNumber.Properties.Mask.EditMask = "((\\+\\d|10)?\\(\\d{3}\\))?\\d{3}-\\d\\d\\d-\\d\\d\\d\\d";
             txtTopupPhoneNumber.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
             txtTopupPhoneNumber.Properties.Mask.IgnoreMaskBlank = false;
@@ -43,6 +49,41 @@ namespace TAOS
             txtValueBaht.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
             txtValueBaht.Properties.Mask.IgnoreMaskBlank = true;
             txtValueBaht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+        }
+
+        private void readSetting()
+        {
+            try
+            {
+                openFileDialog1.FileName = "Files\\FileSave.txt";
+                StreamReader strm = File.OpenText(openFileDialog1.FileName);
+
+                string user = strm.ReadLine();
+                string pass = strm.ReadLine();
+                string server = strm.ReadLine();
+                string nameDB = strm.ReadLine();
+                strm.Close();
+                ConnectMySql = new ConMySql(user, pass, server, nameDB);
+                if (ConnectMySql.CheckConnect())
+                {
+                    ConnectMySql.CloseConnection();
+                }
+                else
+                {
+                    MessageBox.Show("เชื่อมต่อฐานข้อมูล ผิดพลาด");
+                }
+                //Debug.WriteLine(nameDB);
+            }
+            catch
+            {
+                //SaveSetDatabase();
+                MessageBox.Show("กรุณาตรวจสอบ Username หรือ Password\n", ""
+                   , MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void main_Load(object sender, EventArgs e)
+        {
         }
 
         private void tbxSerialAndAddPrice_KeyUp(object sender, KeyEventArgs e)

@@ -14,7 +14,8 @@ G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\Reso
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\TAOS.exe
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\TAOS.pdb
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\ResolveAssemblyReference.cache
-G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.main.resources
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.Properties.Resources.resources
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.exe.licenses
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\MySql.Data.dll
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.MainForm.resources
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\Files\FileSave.txt

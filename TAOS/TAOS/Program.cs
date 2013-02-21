@@ -20,7 +20,7 @@ namespace TAOS
             DevExpress.UserSkins.BonusSkins.Register();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
 
-            Application.Run(new main());
+            Application.Run(new MainForm());
         }
     }
 }
