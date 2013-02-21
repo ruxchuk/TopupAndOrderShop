@@ -6,3 +6,5 @@ G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.Properties.Resour
 G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.exe.licenses
 G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.exe
 G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.pdb
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.exe
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.pdb

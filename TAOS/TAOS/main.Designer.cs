@@ -32,9 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageProduct = new System.Windows.Forms.TabPage();
             this.tabControlProduct = new System.Windows.Forms.TabControl();
@@ -97,12 +97,45 @@
             this.listBoxTopUpPhoneNumber = new System.Windows.Forms.ListBox();
             this.label22 = new System.Windows.Forms.Label();
             this.tbxTopUpValueBaht = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.cmbTopUpNetwork = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.tbxTopUpPhoneNumber = new System.Windows.Forms.TextBox();
             this.imgTopUpNetwork = new System.Windows.Forms.PictureBox();
+            this.dataGridViewTopUp = new System.Windows.Forms.DataGridView();
+            this.dataGridViewListTopUpFinish = new System.Windows.Forms.DataGridView();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.imageTopUpIconNetwork = new System.Windows.Forms.PictureBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lbTopUpValue = new System.Windows.Forms.Label();
+            this.lbTopUpPhoneNumber = new System.Windows.Forms.Label();
+            this.tabPageCustomerList = new System.Windows.Forms.TabPage();
+            this.tabControlTopUp = new System.Windows.Forms.TabControl();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.tabControl5 = new System.Windows.Forms.TabControl();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabControl6 = new System.Windows.Forms.TabControl();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label39 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.dataGridViewTelephone2 = new System.Windows.Forms.DataGridView();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.btnTopUpAdd = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -121,20 +154,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tbxTem2 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
-            this.dataGridViewTopUp = new System.Windows.Forms.DataGridView();
-            this.dataGridViewListTopUpFinish = new System.Windows.Forms.DataGridView();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.imageTopUpIconNetwork = new System.Windows.Forms.PictureBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lbTopUpValue = new System.Windows.Forms.Label();
-            this.lbTopUpPhoneNumber = new System.Windows.Forms.Label();
-            this.tabPageCustomerList = new System.Windows.Forms.TabPage();
-            this.tabControlTopUp = new System.Windows.Forms.TabControl();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.tabControl5 = new System.Windows.Forms.TabControl();
             this.tabPageSeach = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -159,8 +178,6 @@
             this.tbxTel1 = new System.Windows.Forms.TextBox();
             this.tbxName1 = new System.Windows.Forms.TextBox();
             this.btnEditTel1 = new System.Windows.Forms.Button();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.tabControl6 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.btnClearAddDabter = new System.Windows.Forms.Button();
@@ -177,23 +194,6 @@
             this.tbxTelCus = new System.Windows.Forms.TextBox();
             this.tbxNameCus = new System.Windows.Forms.TextBox();
             this.btnAddCus = new System.Windows.Forms.Button();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label39 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridViewTelephone2 = new System.Windows.Forms.DataGridView();
             this.tabControlMain.SuspendLayout();
             this.tabPageProduct.SuspendLayout();
             this.tabControlProduct.SuspendLayout();
@@ -216,9 +216,6 @@
             this.groupBox8.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgTopUpNetwork)).BeginInit();
-            this.tabPage7.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListTopUpFinish)).BeginInit();
             this.groupBox14.SuspendLayout();
@@ -228,21 +225,27 @@
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tabControl5.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.tabControl6.SuspendLayout();
+            this.tabPage11.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTelephone2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.tabPage7.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).BeginInit();
             this.tabPageSeach.SuspendLayout();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPageAdd.SuspendLayout();
             this.groupBox11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage9.SuspendLayout();
-            this.tabControl6.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.groupBox12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.tabPage11.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTelephone2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -258,7 +261,7 @@
             this.tabControlMain.Multiline = true;
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(1100, 700);
+            this.tabControlMain.Size = new System.Drawing.Size(1008, 562);
             this.tabControlMain.TabIndex = 21;
             // 
             // tabPageProduct
@@ -270,7 +273,7 @@
             this.tabPageProduct.Location = new System.Drawing.Point(44, 4);
             this.tabPageProduct.Name = "tabPageProduct";
             this.tabPageProduct.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageProduct.Size = new System.Drawing.Size(1052, 692);
+            this.tabPageProduct.Size = new System.Drawing.Size(960, 554);
             this.tabPageProduct.TabIndex = 0;
             this.tabPageProduct.Text = "ซื้อสินค้า";
             // 
@@ -283,7 +286,7 @@
             this.tabControlProduct.Location = new System.Drawing.Point(3, 3);
             this.tabControlProduct.Name = "tabControlProduct";
             this.tabControlProduct.SelectedIndex = 0;
-            this.tabControlProduct.Size = new System.Drawing.Size(1046, 686);
+            this.tabControlProduct.Size = new System.Drawing.Size(954, 548);
             this.tabControlProduct.TabIndex = 50;
             // 
             // tabPageBuyProduct
@@ -293,7 +296,7 @@
             this.tabPageBuyProduct.Location = new System.Drawing.Point(4, 46);
             this.tabPageBuyProduct.Name = "tabPageBuyProduct";
             this.tabPageBuyProduct.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBuyProduct.Size = new System.Drawing.Size(1038, 636);
+            this.tabPageBuyProduct.Size = new System.Drawing.Size(946, 498);
             this.tabPageBuyProduct.TabIndex = 0;
             this.tabPageBuyProduct.Text = "ซื้อสินค้า";
             this.tabPageBuyProduct.UseVisualStyleBackColor = true;
@@ -306,7 +309,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1032, 630);
+            this.groupBox1.Size = new System.Drawing.Size(940, 492);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -350,7 +353,7 @@
             this.dataGridViewBuyProduct.RowHeadersVisible = false;
             this.dataGridViewBuyProduct.RowTemplate.Height = 35;
             this.dataGridViewBuyProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewBuyProduct.Size = new System.Drawing.Size(1026, 519);
+            this.dataGridViewBuyProduct.Size = new System.Drawing.Size(934, 381);
             this.dataGridViewBuyProduct.TabIndex = 99;
             // 
             // ID
@@ -405,9 +408,9 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(3, 555);
+            this.panel2.Location = new System.Drawing.Point(3, 417);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1026, 72);
+            this.panel2.Size = new System.Drawing.Size(934, 72);
             this.panel2.TabIndex = 1;
             // 
             // lbPriceAddChange
@@ -888,7 +891,7 @@
             this.tabPageTopUp.Location = new System.Drawing.Point(44, 4);
             this.tabPageTopUp.Name = "tabPageTopUp";
             this.tabPageTopUp.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTopUp.Size = new System.Drawing.Size(1052, 692);
+            this.tabPageTopUp.Size = new System.Drawing.Size(960, 554);
             this.tabPageTopUp.TabIndex = 1;
             this.tabPageTopUp.Text = "เติมเงิน";
             this.tabPageTopUp.UseVisualStyleBackColor = true;
@@ -927,10 +930,10 @@
             this.tabControlTopUpList.Controls.Add(this.tabPage7);
             this.tabControlTopUpList.Dock = System.Windows.Forms.DockStyle.Right;
             this.tabControlTopUpList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.tabControlTopUpList.Location = new System.Drawing.Point(717, 69);
+            this.tabControlTopUpList.Location = new System.Drawing.Point(625, 69);
             this.tabControlTopUpList.Name = "tabControlTopUpList";
             this.tabControlTopUpList.SelectedIndex = 0;
-            this.tabControlTopUpList.Size = new System.Drawing.Size(332, 620);
+            this.tabControlTopUpList.Size = new System.Drawing.Size(332, 482);
             this.tabControlTopUpList.TabIndex = 41;
             // 
             // tabPage6
@@ -939,24 +942,23 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 33);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(324, 583);
+            this.tabPage6.Size = new System.Drawing.Size(324, 445);
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "เติมเงิน";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
-            this.groupBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox8.BackgroundImage")));
             this.groupBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.groupBox8.Controls.Add(this.groupBox15);
             this.groupBox8.Controls.Add(this.listBoxTopUpPhoneNumber);
             this.groupBox8.Controls.Add(this.label22);
             this.groupBox8.Controls.Add(this.tbxTopUpValueBaht);
-            this.groupBox8.Controls.Add(this.label21);
             this.groupBox8.Controls.Add(this.cmbTopUpNetwork);
-            this.groupBox8.Controls.Add(this.label13);
-            this.groupBox8.Controls.Add(this.label14);
             this.groupBox8.Controls.Add(this.tbxTopUpPhoneNumber);
+            this.groupBox8.Controls.Add(this.pictureBox7);
+            this.groupBox8.Controls.Add(this.pictureBox6);
+            this.groupBox8.Controls.Add(this.pictureBox5);
             this.groupBox8.Controls.Add(this.imgTopUpNetwork);
             this.groupBox8.Controls.Add(this.btnTopUpAdd);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -964,7 +966,7 @@
             this.groupBox8.ForeColor = System.Drawing.Color.White;
             this.groupBox8.Location = new System.Drawing.Point(3, 3);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(318, 577);
+            this.groupBox8.Size = new System.Drawing.Size(318, 439);
             this.groupBox8.TabIndex = 6;
             this.groupBox8.TabStop = false;
             // 
@@ -975,9 +977,9 @@
             this.groupBox15.Controls.Add(this.btnTopupDelete);
             this.groupBox15.Controls.Add(this.btnTopUpAddPayment);
             this.groupBox15.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox15.Location = new System.Drawing.Point(3, 438);
+            this.groupBox15.Location = new System.Drawing.Point(3, 322);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(312, 136);
+            this.groupBox15.Size = new System.Drawing.Size(312, 114);
             this.groupBox15.TabIndex = 33;
             this.groupBox15.TabStop = false;
             // 
@@ -988,7 +990,7 @@
             this.btnTopUpClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpClear.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpClear.Location = new System.Drawing.Point(21, 31);
+            this.btnTopUpClear.Location = new System.Drawing.Point(24, 16);
             this.btnTopUpClear.Name = "btnTopUpClear";
             this.btnTopUpClear.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpClear.TabIndex = 13;
@@ -1002,7 +1004,7 @@
             this.btnTopUpRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpRefresh.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpRefresh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpRefresh.Location = new System.Drawing.Point(21, 81);
+            this.btnTopUpRefresh.Location = new System.Drawing.Point(24, 66);
             this.btnTopUpRefresh.Name = "btnTopUpRefresh";
             this.btnTopUpRefresh.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpRefresh.TabIndex = 6;
@@ -1016,7 +1018,7 @@
             this.btnTopupDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopupDelete.ForeColor = System.Drawing.Color.Black;
             this.btnTopupDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopupDelete.Location = new System.Drawing.Point(163, 81);
+            this.btnTopupDelete.Location = new System.Drawing.Point(166, 66);
             this.btnTopupDelete.Name = "btnTopupDelete";
             this.btnTopupDelete.Size = new System.Drawing.Size(123, 40);
             this.btnTopupDelete.TabIndex = 5;
@@ -1030,7 +1032,7 @@
             this.btnTopUpAddPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpAddPayment.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpAddPayment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAddPayment.Location = new System.Drawing.Point(163, 31);
+            this.btnTopUpAddPayment.Location = new System.Drawing.Point(166, 16);
             this.btnTopUpAddPayment.Name = "btnTopUpAddPayment";
             this.btnTopUpAddPayment.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpAddPayment.TabIndex = 5;
@@ -1058,7 +1060,7 @@
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.label22.ForeColor = System.Drawing.Color.Lime;
             this.label22.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label22.Location = new System.Drawing.Point(233, 79);
+            this.label22.Location = new System.Drawing.Point(231, 88);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(56, 31);
             this.label22.TabIndex = 12;
@@ -1069,24 +1071,11 @@
             this.tbxTopUpValueBaht.BackColor = System.Drawing.Color.Black;
             this.tbxTopUpValueBaht.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
             this.tbxTopUpValueBaht.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.tbxTopUpValueBaht.Location = new System.Drawing.Point(117, 74);
+            this.tbxTopUpValueBaht.Location = new System.Drawing.Point(117, 88);
             this.tbxTopUpValueBaht.MaxLength = 4;
             this.tbxTopUpValueBaht.Name = "tbxTopUpValueBaht";
             this.tbxTopUpValueBaht.Size = new System.Drawing.Size(102, 38);
             this.tbxTopUpValueBaht.TabIndex = 2;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.label21.ForeColor = System.Drawing.Color.Lime;
-            this.label21.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label21.Location = new System.Drawing.Point(27, 79);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(85, 31);
-            this.label21.TabIndex = 10;
-            this.label21.Text = "จำนวน";
             // 
             // cmbTopUpNetwork
             // 
@@ -1100,36 +1089,10 @@
             "One 2 Call",
             "DTAC",
             "TrueMove"});
-            this.cmbTopUpNetwork.Location = new System.Drawing.Point(117, 123);
+            this.cmbTopUpNetwork.Location = new System.Drawing.Point(117, 150);
             this.cmbTopUpNetwork.Name = "cmbTopUpNetwork";
             this.cmbTopUpNetwork.Size = new System.Drawing.Size(170, 32);
             this.cmbTopUpNetwork.TabIndex = 3;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.Lime;
-            this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label13.Location = new System.Drawing.Point(27, 125);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(70, 31);
-            this.label13.TabIndex = 7;
-            this.label13.Text = "ระบบ";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.Lime;
-            this.label14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label14.Location = new System.Drawing.Point(27, 31);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(68, 31);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "เบอร์";
             // 
             // tbxTopUpPhoneNumber
             // 
@@ -1149,12 +1112,496 @@
             this.imgTopUpNetwork.ImageLocation = "";
             this.imgTopUpNetwork.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.imgTopUpNetwork.InitialImage = null;
-            this.imgTopUpNetwork.Location = new System.Drawing.Point(27, 172);
+            this.imgTopUpNetwork.Location = new System.Drawing.Point(9, 207);
             this.imgTopUpNetwork.Name = "imgTopUpNetwork";
-            this.imgTopUpNetwork.Size = new System.Drawing.Size(192, 122);
+            this.imgTopUpNetwork.Size = new System.Drawing.Size(176, 109);
             this.imgTopUpNetwork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgTopUpNetwork.TabIndex = 0;
             this.imgTopUpNetwork.TabStop = false;
+            // 
+            // dataGridViewTopUp
+            // 
+            this.dataGridViewTopUp.AllowUserToAddRows = false;
+            this.dataGridViewTopUp.AllowUserToDeleteRows = false;
+            this.dataGridViewTopUp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
+            this.dataGridViewTopUp.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridViewTopUp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dataGridViewTopUp.ColumnHeadersHeight = 38;
+            this.dataGridViewTopUp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Chartreuse;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTopUp.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewTopUp.Location = new System.Drawing.Point(3, 69);
+            this.dataGridViewTopUp.MultiSelect = false;
+            this.dataGridViewTopUp.Name = "dataGridViewTopUp";
+            this.dataGridViewTopUp.ReadOnly = true;
+            this.dataGridViewTopUp.RowHeadersVisible = false;
+            this.dataGridViewTopUp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTopUp.Size = new System.Drawing.Size(616, 482);
+            this.dataGridViewTopUp.TabIndex = 42;
+            // 
+            // dataGridViewListTopUpFinish
+            // 
+            this.dataGridViewListTopUpFinish.AllowUserToAddRows = false;
+            this.dataGridViewListTopUpFinish.AllowUserToDeleteRows = false;
+            this.dataGridViewListTopUpFinish.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridViewListTopUpFinish.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridViewListTopUpFinish.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dataGridViewListTopUpFinish.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewListTopUpFinish.Location = new System.Drawing.Point(3, 68);
+            this.dataGridViewListTopUpFinish.MultiSelect = false;
+            this.dataGridViewListTopUpFinish.Name = "dataGridViewListTopUpFinish";
+            this.dataGridViewListTopUpFinish.ReadOnly = true;
+            this.dataGridViewListTopUpFinish.RowHeadersVisible = false;
+            this.dataGridViewListTopUpFinish.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewListTopUpFinish.Size = new System.Drawing.Size(616, 483);
+            this.dataGridViewListTopUpFinish.TabIndex = 43;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox14.Controls.Add(this.imageTopUpIconNetwork);
+            this.groupBox14.Controls.Add(this.label31);
+            this.groupBox14.Controls.Add(this.label20);
+            this.groupBox14.Controls.Add(this.label15);
+            this.groupBox14.Controls.Add(this.lbTopUpValue);
+            this.groupBox14.Controls.Add(this.lbTopUpPhoneNumber);
+            this.groupBox14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox14.Location = new System.Drawing.Point(3, 3);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(954, 66);
+            this.groupBox14.TabIndex = 40;
+            this.groupBox14.TabStop = false;
+            // 
+            // imageTopUpIconNetwork
+            // 
+            this.imageTopUpIconNetwork.BackColor = System.Drawing.Color.DimGray;
+            this.imageTopUpIconNetwork.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.imageTopUpIconNetwork.ErrorImage = null;
+            this.imageTopUpIconNetwork.ImageLocation = "";
+            this.imageTopUpIconNetwork.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imageTopUpIconNetwork.InitialImage = null;
+            this.imageTopUpIconNetwork.Location = new System.Drawing.Point(508, 22);
+            this.imageTopUpIconNetwork.Name = "imageTopUpIconNetwork";
+            this.imageTopUpIconNetwork.Size = new System.Drawing.Size(67, 39);
+            this.imageTopUpIconNetwork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageTopUpIconNetwork.TabIndex = 33;
+            this.imageTopUpIconNetwork.TabStop = false;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.Color.Aqua;
+            this.label31.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label31.Location = new System.Drawing.Point(848, 22);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(71, 39);
+            this.label31.TabIndex = 39;
+            this.label31.Text = "บาท";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Aqua;
+            this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label20.Location = new System.Drawing.Point(581, 22);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(164, 39);
+            this.label20.TabIndex = 38;
+            this.label20.Text = "จำนวนเงิน:";
+            // 
+            // label15
+            // 
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Orange;
+            this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label15.Location = new System.Drawing.Point(6, 21);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(261, 39);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "เบอร์โทร:";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbTopUpValue
+            // 
+            this.lbTopUpValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTopUpValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTopUpValue.ForeColor = System.Drawing.Color.Lime;
+            this.lbTopUpValue.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbTopUpValue.Location = new System.Drawing.Point(751, 22);
+            this.lbTopUpValue.Name = "lbTopUpValue";
+            this.lbTopUpValue.Size = new System.Drawing.Size(91, 39);
+            this.lbTopUpValue.TabIndex = 36;
+            this.lbTopUpValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbTopUpPhoneNumber
+            // 
+            this.lbTopUpPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbTopUpPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTopUpPhoneNumber.ForeColor = System.Drawing.Color.Yellow;
+            this.lbTopUpPhoneNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbTopUpPhoneNumber.Location = new System.Drawing.Point(273, 22);
+            this.lbTopUpPhoneNumber.Name = "lbTopUpPhoneNumber";
+            this.lbTopUpPhoneNumber.Size = new System.Drawing.Size(229, 39);
+            this.lbTopUpPhoneNumber.TabIndex = 35;
+            this.lbTopUpPhoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tabPageCustomerList
+            // 
+            this.tabPageCustomerList.Controls.Add(this.tabControlTopUp);
+            this.tabPageCustomerList.Location = new System.Drawing.Point(44, 4);
+            this.tabPageCustomerList.Name = "tabPageCustomerList";
+            this.tabPageCustomerList.Size = new System.Drawing.Size(960, 554);
+            this.tabPageCustomerList.TabIndex = 2;
+            this.tabPageCustomerList.Text = "รายชื่อลูกค้า";
+            this.tabPageCustomerList.UseVisualStyleBackColor = true;
+            // 
+            // tabControlTopUp
+            // 
+            this.tabControlTopUp.Controls.Add(this.tabPage8);
+            this.tabControlTopUp.Controls.Add(this.tabPage9);
+            this.tabControlTopUp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlTopUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tabControlTopUp.ItemSize = new System.Drawing.Size(170, 30);
+            this.tabControlTopUp.Location = new System.Drawing.Point(0, 0);
+            this.tabControlTopUp.Name = "tabControlTopUp";
+            this.tabControlTopUp.SelectedIndex = 0;
+            this.tabControlTopUp.Size = new System.Drawing.Size(960, 554);
+            this.tabControlTopUp.TabIndex = 4;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.dataGridView);
+            this.tabPage8.Controls.Add(this.tabControl5);
+            this.tabPage8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.tabPage8.Location = new System.Drawing.Point(4, 34);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(952, 516);
+            this.tabPage8.TabIndex = 0;
+            this.tabPage8.Text = "รายชื่อลูกค้า";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AllowUserToDeleteRows = false;
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridView.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView.MultiSelect = false;
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.RowHeadersVisible = false;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(652, 510);
+            this.dataGridView.TabIndex = 0;
+            // 
+            // tabControl5
+            // 
+            this.tabControl5.Controls.Add(this.tabPageSeach);
+            this.tabControl5.Controls.Add(this.tabPageAdd);
+            this.tabControl5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tabControl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tabControl5.Location = new System.Drawing.Point(663, 3);
+            this.tabControl5.Name = "tabControl5";
+            this.tabControl5.SelectedIndex = 0;
+            this.tabControl5.Size = new System.Drawing.Size(286, 510);
+            this.tabControl5.TabIndex = 4;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.tabControl6);
+            this.tabPage9.Controls.Add(this.dataGridViewTelephone2);
+            this.tabPage9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.tabPage9.Location = new System.Drawing.Point(4, 34);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(952, 516);
+            this.tabPage9.TabIndex = 1;
+            this.tabPage9.Text = "รายชื่อลูกค้าค้างชำระ";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // tabControl6
+            // 
+            this.tabControl6.Controls.Add(this.tabPage10);
+            this.tabControl6.Controls.Add(this.tabPage11);
+            this.tabControl6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tabControl6.Location = new System.Drawing.Point(593, 3);
+            this.tabControl6.Name = "tabControl6";
+            this.tabControl6.SelectedIndex = 0;
+            this.tabControl6.Size = new System.Drawing.Size(356, 510);
+            this.tabControl6.TabIndex = 24;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.groupBox13);
+            this.tabPage11.Location = new System.Drawing.Point(4, 25);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(348, 481);
+            this.tabPage11.TabIndex = 1;
+            this.tabPage11.Text = "ค้าหาการจ่ายเงิน";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.button1);
+            this.groupBox13.Controls.Add(this.label28);
+            this.groupBox13.Controls.Add(this.label38);
+            this.groupBox13.Controls.Add(this.pictureBox4);
+            this.groupBox13.Controls.Add(this.button2);
+            this.groupBox13.Controls.Add(this.label39);
+            this.groupBox13.Controls.Add(this.textBox1);
+            this.groupBox13.Controls.Add(this.comboBox2);
+            this.groupBox13.Controls.Add(this.label40);
+            this.groupBox13.Controls.Add(this.label41);
+            this.groupBox13.Controls.Add(this.label42);
+            this.groupBox13.Controls.Add(this.textBox2);
+            this.groupBox13.Controls.Add(this.textBox3);
+            this.groupBox13.Controls.Add(this.button3);
+            this.groupBox13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox13.Location = new System.Drawing.Point(3, 3);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(434, 613);
+            this.groupBox13.TabIndex = 5;
+            this.groupBox13.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button1.Location = new System.Drawing.Point(160, 307);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(22, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "C";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label28.Location = new System.Drawing.Point(71, 280);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(61, 18);
+            this.label28.TabIndex = 25;
+            this.label28.Text = "label28";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label38.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label38.Location = new System.Drawing.Point(193, 126);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(48, 25);
+            this.label38.TabIndex = 24;
+            this.label38.Text = "บาท";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.ErrorImage = null;
+            this.pictureBox4.ImageLocation = "";
+            this.pictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox4.InitialImage = null;
+            this.pictureBox4.Location = new System.Drawing.Point(27, 235);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(129, 95);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 23;
+            this.pictureBox4.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button2.Location = new System.Drawing.Point(188, 292);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 38);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "จ่ายแล้ว";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label39.Location = new System.Drawing.Point(25, 129);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(72, 24);
+            this.label39.TabIndex = 21;
+            this.label39.Text = "ยอดค้าง";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.textBox1.Location = new System.Drawing.Point(119, 123);
+            this.textBox1.MaxLength = 4;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(59, 31);
+            this.textBox1.TabIndex = 3;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "One 2 Call",
+            "TrueMove",
+            "DTAC"});
+            this.comboBox2.Location = new System.Drawing.Point(119, 170);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(144, 33);
+            this.comboBox2.TabIndex = 4;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label40.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label40.Location = new System.Drawing.Point(25, 178);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(53, 24);
+            this.label40.TabIndex = 16;
+            this.label40.Text = "ระบบ";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label41.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label41.Location = new System.Drawing.Point(23, 81);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(77, 24);
+            this.label41.TabIndex = 15;
+            this.label41.Text = "เบอร์โทร";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label42.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label42.Location = new System.Drawing.Point(23, 33);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(74, 24);
+            this.label42.TabIndex = 14;
+            this.label42.Text = "ชื่อลูกค้า";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.textBox2.Location = new System.Drawing.Point(117, 75);
+            this.textBox2.MaxLength = 10;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(146, 31);
+            this.textBox2.TabIndex = 2;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.textBox3.Location = new System.Drawing.Point(117, 27);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(146, 31);
+            this.textBox3.TabIndex = 1;
+            // 
+            // button3
+            // 
+            this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button3.Location = new System.Drawing.Point(188, 254);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 32);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "เพิ่ม";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewTelephone2
+            // 
+            this.dataGridViewTelephone2.AllowUserToAddRows = false;
+            this.dataGridViewTelephone2.AllowUserToDeleteRows = false;
+            this.dataGridViewTelephone2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridViewTelephone2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridViewTelephone2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.dataGridViewTelephone2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTelephone2.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTelephone2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridViewTelephone2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewTelephone2.MultiSelect = false;
+            this.dataGridViewTelephone2.Name = "dataGridViewTelephone2";
+            this.dataGridViewTelephone2.ReadOnly = true;
+            this.dataGridViewTelephone2.RowHeadersVisible = false;
+            this.dataGridViewTelephone2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTelephone2.Size = new System.Drawing.Size(590, 510);
+            this.dataGridViewTelephone2.TabIndex = 1;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox7.ErrorImage = null;
+            this.pictureBox7.Image = global::TAOS.Properties.Resources.network;
+            this.pictureBox7.ImageLocation = "";
+            this.pictureBox7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox7.InitialImage = null;
+            this.pictureBox7.Location = new System.Drawing.Point(9, 150);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(76, 51);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 0;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox6.ErrorImage = null;
+            this.pictureBox6.Image = global::TAOS.Properties.Resources.money;
+            this.pictureBox6.ImageLocation = "";
+            this.pictureBox6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox6.InitialImage = null;
+            this.pictureBox6.Location = new System.Drawing.Point(9, 88);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(76, 51);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 0;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox5.ErrorImage = null;
+            this.pictureBox5.Image = global::TAOS.Properties.Resources.moblie;
+            this.pictureBox5.ImageLocation = "";
+            this.pictureBox5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox5.InitialImage = null;
+            this.pictureBox5.Location = new System.Drawing.Point(9, 26);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(76, 51);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 0;
+            this.pictureBox5.TabStop = false;
             // 
             // btnTopUpAdd
             // 
@@ -1164,7 +1611,7 @@
             this.btnTopUpAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTopUpAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnTopUpAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAdd.Location = new System.Drawing.Point(225, 172);
+            this.btnTopUpAdd.Location = new System.Drawing.Point(225, 199);
             this.btnTopUpAdd.Name = "btnTopUpAdd";
             this.btnTopUpAdd.Size = new System.Drawing.Size(62, 50);
             this.btnTopUpAdd.TabIndex = 4;
@@ -1391,209 +1838,6 @@
             this.button7.Text = "แก้ไข";
             this.button7.UseVisualStyleBackColor = false;
             // 
-            // dataGridViewTopUp
-            // 
-            this.dataGridViewTopUp.AllowUserToAddRows = false;
-            this.dataGridViewTopUp.AllowUserToDeleteRows = false;
-            this.dataGridViewTopUp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
-            this.dataGridViewTopUp.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridViewTopUp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridViewTopUp.ColumnHeadersHeight = 38;
-            this.dataGridViewTopUp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Chartreuse;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTopUp.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewTopUp.Location = new System.Drawing.Point(3, 69);
-            this.dataGridViewTopUp.MultiSelect = false;
-            this.dataGridViewTopUp.Name = "dataGridViewTopUp";
-            this.dataGridViewTopUp.ReadOnly = true;
-            this.dataGridViewTopUp.RowHeadersVisible = false;
-            this.dataGridViewTopUp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTopUp.Size = new System.Drawing.Size(616, 482);
-            this.dataGridViewTopUp.TabIndex = 42;
-            // 
-            // dataGridViewListTopUpFinish
-            // 
-            this.dataGridViewListTopUpFinish.AllowUserToAddRows = false;
-            this.dataGridViewListTopUpFinish.AllowUserToDeleteRows = false;
-            this.dataGridViewListTopUpFinish.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dataGridViewListTopUpFinish.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridViewListTopUpFinish.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dataGridViewListTopUpFinish.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListTopUpFinish.Location = new System.Drawing.Point(3, 68);
-            this.dataGridViewListTopUpFinish.MultiSelect = false;
-            this.dataGridViewListTopUpFinish.Name = "dataGridViewListTopUpFinish";
-            this.dataGridViewListTopUpFinish.ReadOnly = true;
-            this.dataGridViewListTopUpFinish.RowHeadersVisible = false;
-            this.dataGridViewListTopUpFinish.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewListTopUpFinish.Size = new System.Drawing.Size(616, 483);
-            this.dataGridViewListTopUpFinish.TabIndex = 43;
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.groupBox14.Controls.Add(this.imageTopUpIconNetwork);
-            this.groupBox14.Controls.Add(this.label31);
-            this.groupBox14.Controls.Add(this.label20);
-            this.groupBox14.Controls.Add(this.label15);
-            this.groupBox14.Controls.Add(this.lbTopUpValue);
-            this.groupBox14.Controls.Add(this.lbTopUpPhoneNumber);
-            this.groupBox14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox14.Location = new System.Drawing.Point(3, 3);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(1046, 66);
-            this.groupBox14.TabIndex = 40;
-            this.groupBox14.TabStop = false;
-            // 
-            // imageTopUpIconNetwork
-            // 
-            this.imageTopUpIconNetwork.BackColor = System.Drawing.Color.DimGray;
-            this.imageTopUpIconNetwork.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.imageTopUpIconNetwork.ErrorImage = null;
-            this.imageTopUpIconNetwork.ImageLocation = "";
-            this.imageTopUpIconNetwork.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imageTopUpIconNetwork.InitialImage = null;
-            this.imageTopUpIconNetwork.Location = new System.Drawing.Point(508, 22);
-            this.imageTopUpIconNetwork.Name = "imageTopUpIconNetwork";
-            this.imageTopUpIconNetwork.Size = new System.Drawing.Size(67, 39);
-            this.imageTopUpIconNetwork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imageTopUpIconNetwork.TabIndex = 33;
-            this.imageTopUpIconNetwork.TabStop = false;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.Color.Aqua;
-            this.label31.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label31.Location = new System.Drawing.Point(848, 22);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(71, 39);
-            this.label31.TabIndex = 39;
-            this.label31.Text = "บาท";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Aqua;
-            this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label20.Location = new System.Drawing.Point(581, 22);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(164, 39);
-            this.label20.TabIndex = 38;
-            this.label20.Text = "จำนวนเงิน:";
-            // 
-            // label15
-            // 
-            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Orange;
-            this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(6, 21);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(261, 39);
-            this.label15.TabIndex = 37;
-            this.label15.Text = "เบอร์โทร:";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbTopUpValue
-            // 
-            this.lbTopUpValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbTopUpValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTopUpValue.ForeColor = System.Drawing.Color.Lime;
-            this.lbTopUpValue.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTopUpValue.Location = new System.Drawing.Point(751, 22);
-            this.lbTopUpValue.Name = "lbTopUpValue";
-            this.lbTopUpValue.Size = new System.Drawing.Size(91, 39);
-            this.lbTopUpValue.TabIndex = 36;
-            this.lbTopUpValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbTopUpPhoneNumber
-            // 
-            this.lbTopUpPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbTopUpPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTopUpPhoneNumber.ForeColor = System.Drawing.Color.Yellow;
-            this.lbTopUpPhoneNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTopUpPhoneNumber.Location = new System.Drawing.Point(273, 22);
-            this.lbTopUpPhoneNumber.Name = "lbTopUpPhoneNumber";
-            this.lbTopUpPhoneNumber.Size = new System.Drawing.Size(229, 39);
-            this.lbTopUpPhoneNumber.TabIndex = 35;
-            this.lbTopUpPhoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tabPageCustomerList
-            // 
-            this.tabPageCustomerList.Controls.Add(this.tabControlTopUp);
-            this.tabPageCustomerList.Location = new System.Drawing.Point(44, 4);
-            this.tabPageCustomerList.Name = "tabPageCustomerList";
-            this.tabPageCustomerList.Size = new System.Drawing.Size(1052, 692);
-            this.tabPageCustomerList.TabIndex = 2;
-            this.tabPageCustomerList.Text = "รายชื่อลูกค้า";
-            this.tabPageCustomerList.UseVisualStyleBackColor = true;
-            // 
-            // tabControlTopUp
-            // 
-            this.tabControlTopUp.Controls.Add(this.tabPage8);
-            this.tabControlTopUp.Controls.Add(this.tabPage9);
-            this.tabControlTopUp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlTopUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabControlTopUp.ItemSize = new System.Drawing.Size(170, 30);
-            this.tabControlTopUp.Location = new System.Drawing.Point(0, 0);
-            this.tabControlTopUp.Name = "tabControlTopUp";
-            this.tabControlTopUp.SelectedIndex = 0;
-            this.tabControlTopUp.Size = new System.Drawing.Size(1052, 692);
-            this.tabControlTopUp.TabIndex = 4;
-            // 
-            // tabPage8
-            // 
-            this.tabPage8.Controls.Add(this.dataGridView);
-            this.tabPage8.Controls.Add(this.tabControl5);
-            this.tabPage8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.tabPage8.Location = new System.Drawing.Point(4, 34);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(1044, 654);
-            this.tabPage8.TabIndex = 0;
-            this.tabPage8.Text = "รายชื่อลูกค้า";
-            this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AllowUserToDeleteRows = false;
-            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridView.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView.MultiSelect = false;
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.ReadOnly = true;
-            this.dataGridView.RowHeadersVisible = false;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(652, 648);
-            this.dataGridView.TabIndex = 0;
-            // 
-            // tabControl5
-            // 
-            this.tabControl5.Controls.Add(this.tabPageSeach);
-            this.tabControl5.Controls.Add(this.tabPageAdd);
-            this.tabControl5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tabControl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabControl5.Location = new System.Drawing.Point(755, 3);
-            this.tabControl5.Name = "tabControl5";
-            this.tabControl5.SelectedIndex = 0;
-            this.tabControl5.Size = new System.Drawing.Size(286, 648);
-            this.tabControl5.TabIndex = 4;
-            // 
             // tabPageSeach
             // 
             this.tabPageSeach.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageSeach.BackgroundImage")));
@@ -1602,7 +1846,7 @@
             this.tabPageSeach.Location = new System.Drawing.Point(4, 25);
             this.tabPageSeach.Name = "tabPageSeach";
             this.tabPageSeach.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageSeach.Size = new System.Drawing.Size(278, 619);
+            this.tabPageSeach.Size = new System.Drawing.Size(278, 481);
             this.tabPageSeach.TabIndex = 0;
             this.tabPageSeach.Text = "ค้นหารายชื่อ";
             this.tabPageSeach.UseVisualStyleBackColor = true;
@@ -1621,7 +1865,7 @@
             this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.groupBox10.Location = new System.Drawing.Point(3, 3);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(272, 613);
+            this.groupBox10.Size = new System.Drawing.Size(272, 475);
             this.groupBox10.TabIndex = 5;
             this.groupBox10.TabStop = false;
             // 
@@ -1894,31 +2138,6 @@
             this.btnEditTel1.Text = "แก้ไข";
             this.btnEditTel1.UseVisualStyleBackColor = true;
             // 
-            // tabPage9
-            // 
-            this.tabPage9.Controls.Add(this.tabControl6);
-            this.tabPage9.Controls.Add(this.dataGridViewTelephone2);
-            this.tabPage9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.tabPage9.Location = new System.Drawing.Point(4, 34);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(952, 516);
-            this.tabPage9.TabIndex = 1;
-            this.tabPage9.Text = "รายชื่อลูกค้าค้างชำระ";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // tabControl6
-            // 
-            this.tabControl6.Controls.Add(this.tabPage10);
-            this.tabControl6.Controls.Add(this.tabPage11);
-            this.tabControl6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabControl6.Location = new System.Drawing.Point(593, 3);
-            this.tabControl6.Name = "tabControl6";
-            this.tabControl6.SelectedIndex = 0;
-            this.tabControl6.Size = new System.Drawing.Size(356, 510);
-            this.tabControl6.TabIndex = 24;
-            // 
             // tabPage10
             // 
             this.tabPage10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPage10.BackgroundImage")));
@@ -2106,224 +2325,14 @@
             this.btnAddCus.Text = "เพิ่ม";
             this.btnAddCus.UseVisualStyleBackColor = true;
             // 
-            // tabPage11
-            // 
-            this.tabPage11.Controls.Add(this.groupBox13);
-            this.tabPage11.Location = new System.Drawing.Point(4, 25);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(348, 481);
-            this.tabPage11.TabIndex = 1;
-            this.tabPage11.Text = "ค้าหาการจ่ายเงิน";
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.button1);
-            this.groupBox13.Controls.Add(this.label28);
-            this.groupBox13.Controls.Add(this.label38);
-            this.groupBox13.Controls.Add(this.pictureBox4);
-            this.groupBox13.Controls.Add(this.button2);
-            this.groupBox13.Controls.Add(this.label39);
-            this.groupBox13.Controls.Add(this.textBox1);
-            this.groupBox13.Controls.Add(this.comboBox2);
-            this.groupBox13.Controls.Add(this.label40);
-            this.groupBox13.Controls.Add(this.label41);
-            this.groupBox13.Controls.Add(this.label42);
-            this.groupBox13.Controls.Add(this.textBox2);
-            this.groupBox13.Controls.Add(this.textBox3);
-            this.groupBox13.Controls.Add(this.button3);
-            this.groupBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox13.Location = new System.Drawing.Point(3, 3);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(342, 475);
-            this.groupBox13.TabIndex = 5;
-            this.groupBox13.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(160, 307);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(22, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "C";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label28.Location = new System.Drawing.Point(71, 280);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(61, 18);
-            this.label28.TabIndex = 25;
-            this.label28.Text = "label28";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label38.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label38.Location = new System.Drawing.Point(193, 126);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(48, 25);
-            this.label38.TabIndex = 24;
-            this.label38.Text = "บาท";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.ErrorImage = null;
-            this.pictureBox4.ImageLocation = "";
-            this.pictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox4.InitialImage = null;
-            this.pictureBox4.Location = new System.Drawing.Point(27, 235);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(129, 95);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 23;
-            this.pictureBox4.TabStop = false;
-            // 
-            // button2
-            // 
-            this.button2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button2.Location = new System.Drawing.Point(188, 292);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 38);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "จ่ายแล้ว";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label39.Location = new System.Drawing.Point(25, 129);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(72, 24);
-            this.label39.TabIndex = 21;
-            this.label39.Text = "ยอดค้าง";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.textBox1.Location = new System.Drawing.Point(119, 123);
-            this.textBox1.MaxLength = 4;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(59, 31);
-            this.textBox1.TabIndex = 3;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "One 2 Call",
-            "TrueMove",
-            "DTAC"});
-            this.comboBox2.Location = new System.Drawing.Point(119, 170);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(144, 33);
-            this.comboBox2.TabIndex = 4;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label40.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label40.Location = new System.Drawing.Point(25, 178);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(53, 24);
-            this.label40.TabIndex = 16;
-            this.label40.Text = "ระบบ";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label41.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label41.Location = new System.Drawing.Point(23, 81);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(77, 24);
-            this.label41.TabIndex = 15;
-            this.label41.Text = "เบอร์โทร";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label42.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label42.Location = new System.Drawing.Point(23, 33);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(74, 24);
-            this.label42.TabIndex = 14;
-            this.label42.Text = "ชื่อลูกค้า";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.textBox2.Location = new System.Drawing.Point(117, 75);
-            this.textBox2.MaxLength = 10;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(146, 31);
-            this.textBox2.TabIndex = 2;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.textBox3.Location = new System.Drawing.Point(117, 27);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(146, 31);
-            this.textBox3.TabIndex = 1;
-            // 
-            // button3
-            // 
-            this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(188, 254);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 32);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "เพิ่ม";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewTelephone2
-            // 
-            this.dataGridViewTelephone2.AllowUserToAddRows = false;
-            this.dataGridViewTelephone2.AllowUserToDeleteRows = false;
-            this.dataGridViewTelephone2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dataGridViewTelephone2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridViewTelephone2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.dataGridViewTelephone2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTelephone2.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTelephone2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridViewTelephone2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewTelephone2.MultiSelect = false;
-            this.dataGridViewTelephone2.Name = "dataGridViewTelephone2";
-            this.dataGridViewTelephone2.ReadOnly = true;
-            this.dataGridViewTelephone2.RowHeadersVisible = false;
-            this.dataGridViewTelephone2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTelephone2.Size = new System.Drawing.Size(590, 510);
-            this.dataGridViewTelephone2.TabIndex = 1;
-            // 
-            // Form1
+            // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 700);
+            this.ClientSize = new System.Drawing.Size(1008, 562);
             this.Controls.Add(this.tabControlMain);
-            this.Name = "Form1";
+            this.MinimumSize = new System.Drawing.Size(1024, 600);
+            this.Name = "main";
             this.Text = "Form1";
             this.tabControlMain.ResumeLayout(false);
             this.tabPageProduct.ResumeLayout(false);
@@ -2353,10 +2362,6 @@
             this.groupBox8.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgTopUpNetwork)).EndInit();
-            this.tabPage7.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListTopUpFinish)).EndInit();
             this.groupBox14.ResumeLayout(false);
@@ -2367,6 +2372,20 @@
             this.tabPage8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.tabControl5.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
+            this.tabControl6.ResumeLayout(false);
+            this.tabPage11.ResumeLayout(false);
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTelephone2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.tabPage7.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).EndInit();
             this.tabPageSeach.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
@@ -2375,17 +2394,10 @@
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage9.ResumeLayout(false);
-            this.tabControl6.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.tabPage11.ResumeLayout(false);
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTelephone2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2454,10 +2466,7 @@
         private System.Windows.Forms.ListBox listBoxTopUpPhoneNumber;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox tbxTopUpValueBaht;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox cmbTopUpNetwork;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox tbxTopUpPhoneNumber;
         private System.Windows.Forms.PictureBox imgTopUpNetwork;
         private System.Windows.Forms.Button btnTopUpAdd;
@@ -2551,6 +2560,9 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView dataGridViewTelephone2;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
 
 
     }

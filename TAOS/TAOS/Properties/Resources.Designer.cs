@@ -59,5 +59,26 @@ namespace TAOS.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap moblie {
+            get {
+                object obj = ResourceManager.GetObject("moblie", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap money {
+            get {
+                object obj = ResourceManager.GetObject("money", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap network {
+            get {
+                object obj = ResourceManager.GetObject("network", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
