@@ -17,3 +17,4 @@ G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\Reso
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.main.resources
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.Properties.Resources.resources
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.exe.licenses
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\MySql.Data.dll
