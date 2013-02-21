@@ -96,9 +96,7 @@
             this.btnTopUpAddPayment = new System.Windows.Forms.Button();
             this.listBoxTopUpPhoneNumber = new System.Windows.Forms.ListBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.tbxTopUpValueBaht = new System.Windows.Forms.TextBox();
             this.cmbTopUpNetwork = new System.Windows.Forms.ComboBox();
-            this.tbxTopUpPhoneNumber = new System.Windows.Forms.TextBox();
             this.imgTopUpNetwork = new System.Windows.Forms.PictureBox();
             this.dataGridViewTopUp = new System.Windows.Forms.DataGridView();
             this.dataGridViewListTopUpFinish = new System.Windows.Forms.DataGridView();
@@ -194,6 +192,8 @@
             this.tbxTelCus = new System.Windows.Forms.TextBox();
             this.tbxNameCus = new System.Windows.Forms.TextBox();
             this.btnAddCus = new System.Windows.Forms.Button();
+            this.txtTopupPhoneNumber = new DevExpress.XtraEditors.TextEdit();
+            this.txtValueBaht = new DevExpress.XtraEditors.TextEdit();
             this.tabControlMain.SuspendLayout();
             this.tabPageProduct.SuspendLayout();
             this.tabControlProduct.SuspendLayout();
@@ -246,6 +246,8 @@
             this.tabPage10.SuspendLayout();
             this.groupBox12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTopupPhoneNumber.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtValueBaht.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -950,12 +952,12 @@
             // groupBox8
             // 
             this.groupBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox8.Controls.Add(this.txtValueBaht);
+            this.groupBox8.Controls.Add(this.txtTopupPhoneNumber);
             this.groupBox8.Controls.Add(this.groupBox15);
             this.groupBox8.Controls.Add(this.listBoxTopUpPhoneNumber);
             this.groupBox8.Controls.Add(this.label22);
-            this.groupBox8.Controls.Add(this.tbxTopUpValueBaht);
             this.groupBox8.Controls.Add(this.cmbTopUpNetwork);
-            this.groupBox8.Controls.Add(this.tbxTopUpPhoneNumber);
             this.groupBox8.Controls.Add(this.pictureBox7);
             this.groupBox8.Controls.Add(this.pictureBox6);
             this.groupBox8.Controls.Add(this.pictureBox5);
@@ -1066,17 +1068,6 @@
             this.label22.TabIndex = 12;
             this.label22.Text = "บาท";
             // 
-            // tbxTopUpValueBaht
-            // 
-            this.tbxTopUpValueBaht.BackColor = System.Drawing.Color.Black;
-            this.tbxTopUpValueBaht.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.tbxTopUpValueBaht.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.tbxTopUpValueBaht.Location = new System.Drawing.Point(117, 88);
-            this.tbxTopUpValueBaht.MaxLength = 4;
-            this.tbxTopUpValueBaht.Name = "tbxTopUpValueBaht";
-            this.tbxTopUpValueBaht.Size = new System.Drawing.Size(102, 38);
-            this.tbxTopUpValueBaht.TabIndex = 2;
-            // 
             // cmbTopUpNetwork
             // 
             this.cmbTopUpNetwork.BackColor = System.Drawing.Color.Black;
@@ -1093,17 +1084,6 @@
             this.cmbTopUpNetwork.Name = "cmbTopUpNetwork";
             this.cmbTopUpNetwork.Size = new System.Drawing.Size(170, 32);
             this.cmbTopUpNetwork.TabIndex = 3;
-            // 
-            // tbxTopUpPhoneNumber
-            // 
-            this.tbxTopUpPhoneNumber.BackColor = System.Drawing.Color.Black;
-            this.tbxTopUpPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
-            this.tbxTopUpPhoneNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.tbxTopUpPhoneNumber.Location = new System.Drawing.Point(117, 26);
-            this.tbxTopUpPhoneNumber.MaxLength = 10;
-            this.tbxTopUpPhoneNumber.Name = "tbxTopUpPhoneNumber";
-            this.tbxTopUpPhoneNumber.Size = new System.Drawing.Size(170, 38);
-            this.tbxTopUpPhoneNumber.TabIndex = 1;
             // 
             // imgTopUpNetwork
             // 
@@ -1378,7 +1358,7 @@
             this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.groupBox13.Location = new System.Drawing.Point(3, 3);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(434, 613);
+            this.groupBox13.Size = new System.Drawing.Size(342, 475);
             this.groupBox13.TabIndex = 5;
             this.groupBox13.TabStop = false;
             // 
@@ -1611,9 +1591,9 @@
             this.btnTopUpAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTopUpAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnTopUpAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAdd.Location = new System.Drawing.Point(225, 199);
+            this.btnTopUpAdd.Location = new System.Drawing.Point(219, 207);
             this.btnTopUpAdd.Name = "btnTopUpAdd";
-            this.btnTopUpAdd.Size = new System.Drawing.Size(62, 50);
+            this.btnTopUpAdd.Size = new System.Drawing.Size(68, 58);
             this.btnTopUpAdd.TabIndex = 4;
             this.btnTopUpAdd.UseVisualStyleBackColor = true;
             // 
@@ -2325,6 +2305,34 @@
             this.btnAddCus.Text = "เพิ่ม";
             this.btnAddCus.UseVisualStyleBackColor = true;
             // 
+            // txtTopupPhoneNumber
+            // 
+            this.txtTopupPhoneNumber.EditValue = "";
+            this.txtTopupPhoneNumber.Location = new System.Drawing.Point(117, 23);
+            this.txtTopupPhoneNumber.Name = "txtTopupPhoneNumber";
+            this.txtTopupPhoneNumber.Properties.Appearance.BackColor = System.Drawing.Color.Black;
+            this.txtTopupPhoneNumber.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTopupPhoneNumber.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.txtTopupPhoneNumber.Properties.Appearance.Options.UseBackColor = true;
+            this.txtTopupPhoneNumber.Properties.Appearance.Options.UseFont = true;
+            this.txtTopupPhoneNumber.Properties.Appearance.Options.UseForeColor = true;
+            this.txtTopupPhoneNumber.Size = new System.Drawing.Size(165, 40);
+            this.txtTopupPhoneNumber.TabIndex = 34;
+            // 
+            // txtValueBaht
+            // 
+            this.txtValueBaht.EditValue = "";
+            this.txtValueBaht.Location = new System.Drawing.Point(117, 85);
+            this.txtValueBaht.Name = "txtValueBaht";
+            this.txtValueBaht.Properties.Appearance.BackColor = System.Drawing.Color.Black;
+            this.txtValueBaht.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValueBaht.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.txtValueBaht.Properties.Appearance.Options.UseBackColor = true;
+            this.txtValueBaht.Properties.Appearance.Options.UseFont = true;
+            this.txtValueBaht.Properties.Appearance.Options.UseForeColor = true;
+            this.txtValueBaht.Size = new System.Drawing.Size(108, 40);
+            this.txtValueBaht.TabIndex = 34;
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2334,6 +2342,7 @@
             this.MinimumSize = new System.Drawing.Size(1024, 600);
             this.Name = "main";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.main_Load);
             this.tabControlMain.ResumeLayout(false);
             this.tabPageProduct.ResumeLayout(false);
             this.tabControlProduct.ResumeLayout(false);
@@ -2398,6 +2407,8 @@
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTopupPhoneNumber.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtValueBaht.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2465,9 +2476,7 @@
         private System.Windows.Forms.Button btnTopUpAddPayment;
         private System.Windows.Forms.ListBox listBoxTopUpPhoneNumber;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox tbxTopUpValueBaht;
         private System.Windows.Forms.ComboBox cmbTopUpNetwork;
-        private System.Windows.Forms.TextBox tbxTopUpPhoneNumber;
         private System.Windows.Forms.PictureBox imgTopUpNetwork;
         private System.Windows.Forms.Button btnTopUpAdd;
         private System.Windows.Forms.TabPage tabPage7;
@@ -2563,6 +2572,8 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
+        public DevExpress.XtraEditors.TextEdit txtTopupPhoneNumber;
+        public DevExpress.XtraEditors.TextEdit txtValueBaht;
 
 
     }

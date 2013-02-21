@@ -8,3 +8,12 @@ G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.exe
 G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.pdb
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.exe
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.pdb
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\Resources\network.jpg
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\Resources\moblie.jpg
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\Resources\money.jpg
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\TAOS.exe
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\TAOS.pdb
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\ResolveAssemblyReference.cache
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.main.resources
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.Properties.Resources.resources
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.exe.licenses
