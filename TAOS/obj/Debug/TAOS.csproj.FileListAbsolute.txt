@@ -19,3 +19,5 @@ G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\MySql.Data.dll
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\obj\Debug\TAOS.MainForm.resources
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\TAOS\bin\Debug\Files\FileSave.txt
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.exe
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.pdb
