@@ -1,0 +1,8 @@
+G:\งาน\Cchap\งานแม่\TAOS\TAOS\bin\Debug\TAOS.exe
+G:\งาน\Cchap\งานแม่\TAOS\TAOS\bin\Debug\TAOS.pdb
+G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\ResolveAssemblyReference.cache
+G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.Form1.resources
+G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.Properties.Resources.resources
+G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.exe.licenses
+G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.exe
+G:\งาน\Cchap\งานแม่\TAOS\TAOS\obj\Debug\TAOS.pdb
