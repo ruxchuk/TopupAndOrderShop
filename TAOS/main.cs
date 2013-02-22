@@ -27,6 +27,7 @@ namespace TAOS
         private double SumPriceAll = 0;
         private string str_urlCheckNetwork = "http://www.checkber.com/default.asp?q=";
         private Bitmap bmImageNetwork;
+        private MessageError messageError;
 
         public MainForm()
         {
@@ -41,6 +42,8 @@ namespace TAOS
         {
             this.Text = str_formName;
             this.KeyPreview = true;
+
+            messageError = new MessageError();
 
             txtTopupPhoneNumber.Properties.Mask.EditMask = "((\\+\\d|10)?\\(\\d{3}\\))?\\d{3}-\\d{3}-\\d{4}";
             txtTopupPhoneNumber.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
@@ -559,7 +562,6 @@ namespace TAOS
                 }             
                 i++;
             }
-            Debug.WriteLine(allPhoneNumber[1].Count);
         }
 
 
@@ -636,9 +638,17 @@ namespace TAOS
 
         private void txtValueBaht_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Return && txtValueBaht.Text != "" && int.Parse(txtValueBaht.Text) > 0)
+             if (e.KeyData == Keys.Return && txtValueBaht.Text != "" 
+                && int.Parse(txtValueBaht.Text) > 0)
             {
-                cmbTopUpNetwork.Select();
+                if (cmbTopUpNetwork.SelectedIndex == -1)
+                {
+                    cmbTopUpNetwork.Select();
+                }
+                else
+                {
+                    btnTopUpAdd_Click(null, EventArgs.Empty);
+                }
             }
         }
 
@@ -664,11 +674,6 @@ namespace TAOS
                 cmbTopUpNetwork.SelectedIndex = -1;
         }
 
-        private void btnTopUpAdd_Click(object sender, EventArgs e)
-        {
-            Debug.WriteLine(555);
-        }
-
         private void txtValueBaht_EditValueChanged(object sender, EventArgs e)
         {
             lbTopUpValue.Text = txtValueBaht.Text;
@@ -677,10 +682,44 @@ namespace TAOS
         private void btnTopUpClear_Click(object sender, EventArgs e)
         {
             txtTopupPhoneNumber.Text = "";
-            txtValueBaht.Text = "0";
+            txtValueBaht.Text = "";
             cmbTopUpNetwork.SelectedIndex = -1;
 
             txtTopupPhoneNumber.Select();
+        }
+
+        private bool checkAddTopup()
+        {
+            if (txtTopupPhoneNumber.Text.Length < 10)
+            {
+                messageError.showMessageBox("กรุณากรอกตัวเลขให้ครบ 10 หลัก", MessageBoxIcon.Error);
+                txtTopupPhoneNumber.Select();
+                return false ;
+            }
+            else if (txtValueBaht.Text == "0" || txtValueBaht.Text == "")
+            {
+                messageError.showMessageBox("กรุณากรอกจำนวนเงิน", MessageBoxIcon.Error);
+                txtValueBaht.Select();
+                return false;
+            }
+            else if (txtValueBaht.Text == "0" || txtValueBaht.Text == "")
+            {
+                messageError.showMessageBox("กรุณากรอกจำนวนเงิน", MessageBoxIcon.Error);
+                txtValueBaht.Select();
+                return false;
+            }
+            return true;
+        }
+
+        private void btnTopUpAdd_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine(555);
+            if (checkAddTopup())
+            {
+
+                btnTopUpClear_Click(null, EventArgs.Empty);
+            }
+
         }
 
         #endregion
@@ -693,17 +732,40 @@ namespace TAOS
                 case Keys.F6:
                     tabControlMain.SelectedTab = tabPageProduct;
                     tabControlProduct.SelectedTab = tabPageBuyProduct;
+                    tbxSerialAndAddPrice.Select();
                     break;
                 case Keys.F7:
                     tabControlMain.SelectedTab = tabPageTopUp;
                     tabControlTopUpList.SelectedTab = tabPageAddTopup;
+                    txtTopupPhoneNumber.Select();
                     break;
                 case Keys.F8:
                     tabControlMain.SelectedTab = tabPageCustomerList;
                     tabControlListCustomer.SelectedTab = tabPageListCustomer;
-
+                    tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
+                    tbxTelSeach.Select();
                     break;
                 default: break;
+            }
+        }
+
+        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlMain.SelectedTab == tabPageProduct)
+            {
+                tabControlProduct.SelectedTab = tabPageBuyProduct;
+                tbxSerialAndAddPrice.Select();
+            }
+            else if (tabControlMain.SelectedTab == tabPageTopUp)
+            {
+                tabControlTopUpList.SelectedTab = tabPageAddTopup;
+                txtTopupPhoneNumber.Select();
+            }
+            else if (tabControlMain.SelectedTab == tabPageCustomerList)
+            {
+                tabControlListCustomer.SelectedTab = tabPageListCustomer;
+                tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
+                tbxTelSeach.Select();
             }
         }
 

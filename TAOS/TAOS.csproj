@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Class\ConMySql.cs" />
     <Compile Include="Class\Helper.cs" />
+    <Compile Include="Class\MessageError.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
