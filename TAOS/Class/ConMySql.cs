@@ -207,7 +207,7 @@ namespace TAOS
             }
         }
 
-        public List<string>[] getAllPhoneNumber()
+        public List<string>[] getAllPhoneNumber(string searchPhoneNumber = "")
         {
             List<string>[] list = new List<string>[4];
             for (int i = 0; i < 4; i++)
@@ -216,8 +216,17 @@ namespace TAOS
             }
             if (CheckConnect())
             {
-                string sql = "SELECT * FROM phone_number WHERE deleted = 0 GROUP BY phone_number ORDER BY modified DESC";
-                Debug.WriteLine(connection.Database.ToString() + "Rux");
+                string sql;
+                if (searchPhoneNumber == "")
+                {
+                    sql = "SELECT * FROM phone_number WHERE deleted = 0 GROUP BY phone_number ORDER BY modified DESC";
+                }
+                else 
+                {
+                    sql = "SELECT * FROM phone_number WHERE deleted = 0 AND phone_number LIKE '%" +
+                    searchPhoneNumber + "%' GROUP BY phone_number ORDER BY modified DESC";
+                }
+                Debug.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())

@@ -40,15 +40,16 @@ namespace TAOS
         private void loadSetting()
         {
             this.Text = str_formName;
+            this.KeyPreview = true;
 
-            txtTopupPhoneNumber.Properties.Mask.EditMask = "((\\+\\d|10)?\\(\\d{3}\\))?\\d{3}-\\d\\d\\d-\\d\\d\\d\\d";
+            txtTopupPhoneNumber.Properties.Mask.EditMask = "((\\+\\d|10)?\\(\\d{3}\\))?\\d{3}-\\d{3}-\\d{4}";
             txtTopupPhoneNumber.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
-            txtTopupPhoneNumber.Properties.Mask.IgnoreMaskBlank = false;
+            txtTopupPhoneNumber.Properties.Mask.IgnoreMaskBlank = true;
             txtTopupPhoneNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
 
-            txtValueBaht.Properties.Mask.EditMask = "d4";
+            txtValueBaht.Properties.Mask.EditMask = "d";
             txtValueBaht.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
-            txtValueBaht.Properties.Mask.IgnoreMaskBlank = true;
+            txtValueBaht.Properties.Mask.IgnoreMaskBlank = false;
             txtValueBaht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
         }
 
@@ -492,7 +493,7 @@ namespace TAOS
         {
             lbTopUpPhoneNumber.Text = txtTopupPhoneNumber.Text;
 
-            string phonenumber = txtTopupPhoneNumber.Text.Replace("_", "").Replace("-", "");
+            string phonenumber = txtTopupPhoneNumber.Text.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
             if (phonenumber.Length > 2)
             {
                 getListPhoneNumber(false, phonenumber);
@@ -515,58 +516,15 @@ namespace TAOS
                 return;
             listBoxTopUpPhoneNumber.Items.Clear();
 
-            string[] aa = { "0875681988", "0812345678" };
 
-            if (strCheck != "")
-            {
-                int i = 0;
-                List<string> saveArrayStr = new List<string> { };
-                saveArrayStr = allPhoneNumber[1];
-
-                //bool contains = new List<string>(saveArrayStr).Contains(strCheck);
-                //saveArrayStr = allPhoneNumber[0].FindAll(strCheck).Count;
-
-                string[] arrayStrPhone = new string[999999];
-                i = 0;
-                foreach (string item in saveArrayStr)
-                {
-                    arrayStrPhone[i] = item;
-                    i++;
-                }
-
-
-                i = 0;
-                while (i < saveArrayStr.Count)
-                {
-                    string phoneNumber = arrayStrPhone[i];
-                    int index = phoneNumber.IndexOf(strCheck);
-                    if (index > -1)
-                    {
-                        listBoxTopUpPhoneNumber.Items.Add(arrayStrPhone[i]);
-                        if (strCheck.Length == 10)
-                        {
-                            switch (allPhoneNumber[2][i])
-                            {
-                                case "One 2 Call": cmbTopUpNetwork.SelectedIndex = 0; break;
-                                case "DTAC": cmbTopUpNetwork.SelectedIndex = 1; break;
-                                case "TrueMove": cmbTopUpNetwork.SelectedIndex = 2; break;
-                                default: cmbTopUpNetwork.SelectedIndex = -1; wbsSearchNetwork(strCheck); break;
-                            }
-                            txtValueBaht.Focus();
-                        }
-                    }
-                    i++;
-                }
-                Debug.WriteLine(saveArrayStr.Count);
-            }
-            else
-            {
-                for (int i = 0; i < allPhoneNumber[0].Count; i++)
-                {
-                    string phoneNumber = allPhoneNumber[1][i];
-                    listBoxTopUpPhoneNumber.Items.Add(phoneNumber);
-                }
-            }
+            //if (strCheck.Length >= 4 && strCheck.Length < 10)
+            //{
+            //    allPhoneNumber = ConnectMySql.getAllPhoneNumber(strCheck);
+            //}
+            //else
+            //{
+            //    return;
+            //}
 
             if (strCheck != "" && strCheck.Length < 10)
             {
@@ -577,6 +535,31 @@ namespace TAOS
                 listBoxTopUpPhoneNumber.Visible = false;
             }
             listBoxTopUpPhoneNumber.Size = new Size(192, 200);
+
+            int i = 0;
+            while (i < allPhoneNumber[1].Count)
+            {
+                //if (allPhoneNumber[1][i].IndexOf
+                string phoneNumber = allPhoneNumber[1][i].Trim();
+                bool contrain = phoneNumber.IndexOf(strCheck.Trim()) > -1;
+                if (contrain)
+                {
+                    listBoxTopUpPhoneNumber.Items.Add(phoneNumber);
+                    if (strCheck.Length == 10)
+                    {
+                        switch (allPhoneNumber[2][i])
+                        {
+                            case "One 2 Call": cmbTopUpNetwork.SelectedIndex = 0; break;
+                            case "DTAC": cmbTopUpNetwork.SelectedIndex = 1; break;
+                            case "TrueMove": cmbTopUpNetwork.SelectedIndex = 2; break;
+                            default: cmbTopUpNetwork.SelectedIndex = -1; wbsSearchNetwork(strCheck); break;
+                        }
+                        txtValueBaht.Focus();
+                    }
+                }             
+                i++;
+            }
+            Debug.WriteLine(allPhoneNumber[1].Count);
         }
 
 
@@ -599,8 +582,130 @@ namespace TAOS
         {
             checkStrNetwork(cmbTopUpNetwork.Text);
         }
+
+        private void listBoxTopUpPhoneNumber_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Clicks == 1)
+            {
+                setPhoneNumberFromList();
+            }
+        }
+
+        private void txtTopupPhoneNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtTopupPhoneNumber.Text != "" && e.KeyData == Keys.Down
+            && listBoxTopUpPhoneNumber.Items.Count > 0)
+            {
+                if (listBoxTopUpPhoneNumber.SelectedIndex < listBoxTopUpPhoneNumber.Items.Count - 1)
+                {
+                    listBoxTopUpPhoneNumber.SelectedIndex++;
+                    txtTopupPhoneNumber.Select(0, 0);
+                }
+            }
+            else if (txtTopupPhoneNumber.Text != "" && e.KeyData == Keys.Up
+            && listBoxTopUpPhoneNumber.Items.Count > 0)
+            {
+                if (listBoxTopUpPhoneNumber.SelectedIndex > 0)
+                {
+                    listBoxTopUpPhoneNumber.SelectedIndex--;
+                    txtTopupPhoneNumber.Select(0, 0);
+                }
+            }
+            else if (e.KeyData == Keys.Return && listBoxTopUpPhoneNumber.SelectedIndex > -1)
+            {
+                setPhoneNumberFromList();
+            }
+            else txtTopupPhoneNumber.Select();
+        }
+
+        private void setPhoneNumberFromList()
+        {
+            try
+            {
+            string phoneNumber = listBoxTopUpPhoneNumber.SelectedItem.ToString();
+            string newStrPhoneNumber = phoneNumber[0] + "" + phoneNumber[1] + "" + phoneNumber[2] +
+                "-" + phoneNumber[3] + "" + phoneNumber[4] + "" + phoneNumber[5] +
+                "-" + phoneNumber[6] + "" + phoneNumber[7] + "" + phoneNumber[8] +
+                "" + phoneNumber[9];
+
+            txtTopupPhoneNumber.Text = newStrPhoneNumber;
+            listBoxTopUpPhoneNumber.Size = new Size(141, 4);
+            }
+            catch { txtTopupPhoneNumber.Select(); }
+        }
+
+        private void txtValueBaht_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Return && txtValueBaht.Text != "" && int.Parse(txtValueBaht.Text) > 0)
+            {
+                cmbTopUpNetwork.Select();
+            }
+        }
+
+        private void cmbTopUpNetwork_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.D1 || e.KeyData == Keys.NumPad1)
+            {
+                cmbTopUpNetwork.SelectedIndex = 0;
+            }
+            else if (e.KeyData == Keys.D2 || e.KeyData == Keys.NumPad2)
+            {
+                cmbTopUpNetwork.SelectedIndex = 1;
+            }
+            else if (e.KeyData == Keys.D3 || e.KeyData == Keys.NumPad3)
+            {
+                cmbTopUpNetwork.SelectedIndex = 2;
+            }
+            else if (cmbTopUpNetwork.SelectedIndex != -1 && e.KeyData == Keys.Return)
+            {
+                btnTopUpAdd_Click(null, EventArgs.Empty);
+            }
+            else
+                cmbTopUpNetwork.SelectedIndex = -1;
+        }
+
+        private void btnTopUpAdd_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine(555);
+        }
+
+        private void txtValueBaht_EditValueChanged(object sender, EventArgs e)
+        {
+            lbTopUpValue.Text = txtValueBaht.Text;
+        }
+
+        private void btnTopUpClear_Click(object sender, EventArgs e)
+        {
+            txtTopupPhoneNumber.Text = "";
+            txtValueBaht.Text = "0";
+            cmbTopUpNetwork.SelectedIndex = -1;
+
+            txtTopupPhoneNumber.Select();
+        }
+
         #endregion
 
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.F6:
+                    tabControlMain.SelectedTab = tabPageProduct;
+                    tabControlProduct.SelectedTab = tabPageBuyProduct;
+                    break;
+                case Keys.F7:
+                    tabControlMain.SelectedTab = tabPageTopUp;
+                    tabControlTopUpList.SelectedTab = tabPageAddTopup;
+                    break;
+                case Keys.F8:
+                    tabControlMain.SelectedTab = tabPageCustomerList;
+                    tabControlListCustomer.SelectedTab = tabPageListCustomer;
+
+                    break;
+                default: break;
+            }
+        }
 
     }
 }
