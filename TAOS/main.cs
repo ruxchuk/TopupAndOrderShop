@@ -23,9 +23,10 @@ namespace TAOS
         private Helper helper;
         private string saveTextBarcode = "";
         private ConMySql ConnectMySql;
-
         private string idSelect = "";
         private double SumPriceAll = 0;
+        private string str_urlCheckNetwork = "http://www.checkber.com/default.asp?q=";
+        private Bitmap bmImageNetwork;
 
         public MainForm()
         {
@@ -406,7 +407,8 @@ namespace TAOS
         #region เติมเงิน
 
         private string saveTypePhoneNumber = "";
-        private List<string>[] AllPhoneNumber;
+        private List<string>[] allPhoneNumber;
+        private List<string>[] saveMathPhoneNumber;
         private bool checkSearchNetwork = false;
         private string strSearchNetwork = "";
         MaskProperties properties = null;
@@ -437,76 +439,52 @@ namespace TAOS
             }
         }
 
-        private void getListPhoneNumber(bool checkGetData = false, string strCheck = "")
+        private void wbsSearchNetwork(string str_phoneNumber)//other function
         {
-            if (checkGetData)
-            {
-                AllPhoneNumber = ConnectMySql.getAllPhoneNumber();
-            }
-            if (AllPhoneNumber == null)
-                return;
-            listBoxTopUpPhoneNumber.Items.Clear();
+            string str_url = str_urlCheckNetwork + str_phoneNumber + "&go=Search";
+            webBrowserTopUpCheckBer.Navigate(str_url);
 
-            if (strCheck != "")
-            {
-                string str = "abcdefghijk";
-                int idx;
+            //try
+            //{
+            //    webBrowserTopUpCheckBer.Document.GetElementById("q").SetAttribute("value", phoneNumber);
+            //    webBrowserTopUpCheckBer.Document.GetElementById("go").InvokeMember("click");
+            //    checkSearchNetwork = true;
+            //}
+            //catch
+            //{
 
-
-                idx = str.IndexOf("def");
-                Debug.WriteLine(idx);
-                for (int i = 0; i < AllPhoneNumber[0].Count; i++)
-                {
-                    string phoneNumber = AllPhoneNumber[1][i];
-                    int index = AllPhoneNumber[1][i].IndexOf(strCheck);
-                    if (index > -1)
-                    {
-                        listBoxTopUpPhoneNumber.Items.Add(phoneNumber);
-                        if (strCheck.Length == 10)
-                        {
-                            switch (AllPhoneNumber[2][i])
-                            {
-                                case "One 2 Call": cmbTopUpNetwork.SelectedIndex = 0; break;
-                                case "DTAC": cmbTopUpNetwork.SelectedIndex = 1; break;
-                                case "TrueMove": cmbTopUpNetwork.SelectedIndex = 2; break;
-                                default: cmbTopUpNetwork.SelectedIndex = -1; wbsSearchNetwork(strCheck); break;
-                            }
-                            txtValueBaht.Focus();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < AllPhoneNumber[0].Count; i++)
-                {
-                    string phoneNumber = AllPhoneNumber[1][i];
-                    listBoxTopUpPhoneNumber.Items.Add(phoneNumber);
-                }
-            }
-
-            if (strCheck != "" && strCheck.Length < 10)
-            {
-                listBoxTopUpPhoneNumber.Visible = true;
-            }
-            else
-            {
-                listBoxTopUpPhoneNumber.Visible = false;
-            }
-            listBoxTopUpPhoneNumber.Size = new Size(192, 200);
+            //}
         }
 
-        private void wbsSearchNetwork(string phoneNumber)//other function
+        private void webBrowserTopUpCheckBer_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            string str_html = webBrowserTopUpCheckBer.DocumentText;
+            checkStrNetwork(helper.getNetwork(str_html));
+        }
+
+        private void checkStrNetwork(string str_network)
+        {
+            switch (str_network)
+            {
+                case "One 2 Call": setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork); break;
+                case "DTAC": setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork); break;
+                case "TrueMove": setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork); break;
+                default:
+                    setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork); break;
+            }
+        }
+
+        private void setImageNetwork(string str_path, PictureBox image)
+        {            
             try
             {
-                webBrowserTopUpCheckBer.Document.GetElementById("q").SetAttribute("value", phoneNumber);
-                webBrowserTopUpCheckBer.Document.GetElementById("go").InvokeMember("click");
-                checkSearchNetwork = true;
+                bmImageNetwork = new Bitmap(str_path);
+                image.Image = bmImageNetwork;
             }
             catch
             {
-
+                image.Image = null;
+                MessageBox.Show("กรุณาตรวจสอบไฟล์รูปภาพเครือข่าย");
             }
         }
 
@@ -522,7 +500,83 @@ namespace TAOS
             else if (phonenumber.Length == 0)
             {
                 listBoxTopUpPhoneNumber.Visible = false;
+                saveMathPhoneNumber = null;
             }
+        }
+
+
+        private void getListPhoneNumber(bool checkGetData = false, string strCheck = "")
+        {
+            if (checkGetData)
+            {
+                allPhoneNumber = ConnectMySql.getAllPhoneNumber();
+            }
+            if (allPhoneNumber == null)
+                return;
+            listBoxTopUpPhoneNumber.Items.Clear();
+
+            string[] aa = { "0875681988", "0812345678" };
+
+            if (strCheck != "")
+            {
+                int i = 0;
+                List<string> saveArrayStr = new List<string> { };
+                saveArrayStr = allPhoneNumber[1];
+
+                //bool contains = new List<string>(saveArrayStr).Contains(strCheck);
+                //saveArrayStr = allPhoneNumber[0].FindAll(strCheck).Count;
+
+                string[] arrayStrPhone = new string[999999];
+                i = 0;
+                foreach (string item in saveArrayStr)
+                {
+                    arrayStrPhone[i] = item;
+                    i++;
+                }
+
+
+                i = 0;
+                while (i < saveArrayStr.Count)
+                {
+                    string phoneNumber = arrayStrPhone[i];
+                    int index = phoneNumber.IndexOf(strCheck);
+                    if (index > -1)
+                    {
+                        listBoxTopUpPhoneNumber.Items.Add(arrayStrPhone[i]);
+                        if (strCheck.Length == 10)
+                        {
+                            switch (allPhoneNumber[2][i])
+                            {
+                                case "One 2 Call": cmbTopUpNetwork.SelectedIndex = 0; break;
+                                case "DTAC": cmbTopUpNetwork.SelectedIndex = 1; break;
+                                case "TrueMove": cmbTopUpNetwork.SelectedIndex = 2; break;
+                                default: cmbTopUpNetwork.SelectedIndex = -1; wbsSearchNetwork(strCheck); break;
+                            }
+                            txtValueBaht.Focus();
+                        }
+                    }
+                    i++;
+                }
+                Debug.WriteLine(saveArrayStr.Count);
+            }
+            else
+            {
+                for (int i = 0; i < allPhoneNumber[0].Count; i++)
+                {
+                    string phoneNumber = allPhoneNumber[1][i];
+                    listBoxTopUpPhoneNumber.Items.Add(phoneNumber);
+                }
+            }
+
+            if (strCheck != "" && strCheck.Length < 10)
+            {
+                listBoxTopUpPhoneNumber.Visible = true;
+            }
+            else
+            {
+                listBoxTopUpPhoneNumber.Visible = false;
+            }
+            listBoxTopUpPhoneNumber.Size = new Size(192, 200);
         }
 
 
@@ -540,7 +594,13 @@ namespace TAOS
         {
             cmbTopUpNetwork.Focus();
         }
+
+        private void cmbTopUpNetwork_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkStrNetwork(cmbTopUpNetwork.Text);
+        }
         #endregion
+
 
     }
 }

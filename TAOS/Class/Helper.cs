@@ -72,5 +72,42 @@ namespace TAOS
                 return String.Format("{0:0,0.00}", val);
             }
         }
+    
+
+        public string getNetwork(string str_html)
+        {
+            string str_imageOne2Call = "images/logo_aisS.gif";
+            string str_imageDTAC = "images/logo_dtacS.gif";
+            string str_imageTRUE_MOVE = "images/logo_truemoveS.gif";
+
+            if (str_html.IndexOf(str_imageOne2Call) > 0)
+            {
+                return "One 2 Call";
+            }
+            else if (str_html.IndexOf(str_imageDTAC) > 0)
+            {
+                return "DTAC";
+            }
+            else if (str_html.IndexOf(str_imageTRUE_MOVE) > 0)
+            {
+                return "TrueMove";
+            }
+            else
+            {
+                return "null";
+            }
+        }
+
+        public string getPathImages(string str_network)
+        {
+            switch (str_network)
+            {
+                case "One 2 Call": return "Files\\Images\\One2Call.jpg";
+                case "DTAC": return "Files\\Images\\DTAC.jpg";
+                case "TrueMove": return "Files\\Images\\TrueMove.png";
+                default:
+                    return "Files\\Images\\Error.png";
+            }
+        }
     }
 }

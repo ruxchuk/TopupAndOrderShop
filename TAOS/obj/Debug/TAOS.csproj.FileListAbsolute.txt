@@ -31,3 +31,10 @@ G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\TAOS.pdb
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.MainForm.resources
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.Properties.Resources.resources
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.exe.licenses
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\DTAC.jpg
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\Error.png
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\icoDTAC.png
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\icoOne2Call.jpg
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\icoTrueMove.png
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\One2Call.jpg
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\TrueMove.png
