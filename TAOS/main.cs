@@ -19,7 +19,7 @@ namespace TAOS
     public partial class MainForm : XtraForm
     {
 
-        private string str_formName = "ร้านแดงตาก้อง"; 
+        private string str_formName = "ร้านแดงตาก้อง";
         private Helper helper;
         private string saveTextBarcode = "";
         private ConMySql ConnectMySql;
@@ -452,20 +452,27 @@ namespace TAOS
         private void webBrowserTopUpCheckBer_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             string str_html = webBrowserTopUpCheckBer.DocumentText;
-            checkStrNetwork(helper.getNetwork(str_html));
+            if (txtTopupPhoneNumber.Text != "")
+            {
+                checkStrNetwork(helper.getNetwork(str_html));
+            }
+            else
+            {
+                txtTopupPhoneNumber.Select();
+            }
         }
 
         private void checkStrNetwork(string str_network)
         {
             switch (str_network)
             {
-                case "One 2 Call": 
+                case "One 2 Call":
                     cmbTopUpNetwork.SelectedIndex = 0;
                     break;
-                case "DTAC": 
+                case "DTAC":
                     cmbTopUpNetwork.SelectedIndex = 1;
                     break;
-                case "TrueMove":  
+                case "TrueMove":
                     cmbTopUpNetwork.SelectedIndex = 2;
                     break;
                 default:
@@ -477,7 +484,7 @@ namespace TAOS
         }
 
         private void setImageNetwork(string str_path, PictureBox image)
-        {            
+        {
             try
             {
                 bmImageNetwork = new Bitmap(str_path);
@@ -542,8 +549,8 @@ namespace TAOS
                         ConnectMySql.phoneNumberID = int.Parse(allPhoneNumber[0][i]);
                         ConnectMySql.customerID = int.Parse(allPhoneNumber[3][i]);
                         string strNetwork = allPhoneNumber[2][i].Trim();
-                        checkStrNetwork(strNetwork);            
-                        Debug.WriteLine(allPhoneNumber[2][i] + "|true");            
+                        checkStrNetwork(strNetwork);
+                        Debug.WriteLine(allPhoneNumber[2][i] + "|true");
                         txtValueBaht.Focus();
                     }
                     checkMathPhoneNumber = true;
@@ -628,19 +635,19 @@ namespace TAOS
                     "" + phoneNumber[9];
 
                 txtTopupPhoneNumber.Text = newStrPhoneNumber.Trim();
-                //getListPhoneNumber(false, newStrPhoneNumber);
                 listBoxTopUpPhoneNumber.Size = new Size(141, 4);
             }
-            catch { 
+            catch
+            {
                 Debug.WriteLine("error");
-                txtTopupPhoneNumber.Select(); 
+                txtTopupPhoneNumber.Select();
             }
         }
 
         private void txtValueBaht_KeyDown(object sender, KeyEventArgs e)
         {
-             if (e.KeyData == Keys.Return && txtValueBaht.Text != "" 
-                && int.Parse(txtValueBaht.Text) > 0)
+            if (e.KeyData == Keys.Return && txtValueBaht.Text != ""
+               && int.Parse(txtValueBaht.Text) > 0)
             {
                 if (cmbTopUpNetwork.SelectedIndex == -1)
                 {
@@ -695,7 +702,7 @@ namespace TAOS
             {
                 messageError.showMessageBox("กรุณากรอกตัวเลขให้ครบ 10 หลัก", MessageBoxIcon.Error);
                 txtTopupPhoneNumber.Select();
-                return false ;
+                return false;
             }
             else if (txtValueBaht.Text == "0" || txtValueBaht.Text == "")
             {
@@ -717,15 +724,26 @@ namespace TAOS
             Debug.WriteLine(555);
             if (checkAddTopup())
             {
-                if (!ConnectMySql.addTopup(txtTopupPhoneNumber.Text.Replace("-", ""), 
+                if (!ConnectMySql.addTopup(txtTopupPhoneNumber.Text.Replace("-", ""),
                     cmbTopUpNetwork.Text, txtValueBaht.Text))
                 {
                     messageError.showMessageBox("การบันทึกรายการเกินการผิดพลาด");
                 }
-                else 
+                else
                     btnTopUpClear_Click(null, EventArgs.Empty);
             }
         }
+
+        private void showListWaitTopup()
+        {
+
+        }
+
+
+
+
+
+
 
         #endregion
 
