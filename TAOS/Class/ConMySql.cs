@@ -218,24 +218,17 @@ namespace TAOS
             }
             if (CheckConnect())
             {
-                string sql;
-                if (searchPhoneNumber == "")
-                {
-                    sql = "SELECT * FROM phone_number WHERE deleted = 0 GROUP BY phone_number ORDER BY modified DESC";
-                }
-                else 
-                {
-                    sql = "SELECT * FROM phone_number WHERE deleted = 0 AND phone_number LIKE '%" +
-                    searchPhoneNumber + "%' GROUP BY phone_number ORDER BY modified DESC";
-                }
+                string sql = "CALL sp_get_list_phone_number('" + searchPhoneNumber + "');";
+
                 Debug.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader["id"] + "");
+                    list[0].Add(dataReader["phone_number_id"] + "");
                     list[1].Add(dataReader["phone_number"] + "");
                     list[2].Add(dataReader["network"] + "");
+                    list[3].Add(dataReader["customer_id"] + "");
                 }
                 dataReader.Close();
                 CloseConnection();
@@ -307,9 +300,37 @@ namespace TAOS
             }
         }
 
-        public bool addTopup(string phoneNumber, string amount, string network, int customerID = 0)
+        public int addPhoeNumber(string phoneNumber, string network)
         {
-            string sql = "";
+            phoneNumberID = 0;
+            string sql = "CALL sp_add_phone_number('" + phoneNumber + "', '" + network + "');";
+            if (CheckConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    phoneNumberID = int.Parse(dataReader["id"] + "");
+                }
+                dataReader.Close();
+                CloseConnection();
+            }
+            return phoneNumberID;
+        }
+
+        public bool addTopup(string phoneNumber, string network, string amount)
+        {
+            string sql;
+            if (phoneNumberID == 0)
+            {
+                addPhoeNumber(phoneNumber, network);
+            }
+
+            sql = "CALL sp_add_topup(" + customerID + ", " + phoneNumberID + ", " + amount + ");";
+            if (!runQuery(sql))
+            {
+                return false;
+            }
             return true;
         }
         #endregion

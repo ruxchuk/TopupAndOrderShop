@@ -539,23 +539,11 @@ namespace TAOS
                     listBoxTopUpPhoneNumber.Items.Add(phoneNumber);
                     if (strCheck.Length == 10)
                     {
-                        Debug.WriteLine(strCheck);
-                        switch (allPhoneNumber[2][i])
-                        {
-                            case "One 2 Call":
-                                cmbTopUpNetwork.SelectedIndex = 0; 
-                                break;
-                            case "DTAC": 
-                                cmbTopUpNetwork.SelectedIndex = 1; 
-                                break;
-                            case "TrueMove": 
-                                cmbTopUpNetwork.SelectedIndex = 2; 
-                                break;
-                            default: 
-                                cmbTopUpNetwork.SelectedIndex = -1; 
-                                wbsSearchNetwork(strCheck); 
-                                break;
-                        }
+                        ConnectMySql.phoneNumberID = int.Parse(allPhoneNumber[0][i]);
+                        ConnectMySql.customerID = int.Parse(allPhoneNumber[3][i]);
+                        string strNetwork = allPhoneNumber[2][i].Trim();
+                        checkStrNetwork(strNetwork);            
+                        Debug.WriteLine(allPhoneNumber[2][i] + "|true");            
                         txtValueBaht.Focus();
                     }
                     checkMathPhoneNumber = true;
@@ -565,6 +553,8 @@ namespace TAOS
 
             if (!checkMathPhoneNumber && strCheck.Length == 10)
             {
+                ConnectMySql.phoneNumberID = 0;
+                ConnectMySql.customerID = 0;
                 wbsSearchNetwork(strCheck);
                 txtValueBaht.Select();
                 Debug.WriteLine(strCheck);
@@ -631,16 +621,20 @@ namespace TAOS
         {
             try
             {
-            string phoneNumber = listBoxTopUpPhoneNumber.SelectedItem.ToString();
-            string newStrPhoneNumber = phoneNumber[0] + "" + phoneNumber[1] + "" + phoneNumber[2] +
-                "-" + phoneNumber[3] + "" + phoneNumber[4] + "" + phoneNumber[5] +
-                "-" + phoneNumber[6] + "" + phoneNumber[7] + "" + phoneNumber[8] +
-                "" + phoneNumber[9];
+                string phoneNumber = listBoxTopUpPhoneNumber.SelectedItem.ToString();
+                string newStrPhoneNumber = phoneNumber[0] + "" + phoneNumber[1] + "" + phoneNumber[2] +
+                    "-" + phoneNumber[3] + "" + phoneNumber[4] + "" + phoneNumber[5] +
+                    "-" + phoneNumber[6] + "" + phoneNumber[7] + "" + phoneNumber[8] +
+                    "" + phoneNumber[9];
 
-            txtTopupPhoneNumber.Text = newStrPhoneNumber;
-            listBoxTopUpPhoneNumber.Size = new Size(141, 4);
+                txtTopupPhoneNumber.Text = newStrPhoneNumber.Trim();
+                //getListPhoneNumber(false, newStrPhoneNumber);
+                listBoxTopUpPhoneNumber.Size = new Size(141, 4);
             }
-            catch { txtTopupPhoneNumber.Select(); }
+            catch { 
+                Debug.WriteLine("error");
+                txtTopupPhoneNumber.Select(); 
+            }
         }
 
         private void txtValueBaht_KeyDown(object sender, KeyEventArgs e)
@@ -723,10 +717,14 @@ namespace TAOS
             Debug.WriteLine(555);
             if (checkAddTopup())
             {
-
-                btnTopUpClear_Click(null, EventArgs.Empty);
+                if (!ConnectMySql.addTopup(txtTopupPhoneNumber.Text.Replace("-", ""), 
+                    cmbTopUpNetwork.Text, txtValueBaht.Text))
+                {
+                    messageError.showMessageBox("การบันทึกรายการเกินการผิดพลาด");
+                }
+                else 
+                    btnTopUpClear_Click(null, EventArgs.Empty);
             }
-
         }
 
         #endregion
