@@ -447,17 +447,6 @@ namespace TAOS
         {
             string str_url = str_urlCheckNetwork + str_phoneNumber + "&go=Search";
             webBrowserTopUpCheckBer.Navigate(str_url);
-
-            //try
-            //{
-            //    webBrowserTopUpCheckBer.Document.GetElementById("q").SetAttribute("value", phoneNumber);
-            //    webBrowserTopUpCheckBer.Document.GetElementById("go").InvokeMember("click");
-            //    checkSearchNetwork = true;
-            //}
-            //catch
-            //{
-
-            //}
         }
 
         private void webBrowserTopUpCheckBer_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -470,12 +459,21 @@ namespace TAOS
         {
             switch (str_network)
             {
-                case "One 2 Call": setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork); break;
-                case "DTAC": setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork); break;
-                case "TrueMove": setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork); break;
+                case "One 2 Call": 
+                    cmbTopUpNetwork.SelectedIndex = 0;
+                    break;
+                case "DTAC": 
+                    cmbTopUpNetwork.SelectedIndex = 1;
+                    break;
+                case "TrueMove":  
+                    cmbTopUpNetwork.SelectedIndex = 2;
+                    break;
                 default:
-                    setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork); break;
+                    cmbTopUpNetwork.SelectedIndex = -1;
+                    break;
             }
+            setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork);
+            txtValueBaht.Select();
         }
 
         private void setImageNetwork(string str_path, PictureBox image)
@@ -520,15 +518,6 @@ namespace TAOS
             listBoxTopUpPhoneNumber.Items.Clear();
 
 
-            //if (strCheck.Length >= 4 && strCheck.Length < 10)
-            //{
-            //    allPhoneNumber = ConnectMySql.getAllPhoneNumber(strCheck);
-            //}
-            //else
-            //{
-            //    return;
-            //}
-
             if (strCheck != "" && strCheck.Length < 10)
             {
                 listBoxTopUpPhoneNumber.Visible = true;
@@ -539,10 +528,10 @@ namespace TAOS
             }
             listBoxTopUpPhoneNumber.Size = new Size(192, 200);
 
+            bool checkMathPhoneNumber = false;
             int i = 0;
             while (i < allPhoneNumber[1].Count)
             {
-                //if (allPhoneNumber[1][i].IndexOf
                 string phoneNumber = allPhoneNumber[1][i].Trim();
                 bool contrain = phoneNumber.IndexOf(strCheck.Trim()) > -1;
                 if (contrain)
@@ -550,17 +539,35 @@ namespace TAOS
                     listBoxTopUpPhoneNumber.Items.Add(phoneNumber);
                     if (strCheck.Length == 10)
                     {
+                        Debug.WriteLine(strCheck);
                         switch (allPhoneNumber[2][i])
                         {
-                            case "One 2 Call": cmbTopUpNetwork.SelectedIndex = 0; break;
-                            case "DTAC": cmbTopUpNetwork.SelectedIndex = 1; break;
-                            case "TrueMove": cmbTopUpNetwork.SelectedIndex = 2; break;
-                            default: cmbTopUpNetwork.SelectedIndex = -1; wbsSearchNetwork(strCheck); break;
+                            case "One 2 Call":
+                                cmbTopUpNetwork.SelectedIndex = 0; 
+                                break;
+                            case "DTAC": 
+                                cmbTopUpNetwork.SelectedIndex = 1; 
+                                break;
+                            case "TrueMove": 
+                                cmbTopUpNetwork.SelectedIndex = 2; 
+                                break;
+                            default: 
+                                cmbTopUpNetwork.SelectedIndex = -1; 
+                                wbsSearchNetwork(strCheck); 
+                                break;
                         }
                         txtValueBaht.Focus();
                     }
-                }             
+                    checkMathPhoneNumber = true;
+                }
                 i++;
+            }
+
+            if (!checkMathPhoneNumber && strCheck.Length == 10)
+            {
+                wbsSearchNetwork(strCheck);
+                txtValueBaht.Select();
+                Debug.WriteLine(strCheck);
             }
         }
 

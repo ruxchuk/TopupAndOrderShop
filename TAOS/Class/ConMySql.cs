@@ -16,6 +16,8 @@ namespace TAOS
         private MySqlConnection connection;
         private string Server, NameDB, UserId, Pass;
         public int CountAdd = 0;
+        public int customerID = 0;
+        public int phoneNumberID = 0;
 
         #endregion
 
@@ -303,6 +305,12 @@ namespace TAOS
             {
                 return false;
             }
+        }
+
+        public bool addTopup(string phoneNumber, string amount, string network, int customerID = 0)
+        {
+            string sql = "";
+            return true;
         }
         #endregion
 
