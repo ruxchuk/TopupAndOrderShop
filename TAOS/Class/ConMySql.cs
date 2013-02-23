@@ -240,6 +240,42 @@ namespace TAOS
             }
         }
 
+        public List<string>[] getListWaitTopup()
+        {
+            int countList = 8;
+            List<string>[] list = new List<string>[countList];
+            for (int i = 0; i < countList; i++)
+            {
+                list[i] = new List<string>();
+            }
+
+            if (CheckConnect())
+            {
+                string sql = "CALL sp_get_list_wait_topup();";
+
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["topup_id"] + "");
+                    list[1].Add(dataReader["phone_number"] + "");
+                    list[2].Add(dataReader["topup_amount"] + "");
+                    list[3].Add(dataReader["network"] + "");
+                    list[4].Add(dataReader["customer_name"] + "");
+                    list[5].Add(dataReader["date_add"] + "");
+                    list[6].Add(dataReader["customer_id"] + "");
+                    list[7].Add(dataReader["phone_number_id"] + "");
+                }
+                dataReader.Close();
+                CloseConnection();
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
+
         public string countProduct()
         {
             string strCount = "";
@@ -337,7 +373,7 @@ namespace TAOS
 
         #region Update
 
-        public string UpDate(string sql)
+        public bool UpDate(string sql)
         {
             if (CheckConnect() == true)
             {
@@ -346,10 +382,18 @@ namespace TAOS
                 {
                     cmd.ExecuteNonQuery();
                 }
-                catch { }
+                catch {
+                    return false;
+                }
                 CloseConnection();
             }
-            return sql;
+            return true;
+        }
+
+        public bool setDeletedTopup(string topup_id)
+        {
+            string sql = "CALL sp_set_deleted_topup(" + topup_id + ");";
+            return UpDate(sql);
         }
         
         #endregion

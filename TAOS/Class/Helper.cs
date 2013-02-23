@@ -109,5 +109,28 @@ namespace TAOS
                     return "Files\\Images\\Error.png";
             }
         }
+
+        public string getPathIconImages(string str_network)
+        {
+            switch (str_network)
+            {
+                case "One 2 Call": return "Files\\Images\\icoOne2Call.png";
+                case "DTAC": return "Files\\Images\\icoDTAC.png";
+                case "TrueMove": return "Files\\Images\\icoTrueMove.png";
+                default:
+                    return "Files\\Images\\Error.png";
+            }
+        }
+
+        public string stringConvertPhoneNumber(string phoneNumber)
+        {
+            phoneNumber = phoneNumber.Replace("-", "");
+            string newStrPhoneNumber = phoneNumber[0] + "" + phoneNumber[1] + "" + phoneNumber[2] +
+                "-" + phoneNumber[3] + "" + phoneNumber[4] + "" + phoneNumber[5] +
+                "-" + phoneNumber[6] + "" + phoneNumber[7] + "" + phoneNumber[8] +
+                "" + phoneNumber[9];
+            return newStrPhoneNumber;
+        }
+        
     }
 }

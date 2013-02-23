@@ -8,10 +8,10 @@ namespace TAOS
 {
     class MessageError
     {
-        public bool showMessageBox(string message = "ข้อมูลผิดพลาด", MessageBoxIcon icon = MessageBoxIcon.Error)
+        public DialogResult showMessageBox(string message = "ข้อมูลผิดพลาด", MessageBoxButtons button = MessageBoxButtons.OK,
+            MessageBoxIcon icon = MessageBoxIcon.Error)
         {
-            MessageBox.Show(message, "กรุณาตรวจสอบข้อมูล", MessageBoxButtons.OK, icon);
-            return false;
+            return MessageBox.Show(message, "กรุณาตรวจสอบข้อมูล", button, icon);
         }
     }
 }

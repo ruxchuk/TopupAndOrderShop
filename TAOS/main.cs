@@ -28,6 +28,7 @@ namespace TAOS
         private string str_urlCheckNetwork = "http://www.checkber.com/default.asp?q=";
         private Bitmap bmImageNetwork;
         private MessageError messageError;
+        private bool checkClickTopup = false;
 
         public MainForm()
         {
@@ -36,6 +37,7 @@ namespace TAOS
             helper = new Helper();
             loadSetting();
             getListPhoneNumber(true, "");
+            showListWaitTopup();
         }
 
         private void loadSetting()
@@ -480,6 +482,7 @@ namespace TAOS
                     break;
             }
             setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork);
+            setImageNetwork(helper.getPathIconImages(str_network), imageTopUpIconNetwork);
             txtValueBaht.Select();
         }
 
@@ -500,6 +503,10 @@ namespace TAOS
         private void txtTopupPhoneNumber_EditValueChanged(object sender, EventArgs e)
         {
             lbTopUpPhoneNumber.Text = txtTopupPhoneNumber.Text;
+            if (!checkClickTopup)
+            { 
+                return;
+            }
 
             string phonenumber = txtTopupPhoneNumber.Text.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
             if (phonenumber.Length > 2)
@@ -533,7 +540,7 @@ namespace TAOS
             {
                 listBoxTopUpPhoneNumber.Visible = false;
             }
-            listBoxTopUpPhoneNumber.Size = new Size(192, 200);
+            listBoxTopUpPhoneNumber.Size = new Size(210, 200);
 
             bool checkMathPhoneNumber = false;
             int i = 0;
@@ -599,6 +606,7 @@ namespace TAOS
 
         private void txtTopupPhoneNumber_KeyDown(object sender, KeyEventArgs e)
         {
+            checkClickTopup = true;
             if (txtTopupPhoneNumber.Text != "" && e.KeyData == Keys.Down
             && listBoxTopUpPhoneNumber.Items.Count > 0)
             {
@@ -629,13 +637,10 @@ namespace TAOS
             try
             {
                 string phoneNumber = listBoxTopUpPhoneNumber.SelectedItem.ToString();
-                string newStrPhoneNumber = phoneNumber[0] + "" + phoneNumber[1] + "" + phoneNumber[2] +
-                    "-" + phoneNumber[3] + "" + phoneNumber[4] + "" + phoneNumber[5] +
-                    "-" + phoneNumber[6] + "" + phoneNumber[7] + "" + phoneNumber[8] +
-                    "" + phoneNumber[9];
+                string newStrPhoneNumber = helper.stringConvertPhoneNumber(phoneNumber);
 
                 txtTopupPhoneNumber.Text = newStrPhoneNumber.Trim();
-                listBoxTopUpPhoneNumber.Size = new Size(141, 4);
+                listBoxTopUpPhoneNumber.Size = new Size(210, 4);
             }
             catch
             {
@@ -700,19 +705,19 @@ namespace TAOS
         {
             if (txtTopupPhoneNumber.Text.Length < 10)
             {
-                messageError.showMessageBox("กรุณากรอกตัวเลขให้ครบ 10 หลัก", MessageBoxIcon.Error);
+                messageError.showMessageBox("กรุณากรอกตัวเลขให้ครบ 10 หลัก");
                 txtTopupPhoneNumber.Select();
                 return false;
             }
             else if (txtValueBaht.Text == "0" || txtValueBaht.Text == "")
             {
-                messageError.showMessageBox("กรุณากรอกจำนวนเงิน", MessageBoxIcon.Error);
+                messageError.showMessageBox("กรุณากรอกจำนวนเงิน");
                 txtValueBaht.Select();
                 return false;
             }
             else if (txtValueBaht.Text == "0" || txtValueBaht.Text == "")
             {
-                messageError.showMessageBox("กรุณากรอกจำนวนเงิน", MessageBoxIcon.Error);
+                messageError.showMessageBox("กรุณากรอกจำนวนเงิน");
                 txtValueBaht.Select();
                 return false;
             }
@@ -730,19 +735,37 @@ namespace TAOS
                     messageError.showMessageBox("การบันทึกรายการเกินการผิดพลาด");
                 }
                 else
-                    btnTopUpClear_Click(null, EventArgs.Empty);
+                    btnTopUpClear_Click(null, EventArgs.Empty); 
+
+                showListWaitTopup();
             }
         }
 
         private void showListWaitTopup()
         {
+            dataGridViewTopup.Rows.Clear();
+            List<string>[] list = ConnectMySql.getListWaitTopup();
+            if (list[0].Count > 0)
+            {
+                btnTopUpAnAll.Visible = true;
+            }
 
+            for (int i = 0; i < list[0].Count; i++)
+            {
+                int number = dataGridViewTopup.Rows.Add(); 
+                string newStrPhoneNumber = helper.stringConvertPhoneNumber(list[1][i]);
+                dataGridViewTopup.Rows[number].Cells[0].Value = list[0][i];
+                dataGridViewTopup.Rows[number].Cells[1].Value = newStrPhoneNumber;
+                dataGridViewTopup.Rows[number].Cells[2].Value = list[2][i];
+                dataGridViewTopup.Rows[number].Cells[3].Value = 
+                    Image.FromFile(helper.getPathIconImages(list[3][i]));
+                dataGridViewTopup.Rows[number].Cells[4].Value = list[4][i];
+                dataGridViewTopup.Rows[number].Cells[5].Value = list[5][i];
+                dataGridViewTopup.Rows[number].Cells[6].Value = list[6][i];
+                dataGridViewTopup.Rows[number].Cells[7].Value = list[7][i];
+                dataGridViewTopup.Rows[number].Cells[8].Value = list[3][i];
+            }
         }
-
-
-
-
-
 
 
         #endregion
@@ -789,6 +812,44 @@ namespace TAOS
                 tabControlListCustomer.SelectedTab = tabPageListCustomer;
                 tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
                 tbxTelSeach.Select();
+            }
+        }
+
+        private void dataGridViewTopup_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewTopup.SelectedRows.Count == 1)
+            {
+                checkClickTopup = false;
+                txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+                txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
+                cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+                txtTopupPhoneNumber.Select();
+            }
+            listBoxTopUpPhoneNumber.Visible = false;
+        }
+
+        private void btnTopupDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string topupID = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
+                string phoneNumber = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+                DialogResult result = messageError.showMessageBox("ต้องการลบเบอร์ :" + phoneNumber + " ใช่หรือไม่",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                Debug.WriteLine(result);
+                if (result == DialogResult.Yes)
+                {
+                    if (!ConnectMySql.setDeletedTopup(topupID))
+                    {
+                        messageError.showMessageBox("การลบข้อมูลผิดพลาด");
+                    }
+                    showListWaitTopup();
+                }
+                
+            }
+            catch
+            {
+                Debug.WriteLine("ไม่มีเบอร์");
             }
         }
 

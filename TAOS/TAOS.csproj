@@ -144,7 +144,7 @@
     <Content Include="Files\Images\icoDTAC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Files\Images\icoOne2Call.jpg">
+    <Content Include="Files\Images\icoOne2Call.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Files\Images\icoTrueMove.png">

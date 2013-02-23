@@ -34,7 +34,7 @@ G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.exe.
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\DTAC.jpg
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\Error.png
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\icoDTAC.png
-G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\icoOne2Call.jpg
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\icoTrueMove.png
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\One2Call.jpg
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\TrueMove.png
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\icoOne2Call.png
