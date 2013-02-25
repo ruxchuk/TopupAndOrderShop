@@ -240,7 +240,7 @@ namespace TAOS
             }
         }
 
-        public List<string>[] getListWaitTopup()
+        public List<string>[] getListTopup(int isTopup = 0)
         {
             int countList = 8;
             List<string>[] list = new List<string>[countList];
@@ -251,7 +251,7 @@ namespace TAOS
 
             if (CheckConnect())
             {
-                string sql = "CALL sp_get_list_wait_topup();";
+                string sql = "CALL sp_get_list_topup(" + isTopup +");";
 
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -393,6 +393,12 @@ namespace TAOS
         public bool setDeletedTopup(string topup_id)
         {
             string sql = "CALL sp_set_deleted_topup(" + topup_id + ");";
+            return UpDate(sql);
+        }
+
+        public bool setIsTopupAll()
+        {
+            string sql = "CALL sp_set_is_topup_all();";
             return UpDate(sql);
         }
         

@@ -37,7 +37,7 @@ namespace TAOS
             helper = new Helper();
             loadSetting();
             getListPhoneNumber(true, "");
-            showListWaitTopup();
+            showListTopup();
         }
 
         private void loadSetting()
@@ -737,17 +737,25 @@ namespace TAOS
                 else
                     btnTopUpClear_Click(null, EventArgs.Empty); 
 
-                showListWaitTopup();
+                showListTopup();
             }
         }
 
-        private void showListWaitTopup()
+        /*แสดงรายการการเติมเงิน
+         * isTopup = 0 ยังไม่เติมแล้ว
+         * isTopup = 1 เติมแล้ว
+        */
+        private void showListTopup(int isTopup = 0)
         {
             dataGridViewTopup.Rows.Clear();
-            List<string>[] list = ConnectMySql.getListWaitTopup();
+            List<string>[] list = ConnectMySql.getListTopup(isTopup);
             if (list[0].Count > 0)
             {
                 btnTopUpAnAll.Visible = true;
+            }
+            else
+            {
+                btnTopUpAnAll.Visible = false;
             }
 
             for (int i = 0; i < list[0].Count; i++)
@@ -817,13 +825,17 @@ namespace TAOS
 
         private void dataGridViewTopup_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (tabControlTopUpList.SelectedTab == tabPageListTopup)
+            {
+                return;
+            }
             if (dataGridViewTopup.SelectedRows.Count == 1)
             {
                 checkClickTopup = false;
                 txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
                 txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
                 cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
-                txtTopupPhoneNumber.Select();
+                
             }
             listBoxTopUpPhoneNumber.Visible = false;
         }
@@ -843,13 +855,55 @@ namespace TAOS
                     {
                         messageError.showMessageBox("การลบข้อมูลผิดพลาด");
                     }
-                    showListWaitTopup();
+                    showListTopup();
                 }
                 
             }
             catch
             {
                 Debug.WriteLine("ไม่มีเบอร์");
+            }
+        }
+
+        private void btnTopUpAnAll_Click(object sender, EventArgs e)
+        {
+            int rowCount = dataGridViewTopup.RowCount;
+            if (rowCount > 0)
+            {
+                Debug.WriteLine(rowCount);
+                DialogResult result = messageError.showMessageBox("คุณได้ทำการเติมเงินจำนวน " +
+                    rowCount + " รายการหมดแล้ว ใช่หรือไม่",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    if (!ConnectMySql.setIsTopupAll())
+                    {
+                        messageError.showMessageBox("การลบข้อมูลผิดพลาด");
+                    }
+                    else
+                    {
+                        showListTopup();
+                        btnTopUpClear_Click(null, EventArgs.Empty);
+                    }
+                }
+            }
+        }
+
+        private void dataGridViewTopup_Click(object sender, EventArgs e)
+        {
+            txtTopupPhoneNumber.Select();
+        }
+
+        private void tabControlTopUpList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlTopUpList.SelectedTab == tabPageAddTopup)
+            {
+                showListTopup();
+                txtTopupPhoneNumber.Select();
+            }
+            else if (tabControlTopUpList.SelectedTab == tabPageListTopup)
+            {
+                showListTopup(1);
             }
         }
 
