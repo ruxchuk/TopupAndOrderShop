@@ -22,26 +22,21 @@ namespace TAOS
         public int phoneNumberID = 0;
         public DateTime dateStart;
         public DateTime dateEnd;
+        public string connectionString;
 
         #endregion
 
-        public ConMySql(string user, string pass, string server, string dbName)
+        public ConMySql()
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            UserId = user;
-            Pass = pass;
-            Server = server;
-            NameDB = dbName;
             Initialize();
         }
 
         private void Initialize()
         {
-            string connectionString = "SERVER=" + Server + ";" + "DATABASE=" +
-                   NameDB + ";" + "UID=" + UserId + ";" + "PASSWORD=" + Pass + ";Charset=utf8;";
-            connection = new MySqlConnection(connectionString);
-            CheckConnect();
-            CloseConnection();
+            connectDB();
+            //CheckConnect();
+            //CloseConnection();
             //throw new NotImplementedException();
         }
 
@@ -58,7 +53,38 @@ namespace TAOS
         
 
         #region Check Connect/Close Connect
-        
+
+        public void connectDB()
+        {
+            try
+            {
+                string path = "Files\\FileSave.txt";
+                StreamReader strm = File.OpenText(path);
+
+                UserId = strm.ReadLine();
+                Pass = strm.ReadLine();
+                Server = strm.ReadLine();
+                NameDB = strm.ReadLine();
+                strm.Close();
+                connectionString = "SERVER=" + Server + ";" + "DATABASE=" +
+                   NameDB + ";" + "UID=" + UserId + ";" + "PASSWORD=" + Pass + ";Charset=utf8;";
+                connection = new MySqlConnection(connectionString);
+                if (CheckConnect())
+                {
+                    CloseConnection();
+                }
+                else
+                {
+                    MessageBox.Show("เชื่อมต่อฐานข้อมูล ผิดพลาด");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("กรุณาตรวจสอบ Username หรือ Password\n", ""
+                   , MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         public Boolean CheckConnect()
         {
             try
@@ -388,6 +414,19 @@ namespace TAOS
             }
             return true;
         }
+
+        public bool addBehindhand(string topupID, string customerID, string topupAmount, string dateTimeTopup)
+        {            
+            string sql = "CALL sp_add_bhindhand(" + customerID + ", " + topupID + ", " +
+                topupAmount + ", " + dateTimeTopup + ");";
+            if (!runQuery(sql))
+            {
+                return false;
+            }
+            return true;
+        }
+
+
         #endregion
 
         #region Update

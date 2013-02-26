@@ -2488,7 +2488,6 @@
             this.MinimumSize = new System.Drawing.Size(1024, 600);
             this.Name = "MainForm";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.tabControlMain.ResumeLayout(false);
             this.tabPageProduct.ResumeLayout(false);

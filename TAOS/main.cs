@@ -33,11 +33,11 @@ namespace TAOS
         public MainForm()
         {
             InitializeComponent();
-            readSetting();
+            ConnectMySql = new ConMySql();
             helper = new Helper();
             loadSetting();
             getListPhoneNumber(true, "");
-            showListTopup();
+            getListTopup();
         }
 
         private void loadSetting()
@@ -58,40 +58,6 @@ namespace TAOS
             txtValueBaht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
         }
 
-        private void readSetting()
-        {
-            try
-            {
-                openFileDialog1.FileName = "Files\\FileSave.txt";
-                StreamReader strm = File.OpenText(openFileDialog1.FileName);
-
-                string user = strm.ReadLine();
-                string pass = strm.ReadLine();
-                string server = strm.ReadLine();
-                string nameDB = strm.ReadLine();
-                strm.Close();
-                ConnectMySql = new ConMySql(user, pass, server, nameDB);
-                if (ConnectMySql.CheckConnect())
-                {
-                    ConnectMySql.CloseConnection();
-                }
-                else
-                {
-                    MessageBox.Show("เชื่อมต่อฐานข้อมูล ผิดพลาด");
-                }
-                //Debug.WriteLine(nameDB);
-            }
-            catch
-            {
-                //SaveSetDatabase();
-                MessageBox.Show("กรุณาตรวจสอบ Username หรือ Password\n", ""
-                   , MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void main_Load(object sender, EventArgs e)
-        {
-        }
 
         private void tbxSerialAndAddPrice_KeyUp(object sender, KeyEventArgs e)
         {
@@ -737,7 +703,7 @@ namespace TAOS
                 else
                     btnTopUpClear_Click(null, EventArgs.Empty); 
 
-                showListTopup();
+                getListTopup();
             }
         }
 
@@ -745,7 +711,7 @@ namespace TAOS
          * isTopup = 0 ยังไม่เติมแล้ว
          * isTopup = 1 เติมแล้ว
         */
-        private void showListTopup(int isTopup = 0)
+        private void getListTopup(int isTopup = 0)
         {
             dataGridViewTopup.Rows.Clear();
             List<string>[] list = ConnectMySql.getListTopup(isTopup);
@@ -855,7 +821,7 @@ namespace TAOS
                     {
                         messageError.showMessageBox("การลบข้อมูลผิดพลาด");
                     }
-                    showListTopup();
+                    getListTopup();
                 }
                 
             }
@@ -882,7 +848,7 @@ namespace TAOS
                     }
                     else
                     {
-                        showListTopup();
+                        getListTopup();
                         btnTopUpClear_Click(null, EventArgs.Empty);
                     }
                 }
@@ -898,12 +864,12 @@ namespace TAOS
         {
             if (tabControlTopUpList.SelectedTab == tabPageAddTopup)
             {
-                showListTopup();
+                getListTopup();
                 txtTopupPhoneNumber.Select();
             }
             else if (tabControlTopUpList.SelectedTab == tabPageListTopup)
             {
-                showListTopup(1);
+                getListTopup(1);
             }
         }
 
@@ -913,8 +879,18 @@ namespace TAOS
             {
                 string topupID = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
                 string customerID = dataGridViewTopup.SelectedRows[0].Cells[6].Value.ToString();
-                AddBehindhand addBhindhand = new AddBehindhand(topupID, customerID);
-                addBhindhand.ShowDialog();
+                string amount = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
+                string dateTopup = dataGridViewTopup.SelectedRows[0].Cells[5].Value.ToString();
+
+                if (customerID == "0")
+                {
+                    AddBehindhand addBhindhand = new AddBehindhand(topupID, customerID, amount, dateTopup);
+                    addBhindhand.ShowDialog();
+                }
+                else
+                {
+
+                }
 
             }
             catch
