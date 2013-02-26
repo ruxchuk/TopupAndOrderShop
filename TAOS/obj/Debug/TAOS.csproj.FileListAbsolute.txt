@@ -38,3 +38,6 @@ G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Ima
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\One2Call.jpg
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\TrueMove.png
 G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\icoOne2Call.png
+G:\งาน\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.AddBehindhand.resources
+G:\Work\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.exe
+G:\Work\Cchap\งานแม่\TopupAndOrderShop\TAOS\obj\Debug\TAOS.pdb

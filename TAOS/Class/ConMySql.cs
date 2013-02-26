@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.IO;
 //Add MySql Library
 using MySql.Data.MySqlClient;
+using System.Threading;
+using System.Globalization;
 
 namespace TAOS
 {
@@ -18,11 +20,14 @@ namespace TAOS
         public int CountAdd = 0;
         public int customerID = 0;
         public int phoneNumberID = 0;
+        public DateTime dateStart;
+        public DateTime dateEnd;
 
         #endregion
 
         public ConMySql(string user, string pass, string server, string dbName)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             UserId = user;
             Pass = pass;
             Server = server;
@@ -31,7 +36,7 @@ namespace TAOS
         }
 
         private void Initialize()
-        {          
+        {
             string connectionString = "SERVER=" + Server + ";" + "DATABASE=" +
                    NameDB + ";" + "UID=" + UserId + ";" + "PASSWORD=" + Pass + ";Charset=utf8;";
             connection = new MySqlConnection(connectionString);
@@ -40,6 +45,16 @@ namespace TAOS
             //throw new NotImplementedException();
         }
 
+
+        public DateTime getDateStartOfDay()
+        {
+            return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+        }
+
+        public DateTime getDateEndOfDay()
+        {
+            return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+        }
         
 
         #region Check Connect/Close Connect
@@ -242,6 +257,9 @@ namespace TAOS
 
         public List<string>[] getListTopup(int isTopup = 0)
         {
+            dateStart = getDateStartOfDay();
+            dateEnd = getDateEndOfDay();
+
             int countList = 8;
             List<string>[] list = new List<string>[countList];
             for (int i = 0; i < countList; i++)
@@ -251,7 +269,8 @@ namespace TAOS
 
             if (CheckConnect())
             {
-                string sql = "CALL sp_get_list_topup(" + isTopup +");";
+                string sql = "CALL sp_get_list_topup(" + isTopup + ", '" + dateStart + 
+                    "', '" + dateEnd + "');";
 
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();

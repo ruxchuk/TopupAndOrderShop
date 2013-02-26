@@ -907,5 +907,21 @@ namespace TAOS
             }
         }
 
+        private void btnTopUpAddPayment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string topupID = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
+                string customerID = dataGridViewTopup.SelectedRows[0].Cells[6].Value.ToString();
+                AddBehindhand addBhindhand = new AddBehindhand(topupID, customerID);
+                addBhindhand.ShowDialog();
+
+            }
+            catch
+            {
+                Debug.WriteLine("ไม่มีเบอร์");
+            }
+        }
+
     }
 }
