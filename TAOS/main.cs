@@ -908,9 +908,36 @@ namespace TAOS
             }
         }
 
+
+        #region customer
         private void getListCustomer()
         {
+            dataGridViewListCustomer.Rows.Clear();
             List<string>[] listCustomer = ConnectMySql.getListCustomer();
+
+            for (int i = 0; i < listCustomer[0].Count; i++)
+            {
+                int number = dataGridViewListCustomer.Rows.Add();
+                string newStrPhoneNumber = helper.stringConvertPhoneNumber(listCustomer[6][i]);
+                dataGridViewListCustomer.Rows[number].Cells[0].Value = i+1;
+                dataGridViewListCustomer.Rows[number].Cells[1].Value = listCustomer[2][i];
+                dataGridViewListCustomer.Rows[number].Cells[2].Value = newStrPhoneNumber;
+                dataGridViewListCustomer.Rows[number].Cells[3].Value =
+                     Image.FromFile(helper.getPathIconImages(listCustomer[7][i]));
+                dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[5][i];
+
+                //dataGridViewListCustomer.Rows[number].Cells[1].Value = newStrPhoneNumber;
+                //dataGridViewListCustomer.Rows[number].Cells[2].Value = listCustomer[2][i];
+                //dataGridViewListCustomer.Rows[number].Cells[3].Value =
+                //    Image.FromFile(helper.getPathIconImages(listCustomer[3][i]));
+                //dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[4][i];
+                //dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[5][i];
+                //dataGridViewListCustomer.Rows[number].Cells[6].Value = listCustomer[6][i];
+                //dataGridViewListCustomer.Rows[number].Cells[7].Value = listCustomer[7][i];
+                //dataGridViewListCustomer.Rows[number].Cells[8].Value = listCustomer[3][i];
+            }
         }
+
+        #endregion
     }
 }
