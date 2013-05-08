@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageProduct = new System.Windows.Forms.TabPage();
             this.tabControlProduct = new System.Windows.Forms.TabControl();
@@ -124,8 +124,6 @@
             this.button7 = new System.Windows.Forms.Button();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.imageTopUpIconNetwork = new System.Windows.Forms.PictureBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lbTopUpValue = new System.Windows.Forms.Label();
             this.lbTopUpPhoneNumber = new System.Windows.Forms.Label();
@@ -205,6 +203,8 @@
             this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NetworkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageProduct.SuspendLayout();
             this.tabControlProduct.SuspendLayout();
@@ -334,14 +334,14 @@
             this.dataGridViewBuyProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewBuyProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridViewBuyProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewBuyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewBuyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewBuyProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBuyProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -350,14 +350,14 @@
             this.Price,
             this.serial});
             this.dataGridViewBuyProduct.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewBuyProduct.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewBuyProduct.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewBuyProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewBuyProduct.Location = new System.Drawing.Point(3, 36);
             this.dataGridViewBuyProduct.MultiSelect = false;
@@ -604,14 +604,14 @@
             this.dataGridViewProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridViewProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -622,14 +622,14 @@
             this.DateModifield,
             this.order_id});
             this.dataGridViewProduct.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewProduct.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewProduct.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewProduct.Location = new System.Drawing.Point(3, 27);
             this.dataGridViewProduct.MultiSelect = false;
@@ -946,34 +946,34 @@
             this.CustomerID,
             this.Column21,
             this.NetworkName});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTopup.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewTopup.Location = new System.Drawing.Point(3, 67);
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTopup.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTopup.Location = new System.Drawing.Point(3, 88);
             this.dataGridViewTopup.MultiSelect = false;
             this.dataGridViewTopup.Name = "dataGridViewTopup";
             this.dataGridViewTopup.ReadOnly = true;
             this.dataGridViewTopup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTopup.Size = new System.Drawing.Size(616, 484);
+            this.dataGridViewTopup.Size = new System.Drawing.Size(616, 463);
             this.dataGridViewTopup.TabIndex = 1000;
             this.dataGridViewTopup.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTopup_CellClick);
             this.dataGridViewTopup.Click += new System.EventHandler(this.dataGridViewTopup_Click);
             // 
             // tabControlTopUpList
             // 
+            this.tabControlTopUpList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlTopUpList.Controls.Add(this.tabPageAddTopup);
             this.tabControlTopUpList.Controls.Add(this.tabPageListTopup);
-            this.tabControlTopUpList.Dock = System.Windows.Forms.DockStyle.Right;
             this.tabControlTopUpList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.tabControlTopUpList.Location = new System.Drawing.Point(625, 69);
+            this.tabControlTopUpList.Location = new System.Drawing.Point(625, 88);
             this.tabControlTopUpList.Name = "tabControlTopUpList";
             this.tabControlTopUpList.SelectedIndex = 0;
-            this.tabControlTopUpList.Size = new System.Drawing.Size(332, 482);
+            this.tabControlTopUpList.Size = new System.Drawing.Size(332, 463);
             this.tabControlTopUpList.TabIndex = 41;
             this.tabControlTopUpList.SelectedIndexChanged += new System.EventHandler(this.tabControlTopUpList_SelectedIndexChanged);
             // 
@@ -983,7 +983,7 @@
             this.tabPageAddTopup.Location = new System.Drawing.Point(4, 33);
             this.tabPageAddTopup.Name = "tabPageAddTopup";
             this.tabPageAddTopup.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAddTopup.Size = new System.Drawing.Size(324, 445);
+            this.tabPageAddTopup.Size = new System.Drawing.Size(324, 426);
             this.tabPageAddTopup.TabIndex = 0;
             this.tabPageAddTopup.Text = "เติมเงิน";
             this.tabPageAddTopup.UseVisualStyleBackColor = true;
@@ -1008,7 +1008,7 @@
             this.groupBox8.ForeColor = System.Drawing.Color.White;
             this.groupBox8.Location = new System.Drawing.Point(3, 3);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(318, 439);
+            this.groupBox8.Size = new System.Drawing.Size(318, 420);
             this.groupBox8.TabIndex = 6;
             this.groupBox8.TabStop = false;
             // 
@@ -1032,7 +1032,7 @@
             // 
             this.txtValueBaht.CausesValidation = false;
             this.txtValueBaht.EditValue = "";
-            this.txtValueBaht.Location = new System.Drawing.Point(103, 85);
+            this.txtValueBaht.Location = new System.Drawing.Point(103, 80);
             this.txtValueBaht.Name = "txtValueBaht";
             this.txtValueBaht.Properties.Appearance.BackColor = System.Drawing.Color.Black;
             this.txtValueBaht.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1047,13 +1047,14 @@
             // 
             // btnTopUpAnAll
             // 
+            this.btnTopUpAnAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnTopUpAnAll.BackColor = System.Drawing.Color.PaleGreen;
             this.btnTopUpAnAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTopUpAnAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTopUpAnAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.btnTopUpAnAll.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpAnAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAnAll.Location = new System.Drawing.Point(187, 282);
+            this.btnTopUpAnAll.Location = new System.Drawing.Point(187, 271);
             this.btnTopUpAnAll.Name = "btnTopUpAnAll";
             this.btnTopUpAnAll.Size = new System.Drawing.Size(128, 34);
             this.btnTopUpAnAll.TabIndex = 44;
@@ -1086,7 +1087,7 @@
             this.groupBox15.Controls.Add(this.btnTopupDelete);
             this.groupBox15.Controls.Add(this.btnTopUpAddPayment);
             this.groupBox15.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox15.Location = new System.Drawing.Point(3, 322);
+            this.groupBox15.Location = new System.Drawing.Point(3, 303);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(312, 114);
             this.groupBox15.TabIndex = 33;
@@ -1162,7 +1163,7 @@
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label22.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label22.Location = new System.Drawing.Point(236, 88);
+            this.label22.Location = new System.Drawing.Point(236, 83);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(56, 31);
             this.label22.TabIndex = 12;
@@ -1180,7 +1181,7 @@
             "One 2 Call",
             "DTAC",
             "TrueMove"});
-            this.cmbTopUpNetwork.Location = new System.Drawing.Point(103, 150);
+            this.cmbTopUpNetwork.Location = new System.Drawing.Point(103, 145);
             this.cmbTopUpNetwork.Name = "cmbTopUpNetwork";
             this.cmbTopUpNetwork.Size = new System.Drawing.Size(189, 32);
             this.cmbTopUpNetwork.TabIndex = 3;
@@ -1196,7 +1197,7 @@
             this.pictureBox7.ImageLocation = "";
             this.pictureBox7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox7.InitialImage = null;
-            this.pictureBox7.Location = new System.Drawing.Point(9, 150);
+            this.pictureBox7.Location = new System.Drawing.Point(9, 145);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(76, 51);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1213,7 +1214,7 @@
             this.pictureBox6.ImageLocation = "";
             this.pictureBox6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox6.InitialImage = null;
-            this.pictureBox6.Location = new System.Drawing.Point(9, 88);
+            this.pictureBox6.Location = new System.Drawing.Point(9, 83);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(76, 51);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1245,9 +1246,9 @@
             this.imgTopUpNetwork.ImageLocation = "";
             this.imgTopUpNetwork.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.imgTopUpNetwork.InitialImage = null;
-            this.imgTopUpNetwork.Location = new System.Drawing.Point(9, 207);
+            this.imgTopUpNetwork.Location = new System.Drawing.Point(9, 202);
             this.imgTopUpNetwork.Name = "imgTopUpNetwork";
-            this.imgTopUpNetwork.Size = new System.Drawing.Size(176, 109);
+            this.imgTopUpNetwork.Size = new System.Drawing.Size(172, 95);
             this.imgTopUpNetwork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgTopUpNetwork.TabIndex = 0;
             this.imgTopUpNetwork.TabStop = false;
@@ -1493,15 +1494,15 @@
             // 
             this.groupBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox14.Controls.Add(this.imageTopUpIconNetwork);
-            this.groupBox14.Controls.Add(this.label31);
-            this.groupBox14.Controls.Add(this.label20);
             this.groupBox14.Controls.Add(this.label15);
             this.groupBox14.Controls.Add(this.lbTopUpValue);
+            this.groupBox14.Controls.Add(this.label14);
+            this.groupBox14.Controls.Add(this.label13);
             this.groupBox14.Controls.Add(this.lbTopUpPhoneNumber);
             this.groupBox14.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox14.Location = new System.Drawing.Point(3, 3);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(954, 66);
+            this.groupBox14.Size = new System.Drawing.Size(954, 79);
             this.groupBox14.TabIndex = 40;
             this.groupBox14.TabStop = false;
             // 
@@ -1513,38 +1514,12 @@
             this.imageTopUpIconNetwork.ImageLocation = "";
             this.imageTopUpIconNetwork.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.imageTopUpIconNetwork.InitialImage = null;
-            this.imageTopUpIconNetwork.Location = new System.Drawing.Point(508, 22);
+            this.imageTopUpIconNetwork.Location = new System.Drawing.Point(503, 19);
             this.imageTopUpIconNetwork.Name = "imageTopUpIconNetwork";
-            this.imageTopUpIconNetwork.Size = new System.Drawing.Size(67, 39);
+            this.imageTopUpIconNetwork.Size = new System.Drawing.Size(71, 55);
             this.imageTopUpIconNetwork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imageTopUpIconNetwork.TabIndex = 33;
             this.imageTopUpIconNetwork.TabStop = false;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.Color.Aqua;
-            this.label31.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label31.Location = new System.Drawing.Point(848, 22);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(71, 39);
-            this.label31.TabIndex = 39;
-            this.label31.Text = "บาท";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.Aqua;
-            this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label20.Location = new System.Drawing.Point(581, 22);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(164, 39);
-            this.label20.TabIndex = 38;
-            this.label20.Text = "จำนวนเงิน:";
             // 
             // label15
             // 
@@ -1552,9 +1527,9 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Orange;
             this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(6, 21);
+            this.label15.Location = new System.Drawing.Point(6, 19);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(261, 39);
+            this.label15.Size = new System.Drawing.Size(145, 55);
             this.label15.TabIndex = 37;
             this.label15.Text = "เบอร์โทร:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1562,24 +1537,24 @@
             // lbTopUpValue
             // 
             this.lbTopUpValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbTopUpValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTopUpValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTopUpValue.ForeColor = System.Drawing.Color.Lime;
             this.lbTopUpValue.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTopUpValue.Location = new System.Drawing.Point(751, 22);
+            this.lbTopUpValue.Location = new System.Drawing.Point(734, 19);
             this.lbTopUpValue.Name = "lbTopUpValue";
-            this.lbTopUpValue.Size = new System.Drawing.Size(91, 39);
+            this.lbTopUpValue.Size = new System.Drawing.Size(138, 55);
             this.lbTopUpValue.TabIndex = 36;
             this.lbTopUpValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbTopUpPhoneNumber
             // 
             this.lbTopUpPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbTopUpPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTopUpPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTopUpPhoneNumber.ForeColor = System.Drawing.Color.Yellow;
             this.lbTopUpPhoneNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTopUpPhoneNumber.Location = new System.Drawing.Point(273, 22);
+            this.lbTopUpPhoneNumber.Location = new System.Drawing.Point(157, 19);
             this.lbTopUpPhoneNumber.Name = "lbTopUpPhoneNumber";
-            this.lbTopUpPhoneNumber.Size = new System.Drawing.Size(229, 39);
+            this.lbTopUpPhoneNumber.Size = new System.Drawing.Size(340, 55);
             this.lbTopUpPhoneNumber.TabIndex = 35;
             this.lbTopUpPhoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1594,13 +1569,13 @@
             this.dataGridViewListTopUpFinish.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridViewListTopUpFinish.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dataGridViewListTopUpFinish.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListTopUpFinish.Location = new System.Drawing.Point(3, 68);
+            this.dataGridViewListTopUpFinish.Location = new System.Drawing.Point(3, 88);
             this.dataGridViewListTopUpFinish.MultiSelect = false;
             this.dataGridViewListTopUpFinish.Name = "dataGridViewListTopUpFinish";
             this.dataGridViewListTopUpFinish.ReadOnly = true;
             this.dataGridViewListTopUpFinish.RowHeadersVisible = false;
             this.dataGridViewListTopUpFinish.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewListTopUpFinish.Size = new System.Drawing.Size(616, 483);
+            this.dataGridViewListTopUpFinish.Size = new System.Drawing.Size(616, 463);
             this.dataGridViewListTopUpFinish.TabIndex = 43;
             // 
             // tabPageCustomerList
@@ -2376,14 +2351,14 @@
             this.dataGridViewTelephone2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridViewTelephone2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.dataGridViewTelephone2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTelephone2.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTelephone2.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTelephone2.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewTelephone2.MultiSelect = false;
             this.dataGridViewTelephone2.Name = "dataGridViewTelephone2";
@@ -2473,6 +2448,32 @@
             this.NetworkName.Visible = false;
             this.NetworkName.Width = 158;
             // 
+            // label13
+            // 
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label13.Location = new System.Drawing.Point(580, 19);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(154, 55);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "จำนวนเงิน";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.label14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label14.Location = new System.Drawing.Point(872, 19);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(77, 55);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "บาท";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2481,7 +2482,7 @@
             this.Controls.Add(this.tabControlMain);
             this.MinimumSize = new System.Drawing.Size(1024, 600);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "ร้านแดงตาก้อง";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.tabControlMain.ResumeLayout(false);
             this.tabPageProduct.ResumeLayout(false);
@@ -2522,7 +2523,6 @@
             this.groupBox9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).EndInit();
             this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListTopUpFinish)).EndInit();
             this.tabPageCustomerList.ResumeLayout(false);
@@ -2581,8 +2581,6 @@
         private System.Windows.Forms.DataGridView dataGridViewListTopUpFinish;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.PictureBox imageTopUpIconNetwork;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lbTopUpValue;
         private System.Windows.Forms.Label lbTopUpPhoneNumber;
@@ -2725,6 +2723,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn NetworkName;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
 
 
     }

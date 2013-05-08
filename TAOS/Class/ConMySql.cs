@@ -249,7 +249,32 @@ namespace TAOS
                 return list;
             }
         }
+        
+        public string countProduct()
+        {
+            string strCount = "";
+            if (CheckConnect() == true)
+            {
+                string sql = "SELECT COUNT(`product_id`) AS id FROM `product`";
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    strCount = dataReader["id"] + "";
+                }
+                dataReader.Close();
+                CloseConnection();
+                return strCount;
+            }
+            else
+            {
+                return strCount;
+            }
+        }
 
+        #region TopUP
+
+        //get รายการเบอร์โทร
         public List<string>[] getListPhoneNumber(string searchPhoneNumber = "")
         {
             List<string>[] list = new List<string>[4];
@@ -281,6 +306,7 @@ namespace TAOS
             }
         }
 
+        //get รายการเติมเงิน
         public List<string>[] getListTopup(int isTopup = 0)
         {
             dateStart = getDateStartOfDay();
@@ -321,27 +347,45 @@ namespace TAOS
             }
         }
 
-        public string countProduct()
+
+        //get รายชื่อลูกค้า
+        public List<string>[] getListCustomer(int customerID = 0, string customerName = "")
         {
-            string strCount = "";
-            if (CheckConnect() == true)
+            int countList = 8;
+            List<string>[] list = new List<string>[countList];
+            for (int i = 0; i < countList; i++)
             {
-                string sql = "SELECT COUNT(`product_id`) AS id FROM `product`";
+                list[i] = new List<string>();
+            }
+
+            if (CheckConnect())
+            {
+                string sql = "CALL sp_get_list_customer(" + customerID + ", '" + customerName + "');";
+
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    strCount = dataReader["id"] + "";
+                    list[0].Add(dataReader["id"] + "");
+                    list[1].Add(dataReader["phone_number_id"] + "");
+                    list[2].Add(dataReader["name"] + "");
+                    list[3].Add(dataReader["date_update"] + "");
+                    list[4].Add(dataReader["date_add"] + "");
+                    list[5].Add(dataReader["address"] + "");
+                    list[6].Add(dataReader["phone_number"] + "");
+                    list[7].Add(dataReader["network"] + "");
                 }
                 dataReader.Close();
                 CloseConnection();
-                return strCount;
+                return list;
             }
             else
             {
-                return strCount;
+                return list;
             }
+
         }
+        #endregion
 
         #endregion
 

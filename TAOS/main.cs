@@ -790,6 +790,7 @@ namespace TAOS
             }
             else if (tabControlMain.SelectedTab == tabPageCustomerList)
             {
+                getListCustomer();
                 tabControlListCustomer.SelectedTab = tabPageListCustomer;
                 tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
                 tbxTelSeach.Select();
@@ -896,7 +897,8 @@ namespace TAOS
                 }
                 else
                 {
-
+                    AddBehindhand addBhindhand = new AddBehindhand(topupID, customerID, amount, dateTopup);
+                    addBhindhand.ShowDialog();
                 }
 
             }
@@ -906,5 +908,9 @@ namespace TAOS
             }
         }
 
+        private void getListCustomer()
+        {
+            List<string>[] listCustomer = ConnectMySql.getListCustomer();
+        }
     }
 }
