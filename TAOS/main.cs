@@ -491,7 +491,7 @@ namespace TAOS
         {
             if (checkGetData)
             {
-                allPhoneNumber = ConnectMySql.getAllPhoneNumber();
+                allPhoneNumber = ConnectMySql.getListPhoneNumber();
             }
             if (allPhoneNumber == null)
                 return;
@@ -665,6 +665,7 @@ namespace TAOS
             cmbTopUpNetwork.SelectedIndex = -1;
 
             txtTopupPhoneNumber.Select();
+            getListTopup();
         }
 
         private bool checkAddTopup()
@@ -715,6 +716,11 @@ namespace TAOS
         {
             dataGridViewTopup.Rows.Clear();
             List<string>[] list = ConnectMySql.getListTopup(isTopup);
+
+
+            Debug.WriteLine(list[0].Count);
+
+
             if (list[0].Count > 0)
             {
                 btnTopUpAnAll.Visible = true;
@@ -778,6 +784,7 @@ namespace TAOS
             }
             else if (tabControlMain.SelectedTab == tabPageTopUp)
             {
+                getListTopup();
                 tabControlTopUpList.SelectedTab = tabPageAddTopup;
                 txtTopupPhoneNumber.Select();
             }

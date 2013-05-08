@@ -250,7 +250,7 @@ namespace TAOS
             }
         }
 
-        public List<string>[] getAllPhoneNumber(string searchPhoneNumber = "")
+        public List<string>[] getListPhoneNumber(string searchPhoneNumber = "")
         {
             List<string>[] list = new List<string>[4];
             for (int i = 0; i < 4; i++)
