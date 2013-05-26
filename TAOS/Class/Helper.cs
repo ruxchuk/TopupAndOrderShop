@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 
 namespace TAOS
 {
@@ -124,12 +125,29 @@ namespace TAOS
 
         public string stringConvertPhoneNumber(string phoneNumber)
         {
-            phoneNumber = phoneNumber.Replace("-", "");
-            string newStrPhoneNumber = phoneNumber[0] + "" + phoneNumber[1] + "" + phoneNumber[2] +
-                "-" + phoneNumber[3] + "" + phoneNumber[4] + "" + phoneNumber[5] +
-                "-" + phoneNumber[6] + "" + phoneNumber[7] + "" + phoneNumber[8] +
-                "" + phoneNumber[9];
+            string newStrPhoneNumber = phoneNumber;
+            try
+            {
+                phoneNumber = phoneNumber.Replace("-", "");
+                newStrPhoneNumber = phoneNumber[0] + "" + phoneNumber[1] + "" + phoneNumber[2] +
+                    "-" + phoneNumber[3] + "" + phoneNumber[4] + "" + phoneNumber[5] +
+                    "-" + phoneNumber[6] + "" + phoneNumber[7] + "" + phoneNumber[8] +
+                    "" + phoneNumber[9];
+            }
+            catch
+            {
+            }
             return newStrPhoneNumber;
+        }
+
+
+        public TextEdit setTextboxPhoneNumber(TextEdit textbox)
+        {
+            textbox.Properties.Mask.EditMask = "((\\+\\d|10)?\\(\\d{3}\\))?\\d{3}-\\d{3}-\\d{4}";
+            textbox.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
+            textbox.Properties.Mask.IgnoreMaskBlank = true;
+            textbox.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            return textbox;
         }
         
     }

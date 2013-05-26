@@ -47,17 +47,17 @@ namespace TAOS
 
             messageError = new MessageError();
 
-            txtTopupPhoneNumber.Properties.Mask.EditMask = "((\\+\\d|10)?\\(\\d{3}\\))?\\d{3}-\\d{3}-\\d{4}";
-            txtTopupPhoneNumber.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
-            txtTopupPhoneNumber.Properties.Mask.IgnoreMaskBlank = true;
-            txtTopupPhoneNumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            txtTopupPhoneNumber = helper.setTextboxPhoneNumber(txtTopupPhoneNumber);
+            textboxCustomerPhone = helper.setTextboxPhoneNumber(textboxCustomerPhone);
+            textboxAddCustomerPhone = helper.setTextboxPhoneNumber(textboxAddCustomerPhone);
+            textboxTopupSearchPhone = helper.setTextboxPhoneNumber(textboxTopupSearchPhone);
+
 
             txtValueBaht.Properties.Mask.EditMask = "d";
             txtValueBaht.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
             txtValueBaht.Properties.Mask.IgnoreMaskBlank = false;
             txtValueBaht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
         }
-
 
         private void tbxSerialAndAddPrice_KeyUp(object sender, KeyEventArgs e)
         {
@@ -769,7 +769,7 @@ namespace TAOS
                     tabControlMain.SelectedTab = tabPageCustomerList;
                     tabControlListCustomer.SelectedTab = tabPageListCustomer;
                     tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
-                    tbxTelSeach.Select();
+                    //tbxTelSeach.Select();
                     break;
                 default: break;
             }
@@ -793,7 +793,7 @@ namespace TAOS
                 getListCustomer();
                 tabControlListCustomer.SelectedTab = tabPageListCustomer;
                 tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
-                tbxTelSeach.Select();
+                //tbxTelSeach.Select();
             }
         }
 
@@ -812,6 +812,23 @@ namespace TAOS
                 
             }
             listBoxTopUpPhoneNumber.Visible = false;
+        }
+
+        private void dataGridViewListCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (tabControlTopUpList.SelectedTab == tabPageListTopup)
+            //{
+            //    return;
+            //}
+            if (dataGridViewListCustomer.SelectedRows.Count == 1)
+            {
+                //checkClickTopup = false;
+                //txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+                //txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
+                //cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+
+            }
+            //listBoxTopUpPhoneNumber.Visible = false;
         }
 
         private void btnTopupDelete_Click(object sender, EventArgs e)
