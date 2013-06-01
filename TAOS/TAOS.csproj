@@ -71,6 +71,12 @@
     <Compile Include="Class\ConMySql.cs" />
     <Compile Include="Class\Helper.cs" />
     <Compile Include="Class\MessageError.cs" />
+    <Compile Include="FRMCustomerTopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMCustomerTopup.Designer.cs">
+      <DependentUpon>FRMCustomerTopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="AddBehindhand.resx">
       <DependentUpon>AddBehindhand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMCustomerTopup.resx">
+      <DependentUpon>FRMCustomerTopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

@@ -131,6 +131,8 @@ namespace TAOS
 
         #region Select
 
+        #region Get Product
+        
         public bool checkAddProduct(string barcode)
         {
             if (CheckConnect() == true)
@@ -272,6 +274,8 @@ namespace TAOS
             }
         }
 
+        #endregion
+
         #region TopUP
 
         //get รายการเบอร์โทร
@@ -385,6 +389,50 @@ namespace TAOS
             }
 
         }
+        
+        //search customer
+        public List<string>[] searchCustomer(string customerName, string phoneNumber, string network)
+        {
+            int countList = 8;
+            List<string>[] list = new List<string>[countList];
+            for (int i = 0; i < countList; i++)
+            {
+                list[i] = new List<string>();
+            }
+            if (CheckConnect())
+            {
+                string sql = @"
+                    SELECT
+                      a.*,
+	                    b.phone_number,
+	                    b.network
+                    FROM `customer` a
+                    LEFT JOIN `phone_number` b ON
+                    (a.phone_number_id = b.id AND b.deleted = 0)
+                    WHERE 1
+                ";
+                sql += customerName != "" ? " AND a.name LIKE '%" + customerName + "%'" : "";
+                sql += phoneNumber != "" ? " AND b.network ='" + phoneNumber + "'" : "";
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["id"] + "");
+                    list[1].Add(dataReader["phone_number_id"] + "");
+                    list[2].Add(dataReader["name"] + "");
+                    list[3].Add(dataReader["date_update"] + "");
+                    list[4].Add(dataReader["date_add"] + "");
+                    list[5].Add(dataReader["address"] + "");
+                    list[6].Add(dataReader["phone_number"] + "");
+                    list[7].Add(dataReader["network"] + "");
+                }
+                dataReader.Close();
+                CloseConnection();
+            }
+
+            return list;
+        }
+
         #endregion
 
         #endregion
@@ -403,25 +451,27 @@ namespace TAOS
             return "";
         }
 
-        public bool runQuery(string sql)
+        public int runQuery(string sql)
         {
+            int lastID = 0;
             if (CheckConnect() == true)
             {
                 try
                 {
                     MySqlCommand cmd = new MySqlCommand(sql, connection);
                     cmd.ExecuteNonQuery();
+                    lastID = (int)cmd.LastInsertedId;
                 }
                 catch
                 {
-                    return false;
+                    return 0;
                 }
                 CloseConnection();
-                return true;
+                return lastID;
             }
             else
             {
-                return false;
+                return 0;
             }
         }
 
@@ -452,7 +502,7 @@ namespace TAOS
             }
 
             sql = "CALL sp_add_topup(" + customerID + ", " + phoneNumberID + ", " + amount + ");";
-            if (!runQuery(sql))
+            if (runQuery(sql)==0)
             {
                 return false;
             }
@@ -463,7 +513,56 @@ namespace TAOS
         {            
             string sql = "CALL sp_add_bhindhand(" + customerID + ", " + topupID + ", " +
                 topupAmount + ", " + dateTimeTopup + ");";
-            if (!runQuery(sql))
+            if (runQuery(sql)==0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        // add customer
+        public bool addCustomer(string customerName, string phoneNumber, string address, string network)
+        {
+            string dateAdd = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day +
+                " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            string sql = @"
+                INSERT INTO `phone_number` (
+                  `phone_number`,
+                  `network`,
+                  `date_add`
+                ) 
+                VALUES
+                  (
+                    '" + phoneNumber + @",'
+                    '" + network + @"',
+                    '" + dateAdd + @"'
+                  ) 
+                  ;
+            ";
+            int id = runQuery(sql);
+            if (id == 0)
+            {
+                return false;
+            }
+
+            sql = @"
+                INSERT INTO `customer` (
+                  `phone_number_id`,
+                  `name`,
+                  `date_add`,
+                  `address`,
+                ) 
+                VALUES
+                (
+                " + id + @",
+                '" + customerName + @"',
+                '" + dateAdd + @"',
+                '" + address + @"'
+                ) ;
+            ";
+            id = runQuery(sql);
+            if (id == 0)
             {
                 return false;
             }

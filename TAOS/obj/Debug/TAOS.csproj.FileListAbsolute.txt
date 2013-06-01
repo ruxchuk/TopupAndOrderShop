@@ -81,3 +81,4 @@ D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.Properties.Resources.r
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\ResGen.read.1.tlog
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\ResGen.write.1.tlog
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.exe.licenses
+D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.FRMCustomerTopup.resources

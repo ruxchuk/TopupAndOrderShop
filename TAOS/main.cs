@@ -48,7 +48,7 @@ namespace TAOS
             messageError = new MessageError();
 
             txtTopupPhoneNumber = helper.setTextboxPhoneNumber(txtTopupPhoneNumber);
-            textboxCustomerPhone = helper.setTextboxPhoneNumber(textboxCustomerPhone);
+            textboxCustomerSearchPhone = helper.setTextboxPhoneNumber(textboxCustomerSearchPhone);
             textboxAddCustomerPhone = helper.setTextboxPhoneNumber(textboxAddCustomerPhone);
             textboxTopupSearchPhone = helper.setTextboxPhoneNumber(textboxTopupSearchPhone);
 
@@ -375,6 +375,59 @@ namespace TAOS
             lbPriceAddChange.Text = helper.ConvertToNumberformat(expend);
         }
 
+        #region customer
+        private void getListCustomer()
+        {
+            dataGridViewListCustomer.Rows.Clear();
+            List<string>[] listCustomer = ConnectMySql.getListCustomer();
+
+            for (int i = 0; i < listCustomer[0].Count; i++)
+            {
+                int number = dataGridViewListCustomer.Rows.Add();
+                string newStrPhoneNumber = helper.stringConvertPhoneNumber(listCustomer[6][i]);
+                dataGridViewListCustomer.Rows[number].Cells[0].Value = i + 1;
+                dataGridViewListCustomer.Rows[number].Cells[1].Value = listCustomer[2][i];
+                dataGridViewListCustomer.Rows[number].Cells[2].Value = newStrPhoneNumber;
+                dataGridViewListCustomer.Rows[number].Cells[3].Value =
+                     Image.FromFile(helper.getPathIconImages(listCustomer[7][i]));
+                dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[5][i];
+                dataGridViewListCustomer.Rows[number].Cells[7].Value = listCustomer[7][i];
+                dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[0][i];
+
+                //dataGridViewListCustomer.Rows[number].Cells[1].Value = newStrPhoneNumber;
+                //dataGridViewListCustomer.Rows[number].Cells[2].Value = listCustomer[2][i];
+                //dataGridViewListCustomer.Rows[number].Cells[3].Value =
+                //    Image.FromFile(helper.getPathIconImages(listCustomer[3][i]));
+                //dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[4][i];
+                //dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[5][i];
+                //dataGridViewListCustomer.Rows[number].Cells[6].Value = listCustomer[6][i];
+                //dataGridViewListCustomer.Rows[number].Cells[7].Value = listCustomer[7][i];
+                //dataGridViewListCustomer.Rows[number].Cells[8].Value = listCustomer[3][i];
+            }
+        }
+
+        private void searchCustomer(string customerName, string phoneNumber, string network)
+        {
+            dataGridViewListCustomer.Rows.Clear();
+            List<string>[] listCustomer = ConnectMySql.searchCustomer(customerName, phoneNumber, network);
+
+            for (int i = 0; i < listCustomer[0].Count; i++)
+            {
+                int number = dataGridViewListCustomer.Rows.Add();
+                string newStrPhoneNumber = helper.stringConvertPhoneNumber(listCustomer[6][i]);
+                dataGridViewListCustomer.Rows[number].Cells[0].Value = i + 1;
+                dataGridViewListCustomer.Rows[number].Cells[1].Value = listCustomer[2][i];
+                dataGridViewListCustomer.Rows[number].Cells[2].Value = newStrPhoneNumber;
+                dataGridViewListCustomer.Rows[number].Cells[3].Value =
+                     Image.FromFile(helper.getPathIconImages(listCustomer[7][i]));
+                dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[5][i];
+                dataGridViewListCustomer.Rows[number].Cells[7].Value = listCustomer[7][i];
+                dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[0][i];
+            }
+        }
+
+        #endregion
+
 
         #region เติมเงิน
 
@@ -658,7 +711,7 @@ namespace TAOS
             lbTopUpValue.Text = txtValueBaht.Text;
         }
 
-        private void btnTopUpClear_Click(object sender, EventArgs e)
+        public void btnTopUpClear_Click(object sender, EventArgs e)
         {
             txtTopupPhoneNumber.Text = "";
             txtValueBaht.Text = "";
@@ -691,9 +744,8 @@ namespace TAOS
             return true;
         }
 
-        private void btnTopUpAdd_Click(object sender, EventArgs e)
+        public void btnTopUpAdd_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(555);
             if (checkAddTopup())
             {
                 if (!ConnectMySql.addTopup(txtTopupPhoneNumber.Text.Replace("-", ""),
@@ -813,22 +865,57 @@ namespace TAOS
             }
             listBoxTopUpPhoneNumber.Visible = false;
         }
+        private void dataGridViewListCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (dataGridViewListCustomer.SelectedRows.Count == 1)
+            {
+                string phoneNumber = dataGridViewListCustomer.SelectedRows[0].Cells[2].Value.ToString();
+                if (phoneNumber != "")
+                {
+                    txtTopupPhoneNumber.Text = phoneNumber;
+                    phoneNumber = phoneNumber.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
+                    if (phoneNumber.Length > 2)
+                    {
+                        getListPhoneNumber(false, phoneNumber);
+                    }
+                    FRMCustomerTopup cutTopup = new FRMCustomerTopup(this);
+                    cutTopup.ShowDialog();
+                }
+
+            }
+        }
 
         private void dataGridViewListCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (tabControlTopUpList.SelectedTab == tabPageListTopup)
-            //{
-            //    return;
-            //}
             if (dataGridViewListCustomer.SelectedRows.Count == 1)
             {
-                //checkClickTopup = false;
-                //txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
-                //txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
-                //cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+                textBoxAddCustomerName.Text = dataGridViewListCustomer.SelectedRows[0].Cells[1].Value.ToString();
+                textboxAddCustomerPhone.Text = dataGridViewListCustomer.SelectedRows[0].Cells[2].Value.ToString();
+                comboBoxAddCustomerNetwork.Text = dataGridViewListCustomer.SelectedRows[0].Cells[7].Value.ToString();
+                richTextBoxAddCustomer.Text = dataGridViewListCustomer.SelectedRows[0].Cells[4].Value.ToString();
 
+                try
+                {
+                    labelAddCustomerID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[5].Value.ToString();
+                }
+                catch
+                {
+                    labelAddCustomerID.Text = "0";
+                }
+                buttonAddCusotmerAdd.Visible = false;
+                buttonAddCustomerEdit.Visible = true;
+                buttonAddCustomerDelete.Visible = true;
+                               
+                if (tabControlModifiedCustomer.SelectedTab == tabPageAddCustomer)
+                {
+                    textBoxAddCustomerName.Select();
+                }
+                else
+                {
+                    textboxCustomerSearchName.Select();
+                }
             }
-            //listBoxTopUpPhoneNumber.Visible = false;
         }
 
         private void btnTopupDelete_Click(object sender, EventArgs e)
@@ -925,36 +1012,88 @@ namespace TAOS
             }
         }
 
-
-        #region customer
-        private void getListCustomer()
+        private void buttonSearch_Click(object sender, EventArgs e)
         {
-            dataGridViewListCustomer.Rows.Clear();
-            List<string>[] listCustomer = ConnectMySql.getListCustomer();
+            searchCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
+        }
 
-            for (int i = 0; i < listCustomer[0].Count; i++)
+        private void buttonSearchClear_Click(object sender, EventArgs e)
+        {
+            textboxCustomerSearchName.Text = "";
+            textboxCustomerSearchPhone.Text = "";
+            comboBoxSearchCustomerNetwork.SelectedIndex = -1;
+            textboxCustomerSearchName.Select();
+            getListCustomer();
+        }
+
+        private void tabControlModifiedCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlModifiedCustomer.SelectedTab == tabPageAddCustomer)
             {
-                int number = dataGridViewListCustomer.Rows.Add();
-                string newStrPhoneNumber = helper.stringConvertPhoneNumber(listCustomer[6][i]);
-                dataGridViewListCustomer.Rows[number].Cells[0].Value = i+1;
-                dataGridViewListCustomer.Rows[number].Cells[1].Value = listCustomer[2][i];
-                dataGridViewListCustomer.Rows[number].Cells[2].Value = newStrPhoneNumber;
-                dataGridViewListCustomer.Rows[number].Cells[3].Value =
-                     Image.FromFile(helper.getPathIconImages(listCustomer[7][i]));
-                dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[5][i];
-
-                //dataGridViewListCustomer.Rows[number].Cells[1].Value = newStrPhoneNumber;
-                //dataGridViewListCustomer.Rows[number].Cells[2].Value = listCustomer[2][i];
-                //dataGridViewListCustomer.Rows[number].Cells[3].Value =
-                //    Image.FromFile(helper.getPathIconImages(listCustomer[3][i]));
-                //dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[4][i];
-                //dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[5][i];
-                //dataGridViewListCustomer.Rows[number].Cells[6].Value = listCustomer[6][i];
-                //dataGridViewListCustomer.Rows[number].Cells[7].Value = listCustomer[7][i];
-                //dataGridViewListCustomer.Rows[number].Cells[8].Value = listCustomer[3][i];
+                textBoxAddCustomerName.Select();
+            }
+            else
+            {
+                textboxCustomerSearchName.Select();
             }
         }
 
-        #endregion
+        private void buttonAddCustomerClear_Click(object sender, EventArgs e)
+        {
+            textBoxAddCustomerName.Text = "";
+            textboxAddCustomerPhone.Text = "";
+            comboBoxAddCustomerNetwork.SelectedIndex = -1;
+            richTextBoxAddCustomer.Clear();
+            textBoxAddCustomerName.Select();
+            labelAddCustomerID.Text = "";
+
+            buttonAddCusotmerAdd.Visible = true;
+            buttonAddCustomerEdit.Visible = false;
+            buttonAddCustomerDelete.Visible = false;
+        }
+
+        private void buttonAddCusotmerAdd_Click(object sender, EventArgs e)
+        {
+            if (!validateAddCustomer())
+            {
+                return;
+            }
+            string phoneNumber = textboxAddCustomerPhone.Text.Replace("-", "").Trim();
+            bool result = ConnectMySql.addCustomer(textBoxAddCustomerName.Text, phoneNumber,
+                richTextBoxAddCustomer.Text, comboBoxAddCustomerNetwork.Text);
+            if (!result)
+            {
+                MessageBox.Show("การเพิ่มลูกค้าเกิดข้อผิดพลาด");
+            }
+        }
+
+        private bool validateAddCustomer()
+        {
+            if (textBoxAddCustomerName.Text == "")
+            {
+                MessageBox.Show("กรุณากรอกชื่อลูกค้า");
+                textBoxAddCustomerName.Select();
+                return false;
+            }else if (textboxAddCustomerPhone.Text == "")
+            {
+                MessageBox.Show("กรุณากรอกเบอร์โทร");
+                textboxAddCustomerPhone.Select();
+                return false;
+            }
+            else if (comboBoxAddCustomerNetwork.SelectedIndex == -1)
+            {
+                MessageBox.Show("กรุณาเลือกเครือข่าย");
+                comboBoxAddCustomerNetwork.Select();
+                return false;
+            }
+            else if (richTextBoxAddCustomer.Text == "")
+            {
+                MessageBox.Show("กรุณากรอกที่อยู่");
+                richTextBoxAddCustomer.Select();
+                return false;
+            }
+            return true;
+        }
+
     }
 }
