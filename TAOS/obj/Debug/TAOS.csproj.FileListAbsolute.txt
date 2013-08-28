@@ -74,11 +74,10 @@ D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\money.jpg
 D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\Files\Images\network.jpg
 D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\TAOS.exe
 D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\TAOS.pdb
-D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\ResolveAssemblyReference.cache
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.AddBehindhand.resources
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.MainForm.resources
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.Properties.Resources.resources
-D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\ResGen.read.1.tlog
-D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\ResGen.write.1.tlog
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.exe.licenses
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.FRMCustomerTopup.resources
+D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.csprojResolveAssemblyReference.cache
+D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.csproj.GenerateResource.Cache

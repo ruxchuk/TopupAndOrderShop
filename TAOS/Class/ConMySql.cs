@@ -461,6 +461,7 @@ namespace TAOS
                     MySqlCommand cmd = new MySqlCommand(sql, connection);
                     cmd.ExecuteNonQuery();
                     lastID = (int)cmd.LastInsertedId;
+                    //MessageBox.Show(cmd.LastInsertedId.ToString());
                 }
                 catch
                 {
@@ -478,7 +479,21 @@ namespace TAOS
         public int addPhoeNumber(string phoneNumber, string network)
         {
             phoneNumberID = 0;
-            string sql = "CALL sp_add_phone_number('" + phoneNumber + "', '" + network + "');";
+            //string sql = "CALL sp_add_phone_number('" + phoneNumber + "', '" + network + "');";
+            string sql = @"
+                INSERT INTO `phone_number`
+                (
+	                `phone_number`,
+                  `network`,
+	                `date_add`
+                )
+                VALUES 
+                (
+	                '" + phoneNumber + @"',
+	                '" + network + @"',
+	                NOW()
+                );
+                ";
             if (CheckConnect())
             {
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
@@ -501,8 +516,22 @@ namespace TAOS
                 addPhoeNumber(phoneNumber, network);
             }
 
-            sql = "CALL sp_add_topup(" + customerID + ", " + phoneNumberID + ", " + amount + ");";
-            if (runQuery(sql)==0)
+            //sql = "CALL sp_add_topup(" + customerID + ", " + phoneNumberID + ", " + amount + ");";
+            sql = @"
+                INSERT INTO `topup` (
+                  `customer_id`,
+                  `phone_number_id`,
+                  `topup_amount`,
+                  `date_add`
+                ) 
+                VALUES
+                (
+	                " + customerID + @",
+	                " + phoneNumberID + @",
+	                " + amount + @",
+	                NOW()
+                );";
+            if (runQuery(sql) == 0)
             {
                 return false;
             }
@@ -511,8 +540,20 @@ namespace TAOS
 
         public bool addBehindhand(string topupID, string customerID, string topupAmount, string dateTimeTopup)
         {            
-            string sql = "CALL sp_add_bhindhand(" + customerID + ", " + topupID + ", " +
-                topupAmount + ", " + dateTimeTopup + ");";
+            //string sql = "CALL sp_add_bhindhand(" + customerID + ", " + topupID + ", " +
+            //    topupAmount + ", " + dateTimeTopup + ");";
+            string sql = @"
+                INSERT INTO 
+	                `topup_behindhand` 
+                (
+                  `topup_id`,
+                  `customer_id`,
+                  `price`,
+                  `date_behind`,
+                  `date_payment`
+                )
+                VALUES(" + customerID + ", " + topupID + ", " +
+                    topupAmount + ", " + dateTimeTopup + ");";
             if (runQuery(sql)==0)
             {
                 return false;
@@ -524,8 +565,7 @@ namespace TAOS
         // add customer
         public bool addCustomer(string customerName, string phoneNumber, string address, string network)
         {
-            string dateAdd = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day +
-                " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            string dateAdd = getDateTimeNow();
             string sql = @"
                 INSERT INTO `phone_number` (
                   `phone_number`,
@@ -623,6 +663,13 @@ namespace TAOS
         }
         
         #endregion
-       
+
+
+        public string getDateTimeNow()
+        {
+            string DTNow = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day +
+                " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            return DTNow;
+        }
     }
 }
