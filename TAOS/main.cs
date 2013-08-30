@@ -391,10 +391,10 @@ namespace TAOS
         }
 
         #region customer
-        private void getListCustomer()
+        private void getListCustomer(string customerName = "", string phoneNumber = "", string network = "")
         {
             dataGridViewListCustomer.Rows.Clear();
-            List<string>[] listCustomer = ConnectMySql.getListCustomer();
+            List<string>[] listCustomer = ConnectMySql.getListCustomer(customerName, phoneNumber, network);
 
             for (int i = 0; i < listCustomer[0].Count; i++)
             {
@@ -406,39 +406,15 @@ namespace TAOS
                 dataGridViewListCustomer.Rows[number].Cells[3].Value =
                      Image.FromFile(helper.getPathIconImages(listCustomer[7][i]));
                 dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[5][i];
+                dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[0][i];//customer id
+                dataGridViewListCustomer.Rows[number].Cells[6].Value = listCustomer[1][i];//phone number id
                 dataGridViewListCustomer.Rows[number].Cells[7].Value = listCustomer[7][i];
-                dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[0][i];
 
-                //dataGridViewListCustomer.Rows[number].Cells[1].Value = newStrPhoneNumber;
-                //dataGridViewListCustomer.Rows[number].Cells[2].Value = listCustomer[2][i];
-                //dataGridViewListCustomer.Rows[number].Cells[3].Value =
-                //    Image.FromFile(helper.getPathIconImages(listCustomer[3][i]));
-                //dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[4][i];
-                //dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[5][i];
-                //dataGridViewListCustomer.Rows[number].Cells[6].Value = listCustomer[6][i];
-                //dataGridViewListCustomer.Rows[number].Cells[7].Value = listCustomer[7][i];
-                //dataGridViewListCustomer.Rows[number].Cells[8].Value = listCustomer[3][i];
+                dataGridViewListCustomer.Rows[number].Cells[8].Value = listCustomer[3][i];
+                dataGridViewListCustomer.Rows[number].Cells[9].Value = listCustomer[4][i];
+
             }
-        }
-
-        private void searchCustomer(string customerName, string phoneNumber, string network)
-        {
-            dataGridViewListCustomer.Rows.Clear();
-            List<string>[] listCustomer = ConnectMySql.searchCustomer(customerName, phoneNumber, network);
-
-            for (int i = 0; i < listCustomer[0].Count; i++)
-            {
-                int number = dataGridViewListCustomer.Rows.Add();
-                string newStrPhoneNumber = helper.stringConvertPhoneNumber(listCustomer[6][i]);
-                dataGridViewListCustomer.Rows[number].Cells[0].Value = i + 1;
-                dataGridViewListCustomer.Rows[number].Cells[1].Value = listCustomer[2][i];
-                dataGridViewListCustomer.Rows[number].Cells[2].Value = newStrPhoneNumber;
-                dataGridViewListCustomer.Rows[number].Cells[3].Value =
-                     Image.FromFile(helper.getPathIconImages(listCustomer[7][i]));
-                dataGridViewListCustomer.Rows[number].Cells[4].Value = listCustomer[5][i];
-                dataGridViewListCustomer.Rows[number].Cells[7].Value = listCustomer[7][i];
-                dataGridViewListCustomer.Rows[number].Cells[5].Value = listCustomer[0][i];
-            }
+            textboxCustomerSearchName.Select();
         }
 
         #endregion
@@ -490,7 +466,9 @@ namespace TAOS
             string str_html = webBrowserTopUpCheckBer.DocumentText;
             if (txtTopupPhoneNumber.Text != "")
             {
-                checkStrNetwork(helper.getNetwork(str_html));
+                checkStrNetwork(helper.getNetwork(str_html), cmbTopUpNetwork, imgTopUpNetwork);
+            setImageNetwork(helper.getPathIconImages(str_html), imageTopUpIconNetwork);
+            txtValueBaht.Select();
             }
             else
             {
@@ -498,26 +476,25 @@ namespace TAOS
             }
         }
 
-        private void checkStrNetwork(string str_network)
+        private void checkStrNetwork(string str_network, System.Windows.Forms.ComboBox cmb, PictureBox pic)
         {
             switch (str_network)
             {
                 case "One 2 Call":
-                    cmbTopUpNetwork.SelectedIndex = 0;
+                    cmb.SelectedIndex = 0;
                     break;
                 case "DTAC":
-                    cmbTopUpNetwork.SelectedIndex = 1;
+                    cmb.SelectedIndex = 1;
                     break;
                 case "TrueMove":
-                    cmbTopUpNetwork.SelectedIndex = 2;
+                    cmb.SelectedIndex = 2;
                     break;
                 default:
-                    cmbTopUpNetwork.SelectedIndex = -1;
+                    cmb.SelectedIndex = -1;
                     break;
             }
-            setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork);
-            setImageNetwork(helper.getPathIconImages(str_network), imageTopUpIconNetwork);
-            txtValueBaht.Select();
+            setImageNetwork(helper.getPathImages(str_network), pic);
+            //setImageNetwork(helper.getPathImages(str_network), imgTopUpNetwork);
         }
 
         private void setImageNetwork(string str_path, PictureBox image)
@@ -530,7 +507,7 @@ namespace TAOS
             catch
             {
                 image.Image = null;
-                MessageBox.Show("กรุณาตรวจสอบไฟล์รูปภาพเครือข่าย");
+                MessageBox.Show("กรุณาตรวจสอบไฟล์รูปภาพเครือข่าย", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -590,7 +567,8 @@ namespace TAOS
                         ConnectMySql.phoneNumberID = int.Parse(allPhoneNumber[0][i]);
                         ConnectMySql.customerID = int.Parse(allPhoneNumber[3][i]);
                         string strNetwork = allPhoneNumber[2][i].Trim();
-                        checkStrNetwork(strNetwork);
+                        checkStrNetwork(strNetwork, cmbTopUpNetwork, imgTopUpNetwork);
+                        setImageNetwork(helper.getPathIconImages(strNetwork), imageTopUpIconNetwork);
                         Debug.WriteLine(allPhoneNumber[2][i] + "|true");
                         txtValueBaht.Focus();
                     }
@@ -627,7 +605,9 @@ namespace TAOS
 
         private void cmbTopUpNetwork_SelectedIndexChanged(object sender, EventArgs e)
         {
-            checkStrNetwork(cmbTopUpNetwork.Text);
+            checkStrNetwork(cmbTopUpNetwork.Text, cmbTopUpNetwork, imgTopUpNetwork);
+            setImageNetwork(helper.getPathIconImages(cmbTopUpNetwork.Text), imageTopUpIconNetwork);
+            txtValueBaht.Select();
         }
 
         private void listBoxTopUpPhoneNumber_MouseClick(object sender, MouseEventArgs e)
@@ -858,10 +838,12 @@ namespace TAOS
             }
             else if (tabControlMain.SelectedTab == tabPageCustomerList)
             {
-                getListCustomer();
+                //getListCustomer();
                 tabControlListCustomer.SelectedTab = tabPageListCustomer;
                 tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
                 //tbxTelSeach.Select();
+                buttonCustomerSearch_Click(EventArgs.Empty, null);
+                textboxCustomerSearchName.Select();
             }
         }
 
@@ -913,17 +895,21 @@ namespace TAOS
                 comboBoxAddCustomerNetwork.Text = dataGridViewListCustomer.SelectedRows[0].Cells[7].Value.ToString();
                 richTextBoxAddCustomer.Text = dataGridViewListCustomer.SelectedRows[0].Cells[4].Value.ToString();
 
+                lbOldPhoneNumber.Text = textboxAddCustomerPhone.Text;
+                lbCustomerID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[5].Value.ToString();
+                lbPhoneNumberID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[6].Value.ToString();
                 try
                 {
                     //labelAddCustomerID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[5].Value.ToString();
+                    
                 }
                 catch
                 {
                     //labelAddCustomerID.Text = "0";
                 }
-                buttonAddCusotmerAdd.Visible = false;
-                buttonAddCustomerEdit.Visible = true;
-                buttonAddCustomerDelete.Visible = true;
+                //buttonAddCusotmerAdd.Visible = false;
+                buttonCustomerEdit.Visible = true;
+                buttonCustomerDelete.Visible = true;
                                
                 if (tabControlModifiedCustomer.SelectedTab == tabPageAddCustomer)
                 {
@@ -1009,19 +995,12 @@ namespace TAOS
             {
                 string topupID = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
                 string customerID = dataGridViewTopup.SelectedRows[0].Cells[6].Value.ToString();
+                string customerName = dataGridViewTopup.SelectedRows[0].Cells[4].Value.ToString();
                 string amount = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
                 string dateTopup = dataGridViewTopup.SelectedRows[0].Cells[5].Value.ToString();
 
-                if (customerID == "0")
-                {
-                    AddBehindhand addBhindhand = new AddBehindhand(topupID, customerID, amount, dateTopup);
-                    addBhindhand.ShowDialog();
-                }
-                else
-                {
-                    AddBehindhand addBhindhand = new AddBehindhand(topupID, customerID, amount, dateTopup);
-                    addBhindhand.ShowDialog();
-                }
+                AddBehindhand addBhindhand = new AddBehindhand(topupID, customerID, amount, dateTopup, customerName);
+                addBhindhand.ShowDialog();
 
             }
             catch
@@ -1030,9 +1009,9 @@ namespace TAOS
             }
         }
 
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private void buttonCustomerSearch_Click(object sender, EventArgs e)
         {
-            searchCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
+            getListCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
         }
 
         private void buttonSearchClear_Click(object sender, EventArgs e)
@@ -1066,8 +1045,8 @@ namespace TAOS
             //labelAddCustomerID.Text = "";
 
             buttonAddCusotmerAdd.Visible = true;
-            buttonAddCustomerEdit.Visible = false;
-            buttonAddCustomerDelete.Visible = false;
+            buttonCustomerEdit.Visible = false;
+            buttonCustomerDelete.Visible = false;
         }
 
         private void buttonAddCusotmerAdd_Click(object sender, EventArgs e)
@@ -1081,35 +1060,43 @@ namespace TAOS
                 richTextBoxAddCustomer.Text, comboBoxAddCustomerNetwork.Text);
             if (!result)
             {
-                MessageBox.Show("การเพิ่มลูกค้าเกิดข้อผิดพลาด");
+                MessageBox.Show("การเพิ่มลูกค้าเกิดข้อผิดพลาด", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private bool validateAddCustomer()
+        private bool validateAddCustomer(bool checkUpdate = false)
         {
             if (textBoxAddCustomerName.Text == "")
             {
-                MessageBox.Show("กรุณากรอกชื่อลูกค้า");
+                MessageBox.Show("กรุณากรอกชื่อลูกค้า", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textBoxAddCustomerName.Select();
                 return false;
             }else if (textboxAddCustomerPhone.Text == "")
             {
-                MessageBox.Show("กรุณากรอกเบอร์โทร");
+                MessageBox.Show("กรุณากรอกเบอร์โทร", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textboxAddCustomerPhone.Select();
+                return false;
+            }
+            else if (ConnectMySql.getListCustomer("", textboxAddCustomerPhone.Text.Replace("-", ""), "")[0].Count > 0 && !checkUpdate)
+            {
+                MessageBox.Show("มีเบอร์ " + textboxAddCustomerPhone.Text + " นี้อยู่แล้ว\nกรุณาตรวจสอบ", "กรุณาตรวจสอบเบอร์",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 textboxAddCustomerPhone.Select();
                 return false;
             }
             else if (comboBoxAddCustomerNetwork.SelectedIndex == -1)
             {
-                MessageBox.Show("กรุณาเลือกเครือข่าย");
+                MessageBox.Show("กรุณาเลือกเครือข่าย", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 comboBoxAddCustomerNetwork.Select();
                 return false;
             }
-            else if (richTextBoxAddCustomer.Text == "")
-            {
-                MessageBox.Show("กรุณากรอกที่อยู่");
-                richTextBoxAddCustomer.Select();
-                return false;
-            }
+            //else if (richTextBoxAddCustomer.Text == "")
+            //{
+            //    MessageBox.Show("กรุณากรอกที่อยู่");
+            //    richTextBoxAddCustomer.Select();
+            //    return false;
+            //}
+
             return true;
         }
 
@@ -1145,7 +1132,7 @@ namespace TAOS
                     bool updateResult = ConnectMySql.changeToNoTopup(idSelect);
                     if (!updateResult)
                     {
-                        MessageBox.Show("การแก้ไขผิดพลาด");
+                        MessageBox.Show("การแก้ไขผิดพลาด", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else {
                         tabControlTopUpList.SelectedTab = tabPageAddTopup;
@@ -1155,6 +1142,74 @@ namespace TAOS
             catch
             {
                 Debug.WriteLine("No Select");
+            }
+        }
+
+        private void textboxCustomerSearchName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                buttonCustomerSearch_Click(EventArgs.Empty, null);   
+            }
+        }
+
+        private void textboxCustomerSearchPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                buttonCustomerSearch_Click(EventArgs.Empty, null);   
+            }
+        }
+
+        private void comboBoxSearchCustomerNetwork_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkStrNetwork(comboBoxSearchCustomerNetwork.Text, comboBoxSearchCustomerNetwork, pictureBoxCustomerSearch);
+        }
+
+        private void comboBoxAddCustomerNetwork_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkStrNetwork(comboBoxAddCustomerNetwork.Text, comboBoxAddCustomerNetwork, pictureBoxCustomerAdd);
+        }
+
+        private void buttonCustomerEdit_Click(object sender, EventArgs e)
+        {
+            if (!validateAddCustomer(true))
+            {
+                return;
+            }
+            string phoneNumber = textboxAddCustomerPhone.Text.Replace("-", "").Trim();
+            int result = ConnectMySql.updateCustomer(lbCustomerID.Text, lbPhoneNumberID.Text, textBoxAddCustomerName.Text, phoneNumber
+                , comboBoxAddCustomerNetwork.Text, richTextBoxAddCustomer.Text);
+            if (result == 0)
+            {
+                MessageBox.Show("การแก้ไขกค้าเกิดข้อผิดพลาด", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (result == -1)
+            {
+                MessageBox.Show("เบอร์ " + textboxAddCustomerPhone.Text + " มีอยู่ในระบบแล้วกรุณาตรวจสอบ",
+                    "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textboxAddCustomerPhone.Select();
+            }
+            else
+            {
+                MessageBox.Show("ทำการบันทึกข้อมูลเรียบร้อยแล้ว", "บันทึกสำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            textBoxAddCustomerName.Select();
+        }
+
+        private void buttonCustomerDelete_Click(object sender, EventArgs e)
+        {
+            bool result = ConnectMySql.setDeleteCustomer(lbCustomerID.Text);
+            if (!result)
+            {
+                MessageBox.Show("การลบเกิดข้อผิดพลาด", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                buttonAddCustomerClear_Click(EventArgs.Empty, null);
+                buttonCustomerSearch_Click(EventArgs.Empty, null);
+                MessageBox.Show("ทำการลบข้อมูลเรียบร้อยแล้ว", "ลบสำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBoxAddCustomerName.Select();
             }
         }
 

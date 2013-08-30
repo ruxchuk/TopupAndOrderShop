@@ -43,7 +43,7 @@
             this.txtValueBaht.Name = "txtValueBaht";
             this.txtValueBaht.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtValueBaht.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtValueBaht.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.txtValueBaht.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
             this.txtValueBaht.Properties.Appearance.Options.UseBackColor = true;
             this.txtValueBaht.Properties.Appearance.Options.UseFont = true;
             this.txtValueBaht.Properties.Appearance.Options.UseForeColor = true;
@@ -72,7 +72,7 @@
             this.label22.AutoSize = true;
             this.label22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label22.ForeColor = System.Drawing.Color.White;
             this.label22.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label22.Location = new System.Drawing.Point(258, 23);
             this.label22.Name = "label22";
@@ -82,6 +82,8 @@
             // 
             // FRMCustomerTopup
             // 
+            this.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(163)))), ((int)(((byte)(53)))));
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 77);
@@ -89,9 +91,9 @@
             this.Controls.Add(this.txtValueBaht);
             this.Controls.Add(this.pictureBox6);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(355, 115);
+            this.MaximumSize = new System.Drawing.Size(355, 116);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(355, 115);
+            this.MinimumSize = new System.Drawing.Size(355, 116);
             this.Name = "FRMCustomerTopup";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

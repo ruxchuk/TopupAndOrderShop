@@ -24,6 +24,7 @@ namespace TAOS
             txtValueBaht.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
             txtValueBaht.Properties.Mask.IgnoreMaskBlank = false;
             txtValueBaht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            txtValueBaht.Properties.MaxLength = 4;
         }
 
         private void txtValueBaht_KeyDown(object sender, KeyEventArgs e)

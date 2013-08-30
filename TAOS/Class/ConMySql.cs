@@ -343,7 +343,7 @@ namespace TAOS
                       INNER JOIN `phone_number` b 
                         ON a.`phone_number_id` = b.`id` 
                       LEFT JOIN `customer` c 
-                        ON c.`id` = a.`customer_id` 
+                        ON c.`phone_number_id` = b.`id` 
                         AND c.`deleted` = 0 
                     WHERE 1 
                       AND a.`deleted` = 0 
@@ -379,45 +379,7 @@ namespace TAOS
 
 
         //get รายชื่อลูกค้า
-        public List<string>[] getListCustomer(int customerID = 0, string customerName = "")
-        {
-            int countList = 8;
-            List<string>[] list = new List<string>[countList];
-            for (int i = 0; i < countList; i++)
-            {
-                list[i] = new List<string>();
-            }
-
-            if (CheckConnect())
-            {
-                string sql = "CALL sp_get_list_customer(" + customerID + ", '" + customerName + "');";
-
-                MySqlCommand cmd = new MySqlCommand(sql, connection);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    list[0].Add(dataReader["id"] + "");
-                    list[1].Add(dataReader["phone_number_id"] + "");
-                    list[2].Add(dataReader["name"] + "");
-                    list[3].Add(dataReader["date_update"] + "");
-                    list[4].Add(dataReader["date_add"] + "");
-                    list[5].Add(dataReader["address"] + "");
-                    list[6].Add(dataReader["phone_number"] + "");
-                    list[7].Add(dataReader["network"] + "");
-                }
-                dataReader.Close();
-                CloseConnection();
-                return list;
-            }
-            else
-            {
-                return list;
-            }
-
-        }
-        
-        //search customer
-        public List<string>[] searchCustomer(string customerName, string phoneNumber, string network)
+        public List<string>[] getListCustomer(string customerName, string phoneNumber, string network)
         {
             int countList = 8;
             List<string>[] list = new List<string>[countList];
@@ -434,11 +396,15 @@ namespace TAOS
 	                    b.network
                     FROM `customer` a
                     LEFT JOIN `phone_number` b ON
-                    (a.phone_number_id = b.id AND b.deleted = 0)
+                    (a.phone_number_id = b.id)
                     WHERE 1
+                    AND a.deleted = 0
+                    AND b.deleted = 0
                 ";
                 sql += customerName != "" ? " AND a.name LIKE '%" + customerName + "%'" : "";
-                sql += phoneNumber != "" ? " AND b.network ='" + phoneNumber + "'" : "";
+                sql += phoneNumber != "" ? " AND b.phone_number ='" + phoneNumber + "'" : "";
+                sql += network != "" ? " AND b.network ='" + network + "'" : "";
+                sql += " LIMIT 100";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -446,8 +412,8 @@ namespace TAOS
                     list[0].Add(dataReader["id"] + "");
                     list[1].Add(dataReader["phone_number_id"] + "");
                     list[2].Add(dataReader["name"] + "");
-                    list[3].Add(dataReader["date_update"] + "");
-                    list[4].Add(dataReader["date_add"] + "");
+                    list[3].Add(dataReader["date_add"] + "");
+                    list[4].Add(dataReader["date_update"] + "");
                     list[5].Add(dataReader["address"] + "");
                     list[6].Add(dataReader["phone_number"] + "");
                     list[7].Add(dataReader["network"] + "");
@@ -457,6 +423,37 @@ namespace TAOS
             }
 
             return list;
+        }
+
+        //check ว่ามีเบอร์นี้อยู่ไหม
+        public int checkPhoneNumber(string phoneNumber)
+        {
+            if (CheckConnect())
+            {
+                string sql = @"
+                SELECT
+                  `id`,
+                  `phone_number`,
+                  `network`,
+                  `date_update`,
+                  `date_add`,
+                  `deleted`
+                FROM `phone_number`
+                WHERE 1
+                AND deleted = 0
+                AND phone_number = '" + phoneNumber + "'";
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                int id = 0;
+                while (dataReader.Read())
+                {
+                    id = int.Parse(dataReader["id"] + "");
+                }
+                dataReader.Close();
+                CloseConnection();
+                return id;
+            }
+            return 0;
         }
 
         #endregion
@@ -545,14 +542,12 @@ namespace TAOS
             //sql = "CALL sp_add_topup(" + customerID + ", " + phoneNumberID + ", " + amount + ");";
             sql = @"
                 INSERT INTO `topup` (
-                  `customer_id`,
                   `phone_number_id`,
                   `topup_amount`,
                   `date_add`
                 ) 
                 VALUES
                 (
-	                " + customerID + @",
 	                " + phoneNumberID + @",
 	                " + amount + @",
 	                NOW()
@@ -564,23 +559,21 @@ namespace TAOS
             return true;
         }
 
-        public bool addBehindhand(string topupID, string customerID, string topupAmount, string dateTimeTopup)
+        public bool addBehindhand(string topupID, string customerName, string customerID, string topupAmount)
         {            
             //string sql = "CALL sp_add_bhindhand(" + customerID + ", " + topupID + ", " +
             //    topupAmount + ", " + dateTimeTopup + ");";
             string sql = @"
-                INSERT INTO 
-	                `topup_behindhand` 
-                (
+                INSERT INTO `topup_behindhand` (
                   `topup_id`,
-                  `customer_id`,
+                  `customer_name`,
                   `price`,
-                  `date_behind`,
-                  `date_payment`
+                  `date_add`
                 )
-                VALUES(" + customerID + ", " + topupID + ", " +
-                    topupAmount + ", " + dateTimeTopup + ");";
-            if (runQuery(sql)==0)
+                VALUES(" + topupID + ", '" + customerName + "'," +
+                    topupAmount + ", NOW());";
+            Debug.WriteLine(sql);
+            if (runQuery(sql) == 0)
             {
                 return false;
             }
@@ -592,21 +585,28 @@ namespace TAOS
         public bool addCustomer(string customerName, string phoneNumber, string address, string network)
         {
             string dateAdd = getDateTimeNow();
-            string sql = @"
-                INSERT INTO `phone_number` (
-                  `phone_number`,
-                  `network`,
-                  `date_add`
-                ) 
-                VALUES
-                  (
-                    '" + phoneNumber + @",'
-                    '" + network + @"',
-                    '" + dateAdd + @"'
-                  ) 
-                  ;
-            ";
-            int id = runQuery(sql);
+            int id = checkPhoneNumber(phoneNumber);
+            string sql = "";
+            if (id == 0)
+            {
+                sql = @"
+                    INSERT INTO `phone_number` (
+                      `phone_number`,
+                      `network`,
+                      `date_add`
+                    ) 
+                    VALUES
+                      (
+                        '" + phoneNumber + @",'
+                        '" + network + @"',
+                        NOW()
+                      ) 
+                      ;
+                ";
+                Debug.WriteLine(sql);
+                id = runQuery(sql);
+            }
+            Debug.WriteLine(id);
             if (id == 0)
             {
                 return false;
@@ -617,16 +617,18 @@ namespace TAOS
                   `phone_number_id`,
                   `name`,
                   `date_add`,
-                  `address`,
+                  `address`
                 ) 
                 VALUES
                 (
                 " + id + @",
                 '" + customerName + @"',
-                '" + dateAdd + @"',
+                NOW(),
                 '" + address + @"'
                 ) ;
             ";
+            Debug.WriteLine(sql);
+            Debug.WriteLine(id);
             id = runQuery(sql);
             if (id == 0)
             {
@@ -653,6 +655,51 @@ namespace TAOS
             return UpDate(sql);
         }
 
+        public int updateCustomer(string customerID, string phoneNumberID,
+            string name, string phoneNumber, string network, string address)
+        {
+            int checkMatchID = checkPhoneNumber(phoneNumber);
+            if (checkMatchID != 0 && checkMatchID != int.Parse(phoneNumberID))
+            {
+                return -1;
+            }
+            string sql = @"
+                UPDATE 
+                  `customer` 
+                SET
+                  `name` = '" + name + @"',
+                  `date_update` = NOW(),
+                  `address` = '" + address + @"'
+                WHERE `id` = " + customerID + @" ;
+                UPDATE 
+                  `phone_number` 
+                SET
+                  `phone_number` = '" + phoneNumber + @"',
+                  `network` = '" + network + @"',
+                  `date_update` = NOW() 
+                WHERE `id` = " + phoneNumberID + @";
+            "; Debug.WriteLine(sql);
+            bool result = UpDate(sql);
+            if (!result)
+            {
+                return 0;
+            }
+            return 1;
+        }
+
+        public bool setDeleteCustomer(string id)
+        {
+            string sql = @"
+                UPDATE 
+                  `customer` 
+                SET
+                  `deleted` = 1 
+                WHERE `id` = " + id + @" ;
+                ";
+            return UpDate(sql);
+        }
+
+        //run sql update
         public bool UpDate(string sql)
         {
             if (CheckConnect() == true)
