@@ -47,16 +47,31 @@ namespace TAOS
 
             messageError = new MessageError();
 
+            setPropertiesTextbox();
+
+            dtHistory.Value = DateTime.Now;
+        }
+
+        private void setPropertiesTextbox()
+        {
+            //textbox phone number
             txtTopupPhoneNumber = helper.setTextboxPhoneNumber(txtTopupPhoneNumber);
             textboxCustomerSearchPhone = helper.setTextboxPhoneNumber(textboxCustomerSearchPhone);
             textboxAddCustomerPhone = helper.setTextboxPhoneNumber(textboxAddCustomerPhone);
-            textboxTopupSearchPhone = helper.setTextboxPhoneNumber(textboxTopupSearchPhone);
+            tbxHistoryPhoneNumber = helper.setTextboxPhoneNumber(tbxHistoryPhoneNumber);
 
-
+            //textbox number
             txtValueBaht.Properties.Mask.EditMask = "d";
             txtValueBaht.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
             txtValueBaht.Properties.Mask.IgnoreMaskBlank = false;
             txtValueBaht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            txtValueBaht.Properties.MaxLength = 4;
+            tbxHistoryTime.Properties.Mask.EditMask = "d";
+            tbxHistoryTime.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
+            tbxHistoryTime.Properties.Mask.IgnoreMaskBlank = false;
+            tbxHistoryTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            tbxHistoryTime.Properties.MaxLength = 2;
+
         }
 
         private void tbxSerialAndAddPrice_KeyUp(object sender, KeyEventArgs e)
@@ -764,10 +779,11 @@ namespace TAOS
          * isTopup = 0 ยังไม่เติมแล้ว
          * isTopup = 1 เติมแล้ว
         */
-        private void getListTopup(int isTopup = 0)
+        private void getListTopup(int isTopup = 0, string phoneNumber = "",
+            string date = "", string time = "", string network = "")
         {
             dataGridViewTopup.Rows.Clear();
-            List<string>[] list = ConnectMySql.getListTopup(isTopup);
+            List<string>[] list = ConnectMySql.getListTopup(isTopup, phoneNumber, date, time, network);
 
 
             Debug.WriteLine(list[0].Count);
@@ -853,11 +869,13 @@ namespace TAOS
         {
             if (tabControlTopUpList.SelectedTab == tabPageListTopup)
             {
+                Debug.WriteLine("list");
                 return;
             }
             if (dataGridViewTopup.SelectedRows.Count == 1)
             {
                 checkClickTopup = false;
+                //lbSelectTopupID.Text = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
                 txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
                 txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
                 cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
@@ -897,11 +915,11 @@ namespace TAOS
 
                 try
                 {
-                    labelAddCustomerID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[5].Value.ToString();
+                    //labelAddCustomerID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[5].Value.ToString();
                 }
                 catch
                 {
-                    labelAddCustomerID.Text = "0";
+                    //labelAddCustomerID.Text = "0";
                 }
                 buttonAddCusotmerAdd.Visible = false;
                 buttonAddCustomerEdit.Visible = true;
@@ -981,7 +999,7 @@ namespace TAOS
             }
             else if (tabControlTopUpList.SelectedTab == tabPageListTopup)
             {
-                getListTopup(1);
+                btnHistorySearch_Click(EventArgs.Empty, null);
             }
         }
 
@@ -1045,7 +1063,7 @@ namespace TAOS
             comboBoxAddCustomerNetwork.SelectedIndex = -1;
             richTextBoxAddCustomer.Clear();
             textBoxAddCustomerName.Select();
-            labelAddCustomerID.Text = "";
+            //labelAddCustomerID.Text = "";
 
             buttonAddCusotmerAdd.Visible = true;
             buttonAddCustomerEdit.Visible = false;
@@ -1093,6 +1111,51 @@ namespace TAOS
                 return false;
             }
             return true;
+        }
+
+        private void btnHistorySearch_Click(object sender, EventArgs e)
+        {
+            string date = dtHistory.Value.Year + "-" + dtHistory.Value.Month + "-" + dtHistory.Value.Day;
+            Debug.WriteLine(date);
+            getListTopup(1, tbxHistoryPhoneNumber.Text, date, tbxHistoryTime.Text, cmbHistoryNetwork.Text);
+            tbxHistoryPhoneNumber.Select();
+        }
+
+        private void btnHistoryClear_Click(object sender, EventArgs e)
+        {
+            tbxHistoryPhoneNumber.Text = "";
+            cmbHistoryNetwork.SelectedIndex = -1;
+            tbxHistoryTime.Text = "";
+            dtHistory.Value = DateTime.Now;
+            string date = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day;
+            getListTopup(1, "", date);
+            tbxHistoryPhoneNumber.Select();
+        }
+
+        private void btnHistoryCancelTopup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string idSelect = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
+                string phoneNumber = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+                DialogResult result = MessageBox.Show("คุณต้องเปลี่ยนสถานะเบอร์ " + phoneNumber + " \nเป็นยังไม่ได้เติมเงิน ใช่ หรือไม่", "เปลี่ยนสถานะ", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    Debug.WriteLine(idSelect);
+                    bool updateResult = ConnectMySql.changeToNoTopup(idSelect);
+                    if (!updateResult)
+                    {
+                        MessageBox.Show("การแก้ไขผิดพลาด");
+                    }
+                    else {
+                        tabControlTopUpList.SelectedTab = tabPageAddTopup;
+                    }
+                }
+            }
+            catch
+            {
+                Debug.WriteLine("No Select");
+            }
         }
 
     }

@@ -311,7 +311,8 @@ namespace TAOS
         }
 
         //get รายการเติมเงิน
-        public List<string>[] getListTopup(int isTopup = 0)
+        public List<string>[] getListTopup(int isTopup = 0, string phoneNumber = "", 
+            string date = "", string time = "", string network = "")
         {
             dateStart = getDateStartOfDay();
             dateEnd = getDateEndOfDay();
@@ -325,9 +326,34 @@ namespace TAOS
 
             if (CheckConnect())
             {
-                string sql = "CALL sp_get_list_topup(" + isTopup + ", '" + dateStart + 
-                    "', '" + dateEnd + "');";
-
+                //string sql = "CALL sp_get_list_topup(" + isTopup + ", '" + dateStart + 
+                //    "', '" + dateEnd + "');";
+                string sql = @"
+                    SELECT 
+                      a.id AS topup_id,
+	                    b.phone_number,
+	                    a.topup_amount,
+	                    b.network,
+	                    IFNULL(c.`name`, 'ไม่มีชื่อ') AS customer_name,
+	                    a.date_add,
+	                    IFNULL(c.id, 0) AS customer_id,
+	                    b.id AS phone_number_id
+                    FROM
+                      `topup` a 
+                      INNER JOIN `phone_number` b 
+                        ON a.`phone_number_id` = b.`id` 
+                      LEFT JOIN `customer` c 
+                        ON c.`id` = a.`customer_id` 
+                        AND c.`deleted` = 0 
+                    WHERE 1 
+                      AND a.`deleted` = 0 
+                      AND b.`deleted` = 0 
+                      AND a.`is_topup` = " + isTopup ;
+                sql += date == "" ? "" : " AND Date(a.date_add) = '" + date + "'";
+                sql += network == "" ? "" : " AND b.network = '" + network + "'";
+                sql += time == "" || time == "0" ? "" : " AND HOUR(a.date_add) = '" + time + "'";
+                sql += phoneNumber == "" ? "" : " AND b.phone_number LIKE '%" + phoneNumber.Replace("-", "") + "%'";
+                Debug.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -613,6 +639,19 @@ namespace TAOS
         #endregion
 
         #region Update
+
+        public bool changeToNoTopup(string id)
+        {
+            string sql = @"
+                UPDATE 
+                  `topup` 
+                SET
+                  `is_topup` = 0,
+                  `date_topup` = '0000-00-00 00:00:00' 
+                WHERE `id` =
+                " + id;
+            return UpDate(sql);
+        }
 
         public bool UpDate(string sql)
         {

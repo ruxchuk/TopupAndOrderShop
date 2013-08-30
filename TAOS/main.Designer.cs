@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageProduct = new System.Windows.Forms.TabPage();
             this.tabControlProduct = new System.Windows.Forms.TabControl();
@@ -115,17 +115,16 @@
             this.btnTopUpAdd = new System.Windows.Forms.Button();
             this.tabPageListTopup = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.textboxTopupSearchPhone = new DevExpress.XtraEditors.TextEdit();
+            this.tbxHistoryPhoneNumber = new DevExpress.XtraEditors.TextEdit();
             this.label27 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtHistory = new System.Windows.Forms.DateTimePicker();
             this.pictureBoxTem2 = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.tbxTimefind1 = new System.Windows.Forms.TextBox();
-            this.comboBoxTem2 = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btnClearFind = new System.Windows.Forms.Button();
-            this.btnChangeTopUp = new System.Windows.Forms.Button();
+            this.cmbHistoryNetwork = new System.Windows.Forms.ComboBox();
+            this.btnHistorySearch = new System.Windows.Forms.Button();
+            this.btnHistoryClear = new System.Windows.Forms.Button();
+            this.btnHistoryCancelTopup = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
@@ -151,8 +150,8 @@
             this.tabControlModifiedCustomer = new System.Windows.Forms.TabControl();
             this.tabPageSeachCustomer = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
-            this.buttonSearchClear = new System.Windows.Forms.Button();
+            this.buttonCustomerSearch = new System.Windows.Forms.Button();
+            this.buttonCustomerClear = new System.Windows.Forms.Button();
             this.comboBoxSearchCustomerNetwork = new System.Windows.Forms.ComboBox();
             this.textboxCustomerSearchPhone = new DevExpress.XtraEditors.TextEdit();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -170,7 +169,6 @@
             this.comboBoxAddCustomerNetwork = new System.Windows.Forms.ComboBox();
             this.textboxAddCustomerPhone = new DevExpress.XtraEditors.TextEdit();
             this.textBoxAddCustomerName = new System.Windows.Forms.TextBox();
-            this.labelAddCustomerID = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -213,6 +211,8 @@
             this.dataGridViewTelephone2 = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.lbSelectTopupID = new System.Windows.Forms.Label();
+            this.tbxHistoryTime = new DevExpress.XtraEditors.TextEdit();
             this.tabControlMain.SuspendLayout();
             this.tabPageProduct.SuspendLayout();
             this.tabControlProduct.SuspendLayout();
@@ -243,7 +243,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgTopUpNetwork)).BeginInit();
             this.tabPageListTopup.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textboxTopupSearchPhone.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxHistoryPhoneNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).BeginInit();
             this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).BeginInit();
@@ -270,6 +270,7 @@
             this.groupBox13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTelephone2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxHistoryTime.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -345,14 +346,14 @@
             this.dataGridViewBuyProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewBuyProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridViewBuyProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewBuyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewBuyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewBuyProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBuyProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -361,14 +362,14 @@
             this.Price,
             this.serial});
             this.dataGridViewBuyProduct.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewBuyProduct.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewBuyProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewBuyProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewBuyProduct.Location = new System.Drawing.Point(3, 36);
             this.dataGridViewBuyProduct.MultiSelect = false;
@@ -615,14 +616,14 @@
             this.dataGridViewProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridViewProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -633,14 +634,14 @@
             this.DateModifield,
             this.order_id});
             this.dataGridViewProduct.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewProduct.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewProduct.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewProduct.Location = new System.Drawing.Point(3, 27);
             this.dataGridViewProduct.MultiSelect = false;
@@ -1073,6 +1074,7 @@
             // 
             this.groupBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(154)))), ((int)(((byte)(172)))));
             this.groupBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox8.Controls.Add(this.lbSelectTopupID);
             this.groupBox8.Controls.Add(this.listBoxTopUpPhoneNumber);
             this.groupBox8.Controls.Add(this.txtValueBaht);
             this.groupBox8.Controls.Add(this.btnTopUpAnAll);
@@ -1368,17 +1370,17 @@
             // groupBox9
             // 
             this.groupBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(81)))), ((int)(((byte)(185)))));
-            this.groupBox9.Controls.Add(this.textboxTopupSearchPhone);
+            this.groupBox9.Controls.Add(this.tbxHistoryTime);
+            this.groupBox9.Controls.Add(this.tbxHistoryPhoneNumber);
             this.groupBox9.Controls.Add(this.label27);
             this.groupBox9.Controls.Add(this.label19);
-            this.groupBox9.Controls.Add(this.dateTimePicker1);
+            this.groupBox9.Controls.Add(this.dtHistory);
             this.groupBox9.Controls.Add(this.pictureBoxTem2);
             this.groupBox9.Controls.Add(this.label16);
-            this.groupBox9.Controls.Add(this.tbxTimefind1);
-            this.groupBox9.Controls.Add(this.comboBoxTem2);
-            this.groupBox9.Controls.Add(this.button4);
-            this.groupBox9.Controls.Add(this.btnClearFind);
-            this.groupBox9.Controls.Add(this.btnChangeTopUp);
+            this.groupBox9.Controls.Add(this.cmbHistoryNetwork);
+            this.groupBox9.Controls.Add(this.btnHistorySearch);
+            this.groupBox9.Controls.Add(this.btnHistoryClear);
+            this.groupBox9.Controls.Add(this.btnHistoryCancelTopup);
             this.groupBox9.Controls.Add(this.label17);
             this.groupBox9.Controls.Add(this.label18);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1387,24 +1389,24 @@
             this.groupBox9.Location = new System.Drawing.Point(3, 3);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(318, 420);
-            this.groupBox9.TabIndex = 4;
+            this.groupBox9.TabIndex = 8;
             this.groupBox9.TabStop = false;
             // 
-            // textboxTopupSearchPhone
+            // tbxHistoryPhoneNumber
             // 
-            this.textboxTopupSearchPhone.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textboxTopupSearchPhone.CausesValidation = false;
-            this.textboxTopupSearchPhone.EditValue = "";
-            this.textboxTopupSearchPhone.Location = new System.Drawing.Point(105, 21);
-            this.textboxTopupSearchPhone.Name = "textboxTopupSearchPhone";
-            this.textboxTopupSearchPhone.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textboxTopupSearchPhone.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textboxTopupSearchPhone.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
-            this.textboxTopupSearchPhone.Properties.Appearance.Options.UseBackColor = true;
-            this.textboxTopupSearchPhone.Properties.Appearance.Options.UseFont = true;
-            this.textboxTopupSearchPhone.Properties.Appearance.Options.UseForeColor = true;
-            this.textboxTopupSearchPhone.Size = new System.Drawing.Size(152, 32);
-            this.textboxTopupSearchPhone.TabIndex = 36;
+            this.tbxHistoryPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbxHistoryPhoneNumber.CausesValidation = false;
+            this.tbxHistoryPhoneNumber.EditValue = "";
+            this.tbxHistoryPhoneNumber.Location = new System.Drawing.Point(105, 28);
+            this.tbxHistoryPhoneNumber.Name = "tbxHistoryPhoneNumber";
+            this.tbxHistoryPhoneNumber.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbxHistoryPhoneNumber.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.tbxHistoryPhoneNumber.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.tbxHistoryPhoneNumber.Properties.Appearance.Options.UseBackColor = true;
+            this.tbxHistoryPhoneNumber.Properties.Appearance.Options.UseFont = true;
+            this.tbxHistoryPhoneNumber.Properties.Appearance.Options.UseForeColor = true;
+            this.tbxHistoryPhoneNumber.Size = new System.Drawing.Size(152, 32);
+            this.tbxHistoryPhoneNumber.TabIndex = 1;
             // 
             // label27
             // 
@@ -1413,7 +1415,7 @@
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.label27.ForeColor = System.Drawing.Color.White;
             this.label27.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label27.Location = new System.Drawing.Point(174, 72);
+            this.label27.Location = new System.Drawing.Point(184, 126);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(73, 25);
             this.label27.TabIndex = 18;
@@ -1426,24 +1428,24 @@
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.label19.ForeColor = System.Drawing.Color.White;
             this.label19.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label19.Location = new System.Drawing.Point(11, 158);
+            this.label19.Location = new System.Drawing.Point(11, 175);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(83, 25);
             this.label19.TabIndex = 15;
             this.label19.Text = "วันที่เติม";
             // 
-            // dateTimePicker1
+            // dtHistory
             // 
-            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePicker1.CalendarForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.InactiveCaption;
-            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.White;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(105, 156);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(204, 29);
-            this.dateTimePicker1.TabIndex = 14;
-            this.dateTimePicker1.Value = new System.DateTime(2010, 6, 6, 0, 0, 0, 0);
+            this.dtHistory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dtHistory.CalendarForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dtHistory.CalendarMonthBackground = System.Drawing.SystemColors.InactiveCaption;
+            this.dtHistory.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.dtHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtHistory.Location = new System.Drawing.Point(105, 175);
+            this.dtHistory.Name = "dtHistory";
+            this.dtHistory.Size = new System.Drawing.Size(204, 29);
+            this.dtHistory.TabIndex = 4;
+            this.dtHistory.Value = new System.DateTime(2010, 6, 6, 0, 0, 0, 0);
             // 
             // pictureBoxTem2
             // 
@@ -1452,9 +1454,9 @@
             this.pictureBoxTem2.ImageLocation = "";
             this.pictureBoxTem2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBoxTem2.InitialImage = null;
-            this.pictureBoxTem2.Location = new System.Drawing.Point(119, 210);
+            this.pictureBoxTem2.Location = new System.Drawing.Point(105, 225);
             this.pictureBoxTem2.Name = "pictureBoxTem2";
-            this.pictureBoxTem2.Size = new System.Drawing.Size(190, 106);
+            this.pictureBoxTem2.Size = new System.Drawing.Size(204, 106);
             this.pictureBoxTem2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxTem2.TabIndex = 13;
             this.pictureBoxTem2.TabStop = false;
@@ -1466,84 +1468,76 @@
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.label16.ForeColor = System.Drawing.Color.White;
             this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label16.Location = new System.Drawing.Point(11, 72);
+            this.label16.Location = new System.Drawing.Point(11, 126);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(84, 25);
             this.label16.TabIndex = 12;
             this.label16.Text = "เวลาเติม";
             // 
-            // tbxTimefind1
+            // cmbHistoryNetwork
             // 
-            this.tbxTimefind1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbxTimefind1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbxTimefind1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.tbxTimefind1.ForeColor = System.Drawing.Color.Yellow;
-            this.tbxTimefind1.Location = new System.Drawing.Point(105, 69);
-            this.tbxTimefind1.Name = "tbxTimefind1";
-            this.tbxTimefind1.Size = new System.Drawing.Size(57, 31);
-            this.tbxTimefind1.TabIndex = 11;
-            // 
-            // comboBoxTem2
-            // 
-            this.comboBoxTem2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comboBoxTem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.comboBoxTem2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxTem2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.comboBoxTem2.ForeColor = System.Drawing.Color.Yellow;
-            this.comboBoxTem2.FormattingEnabled = true;
-            this.comboBoxTem2.Items.AddRange(new object[] {
+            this.cmbHistoryNetwork.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbHistoryNetwork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbHistoryNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHistoryNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.cmbHistoryNetwork.ForeColor = System.Drawing.Color.Yellow;
+            this.cmbHistoryNetwork.FormattingEnabled = true;
+            this.cmbHistoryNetwork.Items.AddRange(new object[] {
             "One 2 Call",
             "TrueMove",
             "DTAC"});
-            this.comboBoxTem2.Location = new System.Drawing.Point(105, 113);
-            this.comboBoxTem2.Name = "comboBoxTem2";
-            this.comboBoxTem2.Size = new System.Drawing.Size(142, 33);
-            this.comboBoxTem2.TabIndex = 3;
+            this.cmbHistoryNetwork.Location = new System.Drawing.Point(105, 77);
+            this.cmbHistoryNetwork.Name = "cmbHistoryNetwork";
+            this.cmbHistoryNetwork.Size = new System.Drawing.Size(152, 33);
+            this.cmbHistoryNetwork.TabIndex = 2;
             // 
-            // button4
+            // btnHistorySearch
             // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button4.Location = new System.Drawing.Point(229, 362);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(82, 35);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "ค้นหา";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnHistorySearch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnHistorySearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnHistorySearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHistorySearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnHistorySearch.ForeColor = System.Drawing.Color.Black;
+            this.btnHistorySearch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHistorySearch.Location = new System.Drawing.Point(229, 362);
+            this.btnHistorySearch.Name = "btnHistorySearch";
+            this.btnHistorySearch.Size = new System.Drawing.Size(82, 35);
+            this.btnHistorySearch.TabIndex = 5;
+            this.btnHistorySearch.Text = "ค้นหา";
+            this.btnHistorySearch.UseVisualStyleBackColor = false;
+            this.btnHistorySearch.Click += new System.EventHandler(this.btnHistorySearch_Click);
             // 
-            // btnClearFind
+            // btnHistoryClear
             // 
-            this.btnClearFind.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnClearFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnClearFind.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClearFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnClearFind.ForeColor = System.Drawing.Color.Black;
-            this.btnClearFind.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClearFind.Location = new System.Drawing.Point(138, 362);
-            this.btnClearFind.Name = "btnClearFind";
-            this.btnClearFind.Size = new System.Drawing.Size(85, 35);
-            this.btnClearFind.TabIndex = 10;
-            this.btnClearFind.Text = "Clear";
-            this.btnClearFind.UseVisualStyleBackColor = false;
+            this.btnHistoryClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnHistoryClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnHistoryClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHistoryClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnHistoryClear.ForeColor = System.Drawing.Color.Black;
+            this.btnHistoryClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHistoryClear.Location = new System.Drawing.Point(138, 362);
+            this.btnHistoryClear.Name = "btnHistoryClear";
+            this.btnHistoryClear.Size = new System.Drawing.Size(85, 35);
+            this.btnHistoryClear.TabIndex = 6;
+            this.btnHistoryClear.Text = "Clear";
+            this.btnHistoryClear.UseVisualStyleBackColor = false;
+            this.btnHistoryClear.Click += new System.EventHandler(this.btnHistoryClear_Click);
             // 
-            // btnChangeTopUp
+            // btnHistoryCancelTopup
             // 
-            this.btnChangeTopUp.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnChangeTopUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnChangeTopUp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChangeTopUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnChangeTopUp.ForeColor = System.Drawing.Color.Black;
-            this.btnChangeTopUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChangeTopUp.Location = new System.Drawing.Point(8, 362);
-            this.btnChangeTopUp.Name = "btnChangeTopUp";
-            this.btnChangeTopUp.Size = new System.Drawing.Size(124, 35);
-            this.btnChangeTopUp.TabIndex = 4;
-            this.btnChangeTopUp.Text = "ยังไม่ได้เติม";
-            this.btnChangeTopUp.UseVisualStyleBackColor = false;
+            this.btnHistoryCancelTopup.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnHistoryCancelTopup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnHistoryCancelTopup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHistoryCancelTopup.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnHistoryCancelTopup.ForeColor = System.Drawing.Color.Black;
+            this.btnHistoryCancelTopup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHistoryCancelTopup.Location = new System.Drawing.Point(8, 362);
+            this.btnHistoryCancelTopup.Name = "btnHistoryCancelTopup";
+            this.btnHistoryCancelTopup.Size = new System.Drawing.Size(124, 35);
+            this.btnHistoryCancelTopup.TabIndex = 7;
+            this.btnHistoryCancelTopup.Text = "ยังไม่ได้เติม";
+            this.btnHistoryCancelTopup.UseVisualStyleBackColor = false;
+            this.btnHistoryCancelTopup.Click += new System.EventHandler(this.btnHistoryCancelTopup_Click);
             // 
             // label17
             // 
@@ -1552,7 +1546,7 @@
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.label17.ForeColor = System.Drawing.Color.White;
             this.label17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label17.Location = new System.Drawing.Point(11, 117);
+            this.label17.Location = new System.Drawing.Point(11, 77);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(59, 25);
             this.label17.TabIndex = 7;
@@ -1606,7 +1600,7 @@
             // 
             this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Orange;
+            this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(151)))), ((int)(((byte)(28)))));
             this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label15.Location = new System.Drawing.Point(6, 19);
             this.label15.Name = "label15";
@@ -1730,7 +1724,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewListCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridViewListCustomer.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridViewListCustomer.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.dataGridViewListCustomer.BackgroundColor = System.Drawing.Color.Azure;
             this.dataGridViewListCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewListCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
@@ -1828,7 +1822,7 @@
             // 
             // tabPageSeachCustomer
             // 
-            this.tabPageSeachCustomer.BackColor = System.Drawing.Color.LightCyan;
+            this.tabPageSeachCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(59)))), ((int)(((byte)(228)))));
             this.tabPageSeachCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tabPageSeachCustomer.Controls.Add(this.groupBox10);
             this.tabPageSeachCustomer.Location = new System.Drawing.Point(4, 25);
@@ -1840,8 +1834,9 @@
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.buttonSearch);
-            this.groupBox10.Controls.Add(this.buttonSearchClear);
+            this.groupBox10.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox10.Controls.Add(this.buttonCustomerSearch);
+            this.groupBox10.Controls.Add(this.buttonCustomerClear);
             this.groupBox10.Controls.Add(this.comboBoxSearchCustomerNetwork);
             this.groupBox10.Controls.Add(this.textboxCustomerSearchPhone);
             this.groupBox10.Controls.Add(this.pictureBox2);
@@ -1857,39 +1852,39 @@
             this.groupBox10.TabIndex = 5;
             this.groupBox10.TabStop = false;
             // 
-            // buttonSearch
+            // buttonCustomerSearch
             // 
-            this.buttonSearch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonSearch.BackColor = System.Drawing.Color.PaleGreen;
-            this.buttonSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.buttonSearch.ForeColor = System.Drawing.Color.Black;
-            this.buttonSearch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonSearch.Location = new System.Drawing.Point(144, 425);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(119, 40);
-            this.buttonSearch.TabIndex = 36;
-            this.buttonSearch.Text = "ค้นหา";
-            this.buttonSearch.UseVisualStyleBackColor = false;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            this.buttonCustomerSearch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonCustomerSearch.BackColor = System.Drawing.Color.PaleGreen;
+            this.buttonCustomerSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCustomerSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCustomerSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.buttonCustomerSearch.ForeColor = System.Drawing.Color.Black;
+            this.buttonCustomerSearch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.buttonCustomerSearch.Location = new System.Drawing.Point(144, 425);
+            this.buttonCustomerSearch.Name = "buttonCustomerSearch";
+            this.buttonCustomerSearch.Size = new System.Drawing.Size(119, 40);
+            this.buttonCustomerSearch.TabIndex = 36;
+            this.buttonCustomerSearch.Text = "ค้นหา";
+            this.buttonCustomerSearch.UseVisualStyleBackColor = false;
+            this.buttonCustomerSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
-            // buttonSearchClear
+            // buttonCustomerClear
             // 
-            this.buttonSearchClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonSearchClear.BackColor = System.Drawing.Color.SandyBrown;
-            this.buttonSearchClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSearchClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonSearchClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearchClear.ForeColor = System.Drawing.Color.Black;
-            this.buttonSearchClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonSearchClear.Location = new System.Drawing.Point(10, 426);
-            this.buttonSearchClear.Name = "buttonSearchClear";
-            this.buttonSearchClear.Size = new System.Drawing.Size(119, 40);
-            this.buttonSearchClear.TabIndex = 37;
-            this.buttonSearchClear.Text = "Clear";
-            this.buttonSearchClear.UseVisualStyleBackColor = false;
-            this.buttonSearchClear.Click += new System.EventHandler(this.buttonSearchClear_Click);
+            this.buttonCustomerClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonCustomerClear.BackColor = System.Drawing.Color.SandyBrown;
+            this.buttonCustomerClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCustomerClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCustomerClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCustomerClear.ForeColor = System.Drawing.Color.Black;
+            this.buttonCustomerClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.buttonCustomerClear.Location = new System.Drawing.Point(10, 426);
+            this.buttonCustomerClear.Name = "buttonCustomerClear";
+            this.buttonCustomerClear.Size = new System.Drawing.Size(119, 40);
+            this.buttonCustomerClear.TabIndex = 37;
+            this.buttonCustomerClear.Text = "Clear";
+            this.buttonCustomerClear.UseVisualStyleBackColor = false;
+            this.buttonCustomerClear.Click += new System.EventHandler(this.buttonSearchClear_Click);
             // 
             // comboBoxSearchCustomerNetwork
             // 
@@ -1898,15 +1893,15 @@
             this.comboBoxSearchCustomerNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSearchCustomerNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBoxSearchCustomerNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxSearchCustomerNetwork.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.comboBoxSearchCustomerNetwork.ForeColor = System.Drawing.Color.Yellow;
             this.comboBoxSearchCustomerNetwork.FormattingEnabled = true;
             this.comboBoxSearchCustomerNetwork.Items.AddRange(new object[] {
             "One 2 Call",
             "DTAC",
             "TrueMove"});
-            this.comboBoxSearchCustomerNetwork.Location = new System.Drawing.Point(107, 165);
+            this.comboBoxSearchCustomerNetwork.Location = new System.Drawing.Point(103, 162);
             this.comboBoxSearchCustomerNetwork.Name = "comboBoxSearchCustomerNetwork";
-            this.comboBoxSearchCustomerNetwork.Size = new System.Drawing.Size(152, 33);
+            this.comboBoxSearchCustomerNetwork.Size = new System.Drawing.Size(159, 33);
             this.comboBoxSearchCustomerNetwork.TabIndex = 36;
             // 
             // textboxCustomerSearchPhone
@@ -1914,15 +1909,15 @@
             this.textboxCustomerSearchPhone.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.textboxCustomerSearchPhone.CausesValidation = false;
             this.textboxCustomerSearchPhone.EditValue = "";
-            this.textboxCustomerSearchPhone.Location = new System.Drawing.Point(107, 99);
+            this.textboxCustomerSearchPhone.Location = new System.Drawing.Point(103, 98);
             this.textboxCustomerSearchPhone.Name = "textboxCustomerSearchPhone";
             this.textboxCustomerSearchPhone.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textboxCustomerSearchPhone.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textboxCustomerSearchPhone.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.textboxCustomerSearchPhone.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
             this.textboxCustomerSearchPhone.Properties.Appearance.Options.UseBackColor = true;
             this.textboxCustomerSearchPhone.Properties.Appearance.Options.UseFont = true;
             this.textboxCustomerSearchPhone.Properties.Appearance.Options.UseForeColor = true;
-            this.textboxCustomerSearchPhone.Size = new System.Drawing.Size(152, 32);
+            this.textboxCustomerSearchPhone.Size = new System.Drawing.Size(159, 32);
             this.textboxCustomerSearchPhone.TabIndex = 35;
             // 
             // pictureBox2
@@ -1933,7 +1928,7 @@
             this.pictureBox2.ImageLocation = "";
             this.pictureBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(100, 231);
+            this.pictureBox2.Location = new System.Drawing.Point(103, 225);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(159, 100);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1944,9 +1939,10 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(13, 168);
+            this.label3.Location = new System.Drawing.Point(10, 162);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 27);
             this.label3.TabIndex = 7;
@@ -1956,9 +1952,10 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
-            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label10.ForeColor = System.Drawing.Color.White;
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(13, 104);
+            this.label10.Location = new System.Drawing.Point(10, 98);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(91, 27);
             this.label10.TabIndex = 6;
@@ -1968,9 +1965,10 @@
             // 
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
-            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label11.Location = new System.Drawing.Point(13, 44);
+            this.label11.Location = new System.Drawing.Point(10, 38);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(85, 27);
             this.label11.TabIndex = 5;
@@ -1981,15 +1979,15 @@
             this.textboxCustomerSearchName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.textboxCustomerSearchName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textboxCustomerSearchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.textboxCustomerSearchName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textboxCustomerSearchName.Location = new System.Drawing.Point(107, 41);
+            this.textboxCustomerSearchName.ForeColor = System.Drawing.Color.Yellow;
+            this.textboxCustomerSearchName.Location = new System.Drawing.Point(103, 38);
             this.textboxCustomerSearchName.Name = "textboxCustomerSearchName";
-            this.textboxCustomerSearchName.Size = new System.Drawing.Size(152, 31);
+            this.textboxCustomerSearchName.Size = new System.Drawing.Size(159, 31);
             this.textboxCustomerSearchName.TabIndex = 1;
             // 
             // tabPageAddCustomer
             // 
-            this.tabPageAddCustomer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageAddCustomer.BackgroundImage")));
+            this.tabPageAddCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(171)))), ((int)(((byte)(220)))));
             this.tabPageAddCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tabPageAddCustomer.Controls.Add(this.groupBox11);
             this.tabPageAddCustomer.Location = new System.Drawing.Point(4, 25);
@@ -1998,7 +1996,6 @@
             this.tabPageAddCustomer.Size = new System.Drawing.Size(278, 481);
             this.tabPageAddCustomer.TabIndex = 1;
             this.tabPageAddCustomer.Text = "เพิ่ม/แก้ไข รายชื่อ";
-            this.tabPageAddCustomer.UseVisualStyleBackColor = true;
             // 
             // groupBox11
             // 
@@ -2010,7 +2007,6 @@
             this.groupBox11.Controls.Add(this.comboBoxAddCustomerNetwork);
             this.groupBox11.Controls.Add(this.textboxAddCustomerPhone);
             this.groupBox11.Controls.Add(this.textBoxAddCustomerName);
-            this.groupBox11.Controls.Add(this.labelAddCustomerID);
             this.groupBox11.Controls.Add(this.pictureBox1);
             this.groupBox11.Controls.Add(this.label20);
             this.groupBox11.Controls.Add(this.label4);
@@ -2028,9 +2024,9 @@
             // 
             this.richTextBoxAddCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.richTextBoxAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxAddCustomer.Location = new System.Drawing.Point(112, 202);
+            this.richTextBoxAddCustomer.Location = new System.Drawing.Point(113, 202);
             this.richTextBoxAddCustomer.Name = "richTextBoxAddCustomer";
-            this.richTextBoxAddCustomer.Size = new System.Drawing.Size(152, 75);
+            this.richTextBoxAddCustomer.Size = new System.Drawing.Size(148, 70);
             this.richTextBoxAddCustomer.TabIndex = 36;
             this.richTextBoxAddCustomer.Text = "";
             // 
@@ -2054,7 +2050,7 @@
             // buttonAddCustomerEdit
             // 
             this.buttonAddCustomerEdit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonAddCustomerEdit.BackColor = System.Drawing.Color.Cyan;
+            this.buttonAddCustomerEdit.BackColor = System.Drawing.Color.Yellow;
             this.buttonAddCustomerEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAddCustomerEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonAddCustomerEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2086,7 +2082,7 @@
             // buttonAddCusotmerAdd
             // 
             this.buttonAddCusotmerAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonAddCusotmerAdd.BackColor = System.Drawing.Color.Yellow;
+            this.buttonAddCusotmerAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.buttonAddCusotmerAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAddCusotmerAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonAddCusotmerAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2107,15 +2103,15 @@
             this.comboBoxAddCustomerNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAddCustomerNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBoxAddCustomerNetwork.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxAddCustomerNetwork.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.comboBoxAddCustomerNetwork.ForeColor = System.Drawing.Color.Yellow;
             this.comboBoxAddCustomerNetwork.FormattingEnabled = true;
             this.comboBoxAddCustomerNetwork.Items.AddRange(new object[] {
             "One 2 Call",
             "DTAC",
             "TrueMove"});
-            this.comboBoxAddCustomerNetwork.Location = new System.Drawing.Point(112, 137);
+            this.comboBoxAddCustomerNetwork.Location = new System.Drawing.Point(113, 145);
             this.comboBoxAddCustomerNetwork.Name = "comboBoxAddCustomerNetwork";
-            this.comboBoxAddCustomerNetwork.Size = new System.Drawing.Size(152, 33);
+            this.comboBoxAddCustomerNetwork.Size = new System.Drawing.Size(148, 33);
             this.comboBoxAddCustomerNetwork.TabIndex = 38;
             // 
             // textboxAddCustomerPhone
@@ -2123,15 +2119,15 @@
             this.textboxAddCustomerPhone.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.textboxAddCustomerPhone.CausesValidation = false;
             this.textboxAddCustomerPhone.EditValue = "";
-            this.textboxAddCustomerPhone.Location = new System.Drawing.Point(112, 85);
+            this.textboxAddCustomerPhone.Location = new System.Drawing.Point(113, 92);
             this.textboxAddCustomerPhone.Name = "textboxAddCustomerPhone";
             this.textboxAddCustomerPhone.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textboxAddCustomerPhone.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textboxAddCustomerPhone.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.textboxAddCustomerPhone.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
             this.textboxAddCustomerPhone.Properties.Appearance.Options.UseBackColor = true;
             this.textboxAddCustomerPhone.Properties.Appearance.Options.UseFont = true;
             this.textboxAddCustomerPhone.Properties.Appearance.Options.UseForeColor = true;
-            this.textboxAddCustomerPhone.Size = new System.Drawing.Size(152, 32);
+            this.textboxAddCustomerPhone.Size = new System.Drawing.Size(148, 32);
             this.textboxAddCustomerPhone.TabIndex = 37;
             // 
             // textBoxAddCustomerName
@@ -2139,22 +2135,11 @@
             this.textBoxAddCustomerName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.textBoxAddCustomerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBoxAddCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.textBoxAddCustomerName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.textBoxAddCustomerName.Location = new System.Drawing.Point(112, 33);
+            this.textBoxAddCustomerName.ForeColor = System.Drawing.Color.Yellow;
+            this.textBoxAddCustomerName.Location = new System.Drawing.Point(113, 39);
             this.textBoxAddCustomerName.Name = "textBoxAddCustomerName";
-            this.textBoxAddCustomerName.Size = new System.Drawing.Size(152, 31);
+            this.textBoxAddCustomerName.Size = new System.Drawing.Size(148, 31);
             this.textBoxAddCustomerName.TabIndex = 36;
-            // 
-            // labelAddCustomerID
-            // 
-            this.labelAddCustomerID.AutoSize = true;
-            this.labelAddCustomerID.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.labelAddCustomerID.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelAddCustomerID.Location = new System.Drawing.Point(3, 14);
-            this.labelAddCustomerID.Name = "labelAddCustomerID";
-            this.labelAddCustomerID.Size = new System.Drawing.Size(89, 25);
-            this.labelAddCustomerID.TabIndex = 5;
-            this.labelAddCustomerID.Text = "label12";
             // 
             // pictureBox1
             // 
@@ -2163,7 +2148,7 @@
             this.pictureBox1.ImageLocation = "";
             this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(118, 287);
+            this.pictureBox1.Location = new System.Drawing.Point(113, 278);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(148, 86);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -2174,11 +2159,13 @@
             // 
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label20.AutoSize = true;
+            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label20.ForeColor = System.Drawing.Color.White;
             this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label20.Location = new System.Drawing.Point(18, 202);
+            this.label20.Location = new System.Drawing.Point(11, 202);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(49, 25);
+            this.label20.Size = new System.Drawing.Size(51, 27);
             this.label20.TabIndex = 7;
             this.label20.Text = "ที่อยู่";
             // 
@@ -2186,11 +2173,13 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(18, 145);
+            this.label4.Location = new System.Drawing.Point(11, 145);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 25);
+            this.label4.Size = new System.Drawing.Size(61, 27);
             this.label4.TabIndex = 7;
             this.label4.Text = "ระบบ";
             // 
@@ -2198,11 +2187,13 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(18, 92);
+            this.label6.Location = new System.Drawing.Point(11, 92);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 25);
+            this.label6.Size = new System.Drawing.Size(91, 27);
             this.label6.TabIndex = 6;
             this.label6.Text = "เบอร์โทร";
             // 
@@ -2210,11 +2201,13 @@
             // 
             this.label23.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label23.AutoSize = true;
+            this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label23.ForeColor = System.Drawing.Color.White;
             this.label23.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label23.Location = new System.Drawing.Point(18, 39);
+            this.label23.Location = new System.Drawing.Point(11, 39);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(83, 25);
+            this.label23.Size = new System.Drawing.Size(85, 27);
             this.label23.TabIndex = 5;
             this.label23.Text = "ชื่อลูกค้า";
             // 
@@ -2623,14 +2616,14 @@
             this.dataGridViewTelephone2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridViewTelephone2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.dataGridViewTelephone2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTelephone2.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTelephone2.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTelephone2.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewTelephone2.MultiSelect = false;
             this.dataGridViewTelephone2.Name = "dataGridViewTelephone2";
@@ -2643,6 +2636,31 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // lbSelectTopupID
+            // 
+            this.lbSelectTopupID.AutoSize = true;
+            this.lbSelectTopupID.Location = new System.Drawing.Point(101, 178);
+            this.lbSelectTopupID.Name = "lbSelectTopupID";
+            this.lbSelectTopupID.Size = new System.Drawing.Size(76, 20);
+            this.lbSelectTopupID.TabIndex = 45;
+            this.lbSelectTopupID.Text = "select id";
+            this.lbSelectTopupID.Visible = false;
+            // 
+            // tbxHistoryTime
+            // 
+            this.tbxHistoryTime.CausesValidation = false;
+            this.tbxHistoryTime.EditValue = "";
+            this.tbxHistoryTime.Location = new System.Drawing.Point(105, 126);
+            this.tbxHistoryTime.Name = "tbxHistoryTime";
+            this.tbxHistoryTime.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbxHistoryTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxHistoryTime.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.tbxHistoryTime.Properties.Appearance.Options.UseBackColor = true;
+            this.tbxHistoryTime.Properties.Appearance.Options.UseFont = true;
+            this.tbxHistoryTime.Properties.Appearance.Options.UseForeColor = true;
+            this.tbxHistoryTime.Size = new System.Drawing.Size(73, 32);
+            this.tbxHistoryTime.TabIndex = 35;
             // 
             // MainForm
             // 
@@ -2691,7 +2709,7 @@
             this.tabPageListTopup.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textboxTopupSearchPhone.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxHistoryPhoneNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).EndInit();
             this.groupBox14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).EndInit();
@@ -2722,6 +2740,7 @@
             this.groupBox13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTelephone2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxHistoryTime.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2736,13 +2755,12 @@
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtHistory;
         private System.Windows.Forms.PictureBox pictureBoxTem2;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox tbxTimefind1;
-        private System.Windows.Forms.ComboBox comboBoxTem2;
-        private System.Windows.Forms.Button btnClearFind;
-        private System.Windows.Forms.Button btnChangeTopUp;
+        private System.Windows.Forms.ComboBox cmbHistoryNetwork;
+        private System.Windows.Forms.Button btnHistoryClear;
+        private System.Windows.Forms.Button btnHistoryCancelTopup;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridView dataGridViewListTopUpFinish;
@@ -2765,7 +2783,6 @@
         private System.Windows.Forms.TextBox textboxCustomerSearchName;
         private System.Windows.Forms.TabPage tabPageAddCustomer;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Label labelAddCustomerID;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
@@ -2880,9 +2897,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         public DevExpress.XtraEditors.TextEdit textboxCustomerSearchPhone;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.Button buttonSearchClear;
+        private System.Windows.Forms.Button btnHistorySearch;
+        private System.Windows.Forms.Button buttonCustomerSearch;
+        private System.Windows.Forms.Button buttonCustomerClear;
         private System.Windows.Forms.ComboBox comboBoxSearchCustomerNetwork;
         private System.Windows.Forms.RichTextBox richTextBoxAddCustomer;
         private System.Windows.Forms.Button buttonAddCustomerClear;
@@ -2893,7 +2910,7 @@
         public DevExpress.XtraEditors.TextEdit textboxAddCustomerPhone;
         private System.Windows.Forms.TextBox textBoxAddCustomerName;
         private System.Windows.Forms.Label label20;
-        public DevExpress.XtraEditors.TextEdit textboxTopupSearchPhone;
+        public DevExpress.XtraEditors.TextEdit tbxHistoryPhoneNumber;
         public System.Windows.Forms.Button btnTopUpAdd;
         public System.Windows.Forms.TabControl tabControlMain;
         public System.Windows.Forms.TabPage tabPageTopUp;
@@ -2907,6 +2924,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn network;
+        private System.Windows.Forms.Label lbSelectTopupID;
+        public DevExpress.XtraEditors.TextEdit tbxHistoryTime;
 
 
     }
