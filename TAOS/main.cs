@@ -38,6 +38,7 @@ namespace TAOS
             loadSetting();
             getListPhoneNumber(true, "");
             getListTopup();
+            selectProduct();
         }
 
         private void loadSetting()
@@ -839,11 +840,17 @@ namespace TAOS
             else if (tabControlMain.SelectedTab == tabPageCustomerList)
             {
                 //getListCustomer();
-                tabControlListCustomer.SelectedTab = tabPageListCustomer;
-                tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
-                //tbxTelSeach.Select();
-                buttonCustomerSearch_Click(EventArgs.Empty, null);
-                textboxCustomerSearchName.Select();
+                //tabControlListCustomer.SelectedTab = tabPageListCustomer;
+                //tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
+                //textboxCustomerSearchName.Select();
+                if (tabControlListCustomer.SelectedTab == tabPageListCustomer)
+                {
+                    buttonCustomerSearch_Click(EventArgs.Empty, null);
+                }
+                else
+                {
+
+                }
             }
         }
 
@@ -1211,6 +1218,53 @@ namespace TAOS
                 MessageBox.Show("ทำการลบข้อมูลเรียบร้อยแล้ว", "ลบสำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBoxAddCustomerName.Select();
             }
+        }
+
+        private void getListCredit(
+            string customerName = "",
+            string phoneNumber = "",
+            string price = "",
+            string status = "",
+            string network = ""
+            )
+        {
+            dataGridViewListCredit.Rows.Clear();
+            List<string>[] listCredit = ConnectMySql.getListCredit(customerName, phoneNumber, price, status, network);
+
+            for (int i = 0; i < listCredit[0].Count; i++)
+            {
+                int number = dataGridViewListCredit.Rows.Add();
+                string newStrPhoneNumber = helper.stringConvertPhoneNumber(listCredit[6][i]);
+                dataGridViewListCredit.Rows[number].Cells[0].Value = listCredit[0][i];//id
+                dataGridViewListCredit.Rows[number].Cells[1].Value = listCredit[1][i];//customer name
+                dataGridViewListCredit.Rows[number].Cells[2].Value = listCredit[6][i];//phonenumber
+                dataGridViewListCredit.Rows[number].Cells[3].Value = listCredit[2][i];//price
+                dataGridViewListCredit.Rows[number].Cells[4].Value =
+                     Image.FromFile(helper.getPathIconImages(listCredit[7][i]));//network
+                dataGridViewListCredit.Rows[number].Cells[5].Value = listCredit[3][i];//price
+                dataGridViewListCredit.Rows[number].Cells[6].Value = listCredit[4][i];//price
+
+            }
+            txtCustomerNameSearchCredit.Select();
+        }
+
+        private void btnSearchCredit_Click(object sender, EventArgs e)
+        {
+            getListCredit(txtCustomerNameSearchCredit.Text, 
+                tbxPhoneSearchCredit.Text, 
+                tbxSearchPriceCredit.Text,
+                cmbSearchStatusCredit.SelectedIndex.ToString(), 
+                cmbSearchNetworkCredit.Text);
+        }
+
+        private void btnClearSearchCredit_Click(object sender, EventArgs e)
+        {
+            tbxPhoneSearchCredit.Text = "";
+            tbxSearchPriceCredit.Text = "";
+            cmbSearchStatusCredit.SelectedIndex = 0;
+            cmbSearchNetworkCredit.SelectedIndex = -1;
+
+            txtCustomerNameSearchCredit.Select();
         }
 
     }

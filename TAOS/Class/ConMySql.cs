@@ -161,14 +161,21 @@ namespace TAOS
 
         public List<string>[] getSearchProduct(string strSearch)
         {
-            List<string>[] list = new List<string>[6];
-            for (int i = 0; i < 6; i++)
+            List<string>[] list = new List<string>[7];
+            for (int i = 0; i < 7; i++)
             {
                 list[i] = new List<string>();
             }
             if (CheckConnect() == true)
             {
-                string sql = "SELECT * FROM product WHERE product_name LIKE '%" + strSearch.Trim() + "%'";
+                string sql = @"
+                    SELECT 
+                      * 
+                    FROM
+                      product 
+                    WHERE 1 
+                      and `deleted` = 0  
+                      and product_name LIKE '%" + strSearch.Trim() + "%'";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -176,9 +183,10 @@ namespace TAOS
                     list[0].Add(dataReader["product_id"] + "");
                     list[1].Add(dataReader["product_name"] + "");
                     list[2].Add(dataReader["price"] + "");
-                    list[3].Add(dataReader["date_modified"] + "");
+                    list[3].Add(dataReader["date_update"] + "");
                     list[4].Add(dataReader["barcode"] + "");
                     list[5].Add(dataReader["type_value"] + "");
+                    list[6].Add(dataReader["date_add"] + "");
                 }
                 dataReader.Close();
                 CloseConnection();
@@ -192,14 +200,15 @@ namespace TAOS
 
         public List<string>[] getProduct(string barcode)
         {
-            List<string>[] list = new List<string>[6];
-            for (int i = 0; i < 6; i++)
+            List<string>[] list = new List<string>[7];
+            for (int i = 0; i < 7; i++)
             {
                 list[i] = new List<string>();
             }
             if (CheckConnect() == true)
             {
-                string sql = "SELECT * FROM product WHERE barcode = '" + barcode.Trim() + "'";
+                string sql = @"
+                SELECT * FROM product WHERE 1 and delete=0 and barcode = '" + barcode.Trim() + "'";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader(); 
                 while (dataReader.Read())
@@ -207,9 +216,10 @@ namespace TAOS
                     list[0].Add(dataReader["product_id"] + "");
                     list[1].Add(dataReader["product_name"] + "");
                     list[2].Add(dataReader["price"] + "");
-                    list[3].Add(dataReader["date_modified"] + "");
+                    list[3].Add(dataReader["date_update"] + "");
                     list[4].Add(dataReader["barcode"] + "");
                     list[5].Add(dataReader["type_value"] + "");
+                    list[6].Add(dataReader["date_add"] + "");
                 }
                 dataReader.Close();
                 CloseConnection();
@@ -223,14 +233,23 @@ namespace TAOS
 
         public List<string>[] getAllProduct()
         {
-            List<string>[] list = new List<string>[6];
-            for (int i = 0; i < 6; i++)
+            List<string>[] list = new List<string>[7];
+            for (int i = 0; i < 7; i++)
             {
                 list[i] = new List<string>();
             }
             if (CheckConnect() == true)
             {
-                string sql = "SELECT * FROM product ORDER BY product_id DESC LIMIT 50";
+                string sql = @"
+                    SELECT 
+                      * 
+                    FROM
+                      product 
+                    WHERE 1 
+                      AND `deleted` = 0 
+                    ORDER BY product_id DESC 
+                    LIMIT 50 
+                    ";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader(); 
                 while (dataReader.Read())
@@ -238,9 +257,10 @@ namespace TAOS
                     list[0].Add(dataReader["product_id"] + "");
                     list[1].Add(dataReader["product_name"] + "");
                     list[2].Add(dataReader["price"] + "");
-                    list[3].Add(dataReader["date_modified"] + "");
+                    list[3].Add(dataReader["date_update"] + "");
                     list[4].Add(dataReader["barcode"] + "");
                     list[5].Add(dataReader["type_value"] + "");
+                    list[6].Add(dataReader["date_add"] + "");
                 }
                 dataReader.Close();
                 CloseConnection();
@@ -257,7 +277,14 @@ namespace TAOS
             string strCount = "";
             if (CheckConnect() == true)
             {
-                string sql = "SELECT COUNT(`product_id`) AS id FROM `product`";
+                string sql = @"
+                    SELECT 
+                      COUNT(`product_id`) AS id 
+                    FROM
+                      `product` 
+                    where 1 
+                      and `deleted` = 0
+                ";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -458,6 +485,78 @@ namespace TAOS
 
         #endregion
 
+        #region Credit
+
+        //get รายชื่อลูกค้าที่ค้างชำระ
+        public List<string>[] getListCredit(
+            string customerName = "", 
+            string phoneNumber = "", 
+            string price = "",
+            string status = "",
+            string network = ""
+            )
+        {
+            int countList = 8;
+            List<string>[] list = new List<string>[countList];
+            for (int i = 0; i < countList; i++)
+            {
+                list[i] = new List<string>();
+            }
+            if (CheckConnect())
+            {
+                string sql = @"
+                    SELECT 
+                      a.`id`,
+                      a.`customer_name`,
+                      a.`price`,
+                      a.`date_add`,
+                      a.`date_payment`,
+                      a.`paid`,
+                      c.`phone_number`,
+                      c.`network` 
+                    FROM
+                      `credit` a 
+                      LEFT JOIN `topup` b 
+                        ON (
+                          a.`topup_id` = b.`id` 
+                          AND b.`deleted` = 0
+                        ) 
+                      INNER JOIN `phone_number` c 
+                        ON (
+                          c.`id` = b.`phone_number_id` 
+                          AND c.`deleted` = 0
+                        ) 
+                    WHERE 1 
+                      AND a.`deleted` = 0
+                ";
+                sql += customerName != "" ? " AND a.customer_name LIKE '%" + customerName + "%'" : "";
+                sql += phoneNumber != "" ? " AND c.phone_number LIKE '%" + phoneNumber + "%'" : "";
+                sql += price != "" ? " AND a.price ='" + price + "'" : "";
+                sql += status != "-1" ? " AND a.paid =" + status  : "";
+                sql += network != "" ? " AND c.network ='" + network + "'" : "";
+                sql += " LIMIT 100"; Debug.WriteLine(status);
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["id"] + "");
+                    list[1].Add(dataReader["customer_name"] + "");
+                    list[2].Add(dataReader["price"] + "");
+                    list[3].Add(dataReader["date_add"] + "");
+                    list[4].Add(dataReader["date_payment"] + "");
+                    list[5].Add(dataReader["paid"] + "");
+                    list[6].Add(dataReader["phone_number"] + "");
+                    list[7].Add(dataReader["network"] + "");
+                }
+                dataReader.Close();
+                CloseConnection();
+            }
+
+            return list;
+        }
+ 
+        #endregion
+
         #endregion
 
         #region INSERT
@@ -536,11 +635,18 @@ namespace TAOS
             string sql;
             if (phoneNumberID == 0)
             {
-                addPhoeNumber(phoneNumber, network);
+                phoneNumberID = addPhoeNumber(phoneNumber, network);
             }
 
             //sql = "CALL sp_add_topup(" + customerID + ", " + phoneNumberID + ", " + amount + ");";
             sql = @"
+                UPDATE 
+                  `phone_number` 
+                SET
+                  `network` = '" + network + @"' 
+                WHERE `phone_number` = '" + phoneNumber + @"'
+                  AND `deleted` = 0 ;
+
                 INSERT INTO `topup` (
                   `phone_number_id`,
                   `topup_amount`,
@@ -564,7 +670,7 @@ namespace TAOS
             //string sql = "CALL sp_add_bhindhand(" + customerID + ", " + topupID + ", " +
             //    topupAmount + ", " + dateTimeTopup + ");";
             string sql = @"
-                INSERT INTO `topup_behindhand` (
+                INSERT INTO `credit` (
                   `topup_id`,
                   `customer_name`,
                   `price`,
