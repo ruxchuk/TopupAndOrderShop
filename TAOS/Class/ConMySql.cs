@@ -242,13 +242,24 @@ namespace TAOS
             {
                 string sql = @"
                     SELECT 
-                      * 
+                      `product_id`,
+                      `product_name`,
+                      `price`,
+                      `type_value`,
+                      `barcode`,
+                      `date_add`,
+                      CONCAT(
+                        DATE(`date_update`),
+                        ' ',
+                        TIME(`date_update`)
+                      ) AS date_update,
+                      `deleted` 
                     FROM
-                      product 
+                      `product` 
                     WHERE 1 
                       AND `deleted` = 0 
                     ORDER BY product_id DESC 
-                    LIMIT 50 
+                    LIMIT 50  
                     ";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader(); 
@@ -315,8 +326,32 @@ namespace TAOS
             }
             if (CheckConnect())
             {
-                string sql = "CALL sp_get_list_phone_number('" + searchPhoneNumber + "');";
-
+                //string sql = "CALL sp_get_list_phone_number('" + searchPhoneNumber + "');";
+                string sql = @"
+                    SELECT 
+                      a.`phone_number`,
+                      a.`network`,
+                      a.`date_update` AS a_date_update,
+                      a.`date_add`,
+                      a.id AS phone_number_id,
+                      IFNULL(b.id, 0) AS customer_id,
+                      b.`name`,
+                      b.`date_update` AS b_date_update,
+                      b.`date_add`,
+                      b.`address` 
+                    FROM
+                      phone_number a 
+                      LEFT JOIN customer b 
+                        ON a.id = b.phone_number_id 
+                        AND b.deleted = 0 
+                    WHERE 1 
+                      AND a.deleted = 0 ";
+                sql += searchPhoneNumber == "" ?"": " AND a.phone_number LIKE '%"+searchPhoneNumber+ "%'";
+                sql += @"
+                    GROUP BY a.phone_number 
+                    ORDER BY a.date_update DESC 
+                    LIMIT 20
+                    ;";
                 Debug.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -431,7 +466,7 @@ namespace TAOS
                 sql += customerName != "" ? " AND a.name LIKE '%" + customerName + "%'" : "";
                 sql += phoneNumber != "" ? " AND b.phone_number ='" + phoneNumber + "'" : "";
                 sql += network != "" ? " AND b.network ='" + network + "'" : "";
-                sql += " LIMIT 100";
+                sql += " LIMIT 30";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -492,7 +527,7 @@ namespace TAOS
             string customerName = "", 
             string phoneNumber = "", 
             string price = "",
-            string status = "",
+            string status = "0",
             string network = ""
             )
         {
@@ -512,7 +547,7 @@ namespace TAOS
                       a.`date_add`,
                       a.`date_payment`,
                       a.`paid`,
-                      c.`phone_number`,
+                      IFNULL(c.`phone_number`, '-') AS phone_number,
                       c.`network` 
                     FROM
                       `credit` a 
@@ -521,7 +556,7 @@ namespace TAOS
                           a.`topup_id` = b.`id` 
                           AND b.`deleted` = 0
                         ) 
-                      INNER JOIN `phone_number` c 
+                      LEFT JOIN `phone_number` c 
                         ON (
                           c.`id` = b.`phone_number_id` 
                           AND c.`deleted` = 0
@@ -619,12 +654,9 @@ namespace TAOS
             if (CheckConnect())
             {
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    phoneNumberID = int.Parse(dataReader["id"] + "");
-                }
-                dataReader.Close();
+                cmd.ExecuteNonQuery();
+                int lastID = (int)cmd.LastInsertedId;
+                phoneNumberID = lastID;
                 CloseConnection();
             }
             return phoneNumberID;
@@ -633,20 +665,28 @@ namespace TAOS
         public bool addTopup(string phoneNumber, string network, string amount)
         {
             string sql;
-            if (phoneNumberID == 0)
+            string id = "0";
+            List<string>[] list = getListPhoneNumber(phoneNumber);
+            for (int i = 0; i < list[0].Count; i++)
             {
-                phoneNumberID = addPhoeNumber(phoneNumber, network);
+                id = list[0][i];
             }
-
-            //sql = "CALL sp_add_topup(" + customerID + ", " + phoneNumberID + ", " + amount + ");";
+            if (id == "0")
+            {
+                id = addPhoeNumber(phoneNumber, network).ToString();
+            }
             sql = @"
                 UPDATE 
                   `phone_number` 
                 SET
                   `network` = '" + network + @"' 
-                WHERE `phone_number` = '" + phoneNumber + @"'
-                  AND `deleted` = 0 ;
-
+                WHERE `id` = '" + id + @"'
+                  AND `deleted` = 0 ;";
+            if (!UpDate(sql))
+            {
+                return false;
+            }
+            sql = @"                
                 INSERT INTO `topup` (
                   `phone_number_id`,
                   `topup_amount`,
@@ -654,7 +694,7 @@ namespace TAOS
                 ) 
                 VALUES
                 (
-	                " + phoneNumberID + @",
+	                " + id + @",
 	                " + amount + @",
 	                NOW()
                 );";
@@ -805,6 +845,62 @@ namespace TAOS
             return UpDate(sql);
         }
 
+        public bool updateCredit(
+            string creditID, 
+            string customerName = "",
+            string price = "",
+            string paid = "",
+            string deleted = "",
+            string date_payment = "")
+        {
+
+            string sql = @"
+                UPDATE 
+                  `credit` 
+                SET
+                ";
+
+            List<string> list = new List<string>();
+
+            // You can convert it back to an array if you would like to
+            //int[] terms = list.ToArray();
+            //string[] arrSql;
+
+            if (customerName != "")
+            {
+                list.Add(" `customer_name` = '" + customerName + "'");
+            }
+            if (price != "")
+            {
+                list.Add(" `price` = '" + price + "'");
+            }
+            if (paid != "")
+            {
+                list.Add(" `paid` = '" + paid + "'");
+            }
+            if (deleted != "")
+            {
+                list.Add(" `deleted` = '" + deleted + "'");
+            }
+            if (date_payment != "")
+            {
+                list.Add(" `date_payment` = '" + date_payment + "'");
+            }
+
+            string glue = ", ";
+            string[] arrSql = list.ToArray();
+            string resultingString = String.Join(glue, arrSql);
+
+            if (resultingString == "")
+            {
+                return true;
+            }
+            sql += resultingString + @"
+                WHERE `id` = '" + creditID + "' ;";
+            Debug.WriteLine(sql);
+            return UpDate(sql);
+        }
+
         //run sql update
         public bool UpDate(string sql)
         {
@@ -825,13 +921,27 @@ namespace TAOS
 
         public bool setDeletedTopup(string topup_id)
         {
-            string sql = "CALL sp_set_deleted_topup(" + topup_id + ");";
+            string sql = "UPDATE topup SET deleted = 1 WHERE id = " + topup_id + ";";
+            return UpDate(sql);
+        }
+        public bool setIsTopup(string topup_id)
+        {
+            string sql = "UPDATE topup SET is_topup = 1 WHERE id = " + topup_id + ";";
             return UpDate(sql);
         }
 
         public bool setIsTopupAll()
         {
-            string sql = "CALL sp_set_is_topup_all();";
+            string sql = @"
+                UPDATE 
+	                topup 
+                SET 
+	                is_topup = 1, 
+	                date_topup = NOW()
+                WHERE 1
+                AND is_topup = 0 
+                AND deleted = 0;
+            ";
             return UpDate(sql);
         }
         

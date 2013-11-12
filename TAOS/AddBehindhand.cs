@@ -44,23 +44,23 @@ namespace TAOS
             if (fCustomerName != "ไม่มีชื่อ")
             {
                 txtCustomerName.Text = fCustomerName;
-                txtValueBaht.Select();
+                //txtValueBaht.Select();
             }
-            else
-            {
+            //else
+            //{
                 txtCustomerName.Select();
-            }
+            //}
         }
 
         private void btnAddBehindhand_Click(object sender, EventArgs e)
         {
-            if (!connectDB.addBehindhand(fTopupID, fCustomerName, fCustomerID, fAmount))
+            if (!connectDB.addBehindhand(fTopupID, txtCustomerName.Text, fCustomerID, txtValueBaht.Text))
             {
                 messageError.showMessageBox("การเพิ่มข้อมูลผิดพลาด");
             }
             else
             {
-                MessageBox.Show("ทำการแก้ไขข้อมูลเรียบร้อยแล้ว", "แก้ไขสำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("บันทึกข้อมูลเรียบร้อยแล้ว", "บันทึกสำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             }
         }
@@ -69,18 +69,20 @@ namespace TAOS
         {
             if (e.KeyCode == Keys.Return)
             {
-                if (txtCustomerName.Text != "" && txtValueBaht.Text != "")
-                {
-                    btnAddBehindhand_Click(EventArgs.Empty, null);
-                }
-                else if (txtCustomerName.Text == "")
-                {
-                    txtCustomerName.Select();
-                }
-                else if (txtValueBaht.Text == "")
-                {
-                    txtValueBaht.Select();
-                }
+
+                txtValueBaht.Select();
+                //if (txtCustomerName.Text != "" && txtValueBaht.Text != "")
+                //{
+                //    btnAddBehindhand_Click(EventArgs.Empty, null);
+                //}
+                //else if (txtCustomerName.Text == "")
+                //{
+                //    txtCustomerName.Select();
+                //}
+                //else if (txtValueBaht.Text == "")
+                //{
+                //    txtValueBaht.Select();
+                //}
             }
         }
 

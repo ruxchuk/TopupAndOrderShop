@@ -12,6 +12,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Mask;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 
 namespace TAOS
@@ -39,6 +40,8 @@ namespace TAOS
             getListPhoneNumber(true, "");
             getListTopup();
             selectProduct();
+            getListCredit();
+            getListCustomer();
         }
 
         private void loadSetting()
@@ -512,33 +515,13 @@ namespace TAOS
             }
         }
 
-        private void txtTopupPhoneNumber_EditValueChanged(object sender, EventArgs e)
-        {
-            lbTopUpPhoneNumber.Text = txtTopupPhoneNumber.Text;
-            if (!checkClickTopup)
-            { 
-                return;
-            }
-
-            string phonenumber = txtTopupPhoneNumber.Text.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
-            if (phonenumber.Length > 2)
-            {
-                getListPhoneNumber(false, phonenumber);
-            }
-            else if (phonenumber.Length == 0)
-            {
-                listBoxTopUpPhoneNumber.Visible = false;
-                saveMathPhoneNumber = null;
-            }
-        }
-
 
         private void getListPhoneNumber(bool checkGetData = false, string strCheck = "")
         {
-            if (checkGetData)
-            {
-                allPhoneNumber = ConnectMySql.getListPhoneNumber();
-            }
+            //if (checkGetData)
+            //{
+                allPhoneNumber = ConnectMySql.getListPhoneNumber(strCheck);
+            //}
             if (allPhoneNumber == null)
                 return;
             listBoxTopUpPhoneNumber.Items.Clear();
@@ -570,7 +553,7 @@ namespace TAOS
                         string strNetwork = allPhoneNumber[2][i].Trim();
                         checkStrNetwork(strNetwork, cmbTopUpNetwork, imgTopUpNetwork);
                         setImageNetwork(helper.getPathIconImages(strNetwork), imageTopUpIconNetwork);
-                        Debug.WriteLine(allPhoneNumber[2][i] + "|true");
+                      
                         txtValueBaht.Focus();
                     }
                     checkMathPhoneNumber = true;
@@ -584,7 +567,6 @@ namespace TAOS
                 ConnectMySql.customerID = 0;
                 wbsSearchNetwork(strCheck);
                 txtValueBaht.Select();
-                Debug.WriteLine(strCheck);
             }
         }
 
@@ -621,14 +603,14 @@ namespace TAOS
 
         private void txtTopupPhoneNumber_KeyDown(object sender, KeyEventArgs e)
         {
-            checkClickTopup = true;
+            
             if (txtTopupPhoneNumber.Text != "" && e.KeyData == Keys.Down
             && listBoxTopUpPhoneNumber.Items.Count > 0)
             {
                 if (listBoxTopUpPhoneNumber.SelectedIndex < listBoxTopUpPhoneNumber.Items.Count - 1)
                 {
                     listBoxTopUpPhoneNumber.SelectedIndex++;
-                    txtTopupPhoneNumber.Select(0, 0);
+                    txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);
                 }
             }
             else if (txtTopupPhoneNumber.Text != "" && e.KeyData == Keys.Up
@@ -637,7 +619,7 @@ namespace TAOS
                 if (listBoxTopUpPhoneNumber.SelectedIndex > 0)
                 {
                     listBoxTopUpPhoneNumber.SelectedIndex--;
-                    txtTopupPhoneNumber.Select(0, 0);
+                    txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);
                 }
             }
             else if (e.KeyData == Keys.Return && listBoxTopUpPhoneNumber.SelectedIndex > -1)
@@ -709,11 +691,15 @@ namespace TAOS
 
         public void btnTopUpClear_Click(object sender, EventArgs e)
         {
+            listBoxTopUpPhoneNumber.Visible = false;
+            lbSelectTopupID.Text = "";
+            lbTopUpPhoneNumber.Text = "";
             txtTopupPhoneNumber.Text = "";
             txtValueBaht.Text = "";
             cmbTopUpNetwork.SelectedIndex = -1;
 
             txtTopupPhoneNumber.Select();
+            getListPhoneNumber(true, "");
             getListTopup();
         }
 
@@ -744,8 +730,10 @@ namespace TAOS
         {
             if (checkAddTopup())
             {
-                if (!ConnectMySql.addTopup(txtTopupPhoneNumber.Text.Replace("-", ""),
-                    cmbTopUpNetwork.Text, txtValueBaht.Text))
+                if (!ConnectMySql.addTopup(
+                    txtTopupPhoneNumber.Text.Replace("-", ""),
+                    cmbTopUpNetwork.Text, txtValueBaht.Text
+                    ))
                 {
                     messageError.showMessageBox("การบันทึกรายการเกินการผิดพลาด");
                 }
@@ -818,7 +806,7 @@ namespace TAOS
                     tabControlMain.SelectedTab = tabPageCustomerList;
                     tabControlListCustomer.SelectedTab = tabPageListCustomer;
                     tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
-                    //tbxTelSeach.Select();
+                    textboxCustomerSearchName.Focus();
                     break;
                 default: break;
             }
@@ -839,42 +827,33 @@ namespace TAOS
             }
             else if (tabControlMain.SelectedTab == tabPageCustomerList)
             {
-                //getListCustomer();
-                //tabControlListCustomer.SelectedTab = tabPageListCustomer;
-                //tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
-                //textboxCustomerSearchName.Select();
                 if (tabControlListCustomer.SelectedTab == tabPageListCustomer)
                 {
-                    buttonCustomerSearch_Click(EventArgs.Empty, null);
+                    if (tabControlModifiedCustomer.SelectedTab == tabPageSeachCustomer)
+                    {
+                        textboxCustomerSearchName.Select();
+                    }
+                    else if (tabControlModifiedCustomer.SelectedTab == tabPageAddCustomer)
+                    {
+                        textBoxAddCustomerName.Select();
+                    }
                 }
-                else
+                else if (tabControlListCustomer.SelectedTab == tabPageCredit)
                 {
-
+                    if (tabControlCredit.SelectedTab == tabPageSearchCradit)
+                    {
+                        txtCustomerNameSearchCredit.Select();
+                    }
+                    else if (tabControlCredit.SelectedTab == tabPageAddCredit)
+                    {
+                        tbxAddCustomerNameCredit.Select();
+                    }
                 }
             }
         }
 
-        private void dataGridViewTopup_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (tabControlTopUpList.SelectedTab == tabPageListTopup)
-            {
-                Debug.WriteLine("list");
-                return;
-            }
-            if (dataGridViewTopup.SelectedRows.Count == 1)
-            {
-                checkClickTopup = false;
-                //lbSelectTopupID.Text = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
-                txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
-                txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
-                cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
-                
-            }
-            listBoxTopUpPhoneNumber.Visible = false;
-        }
         private void dataGridViewListCustomer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (dataGridViewListCustomer.SelectedRows.Count == 1)
             {
                 string phoneNumber = dataGridViewListCustomer.SelectedRows[0].Cells[2].Value.ToString();
@@ -908,7 +887,7 @@ namespace TAOS
                 try
                 {
                     //labelAddCustomerID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[5].Value.ToString();
-                    
+
                 }
                 catch
                 {
@@ -917,7 +896,7 @@ namespace TAOS
                 //buttonAddCusotmerAdd.Visible = false;
                 buttonCustomerEdit.Visible = true;
                 buttonCustomerDelete.Visible = true;
-                               
+
                 if (tabControlModifiedCustomer.SelectedTab == tabPageAddCustomer)
                 {
                     textBoxAddCustomerName.Select();
@@ -946,7 +925,7 @@ namespace TAOS
                     }
                     getListTopup();
                 }
-                
+                txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);
             }
             catch
             {
@@ -975,12 +954,28 @@ namespace TAOS
                         btnTopUpClear_Click(null, EventArgs.Empty);
                     }
                 }
+                txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);                
             }
         }
 
         private void dataGridViewTopup_Click(object sender, EventArgs e)
         {
-            txtTopupPhoneNumber.Select();
+            listBoxTopUpPhoneNumber.Visible = false;
+            if (tabControlTopUpList.SelectedTab == tabPageListTopup)
+            {
+                return;
+            }
+            if (dataGridViewTopup.SelectedRows.Count == 1)
+            {
+                lbSelectTopupID.Text = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
+                lbTopUpPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+                txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
+                cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+                txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+
+                txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);
+                //txtTopupPhoneNumber.Select();
+            }
         }
 
         private void tabControlTopUpList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1141,10 +1136,13 @@ namespace TAOS
                     {
                         MessageBox.Show("การแก้ไขผิดพลาด", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else {
+                    else
+                    {
                         tabControlTopUpList.SelectedTab = tabPageAddTopup;
                     }
                 }
+                tbxHistoryPhoneNumber.Select(tbxHistoryPhoneNumber.Text.Length, 0);
+                
             }
             catch
             {
@@ -1224,7 +1222,7 @@ namespace TAOS
             string customerName = "",
             string phoneNumber = "",
             string price = "",
-            string status = "",
+            string status = "0",
             string network = ""
             )
         {
@@ -1242,7 +1240,8 @@ namespace TAOS
                 dataGridViewListCredit.Rows[number].Cells[4].Value =
                      Image.FromFile(helper.getPathIconImages(listCredit[7][i]));//network
                 dataGridViewListCredit.Rows[number].Cells[5].Value = listCredit[3][i];//price
-                dataGridViewListCredit.Rows[number].Cells[6].Value = listCredit[4][i];//price
+                dataGridViewListCredit.Rows[number].Cells[6].Value = listCredit[4][i];//
+                dataGridViewListCredit.Rows[number].Cells[9].Value = listCredit[7][i];//
 
             }
             txtCustomerNameSearchCredit.Select();
@@ -1255,6 +1254,7 @@ namespace TAOS
                 tbxSearchPriceCredit.Text,
                 cmbSearchStatusCredit.SelectedIndex.ToString(), 
                 cmbSearchNetworkCredit.Text);
+            txtCustomerNameSearchCredit.Select();
         }
 
         private void btnClearSearchCredit_Click(object sender, EventArgs e)
@@ -1263,8 +1263,258 @@ namespace TAOS
             tbxSearchPriceCredit.Text = "";
             cmbSearchStatusCredit.SelectedIndex = 0;
             cmbSearchNetworkCredit.SelectedIndex = -1;
-
+            getListCredit();
             txtCustomerNameSearchCredit.Select();
+        }
+
+        /*private void btnAddCredit_Click(object sender, EventArgs e)
+        {
+            if (tbxAddCustomerNameCredit.Text == "")
+            {
+                messageError.showMessageBox("กรุณาระบุชื่อลูกค้า");
+                tbxAddCustomerNameCredit.Focus();
+                return;
+            }
+            //else if (tbxAddPhoneNumberCredit.Text == "")
+            //{
+            //    messageError.showMessageBox("กรุณาระบุเบอร์โทร");
+            //    tbxAddPhoneNumberCredit.Focus();
+            //    return;
+            //}
+            else if (tbxAddCredit.Text == "")
+            {
+                messageError.showMessageBox("กรุณาระบุจำนวนเงิน");
+                tbxAddCredit.Focus();
+                return;
+            }
+            else if (cmdNetworkAddCredit.SelectedIndex < 0)
+            {
+                messageError.showMessageBox("กรุณาระบุเครือข่าย");
+                cmdNetworkAddCredit.Focus();
+                return;
+            }
+            if (!ConnectMySql.addBehindhand("0", "", "0", tbxAddCredit.Text))
+            {
+                messageError.showMessageBox("การเพิ่มข้อมูลผิดพลาด");
+            }
+            else
+            {
+                getListCredit();
+            }
+        }*/
+
+        private void cmbSearchNetworkCredit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkStrNetwork(cmbSearchNetworkCredit.Text, cmbSearchNetworkCredit, pictureBoxNetworkSearchCredit);
+        }
+
+        private void cmdNetworkAddCredit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkStrNetwork(cmdNetworkAddCredit.Text, cmdNetworkAddCredit, pictureBoxNetworkAddCredit);
+        }
+
+        private void btnClearCredit_Click(object sender, EventArgs e)
+        {
+            tbxAddCustomerNameCredit.Text = "";
+            tbxAddPhoneNumberCredit.Text = "";
+            tbxAddCredit.Text = "";
+            cmdNetworkAddCredit.SelectedIndex = -1;
+
+            btnEditCredit.Visible = false;
+            btnDeleteCredit.Visible = false;
+            getListCredit();
+            tbxAddCustomerNameCredit.Select();
+        }
+
+        private void dataGridViewListCredit_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewListCredit.SelectedRows.Count == 1)
+            {
+                tbxAddCustomerNameCredit.Text = dataGridViewListCredit.SelectedRows[0].Cells[1].Value.ToString();
+                tbxAddPhoneNumberCredit.Text = dataGridViewListCredit.SelectedRows[0].Cells[2].Value.ToString();
+                tbxAddCredit.Text = dataGridViewListCredit.SelectedRows[0].Cells[3].Value.ToString();
+                cmdNetworkAddCredit.Text = dataGridViewListCredit.SelectedRows[0].Cells[9].Value.ToString();
+
+                lbSelectCreditID.Text = dataGridViewListCredit.SelectedRows[0].Cells[0].Value.ToString();
+
+                //lbCustomerID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[5].Value.ToString();
+                //lbPhoneNumberID.Text = dataGridViewListCustomer.SelectedRows[0].Cells[6].Value.ToString();
+
+                tbxAddCredit.Select();
+                btnEditCredit.Visible = true;
+                btnDeleteCredit.Visible = true;
+            }
+        }
+
+        private void btnEditCredit_Click(object sender, EventArgs e)
+        {
+            if (tbxAddCustomerNameCredit.Text == "")
+            {
+                messageError.showMessageBox("กรุณาระบุชื่อลูกค้า");
+                tbxAddCustomerNameCredit.Focus();
+                return;
+            }
+            else if (tbxAddCredit.Text == "")
+            {
+                messageError.showMessageBox("กรุณาระบุจำนวนเงิน");
+                tbxAddCredit.Focus();
+                return;
+            }
+            bool result = ConnectMySql.updateCredit(
+                lbSelectCreditID.Text,
+                tbxAddCustomerNameCredit.Text,
+                tbxAddCredit.Text);
+            if (!result)
+            {
+                messageError.showMessageBox("การเพิ่มข้อมูลผิดพลาด");
+            }
+            else
+            {
+                btnClearCredit_Click(null, EventArgs.Empty);
+            }
+
+        }
+
+        private void btnDeleteCredit_Click(object sender, EventArgs e)
+        {
+            DialogResult dResult = messageError.showMessageBox("ต้องการลบยอดค้าง :" +
+                tbxAddCredit.Text +
+                " บาท\nเบอร์ :" + tbxAddPhoneNumberCredit.Text + 
+                "\nใช่หรือไม่",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dResult == DialogResult.No)
+            {
+                return;
+            }
+            bool result = ConnectMySql.updateCredit(lbSelectCreditID.Text, "", "", "", "1");
+            if (!result)
+            {
+                messageError.showMessageBox("การลบผิดพลาด");
+            }
+            else
+            {
+                btnClearCredit_Click(null, EventArgs.Empty);
+            }
+        }
+
+        private void dataGridViewListCredit_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewListCredit.SelectedRows.Count == 1)
+            {
+                DialogResult dResult = messageError.showMessageBox("ลูกค้า :\"" +
+                tbxAddCustomerNameCredit.Text +
+                "\" ได้จ่ายเงินแล้ว ใช่หรือไม่",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dResult == DialogResult.No)
+                {
+                    return;
+                }
+                bool result = ConnectMySql.updateCredit(lbSelectCreditID.Text, "", "", "1");
+                if (!result)
+                {
+                    messageError.showMessageBox("การบันทึกผิดพลาด");
+                }
+                else
+                {
+                    btnClearCredit_Click(null, EventArgs.Empty);
+                }
+            }
+        }
+
+        private void tabControlListCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlListCustomer.SelectedTab == tabPageListCustomer)
+            {
+                if (tabControlModifiedCustomer.SelectedTab == tabPageSeachCustomer) 
+                {
+                    textboxCustomerSearchName.Select();
+                }
+                else if (tabControlModifiedCustomer.SelectedTab == tabPageAddCustomer) 
+                {
+                    textBoxAddCustomerName.Select();
+                }
+            }
+            else if (tabControlListCustomer.SelectedTab == tabPageCredit)
+            {
+                if (tabControlCredit.SelectedTab == tabPageSearchCradit)
+                {
+                    txtCustomerNameSearchCredit.Select();
+                }
+                else if (tabControlCredit.SelectedTab == tabPageAddCredit)
+                {
+                    tbxAddCustomerNameCredit.Select();
+                }
+            }
+        }
+
+        private void tabControlCredit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (tabControlCredit.SelectedTab == tabPageSearchCradit)
+            {
+                txtCustomerNameSearchCredit.Select();
+            }
+            else if (tabControlCredit.SelectedTab == tabPageAddCredit)
+            {
+                tbxAddCustomerNameCredit.Select();
+            }
+        }
+
+        private void txtTopupPhoneNumber_KeyUp(object sender, KeyEventArgs e)
+        {
+            //Debug.WriteLine(2);
+            //lbTopUpPhoneNumber.Text = txtTopupPhoneNumber.Text;
+            //string phonenumber = txtTopupPhoneNumber.Text.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
+            //if (phonenumber.Length > 2)
+            //{
+            //    getListPhoneNumber(false, phonenumber);
+            //}
+            //else if (phonenumber.Length == 0)
+            //{
+            //    listBoxTopUpPhoneNumber.Visible = false;
+            //    saveMathPhoneNumber = null;
+            //}
+
+        }
+
+        private void dataGridViewTopup_DoubleClick(object sender, EventArgs e)
+        {
+            if (dataGridViewTopup.SelectedRows.Count == 1)
+            {
+                DialogResult result = messageError.showMessageBox("ทำการเติมเงินเบอร์ \"" +
+                    txtTopupPhoneNumber.Text + "\" แล้ว \nใช่ หรือไม่",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //lbSelectTopupID.Text
+                if (result == DialogResult.Yes)
+                {
+                    if (!ConnectMySql.setIsTopup(lbSelectTopupID.Text))
+                    {
+                        messageError.showMessageBox("การลบข้อมูลผิดพลาด");
+                    }
+                    else
+                    {
+                        getListTopup();
+                        btnTopUpClear_Click(null, EventArgs.Empty);
+                    }
+                }
+                txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);
+            }
+        }
+
+        private void txtTopupPhoneNumber_EditValueChanged(object sender, EventArgs e)
+        {
+
+            lbTopUpPhoneNumber.Text = txtTopupPhoneNumber.Text;
+            string phonenumber = txtTopupPhoneNumber.Text.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
+            if (phonenumber.Length > 2)
+            {
+                getListPhoneNumber(false, phonenumber);
+            }
+            else if (phonenumber.Length == 0)
+            {
+                listBoxTopUpPhoneNumber.Visible = false;
+                saveMathPhoneNumber = null;
+            }
         }
 
     }

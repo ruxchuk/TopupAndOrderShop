@@ -119,7 +119,7 @@ namespace TAOS
                 case "DTAC": return "Files\\Images\\icoDTAC.png";
                 case "TrueMove": return "Files\\Images\\icoTrueMove.png";
                 default:
-                    return "Files\\Images\\Error.png";
+                    return "Files\\Images\\ErrorIcon.png";
             }
         }
 
