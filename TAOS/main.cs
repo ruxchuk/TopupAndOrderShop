@@ -13,6 +13,7 @@ using DevExpress.XtraEditors.Mask;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 
 namespace TAOS
@@ -24,6 +25,8 @@ namespace TAOS
         private Helper helper;
         private string saveTextBarcode = "";
         private ConMySql ConnectMySql;
+        private bool checkConDB = false;
+
         private string idSelect = "";
         private double SumPriceAll = 0;
         private string str_urlCheckNetwork = "http://www.checkber.com/default.asp?q=";
@@ -34,14 +37,23 @@ namespace TAOS
         public MainForm()
         {
             InitializeComponent();
-            ConnectMySql = new ConMySql();
+
             helper = new Helper();
             loadSetting();
-            getListPhoneNumber(true, "");
-            getListTopup();
-            selectProduct();
-            getListCredit();
-            getListCustomer();
+
+            ConnectMySql = new ConMySql();
+            checkConDB = ConnectMySql.checkConDB;
+
+            if (checkConDB)
+            {
+                getListPhoneNumber(true, "");
+                getListTopup();
+                selectProduct();
+                getListCredit();
+                getListCustomer();
+            }
+
+            KeyboardHook.CreateHook(KeyReader);
         }
 
         private void loadSetting()
@@ -70,6 +82,7 @@ namespace TAOS
             txtValueBaht.Properties.Mask.IgnoreMaskBlank = false;
             txtValueBaht.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             txtValueBaht.Properties.MaxLength = 4;
+
             tbxHistoryTime.Properties.Mask.EditMask = "d";
             tbxHistoryTime.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.Default;
             tbxHistoryTime.Properties.Mask.IgnoreMaskBlank = false;
@@ -625,6 +638,7 @@ namespace TAOS
             else if (e.KeyData == Keys.Return && listBoxTopUpPhoneNumber.SelectedIndex > -1)
             {
                 setPhoneNumberFromList();
+                calMod(txtTopupPhoneNumber.Text);
             }
             else txtTopupPhoneNumber.Select();
         }
@@ -648,6 +662,7 @@ namespace TAOS
 
         private void txtValueBaht_KeyDown(object sender, KeyEventArgs e)
         {
+            
             if (e.KeyData == Keys.Return && txtValueBaht.Text != ""
                && int.Parse(txtValueBaht.Text) > 0)
             {
@@ -686,6 +701,7 @@ namespace TAOS
 
         private void txtValueBaht_EditValueChanged(object sender, EventArgs e)
         {
+            
             lbTopUpValue.Text = txtValueBaht.Text;
         }
 
@@ -698,8 +714,10 @@ namespace TAOS
             txtValueBaht.Text = "";
             cmbTopUpNetwork.SelectedIndex = -1;
 
+            lbMod.Text = "-";
+
             txtTopupPhoneNumber.Select();
-            getListPhoneNumber(true, "");
+            //getListPhoneNumber(true, "");
             getListTopup();
         }
 
@@ -790,6 +808,7 @@ namespace TAOS
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            Debug.WriteLine(e.KeyData);
             switch (e.KeyData)
             {
                 case Keys.F6:
@@ -803,10 +822,36 @@ namespace TAOS
                     txtTopupPhoneNumber.Select();
                     break;
                 case Keys.F8:
-                    tabControlMain.SelectedTab = tabPageCustomerList;
-                    tabControlListCustomer.SelectedTab = tabPageListCustomer;
                     tabControlModifiedCustomer.SelectedTab = tabPageSeachCustomer;
-                    textboxCustomerSearchName.Focus();
+                    Thread.Sleep(100);
+                    tabControlListCustomer.SelectedTab = tabPageListCustomer;
+                    Thread.Sleep(100);
+                    tabControlMain.SelectedTab = tabPageCustomerList;
+                    Thread.Sleep(100);
+                    textboxCustomerSearchName.Select();
+                    break;
+
+                case Keys.OemMinus:
+                    Debug.WriteLine(323);
+                    break;
+                case Keys.Subtract:
+                    if (tabControlMain.SelectedTab == tabPageTopUp)
+                    {
+                        if (tabControlTopUpList.SelectedTab == tabPageAddTopup &&
+                            dataGridViewTopup.RowCount > 0)
+                        {
+                            btnTopUpAnAll_Click(null, EventArgs.Empty);
+                        }
+                    }
+                    break;
+                case Keys.Multiply:
+                    if (tabControlMain.SelectedTab == tabPageTopUp)
+                    {
+                        if (tabControlTopUpList.SelectedTab == tabPageAddTopup)
+                        {
+                            btnTopUpClear_Click(null, EventArgs.Empty);
+                        }
+                    }
                     break;
                 default: break;
             }
@@ -831,6 +876,7 @@ namespace TAOS
                 {
                     if (tabControlModifiedCustomer.SelectedTab == tabPageSeachCustomer)
                     {
+                        textboxCustomerSearchName.Select();
                         textboxCustomerSearchName.Select();
                     }
                     else if (tabControlModifiedCustomer.SelectedTab == tabPageAddCustomer)
@@ -974,6 +1020,8 @@ namespace TAOS
                 txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
 
                 txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);
+
+                calMod(txtTopupPhoneNumber.Text);
                 //txtTopupPhoneNumber.Select();
             }
         }
@@ -1009,11 +1057,6 @@ namespace TAOS
             {
                 Debug.WriteLine("ไม่มีเบอร์");
             }
-        }
-
-        private void buttonCustomerSearch_Click(object sender, EventArgs e)
-        {
-            getListCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
         }
 
         private void buttonSearchClear_Click(object sender, EventArgs e)
@@ -1064,6 +1107,10 @@ namespace TAOS
             {
                 MessageBox.Show("การเพิ่มลูกค้าเกิดข้อผิดพลาด", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                getListCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
+            }
         }
 
         private bool validateAddCustomer(bool checkUpdate = false)
@@ -1108,6 +1155,8 @@ namespace TAOS
             Debug.WriteLine(date);
             getListTopup(1, tbxHistoryPhoneNumber.Text, date, tbxHistoryTime.Text, cmbHistoryNetwork.Text);
             tbxHistoryPhoneNumber.Select();
+            if (dataGridViewTopup.SelectedRows.Count == 1){
+            dataGridViewTopup.FirstDisplayedScrollingRowIndex = dataGridViewTopup.RowCount - 1;}
         }
 
         private void btnHistoryClear_Click(object sender, EventArgs e)
@@ -1154,15 +1203,22 @@ namespace TAOS
         {
             if (e.KeyCode == Keys.Return)
             {
-                buttonCustomerSearch_Click(EventArgs.Empty, null);   
-            }
-        }
+                if (dataGridViewListCustomer.SelectedRows.Count == 1)
+                {
+                    string phoneNumber = dataGridViewListCustomer.SelectedRows[0].Cells[2].Value.ToString();
+                    if (phoneNumber != "")
+                    {
+                        txtTopupPhoneNumber.Text = phoneNumber;
+                        phoneNumber = phoneNumber.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
+                        if (phoneNumber.Length > 2)
+                        {
+                            getListPhoneNumber(false, phoneNumber);
+                        }
+                        FRMCustomerTopup cutTopup = new FRMCustomerTopup(this);
+                        cutTopup.ShowDialog();
+                    }
 
-        private void textboxCustomerSearchPhone_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                buttonCustomerSearch_Click(EventArgs.Empty, null);   
+                }  
             }
         }
 
@@ -1198,6 +1254,7 @@ namespace TAOS
             else
             {
                 MessageBox.Show("ทำการบันทึกข้อมูลเรียบร้อยแล้ว", "บันทึกสำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                getListCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
             }
             textBoxAddCustomerName.Select();
         }
@@ -1211,8 +1268,8 @@ namespace TAOS
             }
             else
             {
-                buttonAddCustomerClear_Click(EventArgs.Empty, null);
-                buttonCustomerSearch_Click(EventArgs.Empty, null);
+                buttonAddCustomerClear_Click(EventArgs.Empty, null); 
+                getListCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
                 MessageBox.Show("ทำการลบข้อมูลเรียบร้อยแล้ว", "ลบสำเร็จ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBoxAddCustomerName.Select();
             }
@@ -1501,6 +1558,26 @@ namespace TAOS
             }
         }
 
+        private void calMod(string number)
+        {
+
+            string phonenumber = number.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
+            int sum = 0;
+            sum += int.Parse(phonenumber[0].ToString());
+            sum += int.Parse(phonenumber[1].ToString());
+            sum += int.Parse(phonenumber[2].ToString());
+            sum += int.Parse(phonenumber[3].ToString());
+            sum += int.Parse(phonenumber[4].ToString());
+            sum += int.Parse(phonenumber[5].ToString());
+            sum += int.Parse(phonenumber[6].ToString());
+            sum += int.Parse(phonenumber[7].ToString());
+            sum += int.Parse(phonenumber[8].ToString());
+            sum += int.Parse(phonenumber[9].ToString());
+            sum = sum % 9;
+            sum = sum == 0 ? 9 : sum;
+            lbMod.Text = sum.ToString();
+        }
+
         private void txtTopupPhoneNumber_EditValueChanged(object sender, EventArgs e)
         {
 
@@ -1509,12 +1586,57 @@ namespace TAOS
             if (phonenumber.Length > 2)
             {
                 getListPhoneNumber(false, phonenumber);
+                if (phonenumber.Length == 10)
+                {
+                    calMod(phonenumber);
+                } 
             }
             else if (phonenumber.Length == 0)
             {
                 listBoxTopUpPhoneNumber.Visible = false;
                 saveMathPhoneNumber = null;
             }
+
+            Debug.WriteLine(phonenumber.Length);
+        }
+
+        private int countKeyDown = 0;
+        public void KeyReader(IntPtr wParam, IntPtr lParam)
+        {
+            int key = Marshal.ReadInt32(lParam);
+            string temp = KeyboardHook.checkMatchKey(key);
+            Debug.WriteLine(temp);
+            if (temp == ".")
+            {
+                countKeyDown++;
+                if (countKeyDown > 2)
+                {
+                    countKeyDown = 0;
+                    //this.WindowState = FormWindowState.Normal;
+                    //this.WindowState = FormWindowState.Maximized;
+                    this.Activate();
+                    this.Show();
+                }
+            }
+            else countKeyDown = 0;
+        }
+
+        private void txtValueBaht_TextChanged(object sender, EventArgs e)
+        {
+            if (txtValueBaht.Text != "")
+            {
+                if (double.Parse(txtValueBaht.Text) < 0)
+                {
+                    //Debug.WriteLine(double.Parse(txtValueBaht.Text));
+                    txtValueBaht.Text = (double.Parse(txtValueBaht.Text) * -1).ToString();
+                }
+
+            }
+        }
+
+        private void textboxCustomerSearchName_TextChanged(object sender, EventArgs e)
+        {
+            getListCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
         }
 
     }

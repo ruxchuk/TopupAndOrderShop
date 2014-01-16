@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="Class\ConMySql.cs" />
     <Compile Include="Class\Helper.cs" />
+    <Compile Include="Class\KeyboardHook.cs" />
     <Compile Include="Class\MessageError.cs" />
     <Compile Include="FRMCustomerTopup.cs">
       <SubType>Form</SubType>

@@ -23,6 +23,7 @@ namespace TAOS
         public DateTime dateStart;
         public DateTime dateEnd;
         public string connectionString;
+        public bool checkConDB = false;
 
         #endregion
 
@@ -72,14 +73,17 @@ namespace TAOS
                 if (CheckConnect())
                 {
                     CloseConnection();
+                    checkConDB = true;
                 }
                 else
                 {
+                    checkConDB = false;
                     MessageBox.Show("เชื่อมต่อฐานข้อมูล ผิดพลาด");
                 }
             }
             catch
             {
+                checkConDB = false;
                 MessageBox.Show("กรุณาตรวจสอบ Username หรือ Password\n", ""
                    , MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -743,16 +747,14 @@ namespace TAOS
                     ) 
                     VALUES
                       (
-                        '" + phoneNumber + @",'
+                        '" + phoneNumber + @"',
                         '" + network + @"',
                         NOW()
                       ) 
                       ;
                 ";
-                Debug.WriteLine(sql);
                 id = runQuery(sql);
             }
-            Debug.WriteLine(id);
             if (id == 0)
             {
                 return false;
@@ -773,8 +775,6 @@ namespace TAOS
                 '" + address + @"'
                 ) ;
             ";
-            Debug.WriteLine(sql);
-            Debug.WriteLine(id);
             id = runQuery(sql);
             if (id == 0)
             {

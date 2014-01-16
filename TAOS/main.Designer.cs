@@ -49,6 +49,8 @@
             this.tabControlTopUpList = new System.Windows.Forms.TabControl();
             this.tabPageAddTopup = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lbMod = new System.Windows.Forms.Label();
+            this.lbPhoneID = new System.Windows.Forms.Label();
             this.lbSelectTopupID = new System.Windows.Forms.Label();
             this.listBoxTopUpPhoneNumber = new System.Windows.Forms.ListBox();
             this.txtValueBaht = new DevExpress.XtraEditors.TextEdit();
@@ -105,7 +107,6 @@
             this.tabControlModifiedCustomer = new System.Windows.Forms.TabControl();
             this.tabPageSeachCustomer = new System.Windows.Forms.TabPage();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.buttonCustomerSearch = new System.Windows.Forms.Button();
             this.buttonCustomerClear = new System.Windows.Forms.Button();
             this.comboBoxSearchCustomerNetwork = new System.Windows.Forms.ComboBox();
             this.textboxCustomerSearchPhone = new DevExpress.XtraEditors.TextEdit();
@@ -226,7 +227,19 @@
             this.tbxSerialAddProduct = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.lbPhoneID = new System.Windows.Forms.Label();
+            this.tabPageSetTopup = new System.Windows.Forms.TabPage();
+            this.textEditOne2CallTopupCode1 = new DevExpress.XtraEditors.TextEdit();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.textEditOne2CallTopupCode3 = new DevExpress.XtraEditors.TextEdit();
+            this.label36 = new System.Windows.Forms.Label();
+            this.textEditOne2CallTopupCode2 = new DevExpress.XtraEditors.TextEdit();
+            this.label38 = new System.Windows.Forms.Label();
+            this.textEditDTACTopupCode2 = new DevExpress.XtraEditors.TextEdit();
+            this.textEditDTACTopupCode3 = new DevExpress.XtraEditors.TextEdit();
+            this.textEditDTACTopupCode1 = new DevExpress.XtraEditors.TextEdit();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageTopUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopup)).BeginInit();
@@ -289,6 +302,13 @@
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPageSetTopup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -454,6 +474,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlTopUpList.Controls.Add(this.tabPageAddTopup);
             this.tabControlTopUpList.Controls.Add(this.tabPageListTopup);
+            this.tabControlTopUpList.Controls.Add(this.tabPageSetTopup);
             this.tabControlTopUpList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.tabControlTopUpList.Location = new System.Drawing.Point(625, 88);
             this.tabControlTopUpList.Name = "tabControlTopUpList";
@@ -477,6 +498,7 @@
             // 
             this.groupBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.groupBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox8.Controls.Add(this.lbMod);
             this.groupBox8.Controls.Add(this.lbPhoneID);
             this.groupBox8.Controls.Add(this.lbSelectTopupID);
             this.groupBox8.Controls.Add(this.listBoxTopUpPhoneNumber);
@@ -498,6 +520,29 @@
             this.groupBox8.Size = new System.Drawing.Size(318, 420);
             this.groupBox8.TabIndex = 6;
             this.groupBox8.TabStop = false;
+            // 
+            // lbMod
+            // 
+            this.lbMod.AutoSize = true;
+            this.lbMod.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lbMod.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.lbMod.ForeColor = System.Drawing.Color.White;
+            this.lbMod.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbMod.Location = new System.Drawing.Point(226, 269);
+            this.lbMod.Name = "lbMod";
+            this.lbMod.Size = new System.Drawing.Size(66, 31);
+            this.lbMod.TabIndex = 46;
+            this.lbMod.Text = "Mod";
+            // 
+            // lbPhoneID
+            // 
+            this.lbPhoneID.AutoSize = true;
+            this.lbPhoneID.Location = new System.Drawing.Point(183, 178);
+            this.lbPhoneID.Name = "lbPhoneID";
+            this.lbPhoneID.Size = new System.Drawing.Size(76, 20);
+            this.lbPhoneID.TabIndex = 45;
+            this.lbPhoneID.Text = "select id";
+            this.lbPhoneID.Visible = false;
             // 
             // lbSelectTopupID
             // 
@@ -537,9 +582,11 @@
             this.txtValueBaht.Properties.Appearance.Options.UseBackColor = true;
             this.txtValueBaht.Properties.Appearance.Options.UseFont = true;
             this.txtValueBaht.Properties.Appearance.Options.UseForeColor = true;
+            this.txtValueBaht.Properties.EditFormat.FormatString = "0000";
             this.txtValueBaht.Size = new System.Drawing.Size(108, 40);
             this.txtValueBaht.TabIndex = 2;
             this.txtValueBaht.EditValueChanged += new System.EventHandler(this.txtValueBaht_EditValueChanged);
+            this.txtValueBaht.TextChanged += new System.EventHandler(this.txtValueBaht_TextChanged);
             this.txtValueBaht.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValueBaht_KeyDown);
             // 
             // txtTopupPhoneNumber
@@ -1266,7 +1313,6 @@
             // groupBox10
             // 
             this.groupBox10.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox10.Controls.Add(this.buttonCustomerSearch);
             this.groupBox10.Controls.Add(this.buttonCustomerClear);
             this.groupBox10.Controls.Add(this.comboBoxSearchCustomerNetwork);
             this.groupBox10.Controls.Add(this.textboxCustomerSearchPhone);
@@ -1282,23 +1328,6 @@
             this.groupBox10.Size = new System.Drawing.Size(272, 475);
             this.groupBox10.TabIndex = 5;
             this.groupBox10.TabStop = false;
-            // 
-            // buttonCustomerSearch
-            // 
-            this.buttonCustomerSearch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonCustomerSearch.BackColor = System.Drawing.Color.PaleGreen;
-            this.buttonCustomerSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonCustomerSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonCustomerSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.buttonCustomerSearch.ForeColor = System.Drawing.Color.Black;
-            this.buttonCustomerSearch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonCustomerSearch.Location = new System.Drawing.Point(144, 425);
-            this.buttonCustomerSearch.Name = "buttonCustomerSearch";
-            this.buttonCustomerSearch.Size = new System.Drawing.Size(119, 40);
-            this.buttonCustomerSearch.TabIndex = 4;
-            this.buttonCustomerSearch.Text = "ค้นหา";
-            this.buttonCustomerSearch.UseVisualStyleBackColor = false;
-            this.buttonCustomerSearch.Click += new System.EventHandler(this.buttonCustomerSearch_Click);
             // 
             // buttonCustomerClear
             // 
@@ -1351,7 +1380,6 @@
             this.textboxCustomerSearchPhone.Properties.Appearance.Options.UseForeColor = true;
             this.textboxCustomerSearchPhone.Size = new System.Drawing.Size(159, 32);
             this.textboxCustomerSearchPhone.TabIndex = 2;
-            this.textboxCustomerSearchPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxCustomerSearchPhone_KeyDown);
             // 
             // pictureBoxCustomerSearch
             // 
@@ -1417,6 +1445,7 @@
             this.textboxCustomerSearchName.Name = "textboxCustomerSearchName";
             this.textboxCustomerSearchName.Size = new System.Drawing.Size(159, 31);
             this.textboxCustomerSearchName.TabIndex = 1;
+            this.textboxCustomerSearchName.TextChanged += new System.EventHandler(this.textboxCustomerSearchName_TextChanged);
             this.textboxCustomerSearchName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxCustomerSearchName_KeyDown);
             // 
             // tabPageAddCustomer
@@ -2963,15 +2992,194 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // lbPhoneID
+            // tabPageSetTopup
             // 
-            this.lbPhoneID.AutoSize = true;
-            this.lbPhoneID.Location = new System.Drawing.Point(183, 178);
-            this.lbPhoneID.Name = "lbPhoneID";
-            this.lbPhoneID.Size = new System.Drawing.Size(76, 20);
-            this.lbPhoneID.TabIndex = 45;
-            this.lbPhoneID.Text = "select id";
-            this.lbPhoneID.Visible = false;
+            this.tabPageSetTopup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(89)))), ((int)(((byte)(194)))));
+            this.tabPageSetTopup.Controls.Add(this.textEditDTACTopupCode2);
+            this.tabPageSetTopup.Controls.Add(this.textEditDTACTopupCode3);
+            this.tabPageSetTopup.Controls.Add(this.textEditDTACTopupCode1);
+            this.tabPageSetTopup.Controls.Add(this.label37);
+            this.tabPageSetTopup.Controls.Add(this.label39);
+            this.tabPageSetTopup.Controls.Add(this.textEditOne2CallTopupCode2);
+            this.tabPageSetTopup.Controls.Add(this.textEditOne2CallTopupCode3);
+            this.tabPageSetTopup.Controls.Add(this.textEditOne2CallTopupCode1);
+            this.tabPageSetTopup.Controls.Add(this.label38);
+            this.tabPageSetTopup.Controls.Add(this.label34);
+            this.tabPageSetTopup.Controls.Add(this.label36);
+            this.tabPageSetTopup.Controls.Add(this.label35);
+            this.tabPageSetTopup.Location = new System.Drawing.Point(4, 33);
+            this.tabPageSetTopup.Name = "tabPageSetTopup";
+            this.tabPageSetTopup.Size = new System.Drawing.Size(324, 426);
+            this.tabPageSetTopup.TabIndex = 2;
+            this.tabPageSetTopup.Text = "ตั้งค่า";
+            // 
+            // textEditOne2CallTopupCode1
+            // 
+            this.textEditOne2CallTopupCode1.CausesValidation = false;
+            this.textEditOne2CallTopupCode1.EditValue = "*123*0796*";
+            this.textEditOne2CallTopupCode1.Location = new System.Drawing.Point(4, 54);
+            this.textEditOne2CallTopupCode1.Name = "textEditOne2CallTopupCode1";
+            this.textEditOne2CallTopupCode1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditOne2CallTopupCode1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditOne2CallTopupCode1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditOne2CallTopupCode1.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditOne2CallTopupCode1.Properties.Appearance.Options.UseFont = true;
+            this.textEditOne2CallTopupCode1.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditOne2CallTopupCode1.Size = new System.Drawing.Size(116, 32);
+            this.textEditOne2CallTopupCode1.TabIndex = 38;
+            // 
+            // label34
+            // 
+            this.label34.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label34.ForeColor = System.Drawing.Color.White;
+            this.label34.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label34.Location = new System.Drawing.Point(117, 58);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(81, 25);
+            this.label34.TabIndex = 37;
+            this.label34.Text = "+เบอร์+";
+            // 
+            // label35
+            // 
+            this.label35.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label35.ForeColor = System.Drawing.Color.White;
+            this.label35.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label35.Location = new System.Drawing.Point(79, 17);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(167, 25);
+            this.label35.TabIndex = 36;
+            this.label35.Text = "รหัส One 2 Call";
+            // 
+            // textEditOne2CallTopupCode3
+            // 
+            this.textEditOne2CallTopupCode3.CausesValidation = false;
+            this.textEditOne2CallTopupCode3.EditValue = "#";
+            this.textEditOne2CallTopupCode3.Location = new System.Drawing.Point(297, 54);
+            this.textEditOne2CallTopupCode3.Name = "textEditOne2CallTopupCode3";
+            this.textEditOne2CallTopupCode3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditOne2CallTopupCode3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditOne2CallTopupCode3.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditOne2CallTopupCode3.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditOne2CallTopupCode3.Properties.Appearance.Options.UseFont = true;
+            this.textEditOne2CallTopupCode3.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditOne2CallTopupCode3.Size = new System.Drawing.Size(23, 32);
+            this.textEditOne2CallTopupCode3.TabIndex = 38;
+            // 
+            // label36
+            // 
+            this.label36.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label36.ForeColor = System.Drawing.Color.White;
+            this.label36.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label36.Location = new System.Drawing.Point(104, 134);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(117, 25);
+            this.label36.TabIndex = 36;
+            this.label36.Text = "รหัส DTAC";
+            // 
+            // textEditOne2CallTopupCode2
+            // 
+            this.textEditOne2CallTopupCode2.CausesValidation = false;
+            this.textEditOne2CallTopupCode2.EditValue = "*";
+            this.textEditOne2CallTopupCode2.Location = new System.Drawing.Point(194, 54);
+            this.textEditOne2CallTopupCode2.Name = "textEditOne2CallTopupCode2";
+            this.textEditOne2CallTopupCode2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditOne2CallTopupCode2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditOne2CallTopupCode2.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditOne2CallTopupCode2.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditOne2CallTopupCode2.Properties.Appearance.Options.UseFont = true;
+            this.textEditOne2CallTopupCode2.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditOne2CallTopupCode2.Size = new System.Drawing.Size(22, 32);
+            this.textEditOne2CallTopupCode2.TabIndex = 38;
+            // 
+            // label38
+            // 
+            this.label38.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label38.ForeColor = System.Drawing.Color.White;
+            this.label38.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label38.Location = new System.Drawing.Point(213, 58);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(83, 25);
+            this.label38.TabIndex = 37;
+            this.label38.Text = "+ เงิน +";
+            // 
+            // textEditDTACTopupCode2
+            // 
+            this.textEditDTACTopupCode2.CausesValidation = false;
+            this.textEditDTACTopupCode2.EditValue = "";
+            this.textEditDTACTopupCode2.Location = new System.Drawing.Point(194, 162);
+            this.textEditDTACTopupCode2.Name = "textEditDTACTopupCode2";
+            this.textEditDTACTopupCode2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditDTACTopupCode2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditDTACTopupCode2.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditDTACTopupCode2.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditDTACTopupCode2.Properties.Appearance.Options.UseFont = true;
+            this.textEditDTACTopupCode2.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditDTACTopupCode2.Size = new System.Drawing.Size(22, 32);
+            this.textEditDTACTopupCode2.TabIndex = 41;
+            // 
+            // textEditDTACTopupCode3
+            // 
+            this.textEditDTACTopupCode3.CausesValidation = false;
+            this.textEditDTACTopupCode3.EditValue = "";
+            this.textEditDTACTopupCode3.Location = new System.Drawing.Point(297, 162);
+            this.textEditDTACTopupCode3.Name = "textEditDTACTopupCode3";
+            this.textEditDTACTopupCode3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditDTACTopupCode3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditDTACTopupCode3.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditDTACTopupCode3.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditDTACTopupCode3.Properties.Appearance.Options.UseFont = true;
+            this.textEditDTACTopupCode3.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditDTACTopupCode3.Size = new System.Drawing.Size(23, 32);
+            this.textEditDTACTopupCode3.TabIndex = 42;
+            // 
+            // textEditDTACTopupCode1
+            // 
+            this.textEditDTACTopupCode1.CausesValidation = false;
+            this.textEditDTACTopupCode1.EditValue = "";
+            this.textEditDTACTopupCode1.Location = new System.Drawing.Point(4, 162);
+            this.textEditDTACTopupCode1.Name = "textEditDTACTopupCode1";
+            this.textEditDTACTopupCode1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditDTACTopupCode1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditDTACTopupCode1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditDTACTopupCode1.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditDTACTopupCode1.Properties.Appearance.Options.UseFont = true;
+            this.textEditDTACTopupCode1.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditDTACTopupCode1.Size = new System.Drawing.Size(116, 32);
+            this.textEditDTACTopupCode1.TabIndex = 43;
+            // 
+            // label37
+            // 
+            this.label37.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label37.ForeColor = System.Drawing.Color.White;
+            this.label37.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label37.Location = new System.Drawing.Point(213, 166);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(83, 25);
+            this.label37.TabIndex = 39;
+            this.label37.Text = "+ เงิน +";
+            // 
+            // label39
+            // 
+            this.label39.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label39.ForeColor = System.Drawing.Color.White;
+            this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label39.Location = new System.Drawing.Point(117, 166);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(81, 25);
+            this.label39.TabIndex = 40;
+            this.label39.Text = "+เบอร์+";
             // 
             // MainForm
             // 
@@ -3058,6 +3266,14 @@
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPageSetTopup.ResumeLayout(false);
+            this.tabPageSetTopup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3184,7 +3400,6 @@
         private System.Windows.Forms.Label label13;
         public DevExpress.XtraEditors.TextEdit textboxCustomerSearchPhone;
         private System.Windows.Forms.Button btnHistorySearch;
-        private System.Windows.Forms.Button buttonCustomerSearch;
         private System.Windows.Forms.Button buttonCustomerClear;
         private System.Windows.Forms.ComboBox comboBoxSearchCustomerNetwork;
         private System.Windows.Forms.RichTextBox richTextBoxAddCustomer;
@@ -3258,6 +3473,20 @@
         private System.Windows.Forms.Label lbSelectCreditID;
         public DevExpress.XtraEditors.TextEdit txtTopupPhoneNumber;
         private System.Windows.Forms.Label lbPhoneID;
+        private System.Windows.Forms.Label lbMod;
+        private System.Windows.Forms.TabPage tabPageSetTopup;
+        public DevExpress.XtraEditors.TextEdit textEditDTACTopupCode2;
+        public DevExpress.XtraEditors.TextEdit textEditDTACTopupCode3;
+        public DevExpress.XtraEditors.TextEdit textEditDTACTopupCode1;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label39;
+        public DevExpress.XtraEditors.TextEdit textEditOne2CallTopupCode2;
+        public DevExpress.XtraEditors.TextEdit textEditOne2CallTopupCode3;
+        public DevExpress.XtraEditors.TextEdit textEditOne2CallTopupCode1;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
 
 
     }
