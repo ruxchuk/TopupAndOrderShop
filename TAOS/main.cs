@@ -1666,10 +1666,22 @@ namespace TAOS
                     phone + " ใช่หรือไม่",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
-            { 
-            
+            {
+                phone = phone.Trim();
+                phone = phone.Replace("-", "");
+                string valueBath = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
+                string ussdCode = 
+                    textEditOne2CallTopupCode1.Text + 
+                    phone + 
+                    textEditOne2CallTopupCode2.Text +
+                    valueBath +
+                    textEditOne2CallTopupCode3.Text;
+                ussdCode = "*121#";
+                MessageBox.Show(connectPort.topupUSSD(ussdCode));
             }
-            else { }
+            else {
+                btnTopupUSSD1.Visible = false;
+            }
         }
 
     }

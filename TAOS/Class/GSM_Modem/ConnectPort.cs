@@ -68,6 +68,7 @@ namespace TAOS
 
         public string responseUSSD = "";
         public SerialPort _Port;
+        public USSD ussd = new USSD();
 
         public string[] getPort()
         {
@@ -151,6 +152,24 @@ namespace TAOS
         }
 
 
+        public string topupUSSD(string command)
+        {
+            string message = "";
+            message = sendUSSD(_Port, command);
+            string response = responseUSSD;
+            try
+            {
+                response = response.Substring(response.IndexOf("\"") + 1);
+                response = response.Substring(0, response.IndexOf("\""));
+                response = ussd.decodeResponseUSSDToText(response);
+            }
+            catch
+            {
+                response = "Topup Error!";
+            }
+            return response;
+        }
+
 
 
         //Execute AT Command
@@ -210,7 +229,7 @@ namespace TAOS
                     {
                         string t = port.ReadExisting();
                         buffer += t;
-
+                        Debug.WriteLine(t);
                         responseUSSD += t;
                     }
                     else
