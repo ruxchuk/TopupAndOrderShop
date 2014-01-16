@@ -240,6 +240,8 @@
             this.textEditDTACTopupCode1 = new DevExpress.XtraEditors.TextEdit();
             this.label37 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.tabControlMain.SuspendLayout();
             this.tabPageTopUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopup)).BeginInit();
@@ -309,6 +311,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -1463,8 +1466,6 @@
             // groupBox11
             // 
             this.groupBox11.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox11.Controls.Add(this.lbPhoneNumberID);
-            this.groupBox11.Controls.Add(this.lbCustomerID);
             this.groupBox11.Controls.Add(this.richTextBoxAddCustomer);
             this.groupBox11.Controls.Add(this.buttonAddCustomerClear);
             this.groupBox11.Controls.Add(this.buttonCustomerEdit);
@@ -1477,8 +1478,10 @@
             this.groupBox11.Controls.Add(this.label20);
             this.groupBox11.Controls.Add(this.label4);
             this.groupBox11.Controls.Add(this.label6);
-            this.groupBox11.Controls.Add(this.lbOldPhoneNumber);
             this.groupBox11.Controls.Add(this.label23);
+            this.groupBox11.Controls.Add(this.lbPhoneNumberID);
+            this.groupBox11.Controls.Add(this.lbCustomerID);
+            this.groupBox11.Controls.Add(this.lbOldPhoneNumber);
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox11.Location = new System.Drawing.Point(3, 3);
@@ -1710,7 +1713,7 @@
             this.lbOldPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.lbOldPhoneNumber.ForeColor = System.Drawing.Color.White;
             this.lbOldPhoneNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbOldPhoneNumber.Location = new System.Drawing.Point(6, -3);
+            this.lbOldPhoneNumber.Location = new System.Drawing.Point(11, 226);
             this.lbOldPhoneNumber.Name = "lbOldPhoneNumber";
             this.lbOldPhoneNumber.Size = new System.Drawing.Size(203, 27);
             this.lbOldPhoneNumber.TabIndex = 5;
@@ -3002,8 +3005,10 @@
             this.tabPageSetTopup.Controls.Add(this.label39);
             this.tabPageSetTopup.Controls.Add(this.textEditOne2CallTopupCode2);
             this.tabPageSetTopup.Controls.Add(this.textEditOne2CallTopupCode3);
+            this.tabPageSetTopup.Controls.Add(this.textEdit1);
             this.tabPageSetTopup.Controls.Add(this.textEditOne2CallTopupCode1);
             this.tabPageSetTopup.Controls.Add(this.label38);
+            this.tabPageSetTopup.Controls.Add(this.label40);
             this.tabPageSetTopup.Controls.Add(this.label34);
             this.tabPageSetTopup.Controls.Add(this.label36);
             this.tabPageSetTopup.Controls.Add(this.label35);
@@ -3076,7 +3081,7 @@
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.label36.ForeColor = System.Drawing.Color.White;
             this.label36.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label36.Location = new System.Drawing.Point(104, 134);
+            this.label36.Location = new System.Drawing.Point(104, 222);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(117, 25);
             this.label36.TabIndex = 36;
@@ -3114,7 +3119,7 @@
             // 
             this.textEditDTACTopupCode2.CausesValidation = false;
             this.textEditDTACTopupCode2.EditValue = "";
-            this.textEditDTACTopupCode2.Location = new System.Drawing.Point(194, 162);
+            this.textEditDTACTopupCode2.Location = new System.Drawing.Point(194, 250);
             this.textEditDTACTopupCode2.Name = "textEditDTACTopupCode2";
             this.textEditDTACTopupCode2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textEditDTACTopupCode2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3129,7 +3134,7 @@
             // 
             this.textEditDTACTopupCode3.CausesValidation = false;
             this.textEditDTACTopupCode3.EditValue = "";
-            this.textEditDTACTopupCode3.Location = new System.Drawing.Point(297, 162);
+            this.textEditDTACTopupCode3.Location = new System.Drawing.Point(297, 250);
             this.textEditDTACTopupCode3.Name = "textEditDTACTopupCode3";
             this.textEditDTACTopupCode3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textEditDTACTopupCode3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3144,7 +3149,7 @@
             // 
             this.textEditDTACTopupCode1.CausesValidation = false;
             this.textEditDTACTopupCode1.EditValue = "";
-            this.textEditDTACTopupCode1.Location = new System.Drawing.Point(4, 162);
+            this.textEditDTACTopupCode1.Location = new System.Drawing.Point(4, 250);
             this.textEditDTACTopupCode1.Name = "textEditDTACTopupCode1";
             this.textEditDTACTopupCode1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textEditDTACTopupCode1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3162,7 +3167,7 @@
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.label37.ForeColor = System.Drawing.Color.White;
             this.label37.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label37.Location = new System.Drawing.Point(213, 166);
+            this.label37.Location = new System.Drawing.Point(213, 254);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(83, 25);
             this.label37.TabIndex = 39;
@@ -3175,11 +3180,39 @@
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.label39.ForeColor = System.Drawing.Color.White;
             this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label39.Location = new System.Drawing.Point(117, 166);
+            this.label39.Location = new System.Drawing.Point(117, 254);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(81, 25);
             this.label39.TabIndex = 40;
             this.label39.Text = "+เบอร์+";
+            // 
+            // label40
+            // 
+            this.label40.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label40.ForeColor = System.Drawing.Color.White;
+            this.label40.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label40.Location = new System.Drawing.Point(3, 99);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(62, 25);
+            this.label40.TabIndex = 37;
+            this.label40.Text = "Port:";
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.CausesValidation = false;
+            this.textEdit1.EditValue = "COM17";
+            this.textEdit1.Location = new System.Drawing.Point(71, 95);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit1.Properties.Appearance.Options.UseFont = true;
+            this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
+            this.textEdit1.Size = new System.Drawing.Size(80, 32);
+            this.textEdit1.TabIndex = 38;
             // 
             // MainForm
             // 
@@ -3274,6 +3307,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3487,6 +3521,8 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
+        public DevExpress.XtraEditors.TextEdit textEdit1;
+        private System.Windows.Forms.Label label40;
 
 
     }
