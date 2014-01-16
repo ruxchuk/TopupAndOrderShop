@@ -15,7 +15,6 @@ using System.IO;
 using System.Threading;
 using System.Runtime.InteropServices;
 
-
 namespace TAOS
 {
     public partial class MainForm : XtraForm
@@ -33,6 +32,10 @@ namespace TAOS
         private Bitmap bmImageNetwork;
         private MessageError messageError;
         private bool checkClickTopup = false;
+
+        #region GSM Modem
+        private ConnectPort connectPort = new ConnectPort();
+        #endregion
 
         public MainForm()
         {
@@ -54,6 +57,8 @@ namespace TAOS
             }
 
             KeyboardHook.CreateHook(KeyReader);
+
+            checkPort();
         }
 
         private void loadSetting()
@@ -89,6 +94,11 @@ namespace TAOS
             tbxHistoryTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             tbxHistoryTime.Properties.MaxLength = 2;
 
+        }
+
+        private void checkPort()
+        {
+            textEditPortOne2Call.Text = connectPort.setPort();
         }
 
         private void tbxSerialAndAddPrice_KeyUp(object sender, KeyEventArgs e)
@@ -719,6 +729,7 @@ namespace TAOS
             txtTopupPhoneNumber.Select();
             //getListPhoneNumber(true, "");
             getListTopup();
+            btnTopupUSSD1.Visible = false;
         }
 
         private bool checkAddTopup()
@@ -787,12 +798,12 @@ namespace TAOS
 
             for (int i = 0; i < list[0].Count; i++)
             {
-                int number = dataGridViewTopup.Rows.Add(); 
                 string newStrPhoneNumber = helper.stringConvertPhoneNumber(list[1][i]);
+                int number = dataGridViewTopup.Rows.Add();
                 dataGridViewTopup.Rows[number].Cells[0].Value = list[0][i];
                 dataGridViewTopup.Rows[number].Cells[1].Value = newStrPhoneNumber;
                 dataGridViewTopup.Rows[number].Cells[2].Value = list[2][i];
-                dataGridViewTopup.Rows[number].Cells[3].Value = 
+                dataGridViewTopup.Rows[number].Cells[3].Value =
                     Image.FromFile(helper.getPathIconImages(list[3][i]));
                 dataGridViewTopup.Rows[number].Cells[4].Value = list[4][i];
                 dataGridViewTopup.Rows[number].Cells[5].Value = list[5][i];
@@ -1023,6 +1034,15 @@ namespace TAOS
 
                 calMod(txtTopupPhoneNumber.Text);
                 //txtTopupPhoneNumber.Select();
+
+                if (dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString().Trim() == "One 2 Call")
+                {
+                    btnTopupUSSD1.Visible = true;
+                }
+                else
+                {
+                    btnTopupUSSD1.Visible = false;
+                }
             }
         }
 
@@ -1637,6 +1657,19 @@ namespace TAOS
         private void textboxCustomerSearchName_TextChanged(object sender, EventArgs e)
         {
             getListCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
+        }
+
+        private void btnTopupUSSD1_Click(object sender, EventArgs e)
+        {
+            string phone = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+            DialogResult result = messageError.showMessageBox("ต้องการเติมเงิน One 2 Call เบอร์ " +
+                    phone + " ใช่หรือไม่",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            { 
+            
+            }
+            else { }
         }
 
     }

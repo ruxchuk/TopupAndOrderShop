@@ -6,8 +6,9 @@ using System.IO.Ports;
 using System.Threading;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.IO;
 
-namespace TAOS.Class.GSM_Modem
+namespace TAOS
 {
     public class ConnectPort
     {
@@ -66,6 +67,91 @@ namespace TAOS.Class.GSM_Modem
         #endregion
 
         public string responseUSSD = "";
+        public SerialPort _Port;
+
+        public string[] getPort()
+        {
+            string[] ports = null;
+            try
+            {
+                #region Display all available COM Ports
+                ports = SerialPort.GetPortNames();
+
+                // Add all port names to the combo box:
+                foreach (string port in ports)
+                {
+                    //this.cboPortName.Items.Add(port);
+                Debug.WriteLine(port);
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                ErrorLog(ex.Message);
+            }
+            return ports;
+        }
+
+        public string setPort()
+        {
+            string checkPort = "No Port";
+            string[] ports = getPort(); 
+            SerialPort portVal = new SerialPort();
+            foreach (string port in ports)
+            {
+                Debug.WriteLine(port);
+                try
+                {
+                    //Open communication port 
+                    portVal = OpenPort(
+                        port,
+                        Convert.ToInt32("9600"),
+                        Convert.ToInt32("8"),
+                        Convert.ToInt32("300"),
+                        Convert.ToInt32("300")
+                    );
+                }
+                catch (Exception ex)
+                {
+                    //ErrorLog(ex.Message);
+                    portVal = null;
+                } Debug.WriteLine(port);
+                if (portVal != null)
+                {
+                    if (checkConnectPort(portVal))
+                    {
+                        _Port = portVal;
+                        return port;
+                    }
+                    else
+                    {
+                        ClosePort(portVal);
+                    }
+                }
+            }
+            return checkPort;
+        }
+
+        public bool checkConnectPort(SerialPort port)
+        {
+            try
+            {
+                string strResponse = "";
+                strResponse = ExecCommand(port, "AT", 300, "No phone connected");
+                if (strResponse.EndsWith("\r\nOK\r\n"))
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return false;
+        }
+
+
+
 
         //Execute AT Command
         public string ExecCommand(
@@ -396,5 +482,46 @@ namespace TAOS.Class.GSM_Modem
         }
         #endregion
 
+
+        #region Error Log
+        public void ErrorLog(string Message)
+        {
+            StreamWriter sw = null;
+
+            try
+            {
+                //WriteStatusBar(Message);
+
+                string sLogFormat = DateTime.Now.ToShortDateString().ToString() + " " + DateTime.Now.ToLongTimeString().ToString() + " ==> ";
+                //string sPathName = @"E:\";
+                string sPathName = @"SMSapplicationErrorLog_";
+
+                string sYear = DateTime.Now.Year.ToString();
+                string sMonth = DateTime.Now.Month.ToString();
+                string sDay = DateTime.Now.Day.ToString();
+
+                string sErrorTime = sDay + "-" + sMonth + "-" + sYear;
+
+                sw = new StreamWriter(sPathName + sErrorTime + ".txt", true);
+
+                sw.WriteLine(sLogFormat + Message);
+                sw.Flush();
+
+            }
+            catch (Exception ex)
+            {
+                //ErrorLog(ex.ToString());
+            }
+            finally
+            {
+                if (sw != null)
+                {
+                    sw.Dispose();
+                    sw.Close();
+                }
+            }
+
+        }
+        #endregion 
     }
 }
