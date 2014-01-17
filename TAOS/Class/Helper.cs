@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using System.Runtime.InteropServices;
 
 namespace TAOS
 {
@@ -163,6 +164,19 @@ namespace TAOS
             catch { }
             return phoneNumber;
         }
+
+        //[DllImport("user32.dll")]
+        //public extern int ShowWindow(IntPtr hWnd, uint Msg);
+
+        //public static uint SW_RESTORE = 0x09;
+
+        //public static void RestoreWindows(this Form form)
+        //{
+        //    if (form.WindowState == FormWindowState.Minimized)
+        //    {
+        //        ShowWindow(form.Handle, SW_RESTORE);
+        //    }
+        //}
         
     }
 }

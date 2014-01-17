@@ -1655,6 +1655,8 @@ namespace TAOS
             Debug.WriteLine(phonenumber.Length);
         }
 
+
+        
         private int countKeyDown = 0;
         public void KeyReader(IntPtr wParam, IntPtr lParam)
         {
@@ -1669,8 +1671,11 @@ namespace TAOS
                     countKeyDown = 0;
                     //this.WindowState = FormWindowState.Normal;
                     //this.WindowState = FormWindowState.Maximized;
-                    this.Activate();
-                    this.Show();
+                    //this.Activate();
+                    //this.WindowState = FormWindowState.Normal;
+                    //this.Show();
+
+                    KeyboardHook.RestoreWindows(this);
                 }
             }
             else countKeyDown = 0;

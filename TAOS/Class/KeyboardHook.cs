@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices; //USED TO CALL THE DLL IMPORTS
 using System.Diagnostics;
+using System.Windows.Forms;
 
 //Class wasnt done by me
 //FULL CREDITS TO 
@@ -39,6 +40,9 @@ namespace TAOS
             [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
             public static extern IntPtr GetModuleHandle(
                 string lpModuleName);
+
+            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            public static extern int ShowWindow(IntPtr hWnd, uint Msg);
 
         }
         public enum VK
@@ -392,5 +396,13 @@ namespace TAOS
             return temp;
         }
 
+        public static void RestoreWindows(Form frm)
+        {
+            if (frm.WindowState == FormWindowState.Minimized)
+            {
+                uint SW_RESTORE = 0x09;
+                API.ShowWindow(frm.Handle, SW_RESTORE);
+            }
+        }
     }
 }
