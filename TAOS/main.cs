@@ -568,6 +568,7 @@ namespace TAOS
                 bool contrain = phoneNumber.IndexOf(strCheck.Trim()) > -1;
                 if (contrain)
                 {
+                    phoneNumber = helper.convertStrToPhoneNumberFormat(phoneNumber);
                     listBoxTopUpPhoneNumber.Items.Add(phoneNumber);
                     if (strCheck.Length == 10)
                     {
@@ -729,6 +730,7 @@ namespace TAOS
             txtTopupPhoneNumber.Select();
             //getListPhoneNumber(true, "");
             getListTopup();
+
             btnTopupUSSD1.Visible = false;
         }
 
@@ -1018,8 +1020,27 @@ namespace TAOS
         private void dataGridViewTopup_Click(object sender, EventArgs e)
         {
             listBoxTopUpPhoneNumber.Visible = false;
+            lbTopupMassage.Text = "";
             if (tabControlTopUpList.SelectedTab == tabPageListTopup)
             {
+                if (dataGridViewTopup.SelectedRows.Count == 1)
+                {
+
+                    if (textEditPortOne2Call.Text != "No Port" &&
+                        dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString().Trim() == "One 2 Call")
+                    {
+                        if (connectPort.checkConnectPort(connectPort._Port))
+                        {
+                            panelReTopup.Visible = true;
+                            tbxRefReTopup.Select();
+                        }
+                    }
+                    else
+                    {
+                        panelReTopup.Visible = false;
+                    }
+                }
+                tbxHistoryPhoneNumber.Select();
                 return;
             }
             if (dataGridViewTopup.SelectedRows.Count == 1)
@@ -1035,19 +1056,29 @@ namespace TAOS
                 calMod(txtTopupPhoneNumber.Text);
                 //txtTopupPhoneNumber.Select();
 
-                if (dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString().Trim() == "One 2 Call")
+                if (textEditPortOne2Call.Text != "No Port" &&
+                    dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString().Trim() == "One 2 Call" &&
+                    tabControlTopUpList.SelectedTab == tabPageAddTopup)
                 {
-                    btnTopupUSSD1.Visible = true;
+                    if (connectPort.checkConnectPort(connectPort._Port))
+                    {
+                        btnTopupUSSD1.Visible = true;
+                    }
                 }
                 else
                 {
                     btnTopupUSSD1.Visible = false;
                 }
             }
+            txtTopupPhoneNumber.Select();
+            
         }
 
         private void tabControlTopUpList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            panelReTopup.Visible = false;
+            btnTopupUSSD1.Visible = false;
+            lbTopupMassage.Text = "";
             if (tabControlTopUpList.SelectedTab == tabPageAddTopup)
             {
                 getListTopup();
@@ -1171,6 +1202,7 @@ namespace TAOS
 
         private void btnHistorySearch_Click(object sender, EventArgs e)
         {
+            panelReTopup.Visible = false;
             string date = dtHistory.Value.Year + "-" + dtHistory.Value.Month + "-" + dtHistory.Value.Day;
             Debug.WriteLine(date);
             getListTopup(1, tbxHistoryPhoneNumber.Text, date, tbxHistoryTime.Text, cmbHistoryNetwork.Text);
@@ -1188,10 +1220,14 @@ namespace TAOS
             string date = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day;
             getListTopup(1, "", date);
             tbxHistoryPhoneNumber.Select();
+
+            panelReTopup.Visible = false;
+            tbxRefReTopup.Clear();
         }
 
         private void btnHistoryCancelTopup_Click(object sender, EventArgs e)
         {
+            panelReTopup.Visible = false;
             try
             {
                 string idSelect = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
@@ -1566,11 +1602,10 @@ namespace TAOS
                 {
                     if (!ConnectMySql.setIsTopup(lbSelectTopupID.Text))
                     {
-                        messageError.showMessageBox("การลบข้อมูลผิดพลาด");
+                        messageError.showMessageBox("การบันทึกผิดพลาด");
                     }
                     else
                     {
-                        getListTopup();
                         btnTopUpClear_Click(null, EventArgs.Empty);
                     }
                 }
@@ -1625,10 +1660,10 @@ namespace TAOS
         {
             int key = Marshal.ReadInt32(lParam);
             string temp = KeyboardHook.checkMatchKey(key);
-            Debug.WriteLine(temp);
             if (temp == ".")
             {
                 countKeyDown++;
+                Debug.WriteLine(countKeyDown);
                 if (countKeyDown > 2)
                 {
                     countKeyDown = 0;
@@ -1662,8 +1697,8 @@ namespace TAOS
         private void btnTopupUSSD1_Click(object sender, EventArgs e)
         {
             string phone = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
-            DialogResult result = messageError.showMessageBox("ต้องการเติมเงิน One 2 Call เบอร์ " +
-                    phone + " ใช่หรือไม่",
+            DialogResult result = messageError.showMessageBox("ต้องการเติมเงิน One 2 Call เบอร์ \n" +
+                    phone + " ใช่ หรือไม่",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -1676,11 +1711,63 @@ namespace TAOS
                     textEditOne2CallTopupCode2.Text +
                     valueBath +
                     textEditOne2CallTopupCode3.Text;
-                ussdCode = "*121#";
-                MessageBox.Show(connectPort.topupUSSD(ussdCode));
+                string response = connectPort.topupUSSD(ussdCode);
+
+                if (!ConnectMySql.setIsTopup(lbSelectTopupID.Text))
+                {
+                    messageError.showMessageBox("การบันทึกผิดพลาด");
+                }
+                else
+                {
+                    btnTopUpClear_Click(null, EventArgs.Empty);
+                }
+                lbTopupMassage.Text = response;
             }
             else {
                 btnTopupUSSD1.Visible = false;
+            }
+        }
+
+        private void btnReTopup_Click(object sender, EventArgs e)
+        {
+            if (tbxRefReTopup.Text == "")
+            {
+                tbxRefReTopup.Select();
+                return;
+            }
+            string phone = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+            DialogResult result = messageError.showMessageBox("ต้องการดึงเงินคืน เบอร์ \n" +
+                    phone + " ใช่ หรือไม่",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                phone = phone.Trim();
+                phone = phone.Replace("-", "");
+                phone = phone.Substring(6);
+
+                string refNo = tbxRefReTopup.Text;
+                string ussdCode =
+                    textEditOne2CallReTopupCode1.Text +
+                    phone +
+                    textEditOne2CallReTopupCode2.Text +
+                    refNo +
+                    textEditOne2CallReTopupCode3.Text;
+                string response = connectPort.topupUSSD(ussdCode);
+                //MessageBox.Show(response);
+                lbTopupMassage.Text = response;
+                btnHistoryClear_Click(null, EventArgs.Empty);
+            }
+            else
+            {
+                panelReTopup.Visible = false;
+            }
+        }
+
+        private void tbxRefReTopup_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Return)
+            {
+                btnReTopup_Click(null, EventArgs.Empty);
             }
         }
 

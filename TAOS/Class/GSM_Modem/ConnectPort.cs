@@ -165,7 +165,6 @@ namespace TAOS
             }
             catch
             {
-                response = "Topup Error!";
             }
             return response;
         }

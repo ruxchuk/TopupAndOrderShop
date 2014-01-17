@@ -149,6 +149,20 @@ namespace TAOS
             textbox.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             return textbox;
         }
+
+        public string convertStrToPhoneNumberFormat(string phoneNumber)
+        {
+            try
+            {
+                phoneNumber = string.Format(
+                    "{0}-{1}-{2}",
+                    phoneNumber.Substring(0, 3),
+                    phoneNumber.Substring(3, 3),
+                    phoneNumber.Substring(6, 4));
+            }
+            catch { }
+            return phoneNumber;
+        }
         
     }
 }
