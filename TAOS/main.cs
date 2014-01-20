@@ -33,6 +33,8 @@ namespace TAOS
         private MessageError messageError;
         private bool checkClickTopup = false;
 
+        private WaitForLoading waitingForm = new WaitForLoading();
+
         #region GSM Modem
         private ConnectPort connectPort = new ConnectPort();
         #endregion
@@ -40,6 +42,7 @@ namespace TAOS
         public MainForm()
         {
             InitializeComponent();
+            waitingForm.showLoading("กำลังเปิดโปรแกรม");
 
             helper = new Helper();
             loadSetting();
@@ -98,7 +101,9 @@ namespace TAOS
 
         private void checkPort()
         {
-            textEditPortOne2Call.Text = connectPort.setPort();
+            string result = connectPort.setPort();
+            textEditPortOne2Call.Text = result;
+            lbTopupMassage.Text = result;
         }
 
         private void tbxSerialAndAddPrice_KeyUp(object sender, KeyEventArgs e)
@@ -1707,6 +1712,7 @@ namespace TAOS
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                waitingForm.showLoading("กำลังเติมเงิน กรุณารอสักครู่");
                 phone = phone.Trim();
                 phone = phone.Replace("-", "");
                 string valueBath = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
@@ -1720,6 +1726,7 @@ namespace TAOS
 
                 if (!ConnectMySql.setIsTopup(lbSelectTopupID.Text))
                 {
+                    waitingForm.cloadLoading();
                     messageError.showMessageBox("การบันทึกผิดพลาด");
                 }
                 else
@@ -1727,6 +1734,7 @@ namespace TAOS
                     btnTopUpClear_Click(null, EventArgs.Empty);
                 }
                 lbTopupMassage.Text = response;
+                waitingForm.cloadLoading();
             }
             else {
                 btnTopupUSSD1.Visible = false;
@@ -1746,6 +1754,7 @@ namespace TAOS
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                waitingForm.showLoading("กำลังดึงเงินคืน กรุณารอสักครู่");
                 phone = phone.Trim();
                 phone = phone.Replace("-", "");
                 phone = phone.Substring(6);
@@ -1761,6 +1770,7 @@ namespace TAOS
                 //MessageBox.Show(response);
                 lbTopupMassage.Text = response;
                 btnHistoryClear_Click(null, EventArgs.Empty);
+                waitingForm.cloadLoading();
             }
             else
             {
@@ -1774,6 +1784,18 @@ namespace TAOS
             {
                 btnReTopup_Click(null, EventArgs.Empty);
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            waitingForm.cloadLoading();
+        }
+
+        private void btnConnectPort1_Click(object sender, EventArgs e)
+        {
+            waitingForm.showLoading("กำลังเช็ค Port กรุณารอสักครู่");
+            checkPort();
+            waitingForm.cloadLoading();
         }
 
     }

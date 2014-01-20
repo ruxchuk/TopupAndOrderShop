@@ -29,12 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageTopUp = new System.Windows.Forms.TabPage();
+            this.lbTopupMassage = new System.Windows.Forms.Label();
+            this.panelReTopup = new System.Windows.Forms.FlowLayoutPanel();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.tbxRefReTopup = new System.Windows.Forms.TextBox();
+            this.btnReTopup = new System.Windows.Forms.Button();
             this.btnTopupUSSD1 = new System.Windows.Forms.Button();
             this.webBrowserTopUpCheckBer = new System.Windows.Forms.WebBrowser();
             this.dataGridViewTopup = new System.Windows.Forms.DataGridView();
@@ -72,7 +77,6 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tbxHistoryTime = new DevExpress.XtraEditors.TextEdit();
             this.tbxHistoryPhoneNumber = new DevExpress.XtraEditors.TextEdit();
-            this.lbTopupMassage = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.dtHistory = new System.Windows.Forms.DateTimePicker();
             this.pictureBoxTem2 = new System.Windows.Forms.PictureBox();
@@ -90,14 +94,20 @@
             this.textEditDTACTopupCode1 = new DevExpress.XtraEditors.TextEdit();
             this.label37 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
+            this.textEditOne2CallReTopupCode2 = new DevExpress.XtraEditors.TextEdit();
             this.textEditOne2CallTopupCode2 = new DevExpress.XtraEditors.TextEdit();
+            this.textEditOne2CallReTopupCode3 = new DevExpress.XtraEditors.TextEdit();
             this.textEditOne2CallTopupCode3 = new DevExpress.XtraEditors.TextEdit();
             this.textEditPortOne2Call = new DevExpress.XtraEditors.TextEdit();
+            this.textEditOne2CallReTopupCode1 = new DevExpress.XtraEditors.TextEdit();
+            this.label43 = new System.Windows.Forms.Label();
             this.textEditOne2CallTopupCode1 = new DevExpress.XtraEditors.TextEdit();
             this.label38 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.imageTopUpIconNetwork = new System.Windows.Forms.PictureBox();
@@ -244,18 +254,10 @@
             this.tbxSerialAddProduct = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnReTopup = new System.Windows.Forms.Button();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.textEditOne2CallReTopupCode1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEditOne2CallReTopupCode3 = new DevExpress.XtraEditors.TextEdit();
-            this.label43 = new System.Windows.Forms.Label();
-            this.textEditOne2CallReTopupCode2 = new DevExpress.XtraEditors.TextEdit();
-            this.panelReTopup = new System.Windows.Forms.FlowLayoutPanel();
-            this.tbxRefReTopup = new System.Windows.Forms.TextBox();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.tabControlMain.SuspendLayout();
             this.tabPageTopUp.SuspendLayout();
+            this.panelReTopup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopup)).BeginInit();
             this.tabControlTopUpList.SuspendLayout();
             this.tabPageAddTopup.SuspendLayout();
@@ -276,9 +278,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPortOne2Call.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode1.Properties)).BeginInit();
             this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).BeginInit();
@@ -324,11 +329,6 @@
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode2.Properties)).BeginInit();
-            this.panelReTopup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -367,6 +367,71 @@
             this.tabPageTopUp.TabIndex = 1;
             this.tabPageTopUp.Text = "เติมเงิน";
             this.tabPageTopUp.UseVisualStyleBackColor = true;
+            // 
+            // lbTopupMassage
+            // 
+            this.lbTopupMassage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbTopupMassage.AutoSize = true;
+            this.lbTopupMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lbTopupMassage.ForeColor = System.Drawing.Color.Black;
+            this.lbTopupMassage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbTopupMassage.Location = new System.Drawing.Point(6, 508);
+            this.lbTopupMassage.Name = "lbTopupMassage";
+            this.lbTopupMassage.Size = new System.Drawing.Size(172, 25);
+            this.lbTopupMassage.TabIndex = 18;
+            this.lbTopupMassage.Text = "topup massage";
+            // 
+            // panelReTopup
+            // 
+            this.panelReTopup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelReTopup.Controls.Add(this.textEdit1);
+            this.panelReTopup.Controls.Add(this.tbxRefReTopup);
+            this.panelReTopup.Controls.Add(this.btnReTopup);
+            this.panelReTopup.Location = new System.Drawing.Point(252, 488);
+            this.panelReTopup.Name = "panelReTopup";
+            this.panelReTopup.Size = new System.Drawing.Size(366, 47);
+            this.panelReTopup.TabIndex = 1002;
+            this.panelReTopup.Visible = false;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.CausesValidation = false;
+            this.textEdit1.EditValue = "Ref No:";
+            this.textEdit1.Location = new System.Drawing.Point(3, 3);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit1.Properties.Appearance.Options.UseFont = true;
+            this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
+            this.textEdit1.Size = new System.Drawing.Size(80, 32);
+            this.textEdit1.TabIndex = 38;
+            // 
+            // tbxRefReTopup
+            // 
+            this.tbxRefReTopup.Location = new System.Drawing.Point(89, 3);
+            this.tbxRefReTopup.Name = "tbxRefReTopup";
+            this.tbxRefReTopup.Size = new System.Drawing.Size(163, 38);
+            this.tbxRefReTopup.TabIndex = 0;
+            this.tbxRefReTopup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxRefReTopup_KeyDown);
+            // 
+            // btnReTopup
+            // 
+            this.btnReTopup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReTopup.BackColor = System.Drawing.Color.Red;
+            this.btnReTopup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReTopup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReTopup.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReTopup.ForeColor = System.Drawing.Color.Black;
+            this.btnReTopup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnReTopup.Location = new System.Drawing.Point(258, 3);
+            this.btnReTopup.Name = "btnReTopup";
+            this.btnReTopup.Size = new System.Drawing.Size(101, 40);
+            this.btnReTopup.TabIndex = 1001;
+            this.btnReTopup.Text = "ดึงเงินคืน";
+            this.btnReTopup.UseVisualStyleBackColor = false;
+            this.btnReTopup.Click += new System.EventHandler(this.btnReTopup_Click);
             // 
             // btnTopupUSSD1
             // 
@@ -909,19 +974,6 @@
             this.tbxHistoryPhoneNumber.Size = new System.Drawing.Size(152, 32);
             this.tbxHistoryPhoneNumber.TabIndex = 1;
             // 
-            // lbTopupMassage
-            // 
-            this.lbTopupMassage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbTopupMassage.AutoSize = true;
-            this.lbTopupMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbTopupMassage.ForeColor = System.Drawing.Color.Black;
-            this.lbTopupMassage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTopupMassage.Location = new System.Drawing.Point(6, 508);
-            this.lbTopupMassage.Name = "lbTopupMassage";
-            this.lbTopupMassage.Size = new System.Drawing.Size(172, 25);
-            this.lbTopupMassage.TabIndex = 18;
-            this.lbTopupMassage.Text = "topup massage";
-            // 
             // label19
             // 
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1098,7 +1150,7 @@
             // 
             // btnConnectPort1
             // 
-            this.btnConnectPort1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConnectPort1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConnectPort1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnConnectPort1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConnectPort1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -1111,12 +1163,13 @@
             this.btnConnectPort1.TabIndex = 8;
             this.btnConnectPort1.Text = "Connect";
             this.btnConnectPort1.UseVisualStyleBackColor = false;
-            this.btnConnectPort1.Visible = false;
+            this.btnConnectPort1.Click += new System.EventHandler(this.btnConnectPort1_Click);
             // 
             // textEditDTACTopupCode2
             // 
             this.textEditDTACTopupCode2.CausesValidation = false;
             this.textEditDTACTopupCode2.EditValue = "";
+            this.textEditDTACTopupCode2.Enabled = false;
             this.textEditDTACTopupCode2.Location = new System.Drawing.Point(194, 287);
             this.textEditDTACTopupCode2.Name = "textEditDTACTopupCode2";
             this.textEditDTACTopupCode2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1132,6 +1185,7 @@
             // 
             this.textEditDTACTopupCode3.CausesValidation = false;
             this.textEditDTACTopupCode3.EditValue = "";
+            this.textEditDTACTopupCode3.Enabled = false;
             this.textEditDTACTopupCode3.Location = new System.Drawing.Point(297, 287);
             this.textEditDTACTopupCode3.Name = "textEditDTACTopupCode3";
             this.textEditDTACTopupCode3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1147,6 +1201,7 @@
             // 
             this.textEditDTACTopupCode1.CausesValidation = false;
             this.textEditDTACTopupCode1.EditValue = "";
+            this.textEditDTACTopupCode1.Enabled = false;
             this.textEditDTACTopupCode1.Location = new System.Drawing.Point(4, 287);
             this.textEditDTACTopupCode1.Name = "textEditDTACTopupCode1";
             this.textEditDTACTopupCode1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1184,10 +1239,27 @@
             this.label39.TabIndex = 40;
             this.label39.Text = "+เบอร์+";
             // 
+            // textEditOne2CallReTopupCode2
+            // 
+            this.textEditOne2CallReTopupCode2.CausesValidation = false;
+            this.textEditOne2CallReTopupCode2.EditValue = "*";
+            this.textEditOne2CallReTopupCode2.Enabled = false;
+            this.textEditOne2CallReTopupCode2.Location = new System.Drawing.Point(212, 177);
+            this.textEditOne2CallReTopupCode2.Name = "textEditOne2CallReTopupCode2";
+            this.textEditOne2CallReTopupCode2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditOne2CallReTopupCode2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditOne2CallReTopupCode2.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditOne2CallReTopupCode2.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditOne2CallReTopupCode2.Properties.Appearance.Options.UseFont = true;
+            this.textEditOne2CallReTopupCode2.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditOne2CallReTopupCode2.Size = new System.Drawing.Size(22, 32);
+            this.textEditOne2CallReTopupCode2.TabIndex = 38;
+            // 
             // textEditOne2CallTopupCode2
             // 
             this.textEditOne2CallTopupCode2.CausesValidation = false;
             this.textEditOne2CallTopupCode2.EditValue = "*";
+            this.textEditOne2CallTopupCode2.Enabled = false;
             this.textEditOne2CallTopupCode2.Location = new System.Drawing.Point(194, 54);
             this.textEditOne2CallTopupCode2.Name = "textEditOne2CallTopupCode2";
             this.textEditOne2CallTopupCode2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1199,10 +1271,27 @@
             this.textEditOne2CallTopupCode2.Size = new System.Drawing.Size(22, 32);
             this.textEditOne2CallTopupCode2.TabIndex = 38;
             // 
+            // textEditOne2CallReTopupCode3
+            // 
+            this.textEditOne2CallReTopupCode3.CausesValidation = false;
+            this.textEditOne2CallReTopupCode3.EditValue = "#";
+            this.textEditOne2CallReTopupCode3.Enabled = false;
+            this.textEditOne2CallReTopupCode3.Location = new System.Drawing.Point(298, 176);
+            this.textEditOne2CallReTopupCode3.Name = "textEditOne2CallReTopupCode3";
+            this.textEditOne2CallReTopupCode3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditOne2CallReTopupCode3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditOne2CallReTopupCode3.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditOne2CallReTopupCode3.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditOne2CallReTopupCode3.Properties.Appearance.Options.UseFont = true;
+            this.textEditOne2CallReTopupCode3.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditOne2CallReTopupCode3.Size = new System.Drawing.Size(23, 32);
+            this.textEditOne2CallReTopupCode3.TabIndex = 38;
+            // 
             // textEditOne2CallTopupCode3
             // 
             this.textEditOne2CallTopupCode3.CausesValidation = false;
             this.textEditOne2CallTopupCode3.EditValue = "#";
+            this.textEditOne2CallTopupCode3.Enabled = false;
             this.textEditOne2CallTopupCode3.Location = new System.Drawing.Point(297, 54);
             this.textEditOne2CallTopupCode3.Name = "textEditOne2CallTopupCode3";
             this.textEditOne2CallTopupCode3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1218,6 +1307,7 @@
             // 
             this.textEditPortOne2Call.CausesValidation = false;
             this.textEditPortOne2Call.EditValue = "No Port";
+            this.textEditPortOne2Call.Enabled = false;
             this.textEditPortOne2Call.Location = new System.Drawing.Point(71, 95);
             this.textEditPortOne2Call.Name = "textEditPortOne2Call";
             this.textEditPortOne2Call.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1229,10 +1319,40 @@
             this.textEditPortOne2Call.Size = new System.Drawing.Size(80, 32);
             this.textEditPortOne2Call.TabIndex = 38;
             // 
+            // textEditOne2CallReTopupCode1
+            // 
+            this.textEditOne2CallReTopupCode1.CausesValidation = false;
+            this.textEditOne2CallReTopupCode1.EditValue = "*321*0796*";
+            this.textEditOne2CallReTopupCode1.Enabled = false;
+            this.textEditOne2CallReTopupCode1.Location = new System.Drawing.Point(3, 176);
+            this.textEditOne2CallReTopupCode1.Name = "textEditOne2CallReTopupCode1";
+            this.textEditOne2CallReTopupCode1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEditOne2CallReTopupCode1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEditOne2CallReTopupCode1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEditOne2CallReTopupCode1.Properties.Appearance.Options.UseBackColor = true;
+            this.textEditOne2CallReTopupCode1.Properties.Appearance.Options.UseFont = true;
+            this.textEditOne2CallReTopupCode1.Properties.Appearance.Options.UseForeColor = true;
+            this.textEditOne2CallReTopupCode1.Size = new System.Drawing.Size(116, 32);
+            this.textEditOne2CallReTopupCode1.TabIndex = 38;
+            // 
+            // label43
+            // 
+            this.label43.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label43.ForeColor = System.Drawing.Color.White;
+            this.label43.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label43.Location = new System.Drawing.Point(113, 180);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(106, 25);
+            this.label43.TabIndex = 37;
+            this.label43.Text = "+เลข4ตัว+";
+            // 
             // textEditOne2CallTopupCode1
             // 
             this.textEditOne2CallTopupCode1.CausesValidation = false;
             this.textEditOne2CallTopupCode1.EditValue = "*123*0796*";
+            this.textEditOne2CallTopupCode1.Enabled = false;
             this.textEditOne2CallTopupCode1.Location = new System.Drawing.Point(4, 54);
             this.textEditOne2CallTopupCode1.Name = "textEditOne2CallTopupCode1";
             this.textEditOne2CallTopupCode1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1256,6 +1376,19 @@
             this.label38.Size = new System.Drawing.Size(83, 25);
             this.label38.TabIndex = 37;
             this.label38.Text = "+ เงิน +";
+            // 
+            // label42
+            // 
+            this.label42.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label42.ForeColor = System.Drawing.Color.White;
+            this.label42.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label42.Location = new System.Drawing.Point(230, 180);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(74, 25);
+            this.label42.TabIndex = 37;
+            this.label42.Text = "+Ref+";
             // 
             // label40
             // 
@@ -1295,6 +1428,19 @@
             this.label36.Size = new System.Drawing.Size(117, 25);
             this.label36.TabIndex = 36;
             this.label36.Text = "รหัส DTAC";
+            // 
+            // label41
+            // 
+            this.label41.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label41.ForeColor = System.Drawing.Color.White;
+            this.label41.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label41.Location = new System.Drawing.Point(79, 148);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(184, 25);
+            this.label41.TabIndex = 36;
+            this.label41.Text = "ดึงเงิน One 2 Call";
             // 
             // label35
             // 
@@ -2712,14 +2858,14 @@
             this.dataGridViewBuyProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewBuyProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridViewBuyProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewBuyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewBuyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewBuyProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBuyProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -2728,14 +2874,14 @@
             this.Price,
             this.serial});
             this.dataGridViewBuyProduct.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewBuyProduct.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewBuyProduct.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewBuyProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewBuyProduct.Location = new System.Drawing.Point(3, 36);
             this.dataGridViewBuyProduct.MultiSelect = false;
@@ -2982,14 +3128,14 @@
             this.dataGridViewProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridViewProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -3000,14 +3146,14 @@
             this.DateModifield,
             this.order_id});
             this.dataGridViewProduct.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewProduct.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewProduct.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewProduct.Location = new System.Drawing.Point(3, 27);
             this.dataGridViewProduct.MultiSelect = false;
@@ -3275,142 +3421,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnReTopup
-            // 
-            this.btnReTopup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReTopup.BackColor = System.Drawing.Color.Red;
-            this.btnReTopup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReTopup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReTopup.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReTopup.ForeColor = System.Drawing.Color.Black;
-            this.btnReTopup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReTopup.Location = new System.Drawing.Point(258, 3);
-            this.btnReTopup.Name = "btnReTopup";
-            this.btnReTopup.Size = new System.Drawing.Size(101, 40);
-            this.btnReTopup.TabIndex = 1001;
-            this.btnReTopup.Text = "ดึงเงินคืน";
-            this.btnReTopup.UseVisualStyleBackColor = false;
-            this.btnReTopup.Click += new System.EventHandler(this.btnReTopup_Click);
-            // 
-            // label41
-            // 
-            this.label41.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label41.ForeColor = System.Drawing.Color.White;
-            this.label41.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label41.Location = new System.Drawing.Point(79, 148);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(184, 25);
-            this.label41.TabIndex = 36;
-            this.label41.Text = "ดึงเงิน One 2 Call";
-            // 
-            // label42
-            // 
-            this.label42.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label42.ForeColor = System.Drawing.Color.White;
-            this.label42.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label42.Location = new System.Drawing.Point(230, 180);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(74, 25);
-            this.label42.TabIndex = 37;
-            this.label42.Text = "+Ref+";
-            // 
-            // textEditOne2CallReTopupCode1
-            // 
-            this.textEditOne2CallReTopupCode1.CausesValidation = false;
-            this.textEditOne2CallReTopupCode1.EditValue = "*321*0796*";
-            this.textEditOne2CallReTopupCode1.Location = new System.Drawing.Point(3, 176);
-            this.textEditOne2CallReTopupCode1.Name = "textEditOne2CallReTopupCode1";
-            this.textEditOne2CallReTopupCode1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textEditOne2CallReTopupCode1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEditOne2CallReTopupCode1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
-            this.textEditOne2CallReTopupCode1.Properties.Appearance.Options.UseBackColor = true;
-            this.textEditOne2CallReTopupCode1.Properties.Appearance.Options.UseFont = true;
-            this.textEditOne2CallReTopupCode1.Properties.Appearance.Options.UseForeColor = true;
-            this.textEditOne2CallReTopupCode1.Size = new System.Drawing.Size(116, 32);
-            this.textEditOne2CallReTopupCode1.TabIndex = 38;
-            // 
-            // textEditOne2CallReTopupCode3
-            // 
-            this.textEditOne2CallReTopupCode3.CausesValidation = false;
-            this.textEditOne2CallReTopupCode3.EditValue = "#";
-            this.textEditOne2CallReTopupCode3.Location = new System.Drawing.Point(298, 176);
-            this.textEditOne2CallReTopupCode3.Name = "textEditOne2CallReTopupCode3";
-            this.textEditOne2CallReTopupCode3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textEditOne2CallReTopupCode3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEditOne2CallReTopupCode3.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
-            this.textEditOne2CallReTopupCode3.Properties.Appearance.Options.UseBackColor = true;
-            this.textEditOne2CallReTopupCode3.Properties.Appearance.Options.UseFont = true;
-            this.textEditOne2CallReTopupCode3.Properties.Appearance.Options.UseForeColor = true;
-            this.textEditOne2CallReTopupCode3.Size = new System.Drawing.Size(23, 32);
-            this.textEditOne2CallReTopupCode3.TabIndex = 38;
-            // 
-            // label43
-            // 
-            this.label43.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label43.ForeColor = System.Drawing.Color.White;
-            this.label43.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label43.Location = new System.Drawing.Point(113, 180);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(106, 25);
-            this.label43.TabIndex = 37;
-            this.label43.Text = "+เลข4ตัว+";
-            // 
-            // textEditOne2CallReTopupCode2
-            // 
-            this.textEditOne2CallReTopupCode2.CausesValidation = false;
-            this.textEditOne2CallReTopupCode2.EditValue = "*";
-            this.textEditOne2CallReTopupCode2.Location = new System.Drawing.Point(212, 177);
-            this.textEditOne2CallReTopupCode2.Name = "textEditOne2CallReTopupCode2";
-            this.textEditOne2CallReTopupCode2.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textEditOne2CallReTopupCode2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEditOne2CallReTopupCode2.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
-            this.textEditOne2CallReTopupCode2.Properties.Appearance.Options.UseBackColor = true;
-            this.textEditOne2CallReTopupCode2.Properties.Appearance.Options.UseFont = true;
-            this.textEditOne2CallReTopupCode2.Properties.Appearance.Options.UseForeColor = true;
-            this.textEditOne2CallReTopupCode2.Size = new System.Drawing.Size(22, 32);
-            this.textEditOne2CallReTopupCode2.TabIndex = 38;
-            // 
-            // panelReTopup
-            // 
-            this.panelReTopup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelReTopup.Controls.Add(this.textEdit1);
-            this.panelReTopup.Controls.Add(this.tbxRefReTopup);
-            this.panelReTopup.Controls.Add(this.btnReTopup);
-            this.panelReTopup.Location = new System.Drawing.Point(252, 488);
-            this.panelReTopup.Name = "panelReTopup";
-            this.panelReTopup.Size = new System.Drawing.Size(366, 47);
-            this.panelReTopup.TabIndex = 1002;
-            this.panelReTopup.Visible = false;
-            // 
-            // tbxRefReTopup
-            // 
-            this.tbxRefReTopup.Location = new System.Drawing.Point(89, 3);
-            this.tbxRefReTopup.Name = "tbxRefReTopup";
-            this.tbxRefReTopup.Size = new System.Drawing.Size(163, 38);
-            this.tbxRefReTopup.TabIndex = 0;
-            this.tbxRefReTopup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxRefReTopup_KeyDown);
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.CausesValidation = false;
-            this.textEdit1.EditValue = "Ref No:";
-            this.textEdit1.Location = new System.Drawing.Point(3, 3);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
-            this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.textEdit1.Properties.Appearance.Options.UseFont = true;
-            this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
-            this.textEdit1.Size = new System.Drawing.Size(80, 32);
-            this.textEdit1.TabIndex = 38;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3422,10 +3432,14 @@
             this.Name = "MainForm";
             this.Text = "ร้านแดงตาก้อง";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.tabControlMain.ResumeLayout(false);
             this.tabPageTopUp.ResumeLayout(false);
             this.tabPageTopUp.PerformLayout();
+            this.panelReTopup.ResumeLayout(false);
+            this.panelReTopup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopup)).EndInit();
             this.tabControlTopUpList.ResumeLayout(false);
             this.tabPageAddTopup.ResumeLayout(false);
@@ -3449,9 +3463,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDTACTopupCode1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPortOne2Call.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallTopupCode1.Properties)).EndInit();
             this.groupBox14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).EndInit();
@@ -3506,12 +3523,6 @@
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEditOne2CallReTopupCode2.Properties)).EndInit();
-            this.panelReTopup.ResumeLayout(false);
-            this.panelReTopup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

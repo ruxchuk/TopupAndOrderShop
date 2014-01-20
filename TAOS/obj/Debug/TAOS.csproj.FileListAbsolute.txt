@@ -124,3 +124,4 @@ D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\de\DevExpress.XtraLayout.v1
 D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\es\DevExpress.XtraLayout.v12.1.resources.dll
 D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\ja\DevExpress.XtraLayout.v12.1.resources.dll
 D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\ru\DevExpress.XtraLayout.v12.1.resources.dll
+D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.csprojResolveAssemblyReference.cache
