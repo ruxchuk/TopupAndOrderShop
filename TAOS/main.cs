@@ -1105,7 +1105,7 @@ namespace TAOS
                 string amount = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
                 string dateTopup = dataGridViewTopup.SelectedRows[0].Cells[5].Value.ToString();
 
-                AddBehindhand addBhindhand = new AddBehindhand(topupID, customerID, amount, dateTopup, customerName);
+                FRMAddCredit addBhindhand = new FRMAddCredit(topupID, customerID, amount, dateTopup, customerName);
                 addBhindhand.ShowDialog();
 
             }

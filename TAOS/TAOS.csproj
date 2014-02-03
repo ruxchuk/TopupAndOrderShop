@@ -121,14 +121,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AddBehindhand.cs">
+    <Compile Include="FRMAddCredit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddBehindhand.Designer.cs">
-      <DependentUpon>AddBehindhand.cs</DependentUpon>
+    <Compile Include="FRMAddCredit.Designer.cs">
+      <DependentUpon>FRMAddCredit.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddBehindhand.resx">
-      <DependentUpon>AddBehindhand.cs</DependentUpon>
+    <EmbeddedResource Include="FRMAddCredit.resx">
+      <DependentUpon>FRMAddCredit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRMCustomerTopup.resx">
       <DependentUpon>FRMCustomerTopup.cs</DependentUpon>
