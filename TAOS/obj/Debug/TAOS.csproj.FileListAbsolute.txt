@@ -125,3 +125,4 @@ D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\ja\DevExpress.XtraLayout.v1
 D:\business_work\C#\TopupAndOrderShop\TAOS\bin\Debug\ru\DevExpress.XtraLayout.v12.1.resources.dll
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.csprojResolveAssemblyReference.cache
 D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.FRMAddCredit.resources
+D:\business_work\C#\TopupAndOrderShop\TAOS\obj\Debug\TAOS.FRMConfigOne2Call.resources

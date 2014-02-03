@@ -59,7 +59,7 @@ namespace TAOS
         {
             try
             {
-                string path = "Files\\FileSave.txt";
+                string path = "Files\\SaveSetting\\FileSave.txt";
                 StreamReader strm = File.OpenText(path);
 
                 UserId = strm.ReadLine();

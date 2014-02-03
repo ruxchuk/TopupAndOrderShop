@@ -58,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_21E518850BF553C79D128EB68E623B22"
-        "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
+        "OwnerKey" = "8:_263BC2076721F537BFEE52EF3291BBBF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,19 +82,13 @@
         "Entry"
         {
         "MsmKey" = "8:_21E518850BF553C79D128EB68E623B22"
-        "OwnerKey" = "8:_263BC2076721F537BFEE52EF3291BBBF"
+        "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_21E518850BF553C79D128EB68E623B22"
         "OwnerKey" = "8:_F00F70A4725B0F009C431E965311CB4B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_263BC2076721F537BFEE52EF3291BBBF"
-        "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -123,6 +117,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_263BC2076721F537BFEE52EF3291BBBF"
+        "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2AB35DC462A9469D8C303A136A88F5DF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,6 +135,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3C8A43C595995ACBEBB693063FDC90BD"
+        "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3F9EFD5A800F40DCBEF4DACD04E1D00B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -142,12 +148,6 @@
         "Entry"
         {
         "MsmKey" = "8:_454BBD0DB6734FBC85D69B2815850DA1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_471ED051CC744B40AE54512620047929"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -178,12 +178,6 @@
         "Entry"
         {
         "MsmKey" = "8:_86AF65A4D3B67FEEDB3247F1A74F9ADC"
-        "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_89D4304C3584CC6DEAEA67C47F2BDAC8"
         "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -226,7 +220,7 @@
         "Entry"
         {
         "MsmKey" = "8:_F00F70A4725B0F009C431E965311CB4B"
-        "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
+        "OwnerKey" = "8:_263BC2076721F537BFEE52EF3291BBBF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -244,13 +238,7 @@
         "Entry"
         {
         "MsmKey" = "8:_F00F70A4725B0F009C431E965311CB4B"
-        "OwnerKey" = "8:_263BC2076721F537BFEE52EF3291BBBF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2F294319C84B444FB82878A4AE08E588"
+        "OwnerKey" = "8:_BB0A49BFE12B4A7392909C3A1F47AB7E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -262,7 +250,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_89D4304C3584CC6DEAEA67C47F2BDAC8"
+        "OwnerKey" = "8:_3C8A43C595995ACBEBB693063FDC90BD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -281,6 +269,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1453D236611A612CADD1649B4111BAD8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2F294319C84B444FB82878A4AE08E588"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -319,6 +313,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -335,6 +337,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -588,6 +598,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3C8A43C595995ACBEBB693063FDC90BD"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.1.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3C8A43C595995ACBEBB693063FDC90BD"
+                    {
+                    "Name" = "8:MySql.Data.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MySql.Data.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D227DFCE260D428089AE38EBF805E329"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3F9EFD5A800F40DCBEF4DACD04E1D00B"
             {
             "SourcePath" = "8:..\\TAOS\\bin\\Debug\\Files\\Images\\icoTrueMove.png"
@@ -614,26 +655,6 @@
             "TargetName" = "8:ErrorIcon.png"
             "Tag" = "8:"
             "Folder" = "8:_8F3428F860A942D58280703AEC8369F9"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_471ED051CC744B40AE54512620047929"
-            {
-            "SourcePath" = "8:..\\TAOS\\bin\\Debug\\Files\\FileSave.txt"
-            "TargetName" = "8:FileSave.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_C71BF4C308454B39BFC7888480C844C0"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -753,37 +774,6 @@
                     }
                 }
             "SourcePath" = "8:DevExpress.XtraBars.v12.1.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_D227DFCE260D428089AE38EBF805E329"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_89D4304C3584CC6DEAEA67C47F2BDAC8"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.1.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_89D4304C3584CC6DEAEA67C47F2BDAC8"
-                    {
-                    "Name" = "8:MySql.Data.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MySql.Data.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D227DFCE260D428089AE38EBF805E329"

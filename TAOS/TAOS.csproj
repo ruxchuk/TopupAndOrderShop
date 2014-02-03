@@ -107,6 +107,12 @@
     <Compile Include="Class\KeyboardHook.cs" />
     <Compile Include="Class\MessageError.cs" />
     <Compile Include="Class\WaitForLoading.cs" />
+    <Compile Include="FRMConfigOne2Call.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMConfigOne2Call.Designer.cs">
+      <DependentUpon>FRMConfigOne2Call.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRMCustomerTopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </Compile>
     <EmbeddedResource Include="FRMAddCredit.resx">
       <DependentUpon>FRMAddCredit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMConfigOne2Call.resx">
+      <DependentUpon>FRMConfigOne2Call.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRMCustomerTopup.resx">
       <DependentUpon>FRMCustomerTopup.cs</DependentUpon>

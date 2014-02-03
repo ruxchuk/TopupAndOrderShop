@@ -1,4 +1,0 @@
-root
-
-localhost
-dang_takong_sale
