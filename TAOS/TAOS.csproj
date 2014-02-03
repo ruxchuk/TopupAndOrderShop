@@ -107,6 +107,18 @@
     <Compile Include="Class\KeyboardHook.cs" />
     <Compile Include="Class\MessageError.cs" />
     <Compile Include="Class\WaitForLoading.cs" />
+    <Compile Include="FRMConfigTrueMove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMConfigTrueMove.Designer.cs">
+      <DependentUpon>FRMConfigTrueMove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMConfigDTAC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMConfigDTAC.Designer.cs">
+      <DependentUpon>FRMConfigDTAC.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRMConfigOne2Call.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +145,12 @@
     <Compile Include="FRMAddCredit.Designer.cs">
       <DependentUpon>FRMAddCredit.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FRMConfigTrueMove.resx">
+      <DependentUpon>FRMConfigTrueMove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMConfigDTAC.resx">
+      <DependentUpon>FRMConfigDTAC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FRMAddCredit.resx">
       <DependentUpon>FRMAddCredit.cs</DependentUpon>
     </EmbeddedResource>
