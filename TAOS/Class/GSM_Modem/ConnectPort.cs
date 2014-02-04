@@ -67,7 +67,6 @@ namespace TAOS
         #endregion
 
         public string responseUSSD = "";
-        public SerialPort _Port;
         public USSD ussd = new USSD();
 
         public string[] getPort()
@@ -93,7 +92,7 @@ namespace TAOS
             return ports;
         }
 
-        public string setPort()
+        public string setPort1(ref SerialPort _port)
         {
             string checkPort = "No Port";
             string[] ports = getPort(); 
@@ -121,12 +120,13 @@ namespace TAOS
                 {
                     if (checkConnectPort(portVal))
                     {
-                        _Port = portVal;
+                        _port = portVal;
                         return port;
                     }
                     else
                     {
                         ClosePort(portVal);
+                        _port = null;
                     }
                 }
             }
@@ -152,10 +152,10 @@ namespace TAOS
         }
 
 
-        public string topupUSSD(string command)
+        public string topupUSSD(string command, SerialPort port)
         {
             string message = "";
-            message = sendUSSD(_Port, command);
+            message = sendUSSD(port, command);
             string response = responseUSSD;
             try
             {
@@ -168,8 +168,6 @@ namespace TAOS
             }
             return response;
         }
-
-
 
         //Execute AT Command
         public string ExecCommand(

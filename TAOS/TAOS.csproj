@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>Files\Images\icon\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v12.1, Version=12.1.5.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
@@ -218,16 +218,23 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
+    <Content Include="Files\Images\icon\favicon.ico" />
+    <Content Include="Files\Images\BG_Button\btn_connect.png" />
+    <Content Include="Files\Images\BG_Button\btn_connect2.png" />
+    <Content Include="Files\Images\BG_Button\btn_save.png" />
     <Content Include="Files\Images\DTAC.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Files\Images\Error.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Files\Images\ErrorIcon.png" />
     <Content Include="Files\Images\icoDTAC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Files\Images\icon\ico_DTAC.ico" />
+    <Content Include="Files\Images\icon\ico_One2Call.ico" />
+    <Content Include="Files\Images\icon\ico_TrueMove.ico" />
     <Content Include="Files\Images\icoOne2Call.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Runtime.InteropServices;
+using System.IO.Ports;
 
 namespace TAOS
 {
@@ -37,6 +38,9 @@ namespace TAOS
 
         #region GSM Modem
         private ConnectPort connectPort = new ConnectPort();
+        public SerialPort _Port1 = null;//One 2 Call
+        public SerialPort _Port2 = null;//DTAC
+        public SerialPort _Port3 = null;//TRUE MOVE
         #endregion
 
         public MainForm()
@@ -101,7 +105,7 @@ namespace TAOS
 
         private void checkPort()
         {
-            string result = connectPort.setPort();
+            string result = connectPort.setPort1(ref _Port1);
             textEditPortOne2Call.Text = result;
             lbTopupMassage.Text = result;
         }
@@ -1034,7 +1038,7 @@ namespace TAOS
                     if (textEditPortOne2Call.Text != "No Port" &&
                         dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString().Trim() == "One 2 Call")
                     {
-                        if (connectPort.checkConnectPort(connectPort._Port))
+                        if (connectPort.checkConnectPort(_Port1))
                         {
                             panelReTopup.Visible = true;
                             tbxRefReTopup.Select();
@@ -1065,7 +1069,7 @@ namespace TAOS
                     dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString().Trim() == "One 2 Call" &&
                     tabControlTopUpList.SelectedTab == tabPageAddTopup)
                 {
-                    if (connectPort.checkConnectPort(connectPort._Port))
+                    if (connectPort.checkConnectPort(_Port1))
                     {
                         btnTopupUSSD1.Visible = true;
                     }
@@ -1722,7 +1726,7 @@ namespace TAOS
                     textEditOne2CallTopupCode2.Text +
                     valueBath +
                     textEditOne2CallTopupCode3.Text;
-                string response = connectPort.topupUSSD(ussdCode);
+                string response = connectPort.topupUSSD(ussdCode, _Port1);
 
                 if (!ConnectMySql.setIsTopup(lbSelectTopupID.Text))
                 {
@@ -1766,7 +1770,7 @@ namespace TAOS
                     textEditOne2CallReTopupCode2.Text +
                     refNo +
                     textEditOne2CallReTopupCode3.Text;
-                string response = connectPort.topupUSSD(ussdCode);
+                string response = connectPort.topupUSSD(ussdCode, _Port1);
                 //MessageBox.Show(response);
                 lbTopupMassage.Text = response;
                 btnHistoryClear_Click(null, EventArgs.Empty);
