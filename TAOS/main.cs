@@ -38,9 +38,42 @@ namespace TAOS
 
         #region GSM Modem
         private ConnectPort connectPort = new ConnectPort();
-        public SerialPort _Port1 = null;//One 2 Call
+        #endregion
+
+        #region One 2 Call
+        public SerialPort _Port1 = null;
+        public string imeiOne2Call = "";
+        public string topupCodeOne2Call1 = "*123*0796*";
+        public string topupCodeOne2Call2 = "*";
+        public string topupCodeOne2Call3 = "#";
+
+        public string returnCodeOne2Call1 = "*321*0796*";
+        public string returnCodeOne2Call2 = "*";
+        public string returnCodeOne2Call3 = "#";
+        #endregion
+
+        #region DTAC
         public SerialPort _Port2 = null;//DTAC
+        public string imeiDTAC = "";//DTAC
+        public string topupCodeDTAC1 = "*123*0796*";
+        public string topupCodeDTAC2 = "*";
+        public string topupCodeDTAC3 = "#";
+
+        public string returnCodeDTAC1 = "*321*0796*";
+        public string returnCodeDTAC2 = "*";
+        public string returnCodeDTAC3 = "#";
+        #endregion
+
+        #region TRUE MOVE
         public SerialPort _Port3 = null;//TRUE MOVE
+        public string imeiTrueMove = "";//TRUE MOVE
+        public string topupCodeTrueMove1 = "*123*0796*";
+        public string topupCodeTrueMove2 = "*";
+        public string topupCodeTrueMove3 = "#";
+
+        public string returnCodeTrueMove1 = "*321*0796*";
+        public string returnCodeTrueMove2 = "*";
+        public string returnCodeTrueMove3 = "#";
         #endregion
 
         public MainForm()
@@ -1720,12 +1753,23 @@ namespace TAOS
                 phone = phone.Trim();
                 phone = phone.Replace("-", "");
                 string valueBath = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
-                string ussdCode = 
-                    textEditOne2CallTopupCode1.Text + 
-                    phone + 
-                    textEditOne2CallTopupCode2.Text +
-                    valueBath +
-                    textEditOne2CallTopupCode3.Text;
+                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+                string ussdCode = "";
+                switch (network)
+                {
+                    case "One 2 Call": ussdCode =
+                    topupCodeOne2Call1 + phone +
+                    topupCodeOne2Call2 + valueBath +
+                    topupCodeOne2Call3; break;
+                    //case "DTAC": ussdCode =
+                    //topupCodeDTAC1 + phone +
+                    //topupCodeDTAC2 + valueBath +
+                    //topupCodeDTAC3; break;
+                    //case "TrueMove": ussdCode =
+                    //topupCodeTrueMove1 + phone +
+                    //topupCodeTrueMove2 + valueBath +
+                    //topupCodeTrueMove3; break;
+                }
                 string response = connectPort.topupUSSD(ussdCode, _Port1);
 
                 if (!ConnectMySql.setIsTopup(lbSelectTopupID.Text))
@@ -1764,12 +1808,24 @@ namespace TAOS
                 phone = phone.Substring(6);
 
                 string refNo = tbxRefReTopup.Text;
-                string ussdCode =
-                    textEditOne2CallReTopupCode1.Text +
-                    phone +
-                    textEditOne2CallReTopupCode2.Text +
-                    refNo +
-                    textEditOne2CallReTopupCode3.Text;
+                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString(); 
+                string ussdCode = "";
+                switch (network)
+                {
+                    case "One 2 Call": ussdCode =
+                    returnCodeOne2Call1 + phone +
+                    returnCodeOne2Call1 + refNo +
+                    returnCodeOne2Call1; break;
+                    //case "DTAC": ussdCode =
+                    //topupCodeOne2Call1 + phone +
+                    //topupCodeOne2Call2 + refNo +
+                    //topupCodeOne2Call3; break;
+                    //case "TrueMove": ussdCode =
+                    //topupCodeOne2Call1 + phone +
+                    //topupCodeOne2Call2 + refNo +
+                    //topupCodeOne2Call3; break;
+                }
+
                 string response = connectPort.topupUSSD(ussdCode, _Port1);
                 //MessageBox.Show(response);
                 lbTopupMassage.Text = response;
