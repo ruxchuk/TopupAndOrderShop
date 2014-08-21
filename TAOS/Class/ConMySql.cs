@@ -189,7 +189,7 @@ namespace TAOS
                     list[2].Add(dataReader["price"] + "");
                     list[3].Add(dataReader["date_update"] + "");
                     list[4].Add(dataReader["barcode"] + "");
-                    list[5].Add(dataReader["type_value"] + "");
+                    list[5].Add(dataReader["product_value"] + "");
                     list[6].Add(dataReader["date_add"] + "");
                 }
                 dataReader.Close();
@@ -222,7 +222,7 @@ namespace TAOS
                     list[2].Add(dataReader["price"] + "");
                     list[3].Add(dataReader["date_update"] + "");
                     list[4].Add(dataReader["barcode"] + "");
-                    list[5].Add(dataReader["type_value"] + "");
+                    list[5].Add(dataReader["product_value"] + "");
                     list[6].Add(dataReader["date_add"] + "");
                 }
                 dataReader.Close();
@@ -249,7 +249,7 @@ namespace TAOS
                       `product_id`,
                       `product_name`,
                       `price`,
-                      `type_value`,
+                      `product_value`,
                       `barcode`,
                       `date_add`,
                       CONCAT(
@@ -274,7 +274,7 @@ namespace TAOS
                     list[2].Add(dataReader["price"] + "");
                     list[3].Add(dataReader["date_update"] + "");
                     list[4].Add(dataReader["barcode"] + "");
-                    list[5].Add(dataReader["type_value"] + "");
+                    list[5].Add(dataReader["product_value"] + "");
                     list[6].Add(dataReader["date_add"] + "");
                 }
                 dataReader.Close();
