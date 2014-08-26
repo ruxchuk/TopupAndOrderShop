@@ -42,7 +42,8 @@ namespace TAOS
 
         #region One 2 Call
         public SerialPort _Port1 = null;
-        public string imeiOne2Call = "";
+        public string one2CallPortName = "";
+        public string imeiOne2Call = "357083030372135";
         public string topupCodeOne2Call1 = "*123*0796*";
         public string topupCodeOne2Call2 = "*";
         public string topupCodeOne2Call3 = "#";
@@ -54,24 +55,26 @@ namespace TAOS
 
         #region DTAC
         public SerialPort _Port2 = null;//DTAC
-        public string imeiDTAC = "";//DTAC
-        public string topupCodeDTAC1 = "*123*0796*";
-        public string topupCodeDTAC2 = "*";
-        public string topupCodeDTAC3 = "#";
+        public string dtacPortName = "";
+        public string imeiDTAC = "860941002610669";//DTAC
+        public string topupCodeDTAC1 = "*211*1*";// *211*1*เบอร์*8899*เงิน*1#
+        public string topupCodeDTAC2 = "*8899*";
+        public string topupCodeDTAC3 = "*1#";
 
-        public string returnCodeDTAC1 = "*321*0796*";
-        public string returnCodeDTAC2 = "*";
-        public string returnCodeDTAC3 = "#";
+        public string returnCodeDTAC1 = "*211*8*";// *211*8*เบอร์*8899*เงิน*1#
+        public string returnCodeDTAC2 = "*8899*";
+        public string returnCodeDTAC3 = "*1#";
         #endregion
 
         #region TRUE MOVE
         public SerialPort _Port3 = null;//TRUE MOVE
-        public string imeiTrueMove = "";//TRUE MOVE
-        public string topupCodeTrueMove1 = "*123*0796*";
+        public string trueMovePortName = "";
+        public string imeiTrueMove = "860941002609570";//TRUE MOVE
+        public string topupCodeTrueMove1 = "*666*";// *666*เบอร์*เงิน*1590#
         public string topupCodeTrueMove2 = "*";
-        public string topupCodeTrueMove3 = "#";
+        public string topupCodeTrueMove3 = "*1590#";
 
-        public string returnCodeTrueMove1 = "*321*0796*";
+        public string returnCodeTrueMove1 = "*321*0796*";// 
         public string returnCodeTrueMove2 = "*";
         public string returnCodeTrueMove3 = "#";
         #endregion
@@ -97,8 +100,24 @@ namespace TAOS
             }
 
             KeyboardHook.CreateHook(KeyReader);
-
+            imeiOne2Call = lbImeiOne2Call.Text;
+            imeiDTAC = lbImeiDTAC.Text;
+            imeiTrueMove = lbImeiTrueMove.Text;
             checkPort();
+        }
+
+        private void checkPort()
+        {
+            one2CallPortName = connectPort.getPortByImei(imeiOne2Call);
+            textEditPortOne2Call.Text = one2CallPortName;
+            Thread.Sleep(1000);
+
+            dtacPortName = connectPort.getPortByImei(imeiDTAC);
+            textEditPortDTAC.Text = dtacPortName;
+            Thread.Sleep(1000);
+
+            trueMovePortName = connectPort.getPortByImei(imeiTrueMove);
+            textEditPortTrueMove.Text = trueMovePortName;
         }
 
         private void loadSetting()
@@ -136,12 +155,6 @@ namespace TAOS
 
         }
 
-        private void checkPort()
-        {
-            string result = connectPort.setPort1(ref _Port1);
-            textEditPortOne2Call.Text = result;
-            lbTopupMassage.Text = result;
-        }
 
         private void tbxSerialAndAddPrice_KeyUp(object sender, KeyEventArgs e)
         {
@@ -483,7 +496,6 @@ namespace TAOS
                 dataGridViewListCustomer.Rows[number].Cells[9].Value = listCustomer[4][i];
 
             }
-            textboxCustomerSearchName.Select();
         }
 
         #endregion
@@ -765,6 +777,7 @@ namespace TAOS
             lbTopUpPhoneNumber.Text = "";
             txtTopupPhoneNumber.Text = "";
             txtValueBaht.Text = "";
+            tbxTopupCustomerName.Text = "";
             cmbTopUpNetwork.SelectedIndex = -1;
 
             lbMod.Text = "-";
@@ -773,6 +786,8 @@ namespace TAOS
             //getListPhoneNumber(true, "");
             getListTopup();
 
+            tbxTopupCustomerName.Visible = false;
+            btnSaveCustomerName.Visible = false;
             btnTopupUSSD1.Visible = false;
         }
 
@@ -1063,63 +1078,141 @@ namespace TAOS
         {
             listBoxTopUpPhoneNumber.Visible = false;
             lbTopupMassage.Text = "";
-            if (tabControlTopUpList.SelectedTab == tabPageListTopup)
+            if (dataGridViewTopup.SelectedRows.Count == 1)
             {
-                if (dataGridViewTopup.SelectedRows.Count == 1)
+                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString(); 
+                if (tabControlTopUpList.SelectedTab == tabPageListTopup)
                 {
-
-                    if (textEditPortOne2Call.Text != "No Port" &&
-                        dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString().Trim() == "One 2 Call")
+                    //return topup 
+                    btnTopupUSSD1.Visible = false;Debug.WriteLine(network);
+                    if (network == "One 2 Call" && one2CallPortName != "No Port")
                     {
-                        if (connectPort.checkConnectPort(_Port1))
+                        bool result = connectPort.checkConnectPortByName(ref one2CallPortName);
+                        Thread.Sleep(300);
+                        if (result)
                         {
-                            panelReTopup.Visible = true;
+                        Debug.WriteLine("one 2 call click");
+                            btnReTopup.Visible = true;
+                            lbRefTopupNo.Visible = true;
+                            tbxRefReTopup.Visible = true;
                             tbxRefReTopup.Select();
+                        }
+                    }
+                    else if (network == "DTAC" && textEditPortDTAC.Text != "No Port")
+                    {
+                        bool result = connectPort.checkConnectPortByName(ref dtacPortName);
+                        Thread.Sleep(300);
+                        if (result)
+                        {
+                            btnReTopup.Visible = true;
+                            tbxRefReTopup.Visible = false;
+                            lbRefTopupNo.Visible = false;
+                        }
+                    }
+                    else if (network == "TrueMove" && textEditPortTrueMove.Text != "No Port")
+                    {
+                        bool result = connectPort.checkConnectPortByName(ref trueMovePortName);
+                        Thread.Sleep(300);
+                        if (result)
+                        {
+                            //tbxRefReTopup.Visible = false;
+                            //lbRefTopupNo.Visible = false;
+                            lbRefTopupNo.Visible = false;
+                            tbxRefReTopup.Visible = false;
+                            btnReTopup.Visible = false;
                         }
                     }
                     else
                     {
-                        panelReTopup.Visible = false;
+                        lbRefTopupNo.Visible = false;
+                        tbxRefReTopup.Visible = false;
+                        btnReTopup.Visible = false;
                     }
+                    //tbxHistoryPhoneNumber.Select();
+                    return;
                 }
-                tbxHistoryPhoneNumber.Select();
-                return;
-            }
-            if (dataGridViewTopup.SelectedRows.Count == 1)
-            {
-                lbSelectTopupID.Text = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
-                lbTopUpPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
-                txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
-                cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
-                txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
-
-                txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);
-
-                calMod(txtTopupPhoneNumber.Text);
-                //txtTopupPhoneNumber.Select();
-
-                if (textEditPortOne2Call.Text != "No Port" &&
-                    dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString().Trim() == "One 2 Call" &&
-                    tabControlTopUpList.SelectedTab == tabPageAddTopup)
+                else if (tabControlTopUpList.SelectedTab == tabPageAddTopup)
                 {
-                    if (connectPort.checkConnectPort(_Port1))
+                    Debug.WriteLine("tab list");
+
+                    tbxTopupCustomerName.Visible = true;
+                    btnSaveCustomerName.Visible = true;
+                    lbSelectTopupID.Text = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
+                    lbTopUpPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+                    txtValueBaht.Text = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
+                    cmbTopUpNetwork.Text = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+                    txtTopupPhoneNumber.Text = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
+
+                    tbxTopupCustomerName.Text = dataGridViewTopup.SelectedRows[0].Cells[4].Value.ToString() == "ไม่มีชื่อ" ? 
+                        "" : dataGridViewTopup.SelectedRows[0].Cells[4].Value.ToString();
+                    txtTopupPhoneNumber.Select(txtTopupPhoneNumber.Text.Length, 0);
+
+                    calMod(txtTopupPhoneNumber.Text);
+                    //txtTopupPhoneNumber.Select();
+
+                    //topup
+                    if (network == "One 2 Call" && textEditPortOne2Call.Text != "No Port")
                     {
-                        btnTopupUSSD1.Visible = true;
+                        bool result = connectPort.checkConnectPortByName(ref one2CallPortName);
+
+                        Debug.WriteLine(result); 
+                        if (result)
+                        {
+                            btnTopupUSSD1.Visible = true;
+                        }
+                            
                     }
+                    else if (network == "DTAC" && textEditPortDTAC.Text != "No Port")
+                    {
+                        bool result = connectPort.checkConnectPortByName(ref dtacPortName);
+                        if (result)
+                        {
+                            btnTopupUSSD1.Visible = true;
+                        }
+
+                    }
+                    else if (network == "TrueMove" && textEditPortTrueMove.Text != "No Port")
+                    {
+
+                        bool result = connectPort.checkConnectPortByName(ref trueMovePortName);
+                        if (result)
+                        {
+                            btnTopupUSSD1.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        lbRefTopupNo.Visible = false;
+                        tbxRefReTopup.Visible = false;
+                        btnTopupUSSD1.Visible = false;
+                        btnReTopup.Visible = false;
+                    }
+                    //if (textEditPortOne2Call.Text != "No Port"
+                    //    || textEditPortDTAC.Text != "No Port"
+                    //    || textEditPortTrueMove.Text != "No Port")
+                    //{
+                    //    btnTopupUSSD1.Visible = true;
+                    //}
                 }
                 else
                 {
+                    lbRefTopupNo.Visible = false;
+                    tbxRefReTopup.Visible = false;
                     btnTopupUSSD1.Visible = false;
+                    btnReTopup.Visible = false;
                 }
             }
+
             txtTopupPhoneNumber.Select();
             
         }
 
         private void tabControlTopUpList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            panelReTopup.Visible = false;
+            lbRefTopupNo.Visible = false;
+            tbxRefReTopup.Visible = false;
             btnTopupUSSD1.Visible = false;
+            btnReTopup.Visible = false;
             lbTopupMassage.Text = "";
             if (tabControlTopUpList.SelectedTab == tabPageAddTopup)
             {
@@ -1244,7 +1337,10 @@ namespace TAOS
 
         private void btnHistorySearch_Click(object sender, EventArgs e)
         {
-            panelReTopup.Visible = false;
+            lbRefTopupNo.Visible = false;
+            tbxRefReTopup.Visible = false;
+            btnTopupUSSD1.Visible = false;
+            btnReTopup.Visible = false;
             string date = dtHistory.Value.Year + "-" + dtHistory.Value.Month + "-" + dtHistory.Value.Day;
             Debug.WriteLine(date);
             getListTopup(1, tbxHistoryPhoneNumber.Text, date, tbxHistoryTime.Text, cmbHistoryNetwork.Text);
@@ -1263,13 +1359,19 @@ namespace TAOS
             getListTopup(1, "", date);
             tbxHistoryPhoneNumber.Select();
 
-            panelReTopup.Visible = false;
+            lbRefTopupNo.Visible = false;
+            tbxRefReTopup.Visible = false;
+            btnTopupUSSD1.Visible = false;
+            btnReTopup.Visible = false;
             tbxRefReTopup.Clear();
         }
 
         private void btnHistoryCancelTopup_Click(object sender, EventArgs e)
         {
-            panelReTopup.Visible = false;
+            lbRefTopupNo.Visible = false;
+            tbxRefReTopup.Visible = false;
+            btnTopupUSSD1.Visible = false;
+            btnReTopup.Visible = false;
             try
             {
                 string idSelect = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
@@ -1316,7 +1418,11 @@ namespace TAOS
                         cutTopup.ShowDialog();
                     }
 
-                }  
+                }
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                textboxCustomerSearchName.Text = "";
             }
         }
 
@@ -1634,7 +1740,8 @@ namespace TAOS
 
         private void dataGridViewTopup_DoubleClick(object sender, EventArgs e)
         {
-            if (dataGridViewTopup.SelectedRows.Count == 1)
+            if (dataGridViewTopup.SelectedRows.Count == 1 &&
+                tabControlTopUpList.SelectedTab == tabPageAddTopup)
             {
                 DialogResult result = messageError.showMessageBox("ทำการเติมเงินเบอร์ \"" +
                     txtTopupPhoneNumber.Text + "\" แล้ว \nใช่ หรือไม่",
@@ -1744,7 +1851,8 @@ namespace TAOS
         private void btnTopupUSSD1_Click(object sender, EventArgs e)
         {
             string phone = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
-            DialogResult result = messageError.showMessageBox("ต้องการเติมเงิน One 2 Call เบอร์ \n" +
+                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+                DialogResult result = messageError.showMessageBox("ต้องการเติมเงิน " + network + " เบอร์ \n" +
                     phone + " ใช่ หรือไม่",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
@@ -1753,24 +1861,50 @@ namespace TAOS
                 phone = phone.Trim();
                 phone = phone.Replace("-", "");
                 string valueBath = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
-                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
                 string ussdCode = "";
+                string response = ""; 
                 switch (network)
                 {
-                    case "One 2 Call": ussdCode =
-                    topupCodeOne2Call1 + phone +
-                    topupCodeOne2Call2 + valueBath +
-                    topupCodeOne2Call3; break;
-                    //case "DTAC": ussdCode =
-                    //topupCodeDTAC1 + phone +
-                    //topupCodeDTAC2 + valueBath +
-                    //topupCodeDTAC3; break;
-                    //case "TrueMove": ussdCode =
-                    //topupCodeTrueMove1 + phone +
-                    //topupCodeTrueMove2 + valueBath +
-                    //topupCodeTrueMove3; break;
+                    case "One 2 Call": ussdCode = 
+                        topupCodeOne2Call1 + phone +
+                        topupCodeOne2Call2 + valueBath +
+                        topupCodeOne2Call3;
+                        //if (!connectPort.checkConnectPort(_Port1))
+                        //{
+                        //    lbTopupMassage.Text = "กรุณาเช็ค Port: One 2 Call";
+                        //    waitingForm.cloadLoading();
+                        //    return;
+                        //}
+                        //Debug.Write("Send ussd start");
+                        response = connectPort.topupUSSD(ussdCode, one2CallPortName);
+                    break;
+                    case "DTAC": ussdCode =
+                        //"*101#";
+                    topupCodeDTAC1 + phone +
+                    topupCodeDTAC2 + valueBath +
+                    topupCodeDTAC3; 
+                    //if (!connectPort.checkConnectPort(_Port2))
+                    //{
+                    //    lbTopupMassage.Text = "กรุณาเช็ค Port: DTAC";
+                    //    waitingForm.cloadLoading();
+                    //    return;
+                    //}
+                    response = connectPort.topupUSSD(ussdCode, dtacPortName, true);
+                    break;
+                    case "TrueMove": ussdCode =
+                        //"*103#";
+                    topupCodeTrueMove1 + phone +
+                    topupCodeTrueMove2 + valueBath +
+                    topupCodeTrueMove3; 
+                    //if (!connectPort.checkConnectPort(_Port3))
+                    //{
+                    //    lbTopupMassage.Text = "กรุณาเช็ค Port: TRUE MOVE";
+                    //    waitingForm.cloadLoading();
+                    //    return;
+                    //}
+                    response = connectPort.topupUSSD(ussdCode, trueMovePortName, true);
+                    break;
                 }
-                string response = connectPort.topupUSSD(ussdCode, _Port1);
 
                 if (!ConnectMySql.setIsTopup(lbSelectTopupID.Text))
                 {
@@ -1791,7 +1925,8 @@ namespace TAOS
 
         private void btnReTopup_Click(object sender, EventArgs e)
         {
-            if (tbxRefReTopup.Text == "")
+                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+                if (tbxRefReTopup.Text == "" && network == "One 2 Call")
             {
                 tbxRefReTopup.Select();
                 return;
@@ -1804,29 +1939,36 @@ namespace TAOS
             {
                 waitingForm.showLoading("กำลังดึงเงินคืน กรุณารอสักครู่");
                 phone = phone.Trim();
-                phone = phone.Replace("-", "");
-                phone = phone.Substring(6);
+                 phone = phone.Replace("-", "");
+                 string subPhone = phone.Substring(6);
 
+                string valueBath = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
                 string refNo = tbxRefReTopup.Text;
-                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString(); 
                 string ussdCode = "";
+                string response = "";
                 switch (network)
                 {
                     case "One 2 Call": ussdCode =
-                    returnCodeOne2Call1 + phone +
+                    returnCodeOne2Call1 + subPhone +
                     returnCodeOne2Call1 + refNo +
-                    returnCodeOne2Call1; break;
-                    //case "DTAC": ussdCode =
-                    //topupCodeOne2Call1 + phone +
-                    //topupCodeOne2Call2 + refNo +
-                    //topupCodeOne2Call3; break;
+                    returnCodeOne2Call1; 
+                    response = connectPort.topupUSSD(ussdCode, one2CallPortName);
+                    break;
+                    case "DTAC": ussdCode =
+                    returnCodeDTAC1 + phone +
+                    returnCodeDTAC2 + valueBath +
+                    returnCodeDTAC3;
+                    //Debug.WriteLine(ussdCode);return;
+                    response = connectPort.topupUSSD(ussdCode, dtacPortName, true);
+                    break;
                     //case "TrueMove": ussdCode =
                     //topupCodeOne2Call1 + phone +
                     //topupCodeOne2Call2 + refNo +
                     //topupCodeOne2Call3; break;
+                    //response = connectPort.topupUSSD(ussdCode, dtacPortName, true);
                 }
 
-                string response = connectPort.topupUSSD(ussdCode, _Port1);
+                
                 //MessageBox.Show(response);
                 lbTopupMassage.Text = response;
                 btnHistoryClear_Click(null, EventArgs.Empty);
@@ -1834,7 +1976,10 @@ namespace TAOS
             }
             else
             {
-                panelReTopup.Visible = false;
+                lbRefTopupNo.Visible = false;
+                tbxRefReTopup.Visible = false;
+                btnTopupUSSD1.Visible = false;
+                btnReTopup.Visible = false;
             }
         }
 
@@ -1851,11 +1996,87 @@ namespace TAOS
             waitingForm.cloadLoading();
         }
 
-        private void btnConnectPort1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            waitingForm.showLoading("กำลังเช็ค Port กรุณารอสักครู่");
+            //waitingForm.showLoading("กำลังส่ง");
+            //string ussdCode = "AT+GSN";
+            ////string ussdCode = "AT+CGSN";
+            ////string response = connectPort.topupUSSD(ussdCode, _Port1);
+            //string response = connectPort.checkIMEI(_Port3, imeiTrueMove);
+            //Debug.WriteLine(response);
+            //MessageBox.Show(response);
+            //lbTopupMassage.Text = response;
+            //btnHistoryClear_Click(null, EventArgs.Empty);
+            //waitingForm.cloadLoading();
+        }
+
+        private void btnConnectPort3_Click(object sender, EventArgs e)
+        {
+            waitingForm.showLoading("กำลังเช็ค Port ทั้งหมดกรุณารอสักครู่");
             checkPort();
             waitingForm.cloadLoading();
+        }
+
+        private void btnSaveCustomerName_Click(object sender, EventArgs e)
+        {
+            string phoneNumber = txtTopupPhoneNumber.Text.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
+            string network = cmbTopUpNetwork.Text;
+            string customerID = dataGridViewTopup.SelectedRows[0].Cells[6].Value.ToString();
+            string phoneNumberID = dataGridViewTopup.SelectedRows[0].Cells[7].Value.ToString();
+
+            textBoxAddCustomerName.Text = tbxTopupCustomerName.Text;
+            textboxAddCustomerPhone.Text = phoneNumber;
+            comboBoxAddCustomerNetwork.Text = network;
+            //richTextBoxAddCustomer.Text = dataGridViewListCustomer.SelectedRows[0].Cells[4].Value.ToString();
+            lbOldPhoneNumber.Text = phoneNumber;
+            lbCustomerID.Text = customerID;
+            lbPhoneNumberID.Text = phoneNumberID;
+            if (customerID == "0")
+            {
+                buttonAddCusotmerAdd_Click(null, EventArgs.Empty);
+            }
+            else
+            {
+                buttonCustomerEdit_Click(null, EventArgs.Empty);
+            }
+
+            getListTopup();
+
+            btnTopupUSSD1.Visible = false;
+            tbxTopupCustomerName.Visible = false;
+            btnSaveCustomerName.Visible = false;
+        }
+
+        private void textboxCustomerSearchPhone_TextChanged(object sender, EventArgs e)
+        {
+            getListCustomer(textboxCustomerSearchName.Text, textboxCustomerSearchPhone.Text, comboBoxSearchCustomerNetwork.Text);
+        }
+
+        private void textboxCustomerSearchPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                if (dataGridViewListCustomer.SelectedRows.Count == 1)
+                {
+                    string phoneNumber = dataGridViewListCustomer.SelectedRows[0].Cells[2].Value.ToString();
+                    if (phoneNumber != "")
+                    {
+                        txtTopupPhoneNumber.Text = phoneNumber;
+                        phoneNumber = phoneNumber.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
+                        if (phoneNumber.Length > 2)
+                        {
+                            getListPhoneNumber(false, phoneNumber);
+                        }
+                        FRMCustomerTopup cutTopup = new FRMCustomerTopup(this);
+                        cutTopup.ShowDialog();
+                    }
+
+                }
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                textboxCustomerSearchPhone.Text = "";
+            }
         }
 
     }

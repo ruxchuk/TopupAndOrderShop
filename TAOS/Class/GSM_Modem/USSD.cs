@@ -91,6 +91,21 @@ namespace TAOS
             return RemoveLB(result);
         }
 
+        public string endcodeStringToHex(string ussdCode)
+        {
+            char[] values = ussdCode.ToCharArray();
+            ussdCode = "";
+            foreach (char letter in values)
+            {
+                // Get the integral value of the character.
+                int value = Convert.ToInt32(letter);
+                // Convert the decimal value to a hexadecimal value in string form.
+                string hexOutput = String.Format("{0:X}", value);
+                //Console.WriteLine("Hexadecimal value of {0} is {1}", letter, hexOutput);
+                ussdCode += hexOutput;
+            }
+            return ussdCode;
+        }
         #endregion
 
         #region Private routines
@@ -152,6 +167,12 @@ namespace TAOS
             return output;
         }
 
+        public string cutStringIMEI(string msg)
+        {
+            //int i = msg.IndexOf('\r');
+            msg = msg.Substring(0, 15);
+            return msg;
+        }
         #endregion
 
         #endregion

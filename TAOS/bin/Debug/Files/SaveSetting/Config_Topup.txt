@@ -1,4 +1,2 @@
-root
-
-localhost
-dang_takong_sale
+*123*0796*num*num#
+*321

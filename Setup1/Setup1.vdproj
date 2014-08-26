@@ -147,12 +147,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_454BBD0DB6734FBC85D69B2815850DA1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5BABF31B26DD4CEF9CE30947DF42011D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -320,6 +314,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -344,6 +351,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -633,26 +653,6 @@
             {
             "SourcePath" = "8:..\\TAOS\\bin\\Debug\\Files\\Images\\icoTrueMove.png"
             "TargetName" = "8:icoTrueMove.png"
-            "Tag" = "8:"
-            "Folder" = "8:_8F3428F860A942D58280703AEC8369F9"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_454BBD0DB6734FBC85D69B2815850DA1"
-            {
-            "SourcePath" = "8:..\\TAOS\\bin\\Debug\\Files\\Images\\ErrorIcon.png"
-            "TargetName" = "8:ErrorIcon.png"
             "Tag" = "8:"
             "Folder" = "8:_8F3428F860A942D58280703AEC8369F9"
             "Condition" = "8:"
@@ -1034,7 +1034,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup1"
         "ProductCode" = "8:{DEB569E3-5DC9-4437-A8CA-08D3F9117F6D}"
-        "PackageCode" = "8:{1B55719C-FA0A-4680-8170-BBCFFC56BB43}"
+        "PackageCode" = "8:{34598EFA-536F-40EE-B9AA-56681CE7F8B2}"
         "UpgradeCode" = "8:{CE7A91CE-03F5-40EB-BD94-3C96B13601FA}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

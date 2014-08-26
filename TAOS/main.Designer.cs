@@ -35,16 +35,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageTopUp = new System.Windows.Forms.TabPage();
-            this.panelReTopup = new System.Windows.Forms.FlowLayoutPanel();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.lbTopupMassage = new System.Windows.Forms.Label();
+            this.lbRefTopupNo = new DevExpress.XtraEditors.TextEdit();
             this.tbxRefReTopup = new System.Windows.Forms.TextBox();
             this.btnReTopup = new System.Windows.Forms.Button();
-            this.lbTopupMassage = new System.Windows.Forms.Label();
-            this.btnTopupUSSD1 = new System.Windows.Forms.Button();
             this.webBrowserTopUpCheckBer = new System.Windows.Forms.WebBrowser();
             this.tabControlTopUpList = new System.Windows.Forms.TabControl();
             this.tabPageAddTopup = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.tbxTopupCustomerName = new System.Windows.Forms.TextBox();
+            this.btnSaveCustomerName = new System.Windows.Forms.Button();
             this.lbMod = new System.Windows.Forms.Label();
             this.lbPhoneID = new System.Windows.Forms.Label();
             this.lbSelectTopupID = new System.Windows.Forms.Label();
@@ -79,19 +79,20 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tabPageSetTopup = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label40 = new System.Windows.Forms.Label();
+            this.lbImeiOne2Call = new DevExpress.XtraEditors.TextEdit();
             this.textEditPortOne2Call = new DevExpress.XtraEditors.TextEdit();
-            this.btnConnectPort1 = new System.Windows.Forms.Button();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.textEditPortDTAC = new DevExpress.XtraEditors.TextEdit();
-            this.btnConnectPort2 = new System.Windows.Forms.Button();
-            this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnConnectPort3 = new System.Windows.Forms.Button();
-            this.label34 = new System.Windows.Forms.Label();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lbImeiDTAC = new DevExpress.XtraEditors.TextEdit();
+            this.textEditPortDTAC = new DevExpress.XtraEditors.TextEdit();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lbImeiTrueMove = new DevExpress.XtraEditors.TextEdit();
             this.textEditPortTrueMove = new DevExpress.XtraEditors.TextEdit();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.imageTopUpIconNetwork = new System.Windows.Forms.PictureBox();
@@ -110,6 +111,7 @@
             this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NetworkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnTopupUSSD1 = new System.Windows.Forms.Button();
             this.tabPageCustomerList = new System.Windows.Forms.TabPage();
             this.tabControlListCustomer = new System.Windows.Forms.TabControl();
             this.tabPageListCustomer = new System.Windows.Forms.TabPage();
@@ -249,8 +251,7 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControlMain.SuspendLayout();
             this.tabPageTopUp.SuspendLayout();
-            this.panelReTopup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbRefTopupNo.Properties)).BeginInit();
             this.tabControlTopUpList.SuspendLayout();
             this.tabPageAddTopup.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -268,13 +269,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).BeginInit();
             this.tabPageSetTopup.SuspendLayout();
             this.groupBox17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbImeiOne2Call.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPortOne2Call.Properties)).BeginInit();
             this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbImeiDTAC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPortDTAC.Properties)).BeginInit();
             this.groupBox18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbImeiTrueMove.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPortTrueMove.Properties)).BeginInit();
             this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).BeginInit();
@@ -341,12 +348,14 @@
             // 
             // tabPageTopUp
             // 
-            this.tabPageTopUp.Controls.Add(this.panelReTopup);
             this.tabPageTopUp.Controls.Add(this.lbTopupMassage);
-            this.tabPageTopUp.Controls.Add(this.btnTopupUSSD1);
+            this.tabPageTopUp.Controls.Add(this.lbRefTopupNo);
+            this.tabPageTopUp.Controls.Add(this.tbxRefReTopup);
+            this.tabPageTopUp.Controls.Add(this.btnReTopup);
             this.tabPageTopUp.Controls.Add(this.webBrowserTopUpCheckBer);
             this.tabPageTopUp.Controls.Add(this.tabControlTopUpList);
             this.tabPageTopUp.Controls.Add(this.groupBox14);
+            this.tabPageTopUp.Controls.Add(this.btnTopupUSSD1);
             this.tabPageTopUp.Controls.Add(this.dataGridViewTopup);
             this.tabPageTopUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.tabPageTopUp.ForeColor = System.Drawing.Color.Black;
@@ -358,39 +367,43 @@
             this.tabPageTopUp.Text = "เติมเงิน";
             this.tabPageTopUp.UseVisualStyleBackColor = true;
             // 
-            // panelReTopup
+            // lbTopupMassage
             // 
-            this.panelReTopup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelReTopup.Controls.Add(this.textEdit1);
-            this.panelReTopup.Controls.Add(this.tbxRefReTopup);
-            this.panelReTopup.Controls.Add(this.btnReTopup);
-            this.panelReTopup.Location = new System.Drawing.Point(225, 488);
-            this.panelReTopup.Name = "panelReTopup";
-            this.panelReTopup.Size = new System.Drawing.Size(393, 47);
-            this.panelReTopup.TabIndex = 1002;
-            this.panelReTopup.Visible = false;
+            this.lbTopupMassage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbTopupMassage.AutoSize = true;
+            this.lbTopupMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTopupMassage.ForeColor = System.Drawing.Color.Black;
+            this.lbTopupMassage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbTopupMassage.Location = new System.Drawing.Point(6, 429);
+            this.lbTopupMassage.Name = "lbTopupMassage";
+            this.lbTopupMassage.Size = new System.Drawing.Size(152, 24);
+            this.lbTopupMassage.TabIndex = 18;
+            this.lbTopupMassage.Text = "topup massage";
             // 
-            // textEdit1
+            // lbRefTopupNo
             // 
-            this.textEdit1.CausesValidation = false;
-            this.textEdit1.EditValue = "Ref No:";
-            this.textEdit1.Location = new System.Drawing.Point(3, 3);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
-            this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.textEdit1.Properties.Appearance.Options.UseFont = true;
-            this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
-            this.textEdit1.Size = new System.Drawing.Size(80, 32);
-            this.textEdit1.TabIndex = 38;
+            this.lbRefTopupNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbRefTopupNo.EditValue = "Ref No:";
+            this.lbRefTopupNo.Location = new System.Drawing.Point(242, 493);
+            this.lbRefTopupNo.Name = "lbRefTopupNo";
+            this.lbRefTopupNo.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lbRefTopupNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRefTopupNo.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.lbRefTopupNo.Properties.Appearance.Options.UseBackColor = true;
+            this.lbRefTopupNo.Properties.Appearance.Options.UseFont = true;
+            this.lbRefTopupNo.Properties.Appearance.Options.UseForeColor = true;
+            this.lbRefTopupNo.Size = new System.Drawing.Size(80, 32);
+            this.lbRefTopupNo.TabIndex = 38;
+            this.lbRefTopupNo.Visible = false;
             // 
             // tbxRefReTopup
             // 
-            this.tbxRefReTopup.Location = new System.Drawing.Point(89, 3);
+            this.tbxRefReTopup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxRefReTopup.Location = new System.Drawing.Point(328, 493);
             this.tbxRefReTopup.Name = "tbxRefReTopup";
             this.tbxRefReTopup.Size = new System.Drawing.Size(163, 38);
             this.tbxRefReTopup.TabIndex = 0;
+            this.tbxRefReTopup.Visible = false;
             this.tbxRefReTopup.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxRefReTopup_KeyDown);
             // 
             // btnReTopup
@@ -404,46 +417,14 @@
             this.btnReTopup.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReTopup.ForeColor = System.Drawing.Color.Black;
             this.btnReTopup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReTopup.Location = new System.Drawing.Point(258, 3);
+            this.btnReTopup.Location = new System.Drawing.Point(497, 493);
             this.btnReTopup.Name = "btnReTopup";
             this.btnReTopup.Size = new System.Drawing.Size(122, 40);
             this.btnReTopup.TabIndex = 1001;
             this.btnReTopup.Text = "     ดึงเงินคืน";
             this.btnReTopup.UseVisualStyleBackColor = false;
+            this.btnReTopup.Visible = false;
             this.btnReTopup.Click += new System.EventHandler(this.btnReTopup_Click);
-            // 
-            // lbTopupMassage
-            // 
-            this.lbTopupMassage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbTopupMassage.AutoSize = true;
-            this.lbTopupMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbTopupMassage.ForeColor = System.Drawing.Color.Black;
-            this.lbTopupMassage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbTopupMassage.Location = new System.Drawing.Point(6, 508);
-            this.lbTopupMassage.Name = "lbTopupMassage";
-            this.lbTopupMassage.Size = new System.Drawing.Size(172, 25);
-            this.lbTopupMassage.TabIndex = 18;
-            this.lbTopupMassage.Text = "topup massage";
-            // 
-            // btnTopupUSSD1
-            // 
-            this.btnTopupUSSD1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTopupUSSD1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnTopupUSSD1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTopupUSSD1.BackgroundImage")));
-            this.btnTopupUSSD1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTopupUSSD1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTopupUSSD1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnTopupUSSD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTopupUSSD1.ForeColor = System.Drawing.Color.Black;
-            this.btnTopupUSSD1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopupUSSD1.Location = new System.Drawing.Point(482, 493);
-            this.btnTopupUSSD1.Name = "btnTopupUSSD1";
-            this.btnTopupUSSD1.Size = new System.Drawing.Size(137, 40);
-            this.btnTopupUSSD1.TabIndex = 8;
-            this.btnTopupUSSD1.Text = "         เติมเงิน";
-            this.btnTopupUSSD1.UseVisualStyleBackColor = false;
-            this.btnTopupUSSD1.Visible = false;
-            this.btnTopupUSSD1.Click += new System.EventHandler(this.btnTopupUSSD1_Click);
             // 
             // webBrowserTopUpCheckBer
             // 
@@ -461,8 +442,8 @@
             // 
             // tabControlTopUpList
             // 
-            this.tabControlTopUpList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControlTopUpList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlTopUpList.Controls.Add(this.tabPageAddTopup);
             this.tabControlTopUpList.Controls.Add(this.tabPageListTopup);
             this.tabControlTopUpList.Controls.Add(this.tabPageSetTopup);
@@ -489,6 +470,8 @@
             // 
             this.groupBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.groupBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox8.Controls.Add(this.tbxTopupCustomerName);
+            this.groupBox8.Controls.Add(this.btnSaveCustomerName);
             this.groupBox8.Controls.Add(this.lbMod);
             this.groupBox8.Controls.Add(this.lbPhoneID);
             this.groupBox8.Controls.Add(this.lbSelectTopupID);
@@ -512,6 +495,35 @@
             this.groupBox8.TabIndex = 6;
             this.groupBox8.TabStop = false;
             // 
+            // tbxTopupCustomerName
+            // 
+            this.tbxTopupCustomerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbxTopupCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.tbxTopupCustomerName.ForeColor = System.Drawing.Color.Yellow;
+            this.tbxTopupCustomerName.Location = new System.Drawing.Point(9, 290);
+            this.tbxTopupCustomerName.Name = "tbxTopupCustomerName";
+            this.tbxTopupCustomerName.Size = new System.Drawing.Size(154, 31);
+            this.tbxTopupCustomerName.TabIndex = 47;
+            this.tbxTopupCustomerName.Visible = false;
+            // 
+            // btnSaveCustomerName
+            // 
+            this.btnSaveCustomerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveCustomerName.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnSaveCustomerName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSaveCustomerName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSaveCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveCustomerName.ForeColor = System.Drawing.Color.Black;
+            this.btnSaveCustomerName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSaveCustomerName.Location = new System.Drawing.Point(193, 290);
+            this.btnSaveCustomerName.Name = "btnSaveCustomerName";
+            this.btnSaveCustomerName.Size = new System.Drawing.Size(101, 31);
+            this.btnSaveCustomerName.TabIndex = 48;
+            this.btnSaveCustomerName.Text = "บันทึกชื่อ";
+            this.btnSaveCustomerName.UseVisualStyleBackColor = false;
+            this.btnSaveCustomerName.Visible = false;
+            this.btnSaveCustomerName.Click += new System.EventHandler(this.btnSaveCustomerName_Click);
+            // 
             // lbMod
             // 
             this.lbMod.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -520,7 +532,7 @@
             this.lbMod.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.lbMod.ForeColor = System.Drawing.Color.White;
             this.lbMod.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbMod.Location = new System.Drawing.Point(226, 269);
+            this.lbMod.Location = new System.Drawing.Point(228, 253);
             this.lbMod.Name = "lbMod";
             this.lbMod.Size = new System.Drawing.Size(66, 31);
             this.lbMod.TabIndex = 46;
@@ -607,9 +619,9 @@
             this.groupBox15.Controls.Add(this.btnTopUpAddPayment);
             this.groupBox15.Controls.Add(this.btnTopUpAnAll);
             this.groupBox15.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox15.Location = new System.Drawing.Point(3, 303);
+            this.groupBox15.Location = new System.Drawing.Point(3, 321);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(312, 114);
+            this.groupBox15.Size = new System.Drawing.Size(312, 96);
             this.groupBox15.TabIndex = 33;
             this.groupBox15.TabStop = false;
             // 
@@ -623,7 +635,7 @@
             this.btnTopUpClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpClear.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpClear.Location = new System.Drawing.Point(24, 16);
+            this.btnTopUpClear.Location = new System.Drawing.Point(21, 12);
             this.btnTopUpClear.Name = "btnTopUpClear";
             this.btnTopUpClear.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpClear.TabIndex = 7;
@@ -641,7 +653,7 @@
             this.btnTopupDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopupDelete.ForeColor = System.Drawing.Color.Black;
             this.btnTopupDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopupDelete.Location = new System.Drawing.Point(166, 66);
+            this.btnTopupDelete.Location = new System.Drawing.Point(168, 54);
             this.btnTopupDelete.Name = "btnTopupDelete";
             this.btnTopupDelete.Size = new System.Drawing.Size(123, 40);
             this.btnTopupDelete.TabIndex = 6;
@@ -659,7 +671,7 @@
             this.btnTopUpAddPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpAddPayment.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpAddPayment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAddPayment.Location = new System.Drawing.Point(166, 16);
+            this.btnTopUpAddPayment.Location = new System.Drawing.Point(168, 12);
             this.btnTopUpAddPayment.Name = "btnTopUpAddPayment";
             this.btnTopUpAddPayment.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpAddPayment.TabIndex = 5;
@@ -669,14 +681,14 @@
             // 
             // btnTopUpAnAll
             // 
-            this.btnTopUpAnAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnTopUpAnAll.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnTopUpAnAll.BackColor = System.Drawing.Color.PaleGreen;
             this.btnTopUpAnAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTopUpAnAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTopUpAnAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpAnAll.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpAnAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAnAll.Location = new System.Drawing.Point(24, 68);
+            this.btnTopUpAnAll.Location = new System.Drawing.Point(21, 54);
             this.btnTopUpAnAll.Name = "btnTopUpAnAll";
             this.btnTopUpAnAll.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpAnAll.TabIndex = 8;
@@ -778,7 +790,7 @@
             this.imgTopUpNetwork.InitialImage = null;
             this.imgTopUpNetwork.Location = new System.Drawing.Point(9, 202);
             this.imgTopUpNetwork.Name = "imgTopUpNetwork";
-            this.imgTopUpNetwork.Size = new System.Drawing.Size(154, 95);
+            this.imgTopUpNetwork.Size = new System.Drawing.Size(154, 82);
             this.imgTopUpNetwork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgTopUpNetwork.TabIndex = 0;
             this.imgTopUpNetwork.TabStop = false;
@@ -1023,6 +1035,7 @@
             // 
             this.tabPageSetTopup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(89)))), ((int)(((byte)(194)))));
             this.tabPageSetTopup.Controls.Add(this.groupBox17);
+            this.tabPageSetTopup.Controls.Add(this.btnConnectPort3);
             this.tabPageSetTopup.Controls.Add(this.groupBox16);
             this.tabPageSetTopup.Controls.Add(this.groupBox18);
             this.tabPageSetTopup.Location = new System.Drawing.Point(4, 33);
@@ -1033,18 +1046,33 @@
             // 
             // groupBox17
             // 
-            this.groupBox17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(197)))), ((int)(((byte)(26)))));
+            this.groupBox17.Controls.Add(this.textEdit1);
             this.groupBox17.Controls.Add(this.pictureBox1);
-            this.groupBox17.Controls.Add(this.label40);
+            this.groupBox17.Controls.Add(this.lbImeiOne2Call);
             this.groupBox17.Controls.Add(this.textEditPortOne2Call);
-            this.groupBox17.Controls.Add(this.btnConnectPort1);
             this.groupBox17.Location = new System.Drawing.Point(2, 2);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(320, 136);
+            this.groupBox17.Size = new System.Drawing.Size(320, 100);
             this.groupBox17.TabIndex = 40;
             this.groupBox17.TabStop = false;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textEdit1.EditValue = "IMEI :";
+            this.textEdit1.Location = new System.Drawing.Point(28, 65);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit1.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit1.Properties.Appearance.Options.UseFont = true;
+            this.textEdit1.Properties.Appearance.Options.UseForeColor = true;
+            this.textEdit1.Size = new System.Drawing.Size(86, 32);
+            this.textEdit1.TabIndex = 1002;
             // 
             // pictureBox1
             // 
@@ -1056,32 +1084,35 @@
             this.pictureBox1.ImageLocation = "";
             this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(18, 28);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(86, 49);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
             // 
-            // label40
+            // lbImeiOne2Call
             // 
-            this.label40.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label40.ForeColor = System.Drawing.Color.White;
-            this.label40.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label40.Location = new System.Drawing.Point(13, 90);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(62, 25);
-            this.label40.TabIndex = 37;
-            this.label40.Text = "Port:";
+            this.lbImeiOne2Call.CausesValidation = false;
+            this.lbImeiOne2Call.EditValue = "357083030372135";
+            this.lbImeiOne2Call.Enabled = false;
+            this.lbImeiOne2Call.Location = new System.Drawing.Point(120, 65);
+            this.lbImeiOne2Call.Name = "lbImeiOne2Call";
+            this.lbImeiOne2Call.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lbImeiOne2Call.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbImeiOne2Call.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.lbImeiOne2Call.Properties.Appearance.Options.UseBackColor = true;
+            this.lbImeiOne2Call.Properties.Appearance.Options.UseFont = true;
+            this.lbImeiOne2Call.Properties.Appearance.Options.UseForeColor = true;
+            this.lbImeiOne2Call.Size = new System.Drawing.Size(173, 32);
+            this.lbImeiOne2Call.TabIndex = 38;
             // 
             // textEditPortOne2Call
             // 
             this.textEditPortOne2Call.CausesValidation = false;
             this.textEditPortOne2Call.EditValue = "No Port";
             this.textEditPortOne2Call.Enabled = false;
-            this.textEditPortOne2Call.Location = new System.Drawing.Point(99, 90);
+            this.textEditPortOne2Call.Location = new System.Drawing.Point(120, 30);
             this.textEditPortOne2Call.Name = "textEditPortOne2Call";
             this.textEditPortOne2Call.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textEditPortOne2Call.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1089,42 +1120,57 @@
             this.textEditPortOne2Call.Properties.Appearance.Options.UseBackColor = true;
             this.textEditPortOne2Call.Properties.Appearance.Options.UseFont = true;
             this.textEditPortOne2Call.Properties.Appearance.Options.UseForeColor = true;
-            this.textEditPortOne2Call.Size = new System.Drawing.Size(100, 32);
+            this.textEditPortOne2Call.Size = new System.Drawing.Size(173, 32);
             this.textEditPortOne2Call.TabIndex = 38;
             // 
-            // btnConnectPort1
+            // btnConnectPort3
             // 
-            this.btnConnectPort1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConnectPort1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnConnectPort1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConnectPort1.BackgroundImage")));
-            this.btnConnectPort1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConnectPort1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConnectPort1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnConnectPort1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnectPort1.ForeColor = System.Drawing.Color.Black;
-            this.btnConnectPort1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnConnectPort1.Location = new System.Drawing.Point(205, 90);
-            this.btnConnectPort1.Name = "btnConnectPort1";
-            this.btnConnectPort1.Size = new System.Drawing.Size(100, 32);
-            this.btnConnectPort1.TabIndex = 8;
-            this.btnConnectPort1.Text = "   Connect";
-            this.btnConnectPort1.UseVisualStyleBackColor = false;
-            this.btnConnectPort1.Click += new System.EventHandler(this.btnConnectPort1_Click);
+            this.btnConnectPort3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConnectPort3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnConnectPort3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConnectPort3.BackgroundImage")));
+            this.btnConnectPort3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConnectPort3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConnectPort3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnConnectPort3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnectPort3.ForeColor = System.Drawing.Color.Black;
+            this.btnConnectPort3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnConnectPort3.Location = new System.Drawing.Point(182, 380);
+            this.btnConnectPort3.Name = "btnConnectPort3";
+            this.btnConnectPort3.Size = new System.Drawing.Size(100, 32);
+            this.btnConnectPort3.TabIndex = 8;
+            this.btnConnectPort3.Text = "   Connect";
+            this.btnConnectPort3.UseVisualStyleBackColor = false;
+            this.btnConnectPort3.Click += new System.EventHandler(this.btnConnectPort3_Click);
             // 
             // groupBox16
             // 
-            this.groupBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(171)))), ((int)(((byte)(235)))));
+            this.groupBox16.Controls.Add(this.textEdit3);
             this.groupBox16.Controls.Add(this.pictureBox2);
-            this.groupBox16.Controls.Add(this.label27);
+            this.groupBox16.Controls.Add(this.lbImeiDTAC);
             this.groupBox16.Controls.Add(this.textEditPortDTAC);
-            this.groupBox16.Controls.Add(this.btnConnectPort2);
-            this.groupBox16.Location = new System.Drawing.Point(2, 145);
+            this.groupBox16.Location = new System.Drawing.Point(2, 102);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(320, 136);
+            this.groupBox16.Size = new System.Drawing.Size(320, 100);
             this.groupBox16.TabIndex = 40;
             this.groupBox16.TabStop = false;
+            // 
+            // textEdit3
+            // 
+            this.textEdit3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textEdit3.EditValue = "IMEI :";
+            this.textEdit3.Location = new System.Drawing.Point(28, 65);
+            this.textEdit3.Name = "textEdit3";
+            this.textEdit3.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEdit3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit3.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEdit3.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit3.Properties.Appearance.Options.UseFont = true;
+            this.textEdit3.Properties.Appearance.Options.UseForeColor = true;
+            this.textEdit3.Size = new System.Drawing.Size(86, 32);
+            this.textEdit3.TabIndex = 1002;
             // 
             // pictureBox2
             // 
@@ -1136,32 +1182,35 @@
             this.pictureBox2.ImageLocation = "";
             this.pictureBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(20, 28);
+            this.pictureBox2.Location = new System.Drawing.Point(28, 13);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(86, 49);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 39;
             this.pictureBox2.TabStop = false;
             // 
-            // label27
+            // lbImeiDTAC
             // 
-            this.label27.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label27.Location = new System.Drawing.Point(15, 90);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(62, 25);
-            this.label27.TabIndex = 37;
-            this.label27.Text = "Port:";
+            this.lbImeiDTAC.CausesValidation = false;
+            this.lbImeiDTAC.EditValue = "860941002610669";
+            this.lbImeiDTAC.Enabled = false;
+            this.lbImeiDTAC.Location = new System.Drawing.Point(120, 65);
+            this.lbImeiDTAC.Name = "lbImeiDTAC";
+            this.lbImeiDTAC.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lbImeiDTAC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbImeiDTAC.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.lbImeiDTAC.Properties.Appearance.Options.UseBackColor = true;
+            this.lbImeiDTAC.Properties.Appearance.Options.UseFont = true;
+            this.lbImeiDTAC.Properties.Appearance.Options.UseForeColor = true;
+            this.lbImeiDTAC.Size = new System.Drawing.Size(173, 32);
+            this.lbImeiDTAC.TabIndex = 38;
             // 
             // textEditPortDTAC
             // 
             this.textEditPortDTAC.CausesValidation = false;
             this.textEditPortDTAC.EditValue = "No Port";
             this.textEditPortDTAC.Enabled = false;
-            this.textEditPortDTAC.Location = new System.Drawing.Point(101, 90);
+            this.textEditPortDTAC.Location = new System.Drawing.Point(120, 30);
             this.textEditPortDTAC.Name = "textEditPortDTAC";
             this.textEditPortDTAC.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textEditPortDTAC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1169,41 +1218,38 @@
             this.textEditPortDTAC.Properties.Appearance.Options.UseBackColor = true;
             this.textEditPortDTAC.Properties.Appearance.Options.UseFont = true;
             this.textEditPortDTAC.Properties.Appearance.Options.UseForeColor = true;
-            this.textEditPortDTAC.Size = new System.Drawing.Size(98, 32);
+            this.textEditPortDTAC.Size = new System.Drawing.Size(173, 32);
             this.textEditPortDTAC.TabIndex = 38;
-            // 
-            // btnConnectPort2
-            // 
-            this.btnConnectPort2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConnectPort2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnConnectPort2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConnectPort2.BackgroundImage")));
-            this.btnConnectPort2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConnectPort2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConnectPort2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnConnectPort2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnectPort2.ForeColor = System.Drawing.Color.Black;
-            this.btnConnectPort2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnConnectPort2.Location = new System.Drawing.Point(207, 90);
-            this.btnConnectPort2.Name = "btnConnectPort2";
-            this.btnConnectPort2.Size = new System.Drawing.Size(100, 32);
-            this.btnConnectPort2.TabIndex = 8;
-            this.btnConnectPort2.Text = "   Connect";
-            this.btnConnectPort2.UseVisualStyleBackColor = false;
             // 
             // groupBox18
             // 
-            this.groupBox18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(181)))), ((int)(((byte)(46)))));
+            this.groupBox18.Controls.Add(this.textEdit4);
             this.groupBox18.Controls.Add(this.pictureBox3);
-            this.groupBox18.Controls.Add(this.btnConnectPort3);
-            this.groupBox18.Controls.Add(this.label34);
+            this.groupBox18.Controls.Add(this.lbImeiTrueMove);
             this.groupBox18.Controls.Add(this.textEditPortTrueMove);
-            this.groupBox18.Location = new System.Drawing.Point(3, 288);
+            this.groupBox18.Location = new System.Drawing.Point(2, 202);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(320, 136);
+            this.groupBox18.Size = new System.Drawing.Size(320, 100);
             this.groupBox18.TabIndex = 40;
             this.groupBox18.TabStop = false;
+            // 
+            // textEdit4
+            // 
+            this.textEdit4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textEdit4.EditValue = "IMEI :";
+            this.textEdit4.Location = new System.Drawing.Point(28, 65);
+            this.textEdit4.Name = "textEdit4";
+            this.textEdit4.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textEdit4.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEdit4.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.textEdit4.Properties.Appearance.Options.UseBackColor = true;
+            this.textEdit4.Properties.Appearance.Options.UseFont = true;
+            this.textEdit4.Properties.Appearance.Options.UseForeColor = true;
+            this.textEdit4.Size = new System.Drawing.Size(86, 32);
+            this.textEdit4.TabIndex = 1002;
             // 
             // pictureBox3
             // 
@@ -1215,50 +1261,35 @@
             this.pictureBox3.ImageLocation = "";
             this.pictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox3.InitialImage = null;
-            this.pictureBox3.Location = new System.Drawing.Point(17, 28);
+            this.pictureBox3.Location = new System.Drawing.Point(28, 13);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(86, 49);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 39;
             this.pictureBox3.TabStop = false;
             // 
-            // btnConnectPort3
+            // lbImeiTrueMove
             // 
-            this.btnConnectPort3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConnectPort3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnConnectPort3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConnectPort3.BackgroundImage")));
-            this.btnConnectPort3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConnectPort3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConnectPort3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnConnectPort3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnectPort3.ForeColor = System.Drawing.Color.Black;
-            this.btnConnectPort3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnConnectPort3.Location = new System.Drawing.Point(204, 90);
-            this.btnConnectPort3.Name = "btnConnectPort3";
-            this.btnConnectPort3.Size = new System.Drawing.Size(100, 32);
-            this.btnConnectPort3.TabIndex = 8;
-            this.btnConnectPort3.Text = "   Connect";
-            this.btnConnectPort3.UseVisualStyleBackColor = false;
-            // 
-            // label34
-            // 
-            this.label34.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label34.ForeColor = System.Drawing.Color.White;
-            this.label34.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label34.Location = new System.Drawing.Point(12, 90);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(62, 25);
-            this.label34.TabIndex = 37;
-            this.label34.Text = "Port:";
+            this.lbImeiTrueMove.CausesValidation = false;
+            this.lbImeiTrueMove.EditValue = "860941002609570";
+            this.lbImeiTrueMove.Enabled = false;
+            this.lbImeiTrueMove.Location = new System.Drawing.Point(120, 65);
+            this.lbImeiTrueMove.Name = "lbImeiTrueMove";
+            this.lbImeiTrueMove.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lbImeiTrueMove.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbImeiTrueMove.Properties.Appearance.ForeColor = System.Drawing.Color.Yellow;
+            this.lbImeiTrueMove.Properties.Appearance.Options.UseBackColor = true;
+            this.lbImeiTrueMove.Properties.Appearance.Options.UseFont = true;
+            this.lbImeiTrueMove.Properties.Appearance.Options.UseForeColor = true;
+            this.lbImeiTrueMove.Size = new System.Drawing.Size(173, 32);
+            this.lbImeiTrueMove.TabIndex = 38;
             // 
             // textEditPortTrueMove
             // 
             this.textEditPortTrueMove.CausesValidation = false;
             this.textEditPortTrueMove.EditValue = "No Port";
             this.textEditPortTrueMove.Enabled = false;
-            this.textEditPortTrueMove.Location = new System.Drawing.Point(98, 90);
+            this.textEditPortTrueMove.Location = new System.Drawing.Point(120, 30);
             this.textEditPortTrueMove.Name = "textEditPortTrueMove";
             this.textEditPortTrueMove.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textEditPortTrueMove.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1266,7 +1297,7 @@
             this.textEditPortTrueMove.Properties.Appearance.Options.UseBackColor = true;
             this.textEditPortTrueMove.Properties.Appearance.Options.UseFont = true;
             this.textEditPortTrueMove.Properties.Appearance.Options.UseForeColor = true;
-            this.textEditPortTrueMove.Size = new System.Drawing.Size(100, 32);
+            this.textEditPortTrueMove.Size = new System.Drawing.Size(173, 32);
             this.textEditPortTrueMove.TabIndex = 38;
             // 
             // groupBox14
@@ -1367,9 +1398,9 @@
             // 
             this.dataGridViewTopup.AllowUserToAddRows = false;
             this.dataGridViewTopup.AllowUserToDeleteRows = false;
-            this.dataGridViewTopup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewTopup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewTopup.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewTopup.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewTopup.BackgroundColor = System.Drawing.SystemColors.Info;
@@ -1472,6 +1503,26 @@
             this.NetworkName.Visible = false;
             this.NetworkName.Width = 80;
             // 
+            // btnTopupUSSD1
+            // 
+            this.btnTopupUSSD1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTopupUSSD1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnTopupUSSD1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTopupUSSD1.BackgroundImage")));
+            this.btnTopupUSSD1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTopupUSSD1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTopupUSSD1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTopupUSSD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTopupUSSD1.ForeColor = System.Drawing.Color.Black;
+            this.btnTopupUSSD1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTopupUSSD1.Location = new System.Drawing.Point(482, 493);
+            this.btnTopupUSSD1.Name = "btnTopupUSSD1";
+            this.btnTopupUSSD1.Size = new System.Drawing.Size(137, 40);
+            this.btnTopupUSSD1.TabIndex = 8;
+            this.btnTopupUSSD1.Text = "         เติมเงิน";
+            this.btnTopupUSSD1.UseVisualStyleBackColor = false;
+            this.btnTopupUSSD1.Visible = false;
+            this.btnTopupUSSD1.Click += new System.EventHandler(this.btnTopupUSSD1_Click);
+            // 
             // tabPageCustomerList
             // 
             this.tabPageCustomerList.Controls.Add(this.tabControlListCustomer);
@@ -1513,9 +1564,9 @@
             // 
             this.dataGridViewListCustomer.AllowUserToAddRows = false;
             this.dataGridViewListCustomer.AllowUserToDeleteRows = false;
-            this.dataGridViewListCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewListCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewListCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridViewListCustomer.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridViewListCustomer.BackgroundColor = System.Drawing.Color.Azure;
@@ -1714,6 +1765,8 @@
             this.textboxCustomerSearchPhone.Properties.Appearance.Options.UseForeColor = true;
             this.textboxCustomerSearchPhone.Size = new System.Drawing.Size(159, 32);
             this.textboxCustomerSearchPhone.TabIndex = 2;
+            this.textboxCustomerSearchPhone.TextChanged += new System.EventHandler(this.textboxCustomerSearchPhone_TextChanged);
+            this.textboxCustomerSearchPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxCustomerSearchPhone_KeyDown);
             // 
             // pictureBoxCustomerSearch
             // 
@@ -2090,9 +2143,9 @@
             // 
             this.dataGridViewListCredit.AllowUserToAddRows = false;
             this.dataGridViewListCredit.AllowUserToDeleteRows = false;
-            this.dataGridViewListCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewListCredit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewListCredit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewListCredit.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewListCredit.BackgroundColor = System.Drawing.SystemColors.Info;
@@ -3360,9 +3413,7 @@
             this.tabControlMain.ResumeLayout(false);
             this.tabPageTopUp.ResumeLayout(false);
             this.tabPageTopUp.PerformLayout();
-            this.panelReTopup.ResumeLayout(false);
-            this.panelReTopup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbRefTopupNo.Properties)).EndInit();
             this.tabControlTopUpList.ResumeLayout(false);
             this.tabPageAddTopup.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
@@ -3382,16 +3433,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTem2)).EndInit();
             this.tabPageSetTopup.ResumeLayout(false);
             this.groupBox17.ResumeLayout(false);
-            this.groupBox17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbImeiOne2Call.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPortOne2Call.Properties)).EndInit();
             this.groupBox16.ResumeLayout(false);
-            this.groupBox16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbImeiDTAC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPortDTAC.Properties)).EndInit();
             this.groupBox18.ResumeLayout(false);
-            this.groupBox18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbImeiTrueMove.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPortTrueMove.Properties)).EndInit();
             this.groupBox14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).EndInit();
@@ -3637,22 +3691,16 @@
         private System.Windows.Forms.Label lbMod;
         private System.Windows.Forms.TabPage tabPageSetTopup;
         public DevExpress.XtraEditors.TextEdit textEditPortOne2Call;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Button btnTopupUSSD1;
-        private System.Windows.Forms.Button btnConnectPort1;
         private System.Windows.Forms.Button btnReTopup;
-        private System.Windows.Forms.FlowLayoutPanel panelReTopup;
-        public DevExpress.XtraEditors.TextEdit textEdit1;
+        public DevExpress.XtraEditors.TextEdit lbRefTopupNo;
         private System.Windows.Forms.TextBox tbxRefReTopup;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnConnectPort3;
-        private System.Windows.Forms.Button btnConnectPort2;
         public DevExpress.XtraEditors.TextEdit textEditPortTrueMove;
         public DevExpress.XtraEditors.TextEdit textEditPortDTAC;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.GroupBox groupBox17;
         private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.GroupBox groupBox18;
@@ -3666,6 +3714,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn NetworkName;
+        private System.Windows.Forms.TextBox tbxTopupCustomerName;
+        private System.Windows.Forms.Button btnSaveCustomerName;
+        public DevExpress.XtraEditors.TextEdit textEdit1;
+        public DevExpress.XtraEditors.TextEdit lbImeiOne2Call;
+        public DevExpress.XtraEditors.TextEdit textEdit3;
+        public DevExpress.XtraEditors.TextEdit lbImeiDTAC;
+        public DevExpress.XtraEditors.TextEdit textEdit4;
+        public DevExpress.XtraEditors.TextEdit lbImeiTrueMove;
 
 
     }

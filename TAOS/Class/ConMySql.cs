@@ -189,7 +189,7 @@ namespace TAOS
                     list[2].Add(dataReader["price"] + "");
                     list[3].Add(dataReader["date_update"] + "");
                     list[4].Add(dataReader["barcode"] + "");
-                    list[5].Add(dataReader["product_value"] + "");
+                    list[5].Add(dataReader["type_value"] + "");
                     list[6].Add(dataReader["date_add"] + "");
                 }
                 dataReader.Close();
@@ -222,7 +222,7 @@ namespace TAOS
                     list[2].Add(dataReader["price"] + "");
                     list[3].Add(dataReader["date_update"] + "");
                     list[4].Add(dataReader["barcode"] + "");
-                    list[5].Add(dataReader["product_value"] + "");
+                    list[5].Add(dataReader["type_value"] + "");
                     list[6].Add(dataReader["date_add"] + "");
                 }
                 dataReader.Close();
@@ -455,6 +455,7 @@ namespace TAOS
             }
             if (CheckConnect())
             {
+                phoneNumber = phoneNumber.Replace("_", "").Replace("-", "").Replace("_", "").Trim();
                 string sql = @"
                     SELECT
                       a.*,
@@ -468,7 +469,7 @@ namespace TAOS
                     AND b.deleted = 0
                 ";
                 sql += customerName != "" ? " AND a.name LIKE '%" + customerName + "%'" : "";
-                sql += phoneNumber != "" ? " AND b.phone_number ='" + phoneNumber + "'" : "";
+                sql += phoneNumber != "" ? " AND b.phone_number LIKE '%" + phoneNumber + "%'" : "";
                 sql += network != "" ? " AND b.network ='" + network + "'" : "";
                 sql += " LIMIT 30";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);

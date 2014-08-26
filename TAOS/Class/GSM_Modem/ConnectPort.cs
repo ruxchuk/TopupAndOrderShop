@@ -44,8 +44,9 @@ namespace TAOS
             }
             catch (Exception ex)
             {
-                throw ex;
-            }
+                //throw ex;
+                return null;
+            } Debug.Write("open port");
             return port;
         }
 
@@ -81,7 +82,7 @@ namespace TAOS
                 foreach (string port in ports)
                 {
                     //this.cboPortName.Items.Add(port);
-                Debug.WriteLine(port);
+                //Debug.WriteLine(port);
                 }
                 #endregion
             }
@@ -92,14 +93,68 @@ namespace TAOS
             return ports;
         }
 
-        public string setPort1(ref SerialPort _port)
+
+        public bool checkImei(string imei, SerialPort port)
+        {
+
+            try
+            {
+                //eheck imei "AT+CGSN"
+                string strResponse = ExecCommand(port, "AT+CGSN", 300, "No phone connected");
+                //Debug.WriteLine(strResponse);
+                if (strResponse.EndsWith("\r\nOK\r\n"))
+                {
+                    if (strResponse.IndexOf(imei) != -1)
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return false;
+        }
+
+        public bool checkConnectPortByName(ref string portName)
+        {
+            //if (portName == "" || portName == "No Port")
+            //{
+            //    portName = "No Port";
+            //    return false;
+            //}
+            SerialPort portVal = new SerialPort();
+            try
+            {
+                portVal = OpenPort(
+                            portName,
+                            Convert.ToInt32("9600"),
+                            Convert.ToInt32("8"),
+                            Convert.ToInt32("300"),
+                            Convert.ToInt32("300")
+                        );
+                Thread.Sleep(300);
+                string strResponse = ExecCommand(portVal, "AT", 300, "No phone connected");
+                if (strResponse.EndsWith("\r\nOK\r\n"))
+                {
+                    ClosePort(portVal);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+            }
+            ClosePort(portVal);
+            portName = "No Port";
+            return false;
+        }
+        public string getPortByImei(string imei)
         {
             string checkPort = "No Port";
-            string[] ports = getPort(); 
+            string[] ports = getPort();
             SerialPort portVal = new SerialPort();
             foreach (string port in ports)
             {
-                Debug.WriteLine(port);
                 try
                 {
                     //Open communication port 
@@ -115,22 +170,70 @@ namespace TAOS
                 {
                     //ErrorLog(ex.Message);
                     portVal = null;
-                } Debug.WriteLine(port);
+                } //Debug.WriteLine(port);
                 if (portVal != null)
                 {
                     if (checkConnectPort(portVal))
                     {
-                        _port = portVal;
-                        return port;
+                        if (checkImei(imei, portVal))
+                        {
+                            checkPort = port;
+                        }
                     }
-                    else
-                    {
-                        ClosePort(portVal);
-                        _port = null;
-                    }
+                    ClosePort(portVal);
                 }
             }
             return checkPort;
+        }
+        public string setPort(ref SerialPort _port, string imei)
+        {
+            if (_port != null)
+            {
+                if (checkConnectPort(_port))
+                { 
+                    return _port.PortName; 
+                }
+            }
+            string strPortName = "No Port";
+            string[] ports = getPort();
+            SerialPort portVal = new SerialPort();
+            foreach (string port in ports)
+            {
+                try
+                {
+                    //Open communication port 
+                    portVal = OpenPort(
+                        port,
+                        Convert.ToInt32("9600"),
+                        Convert.ToInt32("8"),
+                        Convert.ToInt32("300"),
+                        Convert.ToInt32("300")
+                    );
+                }
+                catch (Exception ex)
+                {
+                    //ErrorLog(ex.Message);
+                    portVal = null;
+                } //Debug.WriteLine(port);
+                if (portVal != null)
+                {
+                    if (checkConnectPort(portVal))
+                    {
+                        if (checkIMEI(portVal, imei))
+                        {
+                            _port = portVal;
+                            strPortName = port;//ห้าม close port
+                            return strPortName;
+                        }
+                    }
+                    else
+                    {
+                        _port = null;
+                    }
+                    ClosePort(portVal);
+                }
+            }
+            return strPortName;
         }
 
         public bool checkConnectPort(SerialPort port)
@@ -152,21 +255,61 @@ namespace TAOS
         }
 
 
-        public string topupUSSD(string command, SerialPort port)
+        public string topupUSSD(string command, string port, bool encode = false)
         {
             string message = "";
-            message = sendUSSD(port, command);
-            string response = responseUSSD;
+            responseUSSD = "";
+            SerialPort sPort = new SerialPort();
+            string response = "No Response";
+            sPort = OpenPort(
+                        port,
+                        Convert.ToInt32("9600"),
+                        Convert.ToInt32("8"),
+                        Convert.ToInt32("300"),
+                        Convert.ToInt32("300")
+                    ); Debug.WriteLine(sPort);
+            Thread.Sleep(300);
+            message = sendUSSD(sPort, command, encode);
+            if (message == "USSD Error!")
+            {
+                return message;
+            } else 
+                try
+                {
+                    Debug.WriteLine(responseUSSD);
+                    response = responseUSSD;
+                    response = response.Substring(response.IndexOf("\"") + 1);
+                    response = response.Substring(0, response.IndexOf("\""));
+                    response = ussd.decodeResponseUSSDToText(response);
+                }
+                catch
+                {
+                    response = message;
+                }
+            //}
+            ClosePort(sPort);
+            return "เติมเงินสำเร็จ";
+        }
+
+        public bool checkIMEI(SerialPort port, string imei)
+        {
+            string result = "";
+            string command = "AT+GSN";
+            result = ExecCommand(port, command, 300, "error check IMEI");
             try
             {
-                response = response.Substring(response.IndexOf("\"") + 1);
-                response = response.Substring(0, response.IndexOf("\""));
-                response = ussd.decodeResponseUSSDToText(response);
+                if (result.EndsWith("\r\nOK\r\n"))
+                {
+                    result = result.Replace("OK", "").Replace("AT+GSN", "").Trim();
+                    result = ussd.cutStringIMEI(result);
+                }
             }
             catch
             {
-            }
-            return response;
+            }Debug.WriteLine("'"+imei +"-"+result+"'");
+            if (imei == result)
+                return true;
+            return false;
         }
 
         //Execute AT Command
@@ -217,7 +360,7 @@ namespace TAOS
         public string ReadResponse(SerialPort port, int timeout)
         {
             string buffer = string.Empty;
-            responseUSSD = "";
+
             try
             {
                 do
@@ -232,9 +375,11 @@ namespace TAOS
                     else
                     {
                         if (buffer.Length > 0)
-                            throw new ApplicationException("Response received is incomplete.");
+                            //throw new ApplicationException("Response received is incomplete.");
+                            return buffer;
                         else
-                            throw new ApplicationException("No data received from phone.");
+                            return buffer;
+                            //throw new ApplicationException("No data received from phone.");
                     }
                 }
                 while (!buffer.EndsWith("\r\nOK\r\n") && !buffer.EndsWith("\r\n> ") && !buffer.EndsWith("\r\nERROR\r\n"));
@@ -379,7 +524,7 @@ namespace TAOS
 
         #region Send USSD
 
-        public string sendUSSD(SerialPort port, string ussdCode)
+        public string sendUSSD(SerialPort port, string ussdCode, bool encode)
         {
             string messages = null;
 
@@ -388,23 +533,46 @@ namespace TAOS
                 string recievedData = "";
                 string strCommand = "";
                 string strResponse = "";
-                string input = "";
                 recievedData = ExecCommand(port, "AT", 300, "No phone connected");
 
-                ExecCommand(port, "AT+CMGF=1", 300, "Failed to set message format.");
-                strCommand = "AT+CUSD=1,\"" + ussdCode + "\",15";// +System.Environment.NewLine;
-                strResponse = ExecCommand(port, strCommand, 300, "Failed to read the messages.");
-                //Debug.WriteLine(strResponse);
-                if (strResponse.EndsWith("\r\nOK\r\n"))
+                //if (recievedData.EndsWith("\r\nOK\r\n"))
+                //{
+                    recievedData = ExecCommand(port, "AT+CMGF=1", 300, "Failed to set message format.");
+                //}
+                //else
+                //{
+                //    return strResponse;
+                //}
+                Debug.WriteLine(recievedData + "|1");
+                if (encode)
                 {
-                    input = ExecCommand(port, "", 5000, "Failed to read the messages.");
-                    //Debug.WriteLine(input);
+                    ussdCode = ussd.EncodeTo7Bits(ussdCode);
                 }
 
-                messages = input;
+                strCommand = "AT+CUSD=1,\"" + ussdCode + "\",15";// +System.Environment.NewLine;
+
+                //if (recievedData.EndsWith("\r\nOK\r\n"))
+                //{
+                    recievedData = ExecCommand(port, strCommand, 300, "Failed to read the messages.");
+                //}
+                //else
+                //{
+                //    return strResponse;
+                //}
+                Debug.WriteLine(recievedData + "|2");
+                //Debug.WriteLine(strResponse);
+                if (recievedData.EndsWith("\r\nOK\r\n"))
+                {
+                    strResponse = ExecCommand(port, "", 1000, "Failed to read the messages.");
+                    Debug.WriteLine(strResponse + "|3");
+                }
+                else
+                {
+                    return "USSD Error!";
+                }
                 #region Parse messages
                 //messages = ParseMessages(input);
-                return messages;
+                return strResponse;
                 #endregion
             }
             catch (Exception ex)
@@ -520,7 +688,6 @@ namespace TAOS
 
                 sw = new StreamWriter(sPathName + sErrorTime + ".txt", true);
 
-                sw.WriteLine(sLogFormat + Message);
                 sw.Flush();
 
             }
