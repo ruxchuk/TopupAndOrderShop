@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageTopUp = new System.Windows.Forms.TabPage();
             this.lbTopupMassage = new System.Windows.Forms.Label();
@@ -101,6 +102,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.lbTopUpPhoneNumber = new System.Windows.Forms.Label();
+            this.btnTopupUSSD1 = new System.Windows.Forms.Button();
             this.dataGridViewTopup = new System.Windows.Forms.DataGridView();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,7 +113,25 @@
             this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NetworkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnTopupUSSD1 = new System.Windows.Forms.Button();
+            this.tabControlSMS = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataGridViewSMS1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridViewSMS2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridViewSMS3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageCustomerList = new System.Windows.Forms.TabPage();
             this.tabControlListCustomer = new System.Windows.Forms.TabControl();
             this.tabPageListCustomer = new System.Windows.Forms.TabPage();
@@ -249,6 +269,8 @@
             this.tbxSerialAddProduct = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.timerGetSMS = new System.Windows.Forms.Timer(this.components);
+            this.btnReceiveSMS = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageTopUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbRefTopupNo.Properties)).BeginInit();
@@ -286,6 +308,13 @@
             this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopup)).BeginInit();
+            this.tabControlSMS.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSMS1)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSMS2)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSMS3)).BeginInit();
             this.tabPageCustomerList.SuspendLayout();
             this.tabControlListCustomer.SuspendLayout();
             this.tabPageListCustomer.SuspendLayout();
@@ -357,6 +386,7 @@
             this.tabPageTopUp.Controls.Add(this.groupBox14);
             this.tabPageTopUp.Controls.Add(this.btnTopupUSSD1);
             this.tabPageTopUp.Controls.Add(this.dataGridViewTopup);
+            this.tabPageTopUp.Controls.Add(this.tabControlSMS);
             this.tabPageTopUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.tabPageTopUp.ForeColor = System.Drawing.Color.Black;
             this.tabPageTopUp.Location = new System.Drawing.Point(44, 4);
@@ -500,7 +530,7 @@
             this.tbxTopupCustomerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbxTopupCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.tbxTopupCustomerName.ForeColor = System.Drawing.Color.Yellow;
-            this.tbxTopupCustomerName.Location = new System.Drawing.Point(9, 290);
+            this.tbxTopupCustomerName.Location = new System.Drawing.Point(17, 290);
             this.tbxTopupCustomerName.Name = "tbxTopupCustomerName";
             this.tbxTopupCustomerName.Size = new System.Drawing.Size(154, 31);
             this.tbxTopupCustomerName.TabIndex = 47;
@@ -515,9 +545,9 @@
             this.btnSaveCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveCustomerName.ForeColor = System.Drawing.Color.Black;
             this.btnSaveCustomerName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSaveCustomerName.Location = new System.Drawing.Point(193, 290);
+            this.btnSaveCustomerName.Location = new System.Drawing.Point(182, 290);
             this.btnSaveCustomerName.Name = "btnSaveCustomerName";
-            this.btnSaveCustomerName.Size = new System.Drawing.Size(101, 31);
+            this.btnSaveCustomerName.Size = new System.Drawing.Size(120, 31);
             this.btnSaveCustomerName.TabIndex = 48;
             this.btnSaveCustomerName.Text = "บันทึกชื่อ";
             this.btnSaveCustomerName.UseVisualStyleBackColor = false;
@@ -532,7 +562,7 @@
             this.lbMod.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.lbMod.ForeColor = System.Drawing.Color.White;
             this.lbMod.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbMod.Location = new System.Drawing.Point(228, 253);
+            this.lbMod.Location = new System.Drawing.Point(236, 253);
             this.lbMod.Name = "lbMod";
             this.lbMod.Size = new System.Drawing.Size(66, 31);
             this.lbMod.TabIndex = 46;
@@ -579,7 +609,7 @@
             // 
             this.txtValueBaht.CausesValidation = false;
             this.txtValueBaht.EditValue = "";
-            this.txtValueBaht.Location = new System.Drawing.Point(105, 83);
+            this.txtValueBaht.Location = new System.Drawing.Point(113, 83);
             this.txtValueBaht.Name = "txtValueBaht";
             this.txtValueBaht.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtValueBaht.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -598,7 +628,7 @@
             // 
             this.txtTopupPhoneNumber.CausesValidation = false;
             this.txtTopupPhoneNumber.EditValue = "";
-            this.txtTopupPhoneNumber.Location = new System.Drawing.Point(105, 23);
+            this.txtTopupPhoneNumber.Location = new System.Drawing.Point(113, 23);
             this.txtTopupPhoneNumber.Name = "txtTopupPhoneNumber";
             this.txtTopupPhoneNumber.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtTopupPhoneNumber.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -635,7 +665,7 @@
             this.btnTopUpClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpClear.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpClear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpClear.Location = new System.Drawing.Point(21, 12);
+            this.btnTopUpClear.Location = new System.Drawing.Point(14, 12);
             this.btnTopUpClear.Name = "btnTopUpClear";
             this.btnTopUpClear.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpClear.TabIndex = 7;
@@ -653,7 +683,7 @@
             this.btnTopupDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopupDelete.ForeColor = System.Drawing.Color.Black;
             this.btnTopupDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopupDelete.Location = new System.Drawing.Point(168, 54);
+            this.btnTopupDelete.Location = new System.Drawing.Point(176, 54);
             this.btnTopupDelete.Name = "btnTopupDelete";
             this.btnTopupDelete.Size = new System.Drawing.Size(123, 40);
             this.btnTopupDelete.TabIndex = 6;
@@ -671,7 +701,7 @@
             this.btnTopUpAddPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpAddPayment.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpAddPayment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAddPayment.Location = new System.Drawing.Point(168, 12);
+            this.btnTopUpAddPayment.Location = new System.Drawing.Point(176, 12);
             this.btnTopUpAddPayment.Name = "btnTopUpAddPayment";
             this.btnTopUpAddPayment.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpAddPayment.TabIndex = 5;
@@ -688,7 +718,7 @@
             this.btnTopUpAnAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpAnAll.ForeColor = System.Drawing.Color.Black;
             this.btnTopUpAnAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAnAll.Location = new System.Drawing.Point(21, 54);
+            this.btnTopUpAnAll.Location = new System.Drawing.Point(14, 54);
             this.btnTopUpAnAll.Name = "btnTopUpAnAll";
             this.btnTopUpAnAll.Size = new System.Drawing.Size(123, 40);
             this.btnTopUpAnAll.TabIndex = 8;
@@ -699,16 +729,17 @@
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
             this.label22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.label22.ForeColor = System.Drawing.Color.White;
             this.label22.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label22.Location = new System.Drawing.Point(238, 83);
+            this.label22.Location = new System.Drawing.Point(246, 83);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(56, 31);
+            this.label22.Size = new System.Drawing.Size(56, 40);
             this.label22.TabIndex = 12;
             this.label22.Text = "บาท";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cmbTopUpNetwork
             // 
@@ -722,7 +753,7 @@
             "One 2 Call",
             "DTAC",
             "TrueMove"});
-            this.cmbTopUpNetwork.Location = new System.Drawing.Point(105, 145);
+            this.cmbTopUpNetwork.Location = new System.Drawing.Point(113, 145);
             this.cmbTopUpNetwork.Name = "cmbTopUpNetwork";
             this.cmbTopUpNetwork.Size = new System.Drawing.Size(189, 32);
             this.cmbTopUpNetwork.TabIndex = 3;
@@ -738,7 +769,7 @@
             this.pictureBox7.ImageLocation = "";
             this.pictureBox7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox7.InitialImage = null;
-            this.pictureBox7.Location = new System.Drawing.Point(9, 145);
+            this.pictureBox7.Location = new System.Drawing.Point(17, 145);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(76, 51);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -755,7 +786,7 @@
             this.pictureBox6.ImageLocation = "";
             this.pictureBox6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox6.InitialImage = null;
-            this.pictureBox6.Location = new System.Drawing.Point(9, 83);
+            this.pictureBox6.Location = new System.Drawing.Point(17, 83);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(76, 51);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -772,7 +803,7 @@
             this.pictureBox5.ImageLocation = "";
             this.pictureBox5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox5.InitialImage = null;
-            this.pictureBox5.Location = new System.Drawing.Point(9, 23);
+            this.pictureBox5.Location = new System.Drawing.Point(17, 23);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(76, 51);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -788,7 +819,7 @@
             this.imgTopUpNetwork.ImageLocation = "";
             this.imgTopUpNetwork.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.imgTopUpNetwork.InitialImage = null;
-            this.imgTopUpNetwork.Location = new System.Drawing.Point(9, 202);
+            this.imgTopUpNetwork.Location = new System.Drawing.Point(17, 202);
             this.imgTopUpNetwork.Name = "imgTopUpNetwork";
             this.imgTopUpNetwork.Size = new System.Drawing.Size(154, 82);
             this.imgTopUpNetwork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -806,11 +837,11 @@
             this.btnTopUpAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTopUpAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTopUpAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopUpAdd.Location = new System.Drawing.Point(169, 207);
+            this.btnTopUpAdd.Location = new System.Drawing.Point(182, 207);
             this.btnTopUpAdd.Name = "btnTopUpAdd";
-            this.btnTopUpAdd.Size = new System.Drawing.Size(125, 43);
+            this.btnTopUpAdd.Size = new System.Drawing.Size(120, 43);
             this.btnTopUpAdd.TabIndex = 4;
-            this.btnTopUpAdd.Text = "      เพิ่มเบอร์";
+            this.btnTopUpAdd.Text = "     เพิ่มเบอร์";
             this.btnTopUpAdd.UseVisualStyleBackColor = false;
             this.btnTopUpAdd.Click += new System.EventHandler(this.btnTopUpAdd_Click);
             // 
@@ -1034,6 +1065,7 @@
             // tabPageSetTopup
             // 
             this.tabPageSetTopup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(89)))), ((int)(((byte)(194)))));
+            this.tabPageSetTopup.Controls.Add(this.btnReceiveSMS);
             this.tabPageSetTopup.Controls.Add(this.groupBox17);
             this.tabPageSetTopup.Controls.Add(this.btnConnectPort3);
             this.tabPageSetTopup.Controls.Add(this.groupBox16);
@@ -1394,6 +1426,26 @@
             this.lbTopUpPhoneNumber.TabIndex = 35;
             this.lbTopUpPhoneNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnTopupUSSD1
+            // 
+            this.btnTopupUSSD1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTopupUSSD1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnTopupUSSD1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTopupUSSD1.BackgroundImage")));
+            this.btnTopupUSSD1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTopupUSSD1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTopupUSSD1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTopupUSSD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTopupUSSD1.ForeColor = System.Drawing.Color.Black;
+            this.btnTopupUSSD1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTopupUSSD1.Location = new System.Drawing.Point(482, 493);
+            this.btnTopupUSSD1.Name = "btnTopupUSSD1";
+            this.btnTopupUSSD1.Size = new System.Drawing.Size(137, 40);
+            this.btnTopupUSSD1.TabIndex = 8;
+            this.btnTopupUSSD1.Text = "         เติมเงิน";
+            this.btnTopupUSSD1.UseVisualStyleBackColor = false;
+            this.btnTopupUSSD1.Visible = false;
+            this.btnTopupUSSD1.Click += new System.EventHandler(this.btnTopupUSSD1_Click);
+            // 
             // dataGridViewTopup
             // 
             this.dataGridViewTopup.AllowUserToAddRows = false;
@@ -1503,25 +1555,223 @@
             this.NetworkName.Visible = false;
             this.NetworkName.Width = 80;
             // 
-            // btnTopupUSSD1
+            // tabControlSMS
             // 
-            this.btnTopupUSSD1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTopupUSSD1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnTopupUSSD1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnTopupUSSD1.BackgroundImage")));
-            this.btnTopupUSSD1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnTopupUSSD1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTopupUSSD1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnTopupUSSD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTopupUSSD1.ForeColor = System.Drawing.Color.Black;
-            this.btnTopupUSSD1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTopupUSSD1.Location = new System.Drawing.Point(482, 493);
-            this.btnTopupUSSD1.Name = "btnTopupUSSD1";
-            this.btnTopupUSSD1.Size = new System.Drawing.Size(137, 40);
-            this.btnTopupUSSD1.TabIndex = 8;
-            this.btnTopupUSSD1.Text = "         เติมเงิน";
-            this.btnTopupUSSD1.UseVisualStyleBackColor = false;
-            this.btnTopupUSSD1.Visible = false;
-            this.btnTopupUSSD1.Click += new System.EventHandler(this.btnTopupUSSD1_Click);
+            this.tabControlSMS.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControlSMS.Controls.Add(this.tabPage1);
+            this.tabControlSMS.Controls.Add(this.tabPage2);
+            this.tabControlSMS.Controls.Add(this.tabPage3);
+            this.tabControlSMS.Location = new System.Drawing.Point(3, 88);
+            this.tabControlSMS.Name = "tabControlSMS";
+            this.tabControlSMS.SelectedIndex = 0;
+            this.tabControlSMS.Size = new System.Drawing.Size(616, 463);
+            this.tabControlSMS.TabIndex = 1003;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridViewSMS1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 40);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(608, 419);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "One 2 Call";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewSMS1
+            // 
+            this.dataGridViewSMS1.AllowUserToAddRows = false;
+            this.dataGridViewSMS1.AllowUserToDeleteRows = false;
+            this.dataGridViewSMS1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewSMS1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewSMS1.BackgroundColor = System.Drawing.Color.PaleGreen;
+            this.dataGridViewSMS1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dataGridViewSMS1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSMS1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn17,
+            this.dataGridViewTextBoxColumn15,
+            this.Column14});
+            this.dataGridViewSMS1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewSMS1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewSMS1.MultiSelect = false;
+            this.dataGridViewSMS1.Name = "dataGridViewSMS1";
+            this.dataGridViewSMS1.ReadOnly = true;
+            this.dataGridViewSMS1.RowHeadersVisible = false;
+            this.dataGridViewSMS1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewSMS1.Size = new System.Drawing.Size(602, 413);
+            this.dataGridViewSMS1.TabIndex = 1002;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.HeaderText = "#";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn13.Width = 54;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.HeaderText = "เวลา";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            this.dataGridViewTextBoxColumn17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn17.Width = 84;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.HeaderText = "ข้อความ";
+            this.dataGridViewTextBoxColumn15.MaxInputLength = 500;
+            this.dataGridViewTextBoxColumn15.MinimumWidth = 450;
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn15.Width = 450;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "ผู้ส่ง";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Width = 79;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataGridViewSMS2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(608, 419);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "DTAC";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewSMS2
+            // 
+            this.dataGridViewSMS2.AllowUserToAddRows = false;
+            this.dataGridViewSMS2.AllowUserToDeleteRows = false;
+            this.dataGridViewSMS2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewSMS2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewSMS2.BackgroundColor = System.Drawing.Color.Aquamarine;
+            this.dataGridViewSMS2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dataGridViewSMS2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSMS2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewTextBoxColumn18,
+            this.dataGridViewTextBoxColumn19});
+            this.dataGridViewSMS2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewSMS2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewSMS2.MultiSelect = false;
+            this.dataGridViewSMS2.Name = "dataGridViewSMS2";
+            this.dataGridViewSMS2.ReadOnly = true;
+            this.dataGridViewSMS2.RowHeadersVisible = false;
+            this.dataGridViewSMS2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewSMS2.Size = new System.Drawing.Size(602, 413);
+            this.dataGridViewSMS2.TabIndex = 1003;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.HeaderText = "#";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn14.Width = 54;
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.HeaderText = "เวลา";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            this.dataGridViewTextBoxColumn16.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn16.Width = 84;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.HeaderText = "ข้อความ";
+            this.dataGridViewTextBoxColumn18.MaxInputLength = 500;
+            this.dataGridViewTextBoxColumn18.MinimumWidth = 450;
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.ReadOnly = true;
+            this.dataGridViewTextBoxColumn18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn18.Width = 450;
+            // 
+            // dataGridViewTextBoxColumn19
+            // 
+            this.dataGridViewTextBoxColumn19.HeaderText = "ผู้ส่ง";
+            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            this.dataGridViewTextBoxColumn19.ReadOnly = true;
+            this.dataGridViewTextBoxColumn19.Width = 79;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGridViewSMS3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 40);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(608, 419);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "True Move";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewSMS3
+            // 
+            this.dataGridViewSMS3.AllowUserToAddRows = false;
+            this.dataGridViewSMS3.AllowUserToDeleteRows = false;
+            this.dataGridViewSMS3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewSMS3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewSMS3.BackgroundColor = System.Drawing.Color.Coral;
+            this.dataGridViewSMS3.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dataGridViewSMS3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSMS3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn20,
+            this.dataGridViewTextBoxColumn21,
+            this.dataGridViewTextBoxColumn22,
+            this.dataGridViewTextBoxColumn23});
+            this.dataGridViewSMS3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewSMS3.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewSMS3.MultiSelect = false;
+            this.dataGridViewSMS3.Name = "dataGridViewSMS3";
+            this.dataGridViewSMS3.ReadOnly = true;
+            this.dataGridViewSMS3.RowHeadersVisible = false;
+            this.dataGridViewSMS3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewSMS3.Size = new System.Drawing.Size(602, 413);
+            this.dataGridViewSMS3.TabIndex = 1003;
+            // 
+            // dataGridViewTextBoxColumn20
+            // 
+            this.dataGridViewTextBoxColumn20.HeaderText = "#";
+            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.ReadOnly = true;
+            this.dataGridViewTextBoxColumn20.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn20.Width = 54;
+            // 
+            // dataGridViewTextBoxColumn21
+            // 
+            this.dataGridViewTextBoxColumn21.HeaderText = "เวลา";
+            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            this.dataGridViewTextBoxColumn21.ReadOnly = true;
+            this.dataGridViewTextBoxColumn21.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn21.Width = 84;
+            // 
+            // dataGridViewTextBoxColumn22
+            // 
+            this.dataGridViewTextBoxColumn22.HeaderText = "ข้อความ";
+            this.dataGridViewTextBoxColumn22.MaxInputLength = 500;
+            this.dataGridViewTextBoxColumn22.MinimumWidth = 450;
+            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            this.dataGridViewTextBoxColumn22.ReadOnly = true;
+            this.dataGridViewTextBoxColumn22.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn22.Width = 450;
+            // 
+            // dataGridViewTextBoxColumn23
+            // 
+            this.dataGridViewTextBoxColumn23.HeaderText = "ผู้ส่ง";
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.ReadOnly = true;
+            this.dataGridViewTextBoxColumn23.Width = 79;
             // 
             // tabPageCustomerList
             // 
@@ -2834,14 +3084,14 @@
             this.dataGridViewBuyProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewBuyProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridViewBuyProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewBuyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewBuyProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewBuyProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBuyProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -2850,14 +3100,14 @@
             this.Price,
             this.serial});
             this.dataGridViewBuyProduct.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewBuyProduct.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewBuyProduct.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewBuyProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewBuyProduct.Location = new System.Drawing.Point(3, 36);
             this.dataGridViewBuyProduct.MultiSelect = false;
@@ -3104,14 +3354,14 @@
             this.dataGridViewProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewProduct.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataGridViewProduct.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -3122,14 +3372,14 @@
             this.DateModifield,
             this.order_id});
             this.dataGridViewProduct.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewProduct.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewProduct.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewProduct.Location = new System.Drawing.Point(3, 27);
             this.dataGridViewProduct.MultiSelect = false;
@@ -3397,6 +3647,30 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // timerGetSMS
+            // 
+            this.timerGetSMS.Interval = 5000;
+            this.timerGetSMS.Tick += new System.EventHandler(this.timerGetSMS_Tick);
+            // 
+            // btnReceiveSMS
+            // 
+            this.btnReceiveSMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReceiveSMS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnReceiveSMS.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReceiveSMS.BackgroundImage")));
+            this.btnReceiveSMS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReceiveSMS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReceiveSMS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReceiveSMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReceiveSMS.ForeColor = System.Drawing.Color.Black;
+            this.btnReceiveSMS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnReceiveSMS.Location = new System.Drawing.Point(28, 380);
+            this.btnReceiveSMS.Name = "btnReceiveSMS";
+            this.btnReceiveSMS.Size = new System.Drawing.Size(100, 32);
+            this.btnReceiveSMS.TabIndex = 41;
+            this.btnReceiveSMS.Text = "  รับ SMS";
+            this.btnReceiveSMS.UseVisualStyleBackColor = false;
+            this.btnReceiveSMS.Click += new System.EventHandler(this.btnReceiveSMS_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3450,6 +3724,13 @@
             this.groupBox14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageTopUpIconNetwork)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopup)).EndInit();
+            this.tabControlSMS.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSMS1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSMS2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSMS3)).EndInit();
             this.tabPageCustomerList.ResumeLayout(false);
             this.tabControlListCustomer.ResumeLayout(false);
             this.tabPageListCustomer.ResumeLayout(false);
@@ -3722,6 +4003,27 @@
         public DevExpress.XtraEditors.TextEdit lbImeiDTAC;
         public DevExpress.XtraEditors.TextEdit textEdit4;
         public DevExpress.XtraEditors.TextEdit lbImeiTrueMove;
+        private System.Windows.Forms.DataGridView dataGridViewSMS1;
+        private System.Windows.Forms.TabControl tabControlSMS;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridView dataGridViewSMS2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+        private System.Windows.Forms.DataGridView dataGridViewSMS3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
+        private System.Windows.Forms.Timer timerGetSMS;
+        private System.Windows.Forms.Button btnReceiveSMS;
 
 
     }

@@ -356,7 +356,7 @@ namespace TAOS
                     ORDER BY a.date_update DESC 
                     LIMIT 20
                     ;";
-                Debug.WriteLine(sql);
+                //Debug.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -378,7 +378,7 @@ namespace TAOS
 
         //get รายการเติมเงิน
         public List<string>[] getListTopup(int isTopup = 0, string phoneNumber = "", 
-            string date = "", string time = "", string network = "")
+            string date = "", string time = "", string network = "", string order = "")
         {
             dateStart = getDateStartOfDay();
             dateEnd = getDateEndOfDay();
@@ -419,7 +419,8 @@ namespace TAOS
                 sql += network == "" ? "" : " AND b.network = '" + network + "'";
                 sql += time == "" || time == "0" ? "" : " AND HOUR(a.date_add) = '" + time + "'";
                 sql += phoneNumber == "" ? "" : " AND b.phone_number LIKE '%" + phoneNumber.Replace("-", "") + "%'";
-                Debug.WriteLine(sql);
+                sql += order == "" ? "" : order;
+                //Debug.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -523,6 +524,43 @@ namespace TAOS
             return 0;
         }
 
+        //get list sms
+        public List<string>[] getListSMS(int network)
+        {
+            List<string>[] list = new List<string>[4];
+            for (int i = 0; i < 4; i++)
+            {
+                list[i] = new List<string>();
+            }
+            if (CheckConnect())
+            {
+                string strAnd = " AND network=" + network.ToString();
+                string sql = @"
+                    SELECT 
+                      * 
+                    FROM
+                      topup_sms
+                    WHERE 1
+                    " + strAnd +" ORDER BY id DESC LIMIT 100";
+                //Debug.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["id"] + "");
+                    list[3].Add(dataReader["sender"] + "");
+                    list[2].Add(dataReader["massage"] + "");
+                    list[1].Add(dataReader["send_time"] + "");
+                }
+                dataReader.Close();
+                CloseConnection();
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        }
         #endregion
 
         #region Credit
@@ -574,7 +612,8 @@ namespace TAOS
                 sql += price != "" ? " AND a.price ='" + price + "'" : "";
                 sql += status != "-1" ? " AND a.paid =" + status  : "";
                 sql += network != "" ? " AND c.network ='" + network + "'" : "";
-                sql += " LIMIT 100"; Debug.WriteLine(status);
+                sql += " LIMIT 100"; 
+                //Debug.WriteLine(status);
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -709,6 +748,36 @@ namespace TAOS
             }
             return true;
         }
+        public int addReceiveSMS(string sender, string massage, string sendTime, int network)
+        {
+            int lastID = 0;
+            string sql = @"
+                INSERT INTO `topup_sms`
+                (
+	                `sender`,
+                    `massage`,
+	                `send_time`,
+	                `network`,
+	                `create_datetime`
+                )
+                VALUES 
+                (
+	                '" + sender + @"',
+	                '" + massage + @"',
+	                '" + sendTime + @"',
+	                '" + network.ToString() + @"',
+	                NOW()
+                );
+                ";
+            if (CheckConnect())
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                lastID = (int)cmd.LastInsertedId;
+                CloseConnection();
+            }
+            return lastID;
+        }
 
         public bool addBehindhand(string topupID, string customerName, string customerID, string topupAmount)
         {            
@@ -723,7 +792,7 @@ namespace TAOS
                 )
                 VALUES(" + topupID + ", '" + customerName + "'," +
                     topupAmount + ", NOW());";
-            Debug.WriteLine(sql);
+            //Debug.WriteLine(sql);
             if (runQuery(sql) == 0)
             {
                 return false;
@@ -825,7 +894,8 @@ namespace TAOS
                   `network` = '" + network + @"',
                   `date_update` = NOW() 
                 WHERE `id` = " + phoneNumberID + @";
-            "; Debug.WriteLine(sql);
+            "; 
+            //Debug.WriteLine(sql);
             bool result = UpDate(sql);
             if (!result)
             {
@@ -898,7 +968,7 @@ namespace TAOS
             }
             sql += resultingString + @"
                 WHERE `id` = '" + creditID + "' ;";
-            Debug.WriteLine(sql);
+            //Debug.WriteLine(sql);
             return UpDate(sql);
         }
 

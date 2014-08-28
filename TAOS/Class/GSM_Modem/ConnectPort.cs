@@ -16,11 +16,11 @@ namespace TAOS
         #region Open and Close Ports
         //Open Port
         public SerialPort OpenPort(
-            string p_strPortName,
-            int p_uBaudRate,
-            int p_uDataBits,
-            int p_uReadTimeout,
-            int p_uWriteTimeout)
+            string p_strPortName = "",
+            int p_uBaudRate =9600,
+            int p_uDataBits = 8,
+            int p_uReadTimeout = 300,
+            int p_uWriteTimeout = 300)
         {
             receiveNow = new AutoResetEvent(false);
             SerialPort port = new SerialPort();
@@ -46,7 +46,7 @@ namespace TAOS
             {
                 //throw ex;
                 return null;
-            } Debug.Write("open port");
+            } //Debug.Write("open port");
             return port;
         }
 
@@ -61,7 +61,7 @@ namespace TAOS
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
             }
         }
 
@@ -92,7 +92,6 @@ namespace TAOS
             }
             return ports;
         }
-
 
         public bool checkImei(string imei, SerialPort port)
         {
@@ -126,11 +125,7 @@ namespace TAOS
             try
             {
                 portVal = OpenPort(
-                            portName,
-                            Convert.ToInt32("9600"),
-                            Convert.ToInt32("8"),
-                            Convert.ToInt32("300"),
-                            Convert.ToInt32("300")
+                            portName
                         );
                 Thread.Sleep(300);
                 string strResponse = ExecCommand(portVal, "AT", 300, "No phone connected");
@@ -148,6 +143,7 @@ namespace TAOS
             portName = "No Port";
             return false;
         }
+        
         public string getPortByImei(string imei)
         {
             string checkPort = "No Port";
@@ -159,11 +155,7 @@ namespace TAOS
                 {
                     //Open communication port 
                     portVal = OpenPort(
-                        port,
-                        Convert.ToInt32("9600"),
-                        Convert.ToInt32("8"),
-                        Convert.ToInt32("300"),
-                        Convert.ToInt32("300")
+                        port
                     );
                 }
                 catch (Exception ex)
@@ -185,6 +177,7 @@ namespace TAOS
             }
             return checkPort;
         }
+        
         public string setPort(ref SerialPort _port, string imei)
         {
             if (_port != null)
@@ -203,11 +196,7 @@ namespace TAOS
                 {
                     //Open communication port 
                     portVal = OpenPort(
-                        port,
-                        Convert.ToInt32("9600"),
-                        Convert.ToInt32("8"),
-                        Convert.ToInt32("300"),
-                        Convert.ToInt32("300")
+                        port
                     );
                 }
                 catch (Exception ex)
@@ -254,7 +243,6 @@ namespace TAOS
             return false;
         }
 
-
         public string topupUSSD(string command, string port, bool encode = false)
         {
             string message = "";
@@ -262,11 +250,7 @@ namespace TAOS
             SerialPort sPort = new SerialPort();
             string response = "No Response";
             sPort = OpenPort(
-                        port,
-                        Convert.ToInt32("9600"),
-                        Convert.ToInt32("8"),
-                        Convert.ToInt32("300"),
-                        Convert.ToInt32("300")
+                        port
                     ); Debug.WriteLine(sPort);
             Thread.Sleep(300);
             message = sendUSSD(sPort, command, encode);
@@ -402,14 +386,30 @@ namespace TAOS
 
                 string recievedData = ExecCommand(port, "AT", 300, "No phone connected at ");
                 recievedData = ExecCommand(port, "AT+CMGF=1", 300, "Failed to set message format.");
+                //Debug.WriteLine(recievedData);
                 String command = "AT+CPMS?";
                 recievedData = ExecCommand(port, command, 1000, "Failed to count SMS message");
+                //Debug.WriteLine(recievedData);
                 int uReceivedDataLength = recievedData.Length;
 
                 #endregion
 
+                #region If command is not executed successfully
+                //if ((recievedData.Length >= 45) && (recievedData.StartsWith("AT+CPMS?")))
+                if (recievedData.Contains("ERROR"))
+                {
+
+                    #region Error in Counting total number of SMS
+                    string recievedError = recievedData;
+                    recievedError = recievedError.Trim();
+                    recievedData = "Following error occured while counting the message" + recievedError;
+                    #endregion
+
+                }
+                #endregion
+
                 #region If command is executed successfully
-                if ((recievedData.Length >= 45) && (recievedData.StartsWith("AT+CPMS?")))
+                else //if ((recievedData.StartsWith("+CPMS")))
                 {
 
                     #region Parsing SMS
@@ -420,19 +420,6 @@ namespace TAOS
 
                     #region Count Total Number of SMS In SIM
                     CountTotalMessages = Convert.ToInt32(strMessageExist1);
-                    #endregion
-
-                }
-                #endregion
-
-                #region If command is not executed successfully
-                else if (recievedData.Contains("ERROR"))
-                {
-
-                    #region Error in Counting total number of SMS
-                    string recievedError = recievedData;
-                    recievedError = recievedError.Trim();
-                    recievedData = "Following error occured while counting the message" + recievedError;
                     #endregion
 
                 }
@@ -452,26 +439,33 @@ namespace TAOS
         #region Read SMS
 
         public AutoResetEvent receiveNow;
-
-        public ShortMessageCollection ReadSMS(SerialPort port, string p_strCommand)
+        public ShortMessageCollection ReadSMS(SerialPort port)
         {
+            //SerialPort port = new SerialPort();
+            //port = OpenPort(strPort);
+            //Thread.Sleep(300);
+
+            string p_strCommand = "AT+CMGL=\"ALL\"";
+            string receive = "";
 
             // Set up the phone and read the messages
             ShortMessageCollection messages = null;
             try
             {
-
                 #region Execute Command
                 // Check connection
-                ExecCommand(port, "AT", 300, "No phone connected");
+                receive += ExecCommand(port, "AT", 300, "No phone connected");
                 // Use message format "Text mode"
-                ExecCommand(port, "AT+CMGF=1", 300, "Failed to set message format.");
+                receive += ExecCommand(port, "AT+CMGF=1", 300, "Failed to set message format.");
                 // Use character set "PCCP437"
-                ExecCommand(port, "AT+CSCS=\"PCCP437\"", 300, "Failed to set character set.");
+                //receive += ExecCommand(port, "AT+CSCS=\"PCCP437\"", 300, "Failed to set character set.");
                 // Select SIM storage
-                ExecCommand(port, "AT+CPMS=\"SM\"", 300, "Failed to select message storage.");
+                //receive += ExecCommand(port, "AT+CPMS=\"SM\"", 300, "Failed to select message storage.");
+                receive += ExecCommand(port, "AT+CMGR=1", 300, "Failed to select message storage.");
+                Debug.WriteLine(receive);
                 // Read the messages
-                string input = ExecCommand(port, p_strCommand, 5000, "Failed to read the messages.");
+                string input = ExecCommand(port, p_strCommand, 800, "Failed to read the messages.");
+                Debug.WriteLine(input);
                 #endregion
 
                 #region Parse messages
@@ -484,12 +478,14 @@ namespace TAOS
                 throw ex;
             }
 
+            //ClosePort(port);
             if (messages != null)
                 return messages;
             else
                 return null;
 
         }
+
         public ShortMessageCollection ParseMessages(string input)
         {
             ShortMessageCollection messages = new ShortMessageCollection();
@@ -635,8 +631,9 @@ namespace TAOS
         #endregion
 
         #region Delete SMS
-        public bool DeleteMsg(SerialPort port, string p_strCommand)
+        public bool DeleteMsg(SerialPort port)
         {
+            string p_strCommand = "AT+CMGD=1,4";
             bool isDeleted = false;
             try
             {
@@ -660,7 +657,8 @@ namespace TAOS
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
+                return isDeleted;
             }
 
         }

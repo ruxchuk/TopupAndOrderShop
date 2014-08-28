@@ -97,6 +97,7 @@ namespace TAOS
                 selectProduct();
                 getListCredit();
                 getListCustomer();
+                getListSMS();
             }
 
             KeyboardHook.CreateHook(KeyReader);
@@ -130,6 +131,15 @@ namespace TAOS
             setPropertiesTextbox();
 
             dtHistory.Value = DateTime.Now;
+
+            //ImageList iconsList = new ImageList();
+            //iconsList.TransparentColor = Color.Blue;
+            //iconsList.ColorDepth = ColorDepth.Depth32Bit;
+            //iconsList.ImageSize = new Size(25, 25);
+            //iconsList.Images.Add(Image.FromFile(@"Files\Images\icoOne2Call.png"));
+            //iconsList.Images.Add(Image.FromFile(@"Files\Images\icoDTAC.png"));
+            //iconsList.Images.Add(Image.FromFile(@"Files\Images\icoTrueMove.png"));
+            //tabControlSMS.ImageList = iconsList;
         }
 
         private void setPropertiesTextbox()
@@ -837,10 +847,10 @@ namespace TAOS
          * isTopup = 1 เติมแล้ว
         */
         private void getListTopup(int isTopup = 0, string phoneNumber = "",
-            string date = "", string time = "", string network = "")
+            string date = "", string time = "", string network = "", string order = "")
         {
             dataGridViewTopup.Rows.Clear();
-            List<string>[] list = ConnectMySql.getListTopup(isTopup, phoneNumber, date, time, network);
+            List<string>[] list = ConnectMySql.getListTopup(isTopup, phoneNumber, date, time, network, order);
 
 
             Debug.WriteLine(list[0].Count);
@@ -1218,10 +1228,19 @@ namespace TAOS
             {
                 getListTopup();
                 txtTopupPhoneNumber.Select();
+                tabControlSMS.Visible = false;
+                dataGridViewTopup.Visible = true;
             }
             else if (tabControlTopUpList.SelectedTab == tabPageListTopup)
             {
                 btnHistorySearch_Click(EventArgs.Empty, null);
+                tabControlSMS.Visible = false;
+                dataGridViewTopup.Visible = true;
+            }
+            else
+            {
+                tabControlSMS.Visible = true;
+                dataGridViewTopup.Visible = false;
             }
         }
 
@@ -1343,10 +1362,10 @@ namespace TAOS
             btnReTopup.Visible = false;
             string date = dtHistory.Value.Year + "-" + dtHistory.Value.Month + "-" + dtHistory.Value.Day;
             Debug.WriteLine(date);
-            getListTopup(1, tbxHistoryPhoneNumber.Text, date, tbxHistoryTime.Text, cmbHistoryNetwork.Text);
+            getListTopup(1, tbxHistoryPhoneNumber.Text, date, tbxHistoryTime.Text, cmbHistoryNetwork.Text, " ORDER BY a.id DESC");
             tbxHistoryPhoneNumber.Select();
-            if (dataGridViewTopup.SelectedRows.Count == 1){
-            dataGridViewTopup.FirstDisplayedScrollingRowIndex = dataGridViewTopup.RowCount - 1;}
+            //if (dataGridViewTopup.SelectedRows.Count == 1){
+            //dataGridViewTopup.FirstDisplayedScrollingRowIndex = dataGridViewTopup.RowCount - 1;}
         }
 
         private void btnHistoryClear_Click(object sender, EventArgs e)
@@ -1356,7 +1375,7 @@ namespace TAOS
             tbxHistoryTime.Text = "";
             dtHistory.Value = DateTime.Now;
             string date = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day;
-            getListTopup(1, "", date);
+            getListTopup(1, "", date, "", "", " ORDER BY a.id DESC");
             tbxHistoryPhoneNumber.Select();
 
             lbRefTopupNo.Visible = false;
@@ -2079,5 +2098,117 @@ namespace TAOS
             }
         }
 
+        private void timerGetSMS_Tick(object sender, EventArgs e)
+        {
+            Debug.WriteLine("get sms:");
+            receiveSMS();
+        }
+
+        private void receiveSMS()
+        {
+            waitingForm.showLoading("กำลังโหลด SMS กรุณารอสักครู่");
+
+            SerialPort port1 = connectPort.OpenPort(one2CallPortName);
+            ShortMessageCollection objShortMessageCollection = connectPort.ReadSMS(port1);            
+            if (objShortMessageCollection.Count > 0)
+            {
+                foreach (ShortMessage msg in objShortMessageCollection)
+                {
+                    ConnectMySql.addReceiveSMS(
+                        msg.Sender,
+                        connectPort.ussd.decodeResponseUSSDToText(msg.Message),
+                        msg.Sent.Replace("+28", ""),
+                        1);
+
+                }
+                connectPort.DeleteMsg(port1);
+            }
+            //Thread.Sleep(1000);
+            connectPort.ClosePort(port1); 
+            //Debug.WriteLine("port 1");
+
+            SerialPort port2 = connectPort.OpenPort(dtacPortName);
+            objShortMessageCollection = connectPort.ReadSMS(port2);             
+            if (objShortMessageCollection.Count > 0)
+            {
+                foreach (ShortMessage msg in objShortMessageCollection)
+                {
+                    ConnectMySql.addReceiveSMS(
+                        msg.Sender,
+                        connectPort.ussd.decodeResponseUSSDToText(msg.Message),
+                        msg.Sent.Replace("+28", ""),
+                        2);
+
+                }
+                connectPort.DeleteMsg(port2);
+            }
+            //Thread.Sleep(1000);
+            connectPort.ClosePort(port2); 
+            //Debug.WriteLine("port 2");
+
+            SerialPort port3 = connectPort.OpenPort(trueMovePortName);
+            objShortMessageCollection = connectPort.ReadSMS(port3);              
+            if (objShortMessageCollection.Count > 0)
+            {
+                foreach (ShortMessage msg in objShortMessageCollection)
+                {
+                    ConnectMySql.addReceiveSMS(
+                        msg.Sender,
+                        connectPort.ussd.decodeResponseUSSDToText(msg.Message),
+                        msg.Sent.Replace("+28", ""),
+                        3);
+
+                }
+                connectPort.DeleteMsg(port3);
+            }
+            //Thread.Sleep(1000); Debug.WriteLine("port 3");
+            connectPort.ClosePort(port3);
+
+            getListSMS();
+            waitingForm.cloadLoading();
+        }
+
+        private void getListSMS()
+        {
+
+            dataGridViewSMS1.Rows.Clear();
+            List<string>[] list = ConnectMySql.getListSMS(1);
+            for (int i = 0; i < list[0].Count; i++)
+            {
+                int number = dataGridViewSMS1.Rows.Add();
+                dataGridViewSMS1.Rows[number].Cells[0].Value = list[0][i];
+                dataGridViewSMS1.Rows[number].Cells[1].Value = list[1][i];
+                dataGridViewSMS1.Rows[number].Cells[2].Value = list[2][i];
+                dataGridViewSMS1.Rows[number].Cells[3].Value = list[3][i];
+            }
+
+            dataGridViewSMS2.Rows.Clear();
+            list = ConnectMySql.getListSMS(2);
+            for (int i = 0; i < list[0].Count; i++)
+            {
+                int number = dataGridViewSMS2.Rows.Add();
+                dataGridViewSMS2.Rows[number].Cells[0].Value = list[0][i];
+                dataGridViewSMS2.Rows[number].Cells[1].Value = list[1][i];
+                dataGridViewSMS2.Rows[number].Cells[2].Value = list[2][i];
+                dataGridViewSMS2.Rows[number].Cells[3].Value = list[3][i];
+            }
+
+            dataGridViewSMS3.Rows.Clear();
+            list = ConnectMySql.getListSMS(3);
+            for (int i = 0; i < list[0].Count; i++)
+            {
+                int number = dataGridViewSMS3.Rows.Add();
+                dataGridViewSMS3.Rows[number].Cells[0].Value = list[0][i];
+                dataGridViewSMS3.Rows[number].Cells[1].Value = list[1][i];
+                dataGridViewSMS3.Rows[number].Cells[2].Value = list[2][i];
+                dataGridViewSMS3.Rows[number].Cells[3].Value = list[3][i];
+            }
+
+        }
+
+        private void btnReceiveSMS_Click(object sender, EventArgs e)
+        {
+            receiveSMS();
+        }
     }
 }
