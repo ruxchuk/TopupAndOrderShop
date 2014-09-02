@@ -79,6 +79,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tabPageSetTopup = new System.Windows.Forms.TabPage();
+            this.btnReceiveSMS = new System.Windows.Forms.Button();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -270,7 +271,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.timerGetSMS = new System.Windows.Forms.Timer(this.components);
-            this.btnReceiveSMS = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPageTopUp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbRefTopupNo.Properties)).BeginInit();
@@ -1075,6 +1075,26 @@
             this.tabPageSetTopup.Size = new System.Drawing.Size(324, 426);
             this.tabPageSetTopup.TabIndex = 2;
             this.tabPageSetTopup.Text = "PORT";
+            // 
+            // btnReceiveSMS
+            // 
+            this.btnReceiveSMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReceiveSMS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnReceiveSMS.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReceiveSMS.BackgroundImage")));
+            this.btnReceiveSMS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReceiveSMS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReceiveSMS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReceiveSMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReceiveSMS.ForeColor = System.Drawing.Color.Black;
+            this.btnReceiveSMS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnReceiveSMS.Location = new System.Drawing.Point(28, 380);
+            this.btnReceiveSMS.Name = "btnReceiveSMS";
+            this.btnReceiveSMS.Size = new System.Drawing.Size(100, 32);
+            this.btnReceiveSMS.TabIndex = 41;
+            this.btnReceiveSMS.Text = "  รับ SMS";
+            this.btnReceiveSMS.UseVisualStyleBackColor = false;
+            this.btnReceiveSMS.Visible = false;
+            this.btnReceiveSMS.Click += new System.EventHandler(this.btnReceiveSMS_Click);
             // 
             // groupBox17
             // 
@@ -3649,27 +3669,9 @@
             // 
             // timerGetSMS
             // 
+            this.timerGetSMS.Enabled = true;
             this.timerGetSMS.Interval = 5000;
             this.timerGetSMS.Tick += new System.EventHandler(this.timerGetSMS_Tick);
-            // 
-            // btnReceiveSMS
-            // 
-            this.btnReceiveSMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReceiveSMS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnReceiveSMS.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReceiveSMS.BackgroundImage")));
-            this.btnReceiveSMS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnReceiveSMS.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReceiveSMS.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReceiveSMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReceiveSMS.ForeColor = System.Drawing.Color.Black;
-            this.btnReceiveSMS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReceiveSMS.Location = new System.Drawing.Point(28, 380);
-            this.btnReceiveSMS.Name = "btnReceiveSMS";
-            this.btnReceiveSMS.Size = new System.Drawing.Size(100, 32);
-            this.btnReceiveSMS.TabIndex = 41;
-            this.btnReceiveSMS.Text = "  รับ SMS";
-            this.btnReceiveSMS.UseVisualStyleBackColor = false;
-            this.btnReceiveSMS.Click += new System.EventHandler(this.btnReceiveSMS_Click);
             // 
             // MainForm
             // 

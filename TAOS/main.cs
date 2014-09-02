@@ -15,6 +15,7 @@ using System.IO;
 using System.Threading;
 using System.Runtime.InteropServices;
 using System.IO.Ports;
+using System.Media;
 
 namespace TAOS
 {
@@ -1876,6 +1877,7 @@ namespace TAOS
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
+                checkClickTopup = true;
                 waitingForm.showLoading("กำลังเติมเงิน กรุณารอสักครู่");
                 phone = phone.Trim();
                 phone = phone.Replace("-", "");
@@ -1940,6 +1942,7 @@ namespace TAOS
             else {
                 btnTopupUSSD1.Visible = false;
             }
+            checkClickTopup = false;
         }
 
         private void btnReTopup_Click(object sender, EventArgs e)
@@ -2101,17 +2104,21 @@ namespace TAOS
         private void timerGetSMS_Tick(object sender, EventArgs e)
         {
             Debug.WriteLine("get sms:");
-            receiveSMS();
+            if (!checkClickTopup)
+            {
+                receiveSMS();
+            }
         }
 
         private void receiveSMS()
         {
-            waitingForm.showLoading("กำลังโหลด SMS กรุณารอสักครู่");
-
+            //waitingForm.showLoading("กำลังโหลด SMS กรุณารอสักครู่");
+            bool checkReceive = false;
             SerialPort port1 = connectPort.OpenPort(one2CallPortName);
             ShortMessageCollection objShortMessageCollection = connectPort.ReadSMS(port1);            
             if (objShortMessageCollection.Count > 0)
             {
+                checkReceive = true;
                 foreach (ShortMessage msg in objShortMessageCollection)
                 {
                     ConnectMySql.addReceiveSMS(
@@ -2131,6 +2138,7 @@ namespace TAOS
             objShortMessageCollection = connectPort.ReadSMS(port2);             
             if (objShortMessageCollection.Count > 0)
             {
+                checkReceive = true;
                 foreach (ShortMessage msg in objShortMessageCollection)
                 {
                     ConnectMySql.addReceiveSMS(
@@ -2150,6 +2158,7 @@ namespace TAOS
             objShortMessageCollection = connectPort.ReadSMS(port3);              
             if (objShortMessageCollection.Count > 0)
             {
+                checkReceive = true;
                 foreach (ShortMessage msg in objShortMessageCollection)
                 {
                     ConnectMySql.addReceiveSMS(
@@ -2163,9 +2172,13 @@ namespace TAOS
             }
             //Thread.Sleep(1000); Debug.WriteLine("port 3");
             connectPort.ClosePort(port3);
-
-            getListSMS();
-            waitingForm.cloadLoading();
+            //Debug.WriteLine(connectPort.ussd.Decode7bit("729711211212179110108105110101"));
+            if (checkReceive)
+            {
+                (new SoundPlayer(@"Files\Sound\sms.wav")).Play();
+                getListSMS();
+            }
+            //waitingForm.cloadLoading();
         }
 
         private void getListSMS()
@@ -2183,7 +2196,7 @@ namespace TAOS
             }
 
             dataGridViewSMS2.Rows.Clear();
-            list = ConnectMySql.getListSMS(2);
+            list = ConnectMySql.getListSMS(2); 
             for (int i = 0; i < list[0].Count; i++)
             {
                 int number = dataGridViewSMS2.Rows.Add();
