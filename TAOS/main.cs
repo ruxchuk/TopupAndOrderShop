@@ -38,6 +38,8 @@ namespace TAOS
         private WaitForLoading waitingForm = new WaitForLoading();
 
         #region GSM Modem
+
+        private string strNoPort = "No Port";
         private ConnectPort connectPort = new ConnectPort();
         #endregion
 
@@ -801,6 +803,7 @@ namespace TAOS
             tbxTopupCustomerName.Visible = false;
             btnSaveCustomerName.Visible = false;
             btnTopupUSSD1.Visible = false;
+            checkClickTopup = false;
         }
 
         private bool checkAddTopup()
@@ -890,7 +893,8 @@ namespace TAOS
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            Debug.WriteLine(e.KeyData);
+            //Debug.WriteLine(e.KeyData);
+            checkClickTopup = true;
             switch (e.KeyData)
             {
                 case Keys.F6:
@@ -1097,34 +1101,36 @@ namespace TAOS
                 {
                     //return topup 
                     btnTopupUSSD1.Visible = false;Debug.WriteLine(network);
-                    if (network == "One 2 Call" && one2CallPortName != "No Port")
+                    if (network == "One 2 Call" && one2CallPortName != strNoPort)
                     {
                         bool result = connectPort.checkConnectPortByName(ref one2CallPortName);
-                        Thread.Sleep(300);
+                        //Thread.Sleep(300);
                         if (result)
                         {
-                        Debug.WriteLine("one 2 call click");
+                            Debug.WriteLine("one 2 call click");
                             btnReTopup.Visible = true;
                             lbRefTopupNo.Visible = true;
                             tbxRefReTopup.Visible = true;
                             tbxRefReTopup.Select();
+                            checkClickTopup = true;
                         }
                     }
-                    else if (network == "DTAC" && textEditPortDTAC.Text != "No Port")
+                    else if (network == "DTAC" && textEditPortDTAC.Text != strNoPort)
                     {
                         bool result = connectPort.checkConnectPortByName(ref dtacPortName);
-                        Thread.Sleep(300);
+                        //Thread.Sleep(300);
                         if (result)
                         {
                             btnReTopup.Visible = true;
                             tbxRefReTopup.Visible = false;
                             lbRefTopupNo.Visible = false;
+                            checkClickTopup = true;
                         }
                     }
-                    else if (network == "TrueMove" && textEditPortTrueMove.Text != "No Port")
+                    else if (network == "TrueMove" && textEditPortTrueMove.Text != strNoPort)
                     {
                         bool result = connectPort.checkConnectPortByName(ref trueMovePortName);
-                        Thread.Sleep(300);
+                        //Thread.Sleep(300);
                         if (result)
                         {
                             //tbxRefReTopup.Visible = false;
@@ -1132,6 +1138,7 @@ namespace TAOS
                             lbRefTopupNo.Visible = false;
                             tbxRefReTopup.Visible = false;
                             btnReTopup.Visible = false;
+                            checkClickTopup = true;
                         }
                     }
                     else
@@ -1139,14 +1146,13 @@ namespace TAOS
                         lbRefTopupNo.Visible = false;
                         tbxRefReTopup.Visible = false;
                         btnReTopup.Visible = false;
+                        checkClickTopup = false;
                     }
                     //tbxHistoryPhoneNumber.Select();
                     return;
                 }
                 else if (tabControlTopUpList.SelectedTab == tabPageAddTopup)
                 {
-                    Debug.WriteLine("tab list");
-
                     tbxTopupCustomerName.Visible = true;
                     btnSaveCustomerName.Visible = true;
                     lbSelectTopupID.Text = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
@@ -1163,7 +1169,7 @@ namespace TAOS
                     //txtTopupPhoneNumber.Select();
 
                     //topup
-                    if (network == "One 2 Call" && textEditPortOne2Call.Text != "No Port")
+                    if (network == "One 2 Call" && textEditPortOne2Call.Text != strNoPort)
                     {
                         bool result = connectPort.checkConnectPortByName(ref one2CallPortName);
 
@@ -1171,25 +1177,28 @@ namespace TAOS
                         if (result)
                         {
                             btnTopupUSSD1.Visible = true;
+                            checkClickTopup = true;
                         }
                             
                     }
-                    else if (network == "DTAC" && textEditPortDTAC.Text != "No Port")
+                    else if (network == "DTAC" && textEditPortDTAC.Text != strNoPort)
                     {
                         bool result = connectPort.checkConnectPortByName(ref dtacPortName);
                         if (result)
                         {
                             btnTopupUSSD1.Visible = true;
+                            checkClickTopup = true;
                         }
 
                     }
-                    else if (network == "TrueMove" && textEditPortTrueMove.Text != "No Port")
+                    else if (network == "TrueMove" && textEditPortTrueMove.Text != strNoPort)
                     {
 
                         bool result = connectPort.checkConnectPortByName(ref trueMovePortName);
                         if (result)
                         {
                             btnTopupUSSD1.Visible = true;
+                            checkClickTopup = true;
                         }
                     }
                     else
@@ -1198,10 +1207,11 @@ namespace TAOS
                         tbxRefReTopup.Visible = false;
                         btnTopupUSSD1.Visible = false;
                         btnReTopup.Visible = false;
+                        checkClickTopup = false;
                     }
-                    //if (textEditPortOne2Call.Text != "No Port"
-                    //    || textEditPortDTAC.Text != "No Port"
-                    //    || textEditPortTrueMove.Text != "No Port")
+                    //if (textEditPortOne2Call.Text != strNoPort
+                    //    || textEditPortDTAC.Text != strNoPort
+                    //    || textEditPortTrueMove.Text != strNoPort)
                     //{
                     //    btnTopupUSSD1.Visible = true;
                     //}
@@ -1212,6 +1222,7 @@ namespace TAOS
                     tbxRefReTopup.Visible = false;
                     btnTopupUSSD1.Visible = false;
                     btnReTopup.Visible = false;
+                    checkClickTopup = false;
                 }
             }
 
@@ -1871,18 +1882,18 @@ namespace TAOS
 
         private void btnTopupUSSD1_Click(object sender, EventArgs e)
         {
+            checkClickTopup = true;
             string phone = dataGridViewTopup.SelectedRows[0].Cells[1].Value.ToString();
-                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
-                DialogResult result = messageError.showMessageBox("ต้องการเติมเงิน " + network + " เบอร์ \n" +
-                    phone + " ใช่ หรือไม่",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+            string valueBath = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
+            DialogResult result = messageError.showMessageBox("ต้องการเติมเงิน " + network + " เบอร์ \n" +
+                phone + " ใช่ หรือไม่",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                checkClickTopup = true;
                 waitingForm.showLoading("กำลังเติมเงิน กรุณารอสักครู่");
                 phone = phone.Trim();
                 phone = phone.Replace("-", "");
-                string valueBath = dataGridViewTopup.SelectedRows[0].Cells[2].Value.ToString();
                 string ussdCode = "";
                 string response = ""; 
                 switch (network)
@@ -1948,8 +1959,9 @@ namespace TAOS
 
         private void btnReTopup_Click(object sender, EventArgs e)
         {
-                string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
-                if (tbxRefReTopup.Text == "" && network == "One 2 Call")
+            checkClickTopup = true;
+            string network = dataGridViewTopup.SelectedRows[0].Cells[8].Value.ToString();
+            if (tbxRefReTopup.Text == "" && network == "One 2 Call")
             {
                 tbxRefReTopup.Select();
                 return;
@@ -2004,6 +2016,7 @@ namespace TAOS
                 btnTopupUSSD1.Visible = false;
                 btnReTopup.Visible = false;
             }
+            checkClickTopup = false;
         }
 
         private void tbxRefReTopup_KeyDown(object sender, KeyEventArgs e)
@@ -2036,8 +2049,10 @@ namespace TAOS
         private void btnConnectPort3_Click(object sender, EventArgs e)
         {
             waitingForm.showLoading("กำลังเช็ค Port ทั้งหมดกรุณารอสักครู่");
+            checkClickTopup = true;
             checkPort();
             waitingForm.cloadLoading();
+            checkClickTopup = false;
         }
 
         private void btnSaveCustomerName_Click(object sender, EventArgs e)
@@ -2113,73 +2128,98 @@ namespace TAOS
 
         private void receiveSMS()
         {
-            //waitingForm.showLoading("กำลังโหลด SMS กรุณารอสักครู่");
+            waitingForm.showLoading("กำลังโหลด SMS กรุณารอสักครู่");
             bool checkReceive = false;
-            SerialPort port1 = connectPort.OpenPort(one2CallPortName);
-            ShortMessageCollection objShortMessageCollection = connectPort.ReadSMS(port1);            
-            if (objShortMessageCollection.Count > 0)
+            SerialPort port1 = null;
+            SerialPort port2 = null;
+            SerialPort port3 = null;
+            if (one2CallPortName != strNoPort)
             {
-                checkReceive = true;
-                foreach (ShortMessage msg in objShortMessageCollection)
-                {
-                    ConnectMySql.addReceiveSMS(
-                        msg.Sender,
-                        connectPort.ussd.decodeResponseUSSDToText(msg.Message),
-                        msg.Sent.Replace("+28", ""),
-                        1);
-
-                }
-                connectPort.DeleteMsg(port1);
+                port1 = connectPort.OpenPort(one2CallPortName);
             }
-            //Thread.Sleep(1000);
-            connectPort.ClosePort(port1); 
-            //Debug.WriteLine("port 1");
-
-            SerialPort port2 = connectPort.OpenPort(dtacPortName);
-            objShortMessageCollection = connectPort.ReadSMS(port2);             
-            if (objShortMessageCollection.Count > 0)
+            if (dtacPortName != strNoPort)
             {
-                checkReceive = true;
-                foreach (ShortMessage msg in objShortMessageCollection)
-                {
-                    ConnectMySql.addReceiveSMS(
-                        msg.Sender,
-                        connectPort.ussd.decodeResponseUSSDToText(msg.Message),
-                        msg.Sent.Replace("+28", ""),
-                        2);
-
-                }
-                connectPort.DeleteMsg(port2);
+                port2 = connectPort.OpenPort(dtacPortName);
             }
-            //Thread.Sleep(1000);
-            connectPort.ClosePort(port2); 
-            //Debug.WriteLine("port 2");
-
-            SerialPort port3 = connectPort.OpenPort(trueMovePortName);
-            objShortMessageCollection = connectPort.ReadSMS(port3);              
-            if (objShortMessageCollection.Count > 0)
+            if (trueMovePortName != strNoPort)
             {
-                checkReceive = true;
-                foreach (ShortMessage msg in objShortMessageCollection)
-                {
-                    ConnectMySql.addReceiveSMS(
-                        msg.Sender,
-                        connectPort.ussd.decodeResponseUSSDToText(msg.Message),
-                        msg.Sent.Replace("+28", ""),
-                        3);
-
-                }
-                connectPort.DeleteMsg(port3);
+                port3 = connectPort.OpenPort(trueMovePortName);
             }
-            //Thread.Sleep(1000); Debug.WriteLine("port 3");
-            connectPort.ClosePort(port3);
-            //Debug.WriteLine(connectPort.ussd.Decode7bit("729711211212179110108105110101"));
+            if (port1 != null)
+            {
+                ShortMessageCollection objShortMessageCollection = connectPort.ReadSMS(port1);
+                if (objShortMessageCollection.Count > 0)
+                {
+                    checkReceive = true;
+                    foreach (ShortMessage msg in objShortMessageCollection)
+                    {
+                        string massage = connectPort.ussd.decodeResponseUSSDToText(msg.Message);
+                        ConnectMySql.addReceiveSMS(
+                            msg.Sender,
+                            massage,
+                            msg.Sent.Replace("+28", ""),
+                            1);
+                        if (massage.Length > 20)
+                            lbTopupMassage.Text = massage;
+
+                    }
+                    connectPort.DeleteMsg(port1);
+                }
+                connectPort.ClosePort(port1);
+            }
+
+            if (port2 != null)
+            {
+                ShortMessageCollection objShortMessageCollection = connectPort.ReadSMS(port2);
+                if (objShortMessageCollection.Count > 0)
+                {
+                    checkReceive = true;
+                    foreach (ShortMessage msg in objShortMessageCollection)
+                    {
+                        string massage = connectPort.ussd.decodeResponseUSSDToText(msg.Message);
+                        ConnectMySql.addReceiveSMS(
+                            msg.Sender,
+                            massage,
+                            msg.Sent.Replace("+28", ""),
+                            2);
+                        if (massage.Length > 20)
+                            lbTopupMassage.Text = massage;
+
+                    }
+                    connectPort.DeleteMsg(port2);
+                }
+                connectPort.ClosePort(port2);
+            }
+
+            if (port3 != null)
+            {
+                ShortMessageCollection objShortMessageCollection = connectPort.ReadSMS(port3);
+                if (objShortMessageCollection.Count > 0)
+                {
+                    checkReceive = true;
+                    foreach (ShortMessage msg in objShortMessageCollection)
+                    {
+                        string massage = connectPort.ussd.decodeResponseUSSDToText(msg.Message);
+                        ConnectMySql.addReceiveSMS(
+                            msg.Sender,
+                            massage,
+                            msg.Sent.Replace("+28", ""),
+                            3);
+                        if (massage.Length > 20)
+                            lbTopupMassage.Text = massage;
+
+                    }
+                    connectPort.DeleteMsg(port3);
+                }
+                connectPort.ClosePort(port3);
+            }
+            
             if (checkReceive)
             {
                 (new SoundPlayer(@"Files\Sound\sms.wav")).Play();
                 getListSMS();
             }
-            //waitingForm.cloadLoading();
+            waitingForm.cloadLoading();
         }
 
         private void getListSMS()

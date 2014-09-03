@@ -525,7 +525,7 @@ namespace TAOS
         }
 
         //get list sms
-        public List<string>[] getListSMS(int network)
+        public List<string>[] getListSMS(int network, string sendTime = "")
         {
             List<string>[] list = new List<string>[4];
             for (int i = 0; i < 4; i++)
@@ -535,6 +535,7 @@ namespace TAOS
             if (CheckConnect())
             {
                 string strAnd = " AND network=" + network.ToString();
+                strAnd += sendTime != "" ? " AND send_time='" + sendTime + "'" : "";
                 string sql = @"
                     SELECT 
                       * 
@@ -750,8 +751,25 @@ namespace TAOS
         }
         public int addReceiveSMS(string sender, string massage, string sendTime, int network)
         {
+            sender = sender.Trim();
+            massage = massage.Trim();
+            sendTime = sendTime.Trim();
             int lastID = 0;
-            string sql = @"
+            string sql = "";
+            List<string>[] list = getListSMS(network, sender);
+            if (list[0].Count > 0)
+            {
+                int id = int.Parse(list[0][0].ToString());
+                string newMassage = list[0][2].ToString() + massage;
+                sql = @"
+                UPDATE `topup_sms`
+                SET 
+                  `massage` = '" + newMassage + @"'
+                WHERE `id` = " + id.ToString();
+                bool resut = UpDate(sql);
+                return resut ? id : lastID;
+            }
+            sql = @"
                 INSERT INTO `topup_sms`
                 (
 	                `sender`,
