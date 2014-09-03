@@ -70,7 +70,7 @@ namespace TAOS
         #region TRUE MOVE
         public SerialPort _Port3 = null;//TRUE MOVE
         public string trueMovePortName = "";
-        public string imeiTrueMove = "860941002609570";//TRUE MOVE
+        public string imeiTrueMove = "";//"860941002609570";//TRUE MOVE
         public string topupCodeTrueMove1 = "*666*";// *666*เบอร์*เงิน*1590#
         public string topupCodeTrueMove2 = "*";
         public string topupCodeTrueMove3 = "*1590#";
@@ -118,8 +118,9 @@ namespace TAOS
             textEditPortDTAC.Text = dtacPortName;
             Thread.Sleep(1000);
 
-            trueMovePortName = connectPort.getPortByImei(imeiTrueMove);
-            textEditPortTrueMove.Text = trueMovePortName;
+            //trueMovePortName = connectPort.getPortByImei(imeiTrueMove);
+            //textEditPortTrueMove.Text = trueMovePortName;
+            //Thread.Sleep(1000);
         }
 
         private void loadSetting()
@@ -1897,7 +1898,7 @@ namespace TAOS
                         //    return;
                         //}
                         //Debug.Write("Send ussd start");
-                        response = connectPort.topupUSSD(ussdCode, one2CallPortName);
+                        response = connectPort.topupUSSD(ussdCode, one2CallPortName, true);
                     break;
                     case "DTAC": ussdCode =
                         //"*101#";
@@ -1972,9 +1973,9 @@ namespace TAOS
                 {
                     case "One 2 Call": ussdCode =
                     returnCodeOne2Call1 + subPhone +
-                    returnCodeOne2Call1 + refNo +
-                    returnCodeOne2Call1; 
-                    response = connectPort.topupUSSD(ussdCode, one2CallPortName);
+                    returnCodeOne2Call2 + refNo +
+                    returnCodeOne2Call3; 
+                    response = connectPort.topupUSSD(ussdCode, one2CallPortName, true);
                     break;
                     case "DTAC": ussdCode =
                     returnCodeDTAC1 + phone +

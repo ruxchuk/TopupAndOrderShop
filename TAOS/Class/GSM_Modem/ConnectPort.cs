@@ -559,7 +559,7 @@ namespace TAOS
                 //Debug.WriteLine(strResponse);
                 if (recievedData.EndsWith("\r\nOK\r\n"))
                 {
-                    strResponse = ExecCommand(port, "", 1000, "Failed to read the messages.");
+                    strResponse = ExecCommand(port, "", 2500, "Failed to read the messages.");
                     Debug.WriteLine(strResponse + "|3");
                 }
                 else
