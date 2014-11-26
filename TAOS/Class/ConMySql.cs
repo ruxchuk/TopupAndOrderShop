@@ -756,19 +756,23 @@ namespace TAOS
             sendTime = sendTime.Trim();
             int lastID = 0;
             string sql = "";
-            List<string>[] list = getListSMS(network, sender);
-            if (list[0].Count > 0)
+            try
             {
-                int id = int.Parse(list[0][0].ToString());
-                string newMassage = list[0][2].ToString() + massage;
-                sql = @"
-                UPDATE `topup_sms`
-                SET 
-                  `massage` = '" + newMassage + @"'
-                WHERE `id` = " + id.ToString();
-                bool resut = UpDate(sql);
-                return resut ? id : lastID;
+                List<string>[] list = getListSMS(network, sendTime);
+                if (list[0].Count > 0)
+                {
+                    int id = int.Parse(list[0][0].ToString());
+                    string newMassage = list[2][0].ToString() + massage;
+                    sql = @"
+                        UPDATE `topup_sms`
+                        SET 
+                          `massage` = '" + newMassage + @"'
+                        WHERE `id` = " + id.ToString();
+                            bool resut = UpDate(sql);
+                            return resut ? id : lastID;
+                }
             }
+            catch { Debug.WriteLine("update error"); }
             sql = @"
                 INSERT INTO `topup_sms`
                 (

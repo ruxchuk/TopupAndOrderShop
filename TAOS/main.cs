@@ -33,7 +33,8 @@ namespace TAOS
         private string str_urlCheckNetwork = "http://www.checkber.com/default.asp?q=";
         private Bitmap bmImageNetwork;
         private MessageError messageError;
-        private bool checkClickTopup = false;
+        private bool checkClickTopup = true;
+        private bool checkLoadListTopup = true;
 
         private WaitForLoading waitingForm = new WaitForLoading();
 
@@ -804,6 +805,7 @@ namespace TAOS
             btnSaveCustomerName.Visible = false;
             btnTopupUSSD1.Visible = false;
             checkClickTopup = false;
+            checkLoadListTopup = true;
         }
 
         private bool checkAddTopup()
@@ -854,13 +856,10 @@ namespace TAOS
         private void getListTopup(int isTopup = 0, string phoneNumber = "",
             string date = "", string time = "", string network = "", string order = "")
         {
-            dataGridViewTopup.Rows.Clear();
             List<string>[] list = ConnectMySql.getListTopup(isTopup, phoneNumber, date, time, network, order);
 
 
-            Debug.WriteLine(list[0].Count);
-
-
+            dataGridViewTopup.Rows.Clear();
             if (list[0].Count > 0)
             {
                 btnTopUpAnAll.Visible = true;
@@ -884,6 +883,7 @@ namespace TAOS
                 dataGridViewTopup.Rows[number].Cells[6].Value = list[6][i];
                 dataGridViewTopup.Rows[number].Cells[7].Value = list[7][i];
                 dataGridViewTopup.Rows[number].Cells[8].Value = list[3][i];
+
             }
         }
 
@@ -1153,6 +1153,7 @@ namespace TAOS
                 }
                 else if (tabControlTopUpList.SelectedTab == tabPageAddTopup)
                 {
+                    checkLoadListTopup = false;
                     tbxTopupCustomerName.Visible = true;
                     btnSaveCustomerName.Visible = true;
                     lbSelectTopupID.Text = dataGridViewTopup.SelectedRows[0].Cells[0].Value.ToString();
@@ -2119,16 +2120,22 @@ namespace TAOS
 
         private void timerGetSMS_Tick(object sender, EventArgs e)
         {
-            Debug.WriteLine("get sms:");
+            //Debug.WriteLine("get sms:");
             if (!checkClickTopup)
             {
+                checkClickTopup = true;
                 receiveSMS();
             }
         }
 
         private void receiveSMS()
         {
-            waitingForm.showLoading("กำลังโหลด SMS กรุณารอสักครู่");
+            //waitingForm.showLoading("กำลังโหลด SMS กรุณารอสักครู่"); 
+            //ConnectMySql.addReceiveSMS(
+            //                 "0875681988",
+            //                 "test|",
+            //                 "14/08/28,15:10:38",
+            //                 1);
             bool checkReceive = false;
             SerialPort port1 = null;
             SerialPort port2 = null;
@@ -2219,7 +2226,8 @@ namespace TAOS
                 (new SoundPlayer(@"Files\Sound\sms.wav")).Play();
                 getListSMS();
             }
-            waitingForm.cloadLoading();
+            //waitingForm.cloadLoading();
+            checkClickTopup = false;
         }
 
         private void getListSMS()
