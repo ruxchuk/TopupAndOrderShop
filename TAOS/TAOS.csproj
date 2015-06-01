@@ -220,6 +220,9 @@
     <Content Include="Files\Images\TrueMove.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Files\SaveSetting\DataPortTopup.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Files\SaveSetting\FileSave.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

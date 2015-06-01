@@ -93,27 +93,6 @@ namespace TAOS
             return ports;
         }
 
-        public bool checkImei(string imei, SerialPort port)
-        {
-
-            try
-            {
-                //eheck imei "AT+CGSN"
-                string strResponse = ExecCommand(port, "AT+CGSN", 300, "No phone connected");
-                //Debug.WriteLine(strResponse);
-                if (strResponse.EndsWith("\r\nOK\r\n"))
-                {
-                    if (strResponse.IndexOf(imei) != -1)
-                        return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return false;
-        }
-
         public bool checkConnectPortByName(ref string portName)
         {
             //if (portName == "" || portName == "No Port")
@@ -143,7 +122,54 @@ namespace TAOS
             portName = "No Port";
             return false;
         }
-        
+
+
+        public bool checkChannel(SerialPort port, string channel)
+        {
+            string result = ExecCommand(port, "AT+COPS?", 300, "Failed to read the messages.");
+            if (result.EndsWith("\r\nOK\r\n"))
+            {
+                if (result.IndexOf(channel) >= 0)
+                    return true;
+            }
+            return false;
+        }
+
+        public string getPortByChannel(string channel)
+        {
+            string checkPort = "No Port";
+            string[] ports = getPort();
+            SerialPort portVal = new SerialPort();
+            foreach (string port in ports)
+            {
+                try
+                {
+                    //Open communication port 
+                    portVal = OpenPort(
+                        port
+                    );
+                }
+                catch (Exception ex)
+                {
+                    //ErrorLog(ex.Message);
+                    portVal = null;
+                } 
+
+                if (portVal != null)
+                {
+                    if (checkConnectPort(portVal))
+                    {
+                        if (checkChannel(portVal, channel))
+                        {
+                            checkPort = port;
+                        }
+                    }
+                    ClosePort(portVal);
+                }
+            }
+            return checkPort;
+        }
+
         public string getPortByImei(string imei)
         {
             string checkPort = "No Port";
@@ -167,7 +193,7 @@ namespace TAOS
                 {
                     if (checkConnectPort(portVal))
                     {
-                        if (checkImei(imei, portVal))
+                        if (checkIMEI(portVal, imei))
                         {
                             checkPort = port;
                         }
@@ -275,6 +301,14 @@ namespace TAOS
             return "เติมเงินสำเร็จ";
         }
 
+        public string buildStringToupupCode(string code, string phone, string value)
+        {
+            string newCode = code;
+            newCode = newCode.Replace("A", phone);
+            newCode = newCode.Replace("B", value);
+            return newCode.Trim();
+        }
+
         public bool checkIMEI(SerialPort port, string imei)
         {
             string result = "";
@@ -290,7 +324,7 @@ namespace TAOS
             }
             catch
             {
-            }Debug.WriteLine("'"+imei +"-"+result+"'");
+            }
             if (imei == result)
                 return true;
             return false;
@@ -353,7 +387,7 @@ namespace TAOS
                     {
                         string t = port.ReadExisting();
                         buffer += t;
-                        Debug.WriteLine(t);
+                        //Debug.WriteLine(t);
                         responseUSSD += t;
                     }
                     else

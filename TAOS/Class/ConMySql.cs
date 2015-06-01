@@ -8,6 +8,7 @@ using System.IO;
 using MySql.Data.MySqlClient;
 using System.Threading;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace TAOS
 {
@@ -321,10 +322,16 @@ namespace TAOS
         #region TopUP
 
         //get รายการเบอร์โทร
+        private static readonly Regex boxNumberRegex = new Regex(@"^\d");
+
+        public static bool VerifyBoxNumber(string boxNumber)
+        {
+            return boxNumberRegex.IsMatch(boxNumber);
+        }
         public List<string>[] getListPhoneNumber(string searchPhoneNumber = "")
         {
-            List<string>[] list = new List<string>[4];
-            for (int i = 0; i < 4; i++)
+            List<string>[] list = new List<string>[5];
+            for (int i = 0; i < 5; i++)
             {
                 list[i] = new List<string>();
             }
@@ -339,6 +346,7 @@ namespace TAOS
                       a.`date_add`,
                       a.id AS phone_number_id,
                       IFNULL(b.id, 0) AS customer_id,
+                      IFNULL(b.name, '') AS customer_name,
                       b.`name`,
                       b.`date_update` AS b_date_update,
                       b.`date_add`,
@@ -350,13 +358,19 @@ namespace TAOS
                         AND b.deleted = 0 
                     WHERE 1 
                       AND a.deleted = 0 ";
-                sql += searchPhoneNumber == "" ?"": " AND a.phone_number LIKE '%"+searchPhoneNumber+ "%'";
+                if (searchPhoneNumber != "")
+                {
+                    searchPhoneNumber = searchPhoneNumber.Replace("*", "");
+                    string strAnd = VerifyBoxNumber(searchPhoneNumber) == true ? " AND a.phone_number LIKE '%" + searchPhoneNumber + "%'": " AND b.name LIKE '%" + searchPhoneNumber + "%'";
+                    sql += strAnd;
+                }
+                //sql += searchPhoneNumber == "" ? "" : " AND (a.phone_number LIKE '%" + searchPhoneNumber + "%')";
                 sql += @"
                     GROUP BY a.phone_number 
                     ORDER BY a.date_update DESC 
                     LIMIT 20
                     ;";
-                //Debug.WriteLine(sql);
+                Debug.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
@@ -365,9 +379,10 @@ namespace TAOS
                     list[1].Add(dataReader["phone_number"] + "");
                     list[2].Add(dataReader["network"] + "");
                     list[3].Add(dataReader["customer_id"] + "");
+                    list[4].Add(dataReader["customer_name"] + "");
                 }
                 dataReader.Close();
-                CloseConnection();
+                CloseConnection(); Debug.WriteLine(list[0].Count);
                 return list;
             }
             else
